@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matthias Silberhain</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Garamond, "Times New Roman", serif;
+      background: radial-gradient(circle at top right, #2b2b2b 0%, #0d0d0d 45%, #000000 100%);
+      color: #d6d6d6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    main {
+      text-align: center;
+      padding: 4rem 2rem;
+      max-width: 900px;
+      animation: fadeIn 1.6s ease-out forwards;
+    }
+
+    /* Logo Animation */
+    .logo {
+      max-width: 420px;
+      width: 100%;
+      margin: 0 auto 3rem auto;
+      opacity: 0;
+      transform: scale(0.96);
+      animation: logoReveal 2.4s ease-out forwards;
+      filter: drop-shadow(0 0 22px rgba(220,220,220,0.25));
+    }
+
+    @keyframes logoReveal {
+      0% {
+        opacity: 0;
+        transform: scale(0.96);
+        filter: drop-shadow(0 0 0 rgba(220,220,220,0));
+      }
+      60% {
+        opacity: 1;
+        transform: scale(1);
+        filter: drop-shadow(0 0 28px rgba(220,220,220,0.35));
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+        filter: drop-shadow(0 0 18px rgba(220,220,220,0.25));
+      }
+    }
+
+    h1 {
+      font-size: 2.6rem;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      margin-bottom: 2rem;
+      color: #ededed;
+      text-shadow: 0 0 10px rgba(220,220,220,0.25);
+      animation: textFade 2.2s ease-out forwards;
+    }
+
+    @keyframes textFade {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .divider {
+      width: 140px;
+      height: 1px;
+      margin: 2.5rem auto;
+      background: linear-gradient(90deg, transparent, #cfcfcf, transparent);
+      opacity: 0.6;
+    }
+
+    section {
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: left;
+      animation: fadeIn 2.4s ease-out forwards;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      margin-bottom: 1.5rem;
+      color: #e2e2e2;
+    }
+
+    p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      margin-bottom: 1.4rem;
+      color: #c2c2c2;
+    }
+
+    footer {
+      margin-top: 4rem;
+      font-size: 0.85rem;
+      letter-spacing: 0.14em;
+      text-align: center;
+      color: #8a8a8a;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2rem; }
+      p { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <main>
+    <img src="logo.png" alt="Matthias Silberhain Logo" class="logo" />
+
+    <h1>MATTHIAS SILBERHAIN</h1>
+
+    <div class="divider"></div>
+
+    <section>
+      <h2>Über den Autor</h2>
+      <p>
+        Matthias Silberhain steht für Literatur mit Haltung. In seinen Büchern geht es um Macht, Verantwortung und die Kräfte, die im Verborgenen wirken. Er schreibt über historische und gesellschaftliche Zusammenhänge nicht, um zu gefallen, sondern um Klarheit zu schaffen. Seine Texte sind präzise, fundiert und kompromisslos ehrlich.
+      </p>
+      <p>
+        Was Silberhain auszeichnet, ist die Verbindung aus gründlicher Recherche und erzählerischer Stärke. Er legt offen, wo andere vereinfachen, und benennt Zusammenhänge, die selten klar ausgesprochen werden. Leserinnen und Leser finden bei ihm keine leichten Antworten, sondern belastbare Perspektiven, die nachwirken und zum Weiterdenken zwingen.
+      </p>
+      <p>
+        Nach vielen Jahren praktischer Berufserfahrung begann er, seine Erkenntnisse konsequent in Buchform zu bündeln. Unter dem Namen Matthias Silberhain verfolgt er eine klare Linie: Bücher mit Substanz, Tiefe und Haltung. Werke, die Orientierung geben in einer Zeit, in der Oberflächen oft lauter sind als Inhalte.
+      </p>
+      <p>
+        Seine Veröffentlichungen richten sich an Menschen, die mehr wollen als Unterhaltung. An Leser, die bereit sind, genauer hinzusehen, Verantwortung zu hinterfragen und sich mit den unbequemen Seiten von Geschichte und Gegenwart auseinanderzusetzen.
+      </p>
+    </section>
+
+    <footer>
+      © Matthias Silberhain
+    </footer>
+  </main>
+
+</body>
+</html>
