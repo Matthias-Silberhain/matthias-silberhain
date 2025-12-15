@@ -185,3 +185,47 @@ p {
     display: block;
   }
 }
+/* =====================
+   SILBER-LICHT-HAUCH
+===================== */
+
+.preloader-text {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Lichtstreifen */
+.preloader-text::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 120%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(220,225,235,0.85) 50%,
+    transparent 70%
+  );
+  opacity: 0;
+}
+
+/* Aktivierung */
+.preloader-text.silver-glow::after {
+  animation: silverSweep 1.4s ease forwards;
+}
+
+@keyframes silverSweep {
+  0% {
+    left: -120%;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    left: 120%;
+    opacity: 0;
+  }
+}
