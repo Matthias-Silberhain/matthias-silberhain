@@ -14,107 +14,95 @@ html, body {
 }
 
 body {
-  font-family: "EB Garamond", serif;
+  font-family: "EB Garamond", Garamond, serif;
   background-color: #050505;
   color: #cfd2d6;
   line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* =====================
-   PRELOADER
-===================== */
+/* =======================
+   PRELOADER STYLES
+=======================*/
 
 #preloader {
   position: fixed;
   inset: 0;
-  background: #050505;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  background-color: #050505;
   z-index: 9999;
 }
 
 .preloader-inner {
   text-align: center;
+  color: white;
 }
 
-/* Logo „gemalt“-Effekt */
 .preloader-logo {
-  width: 260px;
-  margin-bottom: 26px;
-  filter: drop-shadow(0 0 30px rgba(200,205,215,0.6));
-  animation: logoReveal 1.6s ease forwards;
+  width: 150px; /* Anpassbare Größe für das Logo */
+  animation: drawLogo 3s ease forwards;
 }
 
-@keyframes logoReveal {
-  from {
-    clip-path: inset(0 100% 0 0);
-    opacity: 0;
+@keyframes drawLogo {
+  0% {
+    width: 0;
   }
-  to {
-    clip-path: inset(0 0 0 0);
-    opacity: 1;
+  100% {
+    width: 150px;
   }
 }
 
-/* Schreibschrift */
 .preloader-text {
+  font-size: 3rem;
   font-family: "Cinzel", serif;
-  font-size: 1.6rem;
-  letter-spacing: 0.18em;
-  color: #e4e6ea;
+  color: transparent;
+  text-shadow: 0 0 4px silver, 0 0 8px rgba(200, 200, 215, 0.6);
+  border-right: 2px solid rgba(200, 200, 215, 0.9); /* Der blinkende Cursor */
+  width: 0;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .cursor {
   display: inline-block;
-  width: 2px;
-  height: 1.4em;
-  background: #cfd2d6;
-  margin-left: 4px;
-  animation: blink 0.8s steps(1) infinite;
-}
-
-.cursor.stop {
-  animation: none;
-  opacity: 0;
+  width: 10px;
+  height: 1.5rem;
+  background-color: #fff;
+  margin-left: 5px;
+  animation: blink 0.8s step-end infinite;
 }
 
 @keyframes blink {
   50% {
-    opacity: 0;
+    background-color: transparent;
   }
 }
 
-/* Fade Out */
-#preloader.fade-out {
-  animation: preloadFade 0.35s ease forwards;
-}
-
-@keyframes preloadFade {
-  to {
-    opacity: 0;
-    visibility: hidden;
-  }
-}
-
-/* =====================
-   HEADER
-===================== */
-
-.header {
-  padding: 36px 20px 26px;
-  text-align: center;
-}
+/* =======================
+   GLOWEFFEKTE (für Logo)
+=======================*/
 
 .logo {
-  width: min(80vw, 520px);
-  margin: 0 auto 24px;
-  display: block;
+  animation: logoGlow 4s ease-in-out infinite;
+  width: 180px; /* Logo Größe anpassen */
+  height: auto;
 }
 
-/* =====================
-   NAVIGATION
-===================== */
+@keyframes logoGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 10px rgba(200,205,215,0.25));
+  }
+  50% {
+    filter: drop-shadow(0 0 26px rgba(200,205,215,0.55));
+  }
+}
+
+/* =======================
+   BURGER MENÜ
+=======================*/
 
 .hauptnavigation {
   display: flex;
@@ -132,69 +120,19 @@ body {
 }
 
 /* =====================
-   LICHTKANTEN
-===================== */
-
-.lichtkante,
-.footer-lichtkante {
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(200,205,215,0.85),
-    transparent
-  );
-  box-shadow: 0 0 12px rgba(200,205,215,0.45);
-}
-
-/* =====================
-   INHALT
-===================== */
-
-.inhalt {
-  padding: 72px 20px;
-}
-
-h1 {
-  font-family: "Cinzel", serif;
-  letter-spacing: 0.1em;
-  text-align: center;
-  margin-bottom: 26px;
-}
-
-p {
-  max-width: 700px;
-  margin: 0 auto 22px;
-  text-align: center;
-}
-
-/* =====================
    FOOTER
 ===================== */
 
 .footer {
+  background-color: #050505;
   text-align: center;
-  padding: 14px 0;
+  padding: 12px 0 14px;
   font-size: 0.8rem;
+}
+
+.footer p {
+  margin: 0;
   color: #9da2a8;
-}
-
-/* =====================
-   BURGER
-===================== */
-
-.burger {
-  display: none;
-  width: 30px;
-  margin: 18px auto 0;
-  cursor: pointer;
-}
-
-.burger span {
-  display: block;
-  height: 2px;
-  background: #cfd2d6;
-  margin: 6px 0;
 }
 
 /* =====================
@@ -202,6 +140,10 @@ p {
 ===================== */
 
 @media (max-width: 768px) {
+
+  .logo {
+    width: min(90vw, 420px);
+  }
 
   .hauptnavigation {
     display: none;
@@ -216,5 +158,9 @@ p {
 
   .burger {
     display: block;
+  }
+
+  p {
+    font-size: 1rem;
   }
 }
