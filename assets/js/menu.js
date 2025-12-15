@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   /* =========================
-     PRELOADER / LOGO
+     PRELOADER ELEMENTE
   ========================= */
 
   const preloader = document.getElementById("preloader");
@@ -10,16 +10,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const textEl = document.getElementById("type-text");
   const cursor = document.querySelector(".cursor");
 
-  /* Logo „zeichnen“ starten */
+  /* Logo Animation starten */
   if (logo) {
-    logo.classList.add("draw");
+    logo.classList.add("animate");
   }
 
   /* =========================
      TYPEWRITER TEXT
   ========================= */
 
-  // Desktop: einzeilig | Mobile: zweizeilig
   const text = window.innerWidth <= 600
     ? "MATTHIAS\nSILBERHAIN"
     : "MATTHIAS SILBERHAIN";
@@ -40,30 +39,27 @@ document.addEventListener("DOMContentLoaded", () => {
       setTimeout(typeWriter, speed);
 
     } else {
-      /* Cursor stoppen */
       cursor.style.display = "none";
 
-      /* Silberner Licht-Hauch */
+      /* Silber-Hauch */
       textContainer.classList.add("silver-glow");
 
-      /* Preloader ausblenden */
+      /* Ausblenden */
       setTimeout(() => {
         preloader.style.opacity = "0";
       }, 1400);
 
-      /* Preloader entfernen */
       setTimeout(() => {
         preloader.remove();
       }, 2000);
     }
   }
 
-  /* Typewriter leicht verzögert starten,
-     damit Logo zuerst „gemalt“ wird */
-  setTimeout(typeWriter, 600);
+  /* Text nach Logo-Start beginnen */
+  setTimeout(typeWriter, 700);
 
   /* =========================
-     BURGER MENÜ
+     BURGER
   ========================= */
 
   const burger = document.getElementById("burger");
