@@ -91,7 +91,7 @@ p {
 }
 
 .logo img {
-  width: 200px;              /* feste Zielgröße */
+  width: 280px;              /* feste Zielgröße */
   max-width: 80vw;
   height: auto;
   margin-bottom: 1rem;
