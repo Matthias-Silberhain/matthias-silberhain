@@ -1,163 +1,140 @@
-/* =====================================
-   RESET & BASIS
-===================================== */
+/* =====================
+   GRUNDLAGEN
+===================== */
 
-*,
-*::before,
-*::after {
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-html {
-  scroll-behavior: smooth;
+html, body {
+  height: 100%;
 }
 
 body {
   font-family: "EB Garamond", Garamond, serif;
-  background: radial-gradient(circle at top, #111 0%, #000 70%);
-  color: #e6e6e6;
+  background-color: #050505;
+  color: #cfd2d6;
   line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* =====================================
+/* =====================
    TYPOGRAFIE
-===================================== */
+===================== */
 
 h1, h2, h3 {
   font-family: "Cinzel", serif;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-h1 {
-  font-size: clamp(2.2rem, 4vw, 3.4rem);
-  margin-bottom: 1.5rem;
+  color: #e3e5e8;
+  margin-bottom: 24px;
+  text-align: center;
 }
 
 p {
-  font-size: 1.1rem;
-  max-width: 720px;
-  margin: 0 auto;
-  opacity: 0.9;
+  max-width: 680px;
+  margin: 0 auto 22px auto;
+  text-align: center;
+  font-size: 1.05rem;
 }
 
-/* =====================================
+/* =====================
    PRELOADER
-===================================== */
+===================== */
 
 #preloader {
   position: fixed;
   inset: 0;
-  background: #000;
-  z-index: 9999;
+  background-color: #050505;
   display: flex;
-  align-items: center;
   justify-content: center;
-  transition: opacity 1.4s ease, visibility 1.4s ease;
-}
-
-#preloader.fade-out {
-  opacity: 0;
-  visibility: hidden;
+  align-items: center;
+  z-index: 9999;
 }
 
 .preloader-logo {
-  width: clamp(420px, 70vw, 820px);
-  height: auto;
-
-  -webkit-mask-image: linear-gradient(
-    90deg,
-    transparent 30%,
-    #000 50%,
-    transparent 70%
-  );
-  -webkit-mask-size: 300%;
-  -webkit-mask-position: 100%;
-
-  mask-image: linear-gradient(
-    90deg,
-    transparent 30%,
-    #000 50%,
-    transparent 70%
-  );
-  mask-size: 300%;
-  mask-position: 100%;
-
-  animation:
-    logoWrite 3.6s ease forwards,
-    logoGlow 4.2s ease-in-out infinite;
-
-  filter:
-    drop-shadow(0 0 20px rgba(230,230,230,0.45))
-    drop-shadow(0 0 50px rgba(230,230,230,0.25));
+  width: min(70vw, 420px);
+  opacity: 0;
+  animation: logoReveal 1.6s ease forwards;
 }
 
-@keyframes logoWrite {
-  to {
-    -webkit-mask-position: 0%;
-    mask-position: 0%;
+@keyframes logoReveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.85);
+    filter: blur(8px);
   }
+  60% {
+    opacity: 1;
+    filter: blur(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+#preloader.fade-out {
+  animation: preloaderFade 0.6s ease forwards;
+}
+
+@keyframes preloaderFade {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* =====================
+   HEADER
+===================== */
+
+.header {
+  background-color: #050505;
+  padding: 36px 20px 28px;
+  text-align: center;
+  position: relative;
+}
+
+.logo-container {
+  margin-bottom: 24px;
+}
+
+.logo {
+  width: min(80vw, 520px);
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  animation: logoGlow 4s ease-in-out infinite;
 }
 
 @keyframes logoGlow {
-  0% {
-    filter:
-      drop-shadow(0 0 14px rgba(230,230,230,0.35))
-      drop-shadow(0 0 30px rgba(230,230230,0.2));
+  0%, 100% {
+    filter: drop-shadow(0 0 6px rgba(200, 200, 210, 0.25));
   }
   50% {
-    filter:
-      drop-shadow(0 0 36px rgba(230,230,230,0.9))
-      drop-shadow(0 0 80px rgba(230,230,230,0.6));
-  }
-  100% {
-    filter:
-      drop-shadow(0 0 14px rgba(230,230,230,0.35))
-      drop-shadow(0 0 30px rgba(230,230,230,0.2));
+    filter: drop-shadow(0 0 18px rgba(220, 220, 230, 0.6));
   }
 }
 
-/* =====================================
-   HEADER & NAVIGATION
-===================================== */
+/* =====================
+   NAVIGATION
+===================== */
 
-.header {
-  background: #000;
-  padding: 2rem 1.5rem 1rem;
-  text-align: center;
-}
-
-.header-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.2rem;
-}
-
-/* Logo im Header */
-.logo img {
-  width: clamp(220px, 28vw, 300px);
-  height: auto;
-  filter:
-    drop-shadow(0 0 12px rgba(230,230,230,0.4))
-    drop-shadow(0 0 30px rgba(230,230,230,0.25));
-}
-
-/* Navigation */
 .hauptnavigation {
   display: flex;
-  gap: 2rem;
   justify-content: center;
+  gap: 36px;
+  flex-wrap: wrap;
 }
 
 .hauptnavigation a {
   font-family: "Cinzel", serif;
+  color: #d7d9dc;
+  text-decoration: none;
   font-size: 0.9rem;
   letter-spacing: 0.15em;
-  color: #e6e6e6;
-  text-decoration: none;
   position: relative;
 }
 
@@ -168,8 +145,13 @@ p {
   bottom: -6px;
   width: 0;
   height: 1px;
-  background: #e6e6e6;
-  transition: 0.3s ease;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(220,220,230,0.9),
+    transparent
+  );
+  transition: all 0.3s ease;
   transform: translateX(-50%);
 }
 
@@ -177,83 +159,82 @@ p {
   width: 100%;
 }
 
-/* Lichtkante */
-.lichtkante {
+/* =====================
+   LICHTKANTEN
+===================== */
+
+.lichtkante,
+.footer-lichtkante {
   height: 1px;
-  margin-top: 1.5rem;
   background: linear-gradient(
-    to right,
+    90deg,
     transparent,
-    rgba(230,230,230,0.9),
+    rgba(220,220,230,0.8),
     transparent
   );
-  box-shadow:
-    0 0 12px rgba(230,230,230,0.8),
-    0 0 28px rgba(230,230,230,0.6);
+  box-shadow: 0 0 14px rgba(220,220,230,0.4);
 }
 
-/* =====================================
-   BURGER (MOBILE)
-===================================== */
+/* =====================
+   INHALT
+===================== */
+
+.inhalt {
+  padding: 80px 20px;
+}
+
+/* =====================
+   FOOTER
+===================== */
+
+.footer {
+  background-color: #050505;
+  text-align: center;
+  padding: 18px 20px 22px;
+  font-size: 0.85rem;
+}
+
+.footer p {
+  margin: 12px 0 0;
+  color: #9fa3a8;
+}
+
+/* =====================
+   BURGER MENÜ (MOBIL)
+===================== */
 
 .burger {
   display: none;
-  background: none;
-  border: none;
+  width: 32px;
+  margin: 20px auto 0;
   cursor: pointer;
 }
 
 .burger span {
   display: block;
-  width: 26px;
   height: 2px;
-  margin: 5px 0;
-  background: #e6e6e6;
+  background-color: #cfd2d6;
+  margin: 7px 0;
 }
 
-/* =====================================
-   MAIN CONTENT
-===================================== */
-
-.inhalt {
-  padding: 5rem 1.5rem;
-  text-align: center;
-}
-
-/* =====================================
-   FOOTER
-===================================== */
-
-.footer {
-  background: #000;
-  padding: 2.5rem 1.5rem 2rem;
-  text-align: center;
-}
-
-.footer p {
-  font-size: 0.9rem;
-  letter-spacing: 0.05em;
-  opacity: 0.8;
-}
-
-/* =====================================
+/* =====================
    RESPONSIVE
-===================================== */
+===================== */
 
 @media (max-width: 768px) {
 
-  .logo img {
-    width: 220px;
+  .logo {
+    width: min(90vw, 420px);
   }
 
   .hauptnavigation {
     display: none;
     flex-direction: column;
-    gap: 1.5rem;
-    margin-top: 1.5rem;
+    margin-top: 24px;
+    gap: 20px;
   }
 
-  .hauptnavigation.offen {
+  .hauptnavigation.aktiv {
     display: flex;
   }
 
@@ -261,14 +242,7 @@ p {
     display: block;
   }
 
-  .preloader-logo {
-    width: clamp(260px, 80vw, 420px);
-  }
-}
-
-/* Safari leichte Größenkompensation */
-@supports (-webkit-touch-callout: none) {
-  .logo img {
-    width: 280px;
+  p {
+    font-size: 1rem;
   }
 }
