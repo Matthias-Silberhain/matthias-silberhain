@@ -1,20 +1,17 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* Body sperren */
   document.body.classList.add("preloader-active");
 
   const preloader = document.getElementById("preloader");
   const logoWrapper = document.querySelector(".preloader-logo-wrapper");
-  const textContainer = document.querySelector(".preloader-text");
   const textEl = document.getElementById("type-text");
   const cursor = document.querySelector(".cursor");
+  const textContainer = document.querySelector(".preloader-text");
 
-  /* Logo Silber-Sweep */
   setTimeout(() => {
     logoWrapper.classList.add("silver-sweep");
   }, 400);
 
-  /* Typewriter Text */
   const text = window.innerWidth <= 600
     ? "MATTHIAS\nSILBERHAIN"
     : "MATTHIAS SILBERHAIN";
@@ -24,11 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function typeWriter() {
     if (i < text.length) {
-      if (text[i] === "\n") {
-        textEl.innerHTML += "<br>";
-      } else {
-        textEl.innerHTML += text[i];
-      }
+      textEl.innerHTML += text[i] === "\n" ? "<br>" : text[i];
       i++;
       setTimeout(typeWriter, speed);
     } else {
@@ -48,18 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   setTimeout(typeWriter, 900);
 
-  /* Burger Menü */
-  const burger = document.getElementById("burger");
-  const navigation = document.getElementById("navigation");
-
-  if (burger) {
-    burger.addEventListener("click", () => {
-      navigation.classList.toggle("aktiv");
-    });
-  }
-
-  /* Footer Jahr */
   document.getElementById("jahr").textContent =
     new Date().getFullYear();
-
 });
