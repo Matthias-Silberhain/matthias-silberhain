@@ -5,72 +5,124 @@
   <title>Matthias Silberhain</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
 
+<!-- ================= PRELOADER ================= -->
 <div id="preloader">
   <div class="preloader-inner">
-    <img src="assets/images/logo.png" alt="Logo" class="preloader-logo">
+    <img src="assets/images/logo.png" alt="Matthias Silberhain Logo" class="preloader-logo">
+
     <div class="preloader-text">
       <span id="type-text"></span><span class="cursor"></span>
     </div>
   </div>
 </div>
 
+<!-- ================= HEADER ================= -->
 <header class="header">
-  <img src="assets/images/logo.png" alt="Logo" class="logo">
 
-  <nav class="hauptnavigation">
+  <img src="assets/images/logo.png"
+       alt="Matthias Silberhain Logo"
+       class="logo">
+
+  <div class="burger" id="burger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <nav class="hauptnavigation" id="navigation">
     <a href="index.html">Startseite</a>
     <a href="ueber-mich.html">Über mich</a>
+    <a href="werke.html">Werke</a>
+    <a href="termine.html">Termine</a>
+    <a href="kontakt.html">Kontakt</a>
   </nav>
+
 </header>
 
 <div class="lichtkante"></div>
 
+<!-- ================= INHALT ================= -->
 <main class="inhalt">
+
   <section class="intro">
     <h1>Wenn Wahrheit unbequem wird, braucht sie eine Stimme.</h1>
 
-    <p>Diese Seite ist kein Ort für einfache Antworten oder beruhigende Geschichten.</p>
-    <p>Hier geht es um Macht, Verantwortung und die Fragen, die selten laut gestellt werden.</p>
+    <p>
+      Diese Seite ist kein Ort für einfache Antworten oder beruhigende Geschichten.
+      Hier geht es um Macht, Verantwortung und die Fragen, die selten laut gestellt werden.
+      Um historische Spuren, gesellschaftliche Strukturen und Entscheidungen,
+      deren Folgen bis heute wirken.
+    </p>
+
+    <p>
+      Die Bücher von Matthias Silberhain richten sich an Leserinnen und Leser,
+      die bereit sind, genauer hinzusehen. An Menschen, die hinter Schlagzeilen blicken wollen,
+      statt sie zu konsumieren. An alle, die verstehen möchten,
+      wie Geschichte geschrieben wird und wer davon profitiert.
+    </p>
+
+    <p>
+      Jedes Werk folgt einem klaren Anspruch: recherchiert, präzise und ohne Beschönigung.
+      Nicht um zu provozieren, sondern um Klarheit zu schaffen.
+      Nicht um zu belehren, sondern um Denkprozesse anzustoßen.
+    </p>
+
+    <p>
+      Wenn du Literatur suchst, die fordert statt unterhält,
+      die Fragen stellt statt Antworten zu verkaufen,
+      dann bist du hier richtig.
+    </p>
   </section>
+
 </main>
 
+<!-- ================= FOOTER ================= -->
 <footer class="footer">
-  <div class="footer-lichtkante"></div>
 
   <div class="footer-social">
 
-    <!-- Instagram -->
     <a href="https://www.instagram.com/matthiassilberhain" target="_blank" aria-label="Instagram">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
+      <svg viewBox="0 0 24 24">
         <path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm5 5a5 5 0 100 10 5 5 0 000-10zm6.5-.9a1.1 1.1 0 11-2.2 0 1.1 1.1 0 012.2 0z"/>
       </svg>
+      <span>Instagram</span>
     </a>
 
-    <!-- Telegram -->
     <a href="https://t.me/matthiassilberhain" target="_blank" aria-label="Telegram">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
+      <svg viewBox="0 0 24 24">
         <path d="M22 3L2 11l6 2 2 6 4-4 4 3z"/>
       </svg>
+      <span>Telegram</span>
     </a>
 
-    <!-- TikTok -->
     <a href="https://www.tiktok.com/@m.silberhain" target="_blank" aria-label="TikTok">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
+      <svg viewBox="0 0 24 24">
         <path d="M12.5 2v12.5a3.5 3.5 0 11-3.5-3.5h1V7h3a4.5 4.5 0 004.5 4.5V15a7.5 7.5 0 01-4.5-1.5v4a6.5 6.5 0 11-6.5-6.5 6.5 6.5 0 016.5-8z"/>
       </svg>
+      <span>TikTok</span>
     </a>
 
   </div>
 
-  <p class="footer-copy">© <span id="jahr"></span> Matthias Silberhain</p>
+  <div class="footer-lichtkante"></div>
+
+  <p class="copyright">
+    © <span id="jahr"></span> Matthias Silberhain
+  </p>
+
 </footer>
 
+<!-- ================= JAVASCRIPT ================= -->
 <script src="assets/js/menu.js"></script>
+
 </body>
 </html>
