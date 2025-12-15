@@ -1,21 +1,33 @@
-/* RESET */
+/* =====================
+   RESET
+===================== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
 body {
-  font-family: "EB Garamond", serif;
+  font-family: "EB Garamond", Garamond, serif;
   background-color: #050505;
   color: #cfd2d6;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body.preloader-active {
   overflow: hidden;
 }
 
-/* PRELOADER */
+/* =====================
+   PRELOADER
+===================== */
 #preloader {
   position: fixed;
   inset: 0;
@@ -33,10 +45,9 @@ body.preloader-active {
 
 .preloader-logo {
   width: min(80vw, 420px);
-  margin-bottom: 24px;
+  margin-bottom: 26px;
 }
 
-/* TYPEWRITER */
 .preloader-text {
   font-family: "Cinzel", serif;
   letter-spacing: 0.18em;
@@ -63,73 +74,168 @@ body.preloader-active {
   }
 }
 
-/* HEADER */
+/* =====================
+   HEADER
+===================== */
 .header {
+  background-color: #050505;
+  padding: 36px 20px 26px;
   text-align: center;
-  padding: 36px 20px;
 }
 
 .logo {
-  width: min(70vw, 480px);
+  width: min(80vw, 520px);
+  margin: 0 auto 24px;
+  display: block;
 }
 
-/* NAV */
+/* =====================
+   NAVIGATION
+===================== */
 .hauptnavigation {
-  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+  gap: 36px;
+  flex-wrap: wrap;
 }
 
 .hauptnavigation a {
-  color: #cfd2d6;
-  text-decoration: none;
-  margin: 0 14px;
   font-family: "Cinzel", serif;
+  color: #d6d9de;
+  text-decoration: none;
+  letter-spacing: 0.15em;
+  font-size: 0.9rem;
+  position: relative;
+  padding: 6px 2px;
+  transition: color 0.35s ease;
 }
 
-/* BURGER */
+/* ---- SILBERNER HOVER EFFEKT ---- */
+.hauptnavigation a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(220,225,235,0.9),
+    transparent
+  );
+  opacity: 0;
+  transform: scaleX(0.6);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  box-shadow: 0 0 8px rgba(220,225,235,0.6);
+}
+
+.hauptnavigation a:hover {
+  color: #eef1f6;
+  text-shadow:
+    0 0 6px rgba(220,225,235,0.45),
+    0 0 14px rgba(220,225,235,0.25);
+}
+
+.hauptnavigation a:hover::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+/* =====================
+   LICHTKANTEN
+===================== */
+.lichtkante,
+.footer-lichtkante {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(200,205,215,0.85),
+    transparent
+  );
+  box-shadow: 0 0 12px rgba(200,205,215,0.45);
+}
+
+/* =====================
+   INHALT
+===================== */
+.inhalt {
+  padding: 72px 20px;
+}
+
+.inhalt h1 {
+  font-family: "Cinzel", serif;
+  letter-spacing: 0.1em;
+  color: #e4e6ea;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.inhalt p {
+  max-width: 720px;
+  margin: 0 auto 22px;
+  text-align: center;
+  font-size: 1.05rem;
+}
+
+/* =====================
+   FOOTER
+===================== */
+.footer {
+  background-color: #050505;
+  text-align: center;
+  padding: 18px 0 20px;
+  font-size: 0.8rem;
+}
+
+.footer p {
+  margin: 0;
+  color: #9da2a8;
+}
+
+/* =====================
+   BURGER (MOBIL)
+===================== */
 .burger {
   display: none;
+  width: 30px;
+  margin: 18px auto 0;
   cursor: pointer;
 }
 
 .burger span {
   display: block;
-  width: 26px;
   height: 2px;
   background-color: #cfd2d6;
-  margin: 6px auto;
+  margin: 6px 0;
 }
 
-/* CONTENT */
-.inhalt {
-  padding: 80px 20px;
-  text-align: center;
-}
-
-/* FOOTER */
-.footer {
-  text-align: center;
-  padding: 30px 20px;
-  font-size: 0.85rem;
-}
-
-/* MOBILE */
+/* =====================
+   RESPONSIVE
+===================== */
 @media (max-width: 768px) {
+
+  .logo {
+    width: min(90vw, 420px);
+  }
+
+  .hauptnavigation {
+    display: none;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 20px;
+  }
+
+  .hauptnavigation.aktiv {
+    display: flex;
+  }
 
   .burger {
     display: block;
   }
 
-  .hauptnavigation {
-    display: none;
-    margin-top: 16px;
-  }
-
-  .hauptnavigation.aktiv {
-    display: block;
-  }
-
-  .hauptnavigation a {
-    display: block;
-    margin: 10px 0;
+  .inhalt p {
+    font-size: 1rem;
   }
 }
