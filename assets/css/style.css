@@ -1,7 +1,6 @@
 /* =====================
    RESET
 ===================== */
-
 * {
   margin: 0;
   padding: 0;
@@ -14,95 +13,56 @@ html, body {
 }
 
 body {
-  font-family: "EB Garamond", serif;
+  font-family: "EB Garamond", Garamond, serif;
   background-color: #050505;
   color: #cfd2d6;
   line-height: 1.65;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 /* =====================
    PRELOADER
 ===================== */
-
 #preloader {
   position: fixed;
   inset: 0;
   background: #050505;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   z-index: 9999;
+  transition: opacity 0.4s ease;
 }
 
 .preloader-inner {
   text-align: center;
 }
 
-/* LOGO – groß & sanft */
 .preloader-logo {
-  width: min(70vw, 420px);
-  margin-bottom: 30px;
-  filter: drop-shadow(0 0 30px rgba(200,205,215,0.6));
-  animation: logoDraw 1.4s ease forwards;
+  width: 320px;
+  margin-bottom: 28px;
+  filter: drop-shadow(0 0 26px rgba(200,205,215,0.55));
 }
 
-@keyframes logoDraw {
-  from {
-    clip-path: inset(0 100% 0 0);
-    opacity: 0;
-  }
-  to {
-    clip-path: inset(0 0 0 0);
-    opacity: 1;
-  }
-}
-
-/* SCHREIBTEXT */
 .preloader-text {
   font-family: "Cinzel", serif;
-  font-size: 1.6rem;
-  letter-spacing: 0.18em;
+  font-size: 30px;
+  letter-spacing: 0.2em;
   color: #e4e6ea;
   white-space: nowrap;
 }
 
-#type-text {
-  display: inline-block;
-  min-height: 1.6em;
-}
-
-/* CURSOR */
 .cursor {
-  display: inline-block;
-  width: 2px;
-  height: 1.4em;
-  background: #cfd2d6;
   margin-left: 6px;
-  animation: blink 0.9s steps(1) infinite;
+  animation: blink 1s steps(1) infinite;
 }
 
 @keyframes blink {
   50% { opacity: 0; }
 }
 
-/* PRELOADER FADE */
-#preloader.fade-out {
-  animation: preloadFade 0.4s ease forwards;
-}
-
-@keyframes preloadFade {
-  to {
-    opacity: 0;
-    visibility: hidden;
-  }
-}
-
 /* =====================
    HEADER
 ===================== */
-
 .header {
   padding: 36px 20px 26px;
   text-align: center;
@@ -117,17 +77,16 @@ body {
 
 @keyframes logoGlow {
   0%, 100% {
-    filter: drop-shadow(0 0 10px rgba(200,205,215,0.25));
+    filter: drop-shadow(0 0 12px rgba(200,205,215,0.25));
   }
   50% {
-    filter: drop-shadow(0 0 26px rgba(200,205,215,0.55));
+    filter: drop-shadow(0 0 28px rgba(200,205,215,0.6));
   }
 }
 
 /* =====================
    NAVIGATION
 ===================== */
-
 .hauptnavigation {
   display: flex;
   justify-content: center;
@@ -146,7 +105,6 @@ body {
 /* =====================
    LICHTKANTEN
 ===================== */
-
 .lichtkante,
 .footer-lichtkante {
   height: 1px;
@@ -162,7 +120,6 @@ body {
 /* =====================
    INHALT
 ===================== */
-
 .inhalt {
   padding: 72px 20px;
 }
@@ -185,23 +142,16 @@ p {
 /* =====================
    FOOTER
 ===================== */
-
 .footer {
-  background-color: #050505;
   text-align: center;
   padding: 14px 0;
   font-size: 0.8rem;
-}
-
-.footer p {
-  margin: 0;
   color: #9da2a8;
 }
 
 /* =====================
    BURGER (MOBIL)
 ===================== */
-
 .burger {
   display: none;
   width: 30px;
@@ -219,13 +169,7 @@ p {
 /* =====================
    RESPONSIVE
 ===================== */
-
 @media (max-width: 768px) {
-
-  .logo {
-    width: min(90vw, 420px);
-  }
-
   .hauptnavigation {
     display: none;
     flex-direction: column;
@@ -239,9 +183,5 @@ p {
 
   .burger {
     display: block;
-  }
-
-  p {
-    font-size: 1rem;
   }
 }
