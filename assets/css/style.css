@@ -28,7 +28,7 @@ body {
   position: relative;
 }
 
-/* Silberne Lichtkante unter Header */
+/* Lichtkante */
 
 .kopfbereich::after {
   content: "";
@@ -38,17 +38,15 @@ body {
   transform: translateX(-50%);
   width: 82%;
   height: 1px;
-
   background: linear-gradient(
     to right,
-    rgba(207, 210, 214, 0),
-    rgba(207, 210, 214, 0.85),
-    rgba(207, 210, 214, 0)
+    rgba(207,210,214,0),
+    rgba(207,210,214,0.85),
+    rgba(207,210,214,0)
   );
-
   box-shadow:
-    0 0 6px rgba(207, 210, 214, 0.45),
-    0 0 14px rgba(207, 210, 214, 0.25);
+    0 0 6px rgba(207,210,214,0.45),
+    0 0 14px rgba(207,210,214,0.25);
 }
 
 /* =========================================
@@ -60,39 +58,26 @@ body {
   margin: 0 auto 2.4rem;
   display: block;
   opacity: 0.95;
-
-  filter: drop-shadow(0 12px 30px rgba(0, 0, 0, 0.75));
-
+  filter: drop-shadow(0 12px 30px rgba(0,0,0,0.75));
   animation:
     logoErscheinung 2.8s ease-out forwards,
     logoSchweben 14s ease-in-out infinite;
 }
 
-/* Logo Animationen */
-
 @keyframes logoErscheinung {
-  0% {
-    opacity: 0;
-    transform: scale(0.96) translateY(-10px);
-  }
-  60% {
-    opacity: 1;
-    transform: scale(1.01) translateY(0);
-  }
-  100% {
-    opacity: 0.95;
-    transform: scale(1);
-  }
+  0% { opacity: 0; transform: scale(0.96) translateY(-10px); }
+  60% { opacity: 1; transform: scale(1.01) translateY(0); }
+  100% { opacity: 0.95; transform: scale(1); }
 }
 
 @keyframes logoSchweben {
-  0%   { transform: translateY(0); }
-  50%  { transform: translateY(-5px); }
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
   100% { transform: translateY(0); }
 }
 
 /* =========================================
-   Navigation
+   Navigation (Desktop)
    ========================================= */
 
 .hauptnavigation {
@@ -115,8 +100,24 @@ body {
 
 .hauptnavigation a.aktiv {
   color: #ffffff;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+  border-bottom: 1px solid rgba(255,255,255,0.6);
   padding-bottom: 0.3rem;
+}
+
+/* =========================================
+   Hamburger-Button (mobil)
+   ========================================= */
+
+.menubutton {
+  display: none;
+  background: none;
+  border: none;
+  color: #cfd2d6;
+  font-family: "Cinzel", serif;
+  letter-spacing: 0.2em;
+  font-size: 0.85rem;
+  cursor: pointer;
+  margin: 1.6rem auto 0;
 }
 
 /* =========================================
@@ -129,7 +130,7 @@ main {
   position: relative;
 }
 
-/* Silberne Lichtkante vor Footer */
+/* Lichtkante vor Footer */
 
 main::after {
   content: "";
@@ -139,31 +140,23 @@ main::after {
   transform: translateX(-50%);
   width: 72%;
   height: 1px;
-
   background: linear-gradient(
     to right,
-    rgba(207, 210, 214, 0),
-    rgba(207, 210, 214, 0.75),
-    rgba(207, 210, 214, 0)
+    rgba(207,210,214,0),
+    rgba(207,210,214,0.75),
+    rgba(207,210,214,0)
   );
-
   box-shadow:
-    0 0 5px rgba(207, 210, 214, 0.35),
-    0 0 12px rgba(207, 210, 214, 0.18);
+    0 0 5px rgba(207,210,214,0.35),
+    0 0 12px rgba(207,210,214,0.18);
 }
 
-/* Intro */
-
-.intro {
-  margin-bottom: 5.6rem;
-}
+/* Typografie */
 
 .intro h1 {
   font-family: "Cinzel", serif;
   font-size: 2.9rem;
-  color: #e6e8eb;
   letter-spacing: 0.16em;
-  margin-bottom: 0.7rem;
 }
 
 .untertitel {
@@ -174,16 +167,10 @@ main::after {
   color: #b9bdc2;
 }
 
-/* =========================================
-   Typografie
-   ========================================= */
-
 h2 {
   font-family: "Cinzel", serif;
   font-size: 1.65rem;
-  color: #e6e8eb;
   letter-spacing: 0.14em;
-  margin-bottom: 1.8rem;
 }
 
 p {
@@ -192,54 +179,41 @@ p {
   font-size: 1.1rem;
 }
 
-/* =========================================
-   Biografie & Hinweis
-   ========================================= */
-
-.biografie {
-  margin-bottom: 4.2rem;
-}
-
-.hinweis {
-  margin-top: 4.2rem;
-  padding-top: 2.4rem;
-  border-top: 1px solid rgba(207, 210, 214, 0.18);
-  font-size: 0.95rem;
-  color: #a8acb1;
-}
-
-/* =========================================
-   Footer
-   ========================================= */
+/* Footer */
 
 .fussbereich {
   padding: 2.8rem 1rem 3.2rem;
   background: #0b0b0b;
   font-size: 0.85rem;
   color: #9fa3a8;
-  text-align: center;
 }
 
 /* =========================================
-   Responsive
+   Responsive – MOBILE MENÜ
    ========================================= */
 
 @media (max-width: 768px) {
 
+  .menubutton {
+    display: block;
+  }
+
   .hauptnavigation {
+    display: none;
     flex-direction: column;
-    gap: 1.4rem;
+    gap: 1.6rem;
+    margin-top: 2rem;
+  }
+
+  .hauptnavigation.offen {
+    display: flex;
   }
 
   .logo img {
     max-width: 260px;
   }
 
-  main {
-    padding: 3.8rem 1.8rem;
-  }
-
   .intro h1 {
-    font-size: 2.4rem;
+    font-size: 2.3rem;
   }
 }
