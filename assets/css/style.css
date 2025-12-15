@@ -10,7 +10,7 @@
 
 body {
   margin: 0;
-  background: radial-gradient(circle at top, #1a1a1a 0%, #0b0b0b 70%);
+  background: #0b0b0b;
   color: #cfd2d6;
   font-family: "EB Garamond", Garamond, serif;
   font-size: 18px;
@@ -24,11 +24,37 @@ body {
 
 .kopfbereich {
   padding: 3.2rem 1rem 2.6rem;
-  background: rgba(0, 0, 0, 0.78);
+  background: #0b0b0b;
   border-bottom: 1px solid rgba(207, 210, 214, 0.25);
+  position: relative;
 }
 
-/* Logo */
+/* Silberne Lichtkante mit Glow */
+
+.kopfbereich::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -1px;
+  transform: translateX(-50%);
+  width: 82%;
+  height: 1px;
+
+  background: linear-gradient(
+    to right,
+    rgba(207, 210, 214, 0),
+    rgba(207, 210, 214, 0.85),
+    rgba(207, 210, 214, 0)
+  );
+
+  box-shadow:
+    0 0 6px rgba(207, 210, 214, 0.45),
+    0 0 14px rgba(207, 210, 214, 0.25);
+}
+
+/* =========================================
+   Logo
+   ========================================= */
 
 .logo img {
   max-width: 340px;
@@ -100,6 +126,7 @@ body {
 
 main {
   padding: 5.2rem 2rem 4.4rem;
+  background: #0b0b0b;
 }
 
 /* Intro */
@@ -164,6 +191,7 @@ p {
 
 .fussbereich {
   padding: 2.6rem 1rem 3rem;
+  background: #0b0b0b;
   border-top: 1px solid rgba(207, 210, 214, 0.15);
   font-size: 0.85rem;
   color: #9fa3a8;
