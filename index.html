@@ -1,89 +1,52 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
   <meta charset="UTF-8">
-  <title>Matthias Silberhain</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
-
-  <!-- CSS -->
+  <title>Matthias Silberhain - Autor</title>
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
 
-<!-- ================= PRELOADER ================= -->
-<div id="preloader">
-  <img src="assets/images/logo.png" alt="Logo" class="preloader-logo">
-</div>
-
-
-<!-- ================= HEADER ================= -->
-<header class="header">
-
-  <div class="logo-container">
-    <img src="assets/images/logo.png" alt="Matthias Silberhain Logo" class="logo">
+  <!-- Preloader -->
+  <div class="preloader">
+    <div class="logo-preload">
+      <img src="assets/images/logo.png" alt="Logo" id="logo-animation">
+    </div>
   </div>
 
-  <!-- Burger -->
-  <div class="burger" id="burger">
-    <span></span>
-    <span></span>
-    <span></span>
+  <!-- Main Content -->
+  <div class="content">
+    <!-- Navigation -->
+    <nav class="hauptnavigation">
+      <a href="index.html">Startseite</a>
+      <a href="about.html">Über mich</a>
+      <a href="werke.html">Werke</a>
+      <a href="termine.html">Termine</a>
+      <a href="kontakt.html">Kontakt</a>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1>Willkommen auf meiner Seite</h1>
+      <p>Hier finden Sie alle Informationen zu meinen Werken und Veranstaltungen.</p>
+    </header>
+
+    <!-- Über den Autor -->
+    <section class="author-info">
+      <h2>Über den Autor</h2>
+      <p>Matthias Silberhain ist ein talentierter Schriftsteller, dessen Werke die menschliche Psyche und die sozialen Dynamiken in den Mittelpunkt stellen. Mit einer Leidenschaft für tiefgründige Charaktere und komplexe Handlungsstränge hat er sich in der literarischen Welt einen Namen gemacht.</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2025 Matthias Silberhain - Alle Rechte vorbehalten</p>
+    </footer>
   </div>
 
-  <!-- Navigation -->
-  <nav class="hauptnavigation" id="navigation">
-    <a href="index.html">Startseite</a>
-    <a href="about.html">Über mich</a>
-    <a href="werke.html">Werke</a>
-    <a href="termine.html">Termine</a>
-    <a href="kontakt.html">Kontakt</a>
-  </nav>
-
-</header>
-
-<!-- Lichtkante unter Header -->
-<div class="lichtkante"></div>
-
-
-<!-- ================= HAUPTINHALT ================= -->
-<main class="inhalt">
-
-  <section class="intro">
-    <h1>Worte. Stille. Tiefe.</h1>
-
-    <p>
-      Schreiben ist für mich kein Erzählen, sondern ein Offenlegen.
-      Ein behutsames Freilegen dessen, was unter der Oberfläche ruht.
-    </p>
-
-    <p>
-      Diese Seite ist kein Schaufenster, sondern ein Raum.
-      Für Texte, Gedanken und Werke, die Zeit brauchen –
-      und Aufmerksamkeit verdienen.
-    </p>
-  </section>
-
-</main>
-
-
-<!-- ================= FOOTER ================= -->
-<footer class="footer">
-
-  <div class="footer-lichtkante"></div>
-
-  <p>
-    © <span id="jahr"></span> Matthias Silberhain
-  </p>
-
-</footer>
-
-
-<!-- ================= JAVASCRIPT ================= -->
-<script src="assets/js/script.js"></script>
-
+  <script src="assets/js/script.js"></script>
 </body>
+
 </html>
