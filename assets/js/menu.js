@@ -1,56 +1,36 @@
-/* =========================
-   PRELOADER
-========================= */
-
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* PRELOADER */
-  const preloader = document.createElement("div");
-  preloader.id = "preloader";
+  /* =========================
+     TYPEWRITER PRELOADER
+  ========================= */
 
-  preloader.innerHTML = `
-    <div class="preloader-inner">
-      <img src="assets/images/logo.png" class="preloader-logo" alt="Logo">
-      <div class="preloader-text">
-        <span id="type-text"></span><span class="cursor">|</span>
-      </div>
-    </div>
-  `;
-
-  document.body.appendChild(preloader);
-
-  /* TYPEWRITER */
   const text = "MATTHIAS SILBERHAIN";
   const textEl = document.getElementById("type-text");
   const cursor = document.querySelector(".cursor");
-
-  // WICHTIG: Text sicher leeren
-  textEl.textContent = "";
+  const preloader = document.getElementById("preloader");
 
   let index = 0;
+  const speed = 70;
 
-  // Kleine Pause, damit man den Start sieht
-  setTimeout(() => {
-    function type() {
-      if (index < text.length) {
-        textEl.textContent += text.charAt(index);
-        index++;
-        setTimeout(type, 70);
-      } else {
-        cursor.style.display = "none";
+  function typeWriter() {
+    if (index < text.length) {
+      textEl.textContent += text.charAt(index);
+      index++;
+      setTimeout(typeWriter, speed);
+    } else {
+      cursor.style.display = "none";
 
-        setTimeout(() => {
-          preloader.classList.add("fade-out");
-        }, 300);
+      setTimeout(() => {
+        preloader.style.opacity = "0";
+      }, 200);
 
-        setTimeout(() => {
-          preloader.remove();
-        }, 700);
-      }
+      setTimeout(() => {
+        preloader.remove();
+      }, 600);
     }
+  }
 
-    type();
-  }, 300);
+  typeWriter();
 
   /* =========================
      BURGER MENÜ
