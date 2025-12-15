@@ -2,6 +2,8 @@
    Autorenwebsite – Matthias Silberhain
    ========================================= */
 
+/* Reset & Basis */
+
 * {
   box-sizing: border-box;
 }
@@ -13,41 +15,44 @@ body {
   font-family: "EB Garamond", Garamond, serif;
   font-size: 18px;
   line-height: 1.7;
+  text-align: center; /* ZENTRIERUNG GRUNDLAGE */
 }
 
-/* =========================
+/* =========================================
    Kopfbereich
-   ========================= */
+   ========================================= */
 
 .kopfbereich {
-  text-align: center;
-  padding: 2.5rem 1rem 2rem;
+  padding: 2.8rem 1rem 2.2rem;
   background: rgba(0, 0, 0, 0.75);
   border-bottom: 1px solid rgba(207, 210, 214, 0.25);
 }
 
+/* Logo */
+
 .logo img {
   max-width: 220px;
-  margin-bottom: 1.5rem;
-  opacity: 0.9;
+  margin: 0 auto 1.6rem;
+  display: block;
+  opacity: 0.92;
   filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.6));
 }
 
-/* =========================
-   Navigation (zentriert)
-   ========================= */
+/* =========================================
+   Navigation
+   ========================================= */
 
 .hauptnavigation {
   display: flex;
   justify-content: center;
-  gap: 2.5rem;
+  gap: 2.6rem;
 }
 
 .hauptnavigation a {
   font-family: "Cinzel", serif;
   color: #cfd2d6;
   text-decoration: none;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   font-size: 0.85rem;
 }
 
@@ -55,84 +60,109 @@ body {
   color: #ffffff;
 }
 
-/* =========================
-   Inhalt
-   ========================= */
+/* Aktiver Menüpunkt */
 
-main {
-  padding: 4.5rem 3rem;
+.hauptnavigation a.aktiv {
+  color: #ffffff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+  padding-bottom: 0.3rem;
 }
 
+/* =========================================
+   Hauptinhalt
+   ========================================= */
+
+main {
+  padding: 5rem 2rem 4rem;
+}
+
+/* Intro */
+
 .intro {
-  margin-bottom: 5rem;
+  margin-bottom: 5.5rem;
+}
+
+.intro h1 {
+  font-family: "Cinzel", serif;
+  font-size: 2.8rem;
+  color: #e6e8eb;
+  letter-spacing: 0.14em;
+  margin-bottom: 0.6rem;
 }
 
 .untertitel {
   font-family: "Cinzel", serif;
   font-size: 0.95rem;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.3em;
   text-transform: uppercase;
   color: #b9bdc2;
 }
 
-/* Typografie */
-
-h1, h2 {
-  font-family: "Cinzel", serif;
-  color: #e6e8eb;
-  letter-spacing: 0.12em;
-}
-
-h1 {
-  font-size: 2.6rem;
-}
+/* =========================================
+   Typografie
+   ========================================= */
 
 h2 {
+  font-family: "Cinzel", serif;
   font-size: 1.6rem;
-  margin-top: 3rem;
+  color: #e6e8eb;
+  letter-spacing: 0.12em;
+  margin-bottom: 1.6rem;
 }
+
+/* Fließtext bewusst zentriert & schmal */
 
 p {
-  max-width: 720px;
-  margin-bottom: 1.5rem;
-  font-size: 1.05rem;
+  max-width: 680px;
+  margin: 0 auto 1.6rem;
+  font-size: 1.08rem;
 }
 
-/* Hinweis */
+/* =========================================
+   Biografie & Hinweis
+   ========================================= */
+
+.biografie {
+  margin-bottom: 4rem;
+}
 
 .hinweis {
   margin-top: 4rem;
-  padding-top: 1.8rem;
+  padding-top: 2rem;
   border-top: 1px solid rgba(207, 210, 214, 0.18);
-  font-size: 0.92rem;
+  font-size: 0.95rem;
   color: #a8acb1;
 }
 
-/* =========================
+/* =========================================
    Footer
-   ========================= */
+   ========================================= */
 
 .fussbereich {
-  text-align: center;
-  padding: 2rem 1rem 2.5rem;
+  padding: 2.2rem 1rem 2.6rem;
+  border-top: 1px solid rgba(207, 210, 214, 0.15);
   font-size: 0.85rem;
   color: #9fa3a8;
-  border-top: 1px solid rgba(207, 210, 214, 0.15);
+  text-align: center;
 }
 
-/* =========================
+/* =========================================
    Responsive
-   ========================= */
+   ========================================= */
 
 @media (max-width: 768px) {
 
   .hauptnavigation {
     flex-direction: column;
-    gap: 1.2rem;
+    gap: 1.3rem;
   }
 
   main {
-    padding: 3rem 2rem;
+    padding: 3.5rem 1.8rem;
+  }
+
+  .intro h1 {
+    font-size: 2.3rem;
   }
 
 }
