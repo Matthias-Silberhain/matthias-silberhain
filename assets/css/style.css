@@ -40,7 +40,7 @@ body {
   text-align: center;
 }
 
-/* Logo groß, zentriert, „gemalt“ */
+/* LOGO – groß, mittig, „gemalt“ */
 .preloader-logo {
   width: min(70vw, 420px);
   margin-bottom: 32px;
@@ -59,7 +59,7 @@ body {
   }
 }
 
-/* Schreibtext */
+/* SCHREIBTEXT */
 .preloader-text {
   font-family: "Cinzel", serif;
   font-size: 1.6rem;
@@ -68,7 +68,12 @@ body {
   white-space: nowrap;
 }
 
-/* Cursor */
+#type-text {
+  display: inline-block;
+  min-height: 1.6em;
+}
+
+/* CURSOR */
 .cursor {
   display: inline-block;
   width: 2px;
@@ -89,7 +94,7 @@ body {
   }
 }
 
-/* Fade Out */
+/* FADE OUT */
 #preloader.fade-out {
   animation: preloadFade 0.35s ease forwards;
 }
