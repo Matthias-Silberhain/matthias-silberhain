@@ -1,4 +1,4 @@
 function menueUmschalten() {
-  document.querySelector(".hauptnavigation")
-    .classList.toggle("offen");
+  const nav = document.querySelector('.hauptnavigation');
+  nav.classList.toggle('offen');
 }
