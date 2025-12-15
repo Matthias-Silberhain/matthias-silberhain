@@ -1,8 +1,5 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* RESET */
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 html, body {
   width: 100%;
@@ -35,18 +32,20 @@ body.preloader-active {
   text-align: center;
 }
 
-/* LOGO */
+/* LOGO WRAPPER – WICHTIG */
 .preloader-logo-wrapper {
   position: relative;
   display: inline-block;
+  overflow: hidden; /* 🔥 DAS IST DER FIX */
 }
 
+/* LOGO */
 .preloader-logo {
   width: min(70vw, 420px);
   margin-bottom: 26px;
-  opacity: 1;              /* WICHTIG */
+  opacity: 1;
   position: relative;
-  z-index: 1;              /* WICHTIG */
+  z-index: 1;
 }
 
 /* SILBER SWEEP */
@@ -65,7 +64,7 @@ body.preloader-active {
   transform: translateX(-120%);
   opacity: 0;
   pointer-events: none;
-  z-index: 2;              /* ÜBER LOGO */
+  z-index: 2;
 }
 
 .preloader-logo-wrapper.silver-sweep::after {
@@ -73,8 +72,8 @@ body.preloader-active {
 }
 
 @keyframes sweep {
-  0% { transform: translateX(-120%); opacity: 0; }
-  20% { opacity: 1; }
+  0%   { transform: translateX(-120%); opacity: 0; }
+  20%  { opacity: 1; }
   100% { transform: translateX(120%); opacity: 0; }
 }
 
@@ -105,6 +104,18 @@ body.preloader-active {
     0 0 18px rgba(220,225,235,0.45);
 }
 
-/* HEADER / REST (gekürzt, funktional) */
+/* HEADER */
 .header { text-align: center; padding: 36px 20px; }
 .logo { width: min(80vw, 520px); }
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .preloader-logo {
+    width: min(85vw, 300px);
+  }
+
+  .preloader-text {
+    font-size: 0.9rem;
+    letter-spacing: 0.22em;
+  }
+}
