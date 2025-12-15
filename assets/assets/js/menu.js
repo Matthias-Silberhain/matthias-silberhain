@@ -1,11 +1,13 @@
-window.addEventListener("load", () => {
+document.addEventListener("DOMContentLoaded", () => {
   const preloader = document.getElementById("preloader");
 
-  preloader.classList.add("fade-out");
-
   setTimeout(() => {
-    preloader.style.display = "none";
-  }, 600); // deutlich kürzer
+    preloader.classList.add("fade-out");
+
+    preloader.addEventListener("animationend", () => {
+      preloader.remove();
+    });
+  }, 1600); // exakt Länge der Logo-Animation
 });
 
 // Mobile Menü
@@ -14,7 +16,6 @@ const navigation = document.getElementById("navigation");
 
 burger.addEventListener("click", () => {
   navigation.classList.toggle("aktiv");
-  burger.classList.toggle("aktiv");
 });
 
 // Jahr im Footer
