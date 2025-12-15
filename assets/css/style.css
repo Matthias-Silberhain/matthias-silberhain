@@ -1,6 +1,7 @@
 /* =====================
    RESET
 ===================== */
+
 * {
   margin: 0;
   padding: 0;
@@ -17,53 +18,116 @@ body {
   background-color: #050505;
   color: #cfd2d6;
   line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* =====================
    PRELOADER
 ===================== */
+
 #preloader {
   position: fixed;
   inset: 0;
-  background: #050505;
+  background-color: #050505;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   z-index: 9999;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.6s ease;
 }
 
 .preloader-inner {
   text-align: center;
 }
 
+/* =====================
+   LOGO (ANIMATION)
+===================== */
+
 .preloader-logo {
-  width: 320px;
-  margin-bottom: 28px;
-  filter: drop-shadow(0 0 26px rgba(200,205,215,0.55));
+  width: min(70vw, 420px);
+  margin-bottom: 26px;
+  opacity: 0;
+  transform: scale(0.96);
+  filter: drop-shadow(0 0 0 rgba(220,225,235,0));
 }
+
+.preloader-logo.animate {
+  animation: logoReveal 1.6s ease forwards;
+}
+
+@keyframes logoReveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.96);
+    filter: drop-shadow(0 0 0 rgba(220,225,235,0));
+  }
+  40% {
+    opacity: 1;
+    filter: drop-shadow(0 0 12px rgba(220,225,235,0.4));
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: drop-shadow(0 0 26px rgba(220,225,235,0.65));
+  }
+}
+
+/* =====================
+   TYPEWRITER TEXT
+===================== */
 
 .preloader-text {
   font-family: "Cinzel", serif;
-  font-size: 30px;
-  letter-spacing: 0.2em;
+  font-size: 1.1rem;
+  letter-spacing: 0.28em;
   color: #e4e6ea;
-  white-space: nowrap;
+  min-height: 2.6em;
 }
 
+.preloader-text span {
+  white-space: pre-wrap;
+}
+
+/* Cursor */
 .cursor {
-  margin-left: 6px;
-  animation: blink 1s steps(1) infinite;
+  display: inline-block;
+  width: 2px;
+  height: 1.2em;
+  background-color: #e4e6ea;
+  margin-left: 4px;
+  animation: blink 1s infinite;
+  vertical-align: bottom;
 }
 
 @keyframes blink {
-  50% { opacity: 0; }
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
+}
+
+/* Silber-Hauch nach Schreiben */
+.preloader-text.silver-glow {
+  animation: silverGlow 1.6s ease-in-out forwards;
+}
+
+@keyframes silverGlow {
+  0% {
+    text-shadow: none;
+  }
+  100% {
+    text-shadow:
+      0 0 6px rgba(220,225,235,0.6),
+      0 0 18px rgba(220,225,235,0.45);
+  }
 }
 
 /* =====================
    HEADER
 ===================== */
+
 .header {
+  background-color: #050505;
   padding: 36px 20px 26px;
   text-align: center;
 }
@@ -72,21 +136,12 @@ body {
   width: min(80vw, 520px);
   margin: 0 auto 24px;
   display: block;
-  animation: logoGlow 4s ease-in-out infinite;
-}
-
-@keyframes logoGlow {
-  0%, 100% {
-    filter: drop-shadow(0 0 12px rgba(200,205,215,0.25));
-  }
-  50% {
-    filter: drop-shadow(0 0 28px rgba(200,205,215,0.6));
-  }
 }
 
 /* =====================
    NAVIGATION
 ===================== */
+
 .hauptnavigation {
   display: flex;
   justify-content: center;
@@ -105,6 +160,7 @@ body {
 /* =====================
    LICHTKANTEN
 ===================== */
+
 .lichtkante,
 .footer-lichtkante {
   height: 1px;
@@ -120,11 +176,12 @@ body {
 /* =====================
    INHALT
 ===================== */
+
 .inhalt {
   padding: 72px 20px;
 }
 
-h1 {
+h1, h2 {
   font-family: "Cinzel", serif;
   letter-spacing: 0.1em;
   color: #e4e6ea;
@@ -142,16 +199,23 @@ p {
 /* =====================
    FOOTER
 ===================== */
+
 .footer {
+  background-color: #050505;
   text-align: center;
-  padding: 14px 0;
+  padding: 12px 0 14px;
   font-size: 0.8rem;
+}
+
+.footer p {
+  margin: 0;
   color: #9da2a8;
 }
 
 /* =====================
    BURGER (MOBIL)
 ===================== */
+
 .burger {
   display: none;
   width: 30px;
@@ -169,7 +233,22 @@ p {
 /* =====================
    RESPONSIVE
 ===================== */
+
 @media (max-width: 768px) {
+
+  .logo {
+    width: min(90vw, 420px);
+  }
+
+  .preloader-logo {
+    width: min(85vw, 300px);
+  }
+
+  .preloader-text {
+    font-size: 0.9rem;
+    letter-spacing: 0.22em;
+  }
+
   .hauptnavigation {
     display: none;
     flex-direction: column;
@@ -184,135 +263,8 @@ p {
   .burger {
     display: block;
   }
-}
-/* =====================
-   SILBER-LICHT-HAUCH
-===================== */
 
-.preloader-text {
-  position: relative;
-  overflow: hidden;
-}
-
-/* Lichtstreifen */
-.preloader-text::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -120%;
-  width: 120%;
-  height: 100%;
-  background: linear-gradient(
-    120deg,
-    transparent 30%,
-    rgba(220,225,235,0.85) 50%,
-    transparent 70%
-  );
-  opacity: 0;
-}
-
-/* Aktivierung */
-.preloader-text.silver-glow::after {
-  animation: silverSweep 1.4s ease forwards;
-}
-
-@keyframes silverSweep {
-  0% {
-    left: -120%;
-    opacity: 0;
-  }
-  15% {
-    opacity: 1;
-  }
-  100% {
-    left: 120%;
-    opacity: 0;
-  }
-}
-/* =====================
-   PRELOADER – MOBILE
-===================== */
-
-/* =====================
-   PRELOADER – MOBILE FIX
-===================== */
-
-@media (max-width: 600px) {
-
-  .preloader-logo {
-    width: 200px;
-    margin-bottom: 18px;
-  }
-
-  .preloader-text {
-    font-size: 22px;
-    letter-spacing: 0.16em;
-    line-height: 1.35;
-    white-space: normal;   /* Umbruch erlauben */
-    text-align: center;
-  }
-
-  .preloader-text span {
-    display: block;
-  }
-
-  /* Cursor immer unten rechts */
-  .cursor {
-    display: inline-block;
-    margin-left: 4px;
-  }
-}
-
-/* =====================
-   LOGO ZEICHEN-ANIMATION
-===================== */
-
-.preloader-logo {
-  opacity: 0;
-  mask-image: linear-gradient(
-    90deg,
-    black 0%,
-    black 0%,
-    transparent 0%
-  );
-  -webkit-mask-image: linear-gradient(
-    90deg,
-    black 0%,
-    black 0%,
-    transparent 0%
-  );
-}
-
-.preloader-logo.draw {
-  animation: drawLogo 1.6s ease forwards;
-}
-
-@keyframes drawLogo {
-  0% {
-    opacity: 1;
-    mask-image: linear-gradient(
-      90deg,
-      black 0%,
-      transparent 0%
-    );
-    -webkit-mask-image: linear-gradient(
-      90deg,
-      black 0%,
-      transparent 0%
-    );
-  }
-
-  100% {
-    opacity: 1;
-    mask-image: linear-gradient(
-      90deg,
-      black 100%,
-      black 100%
-    );
-    -webkit-mask-image: linear-gradient(
-      90deg,
-      black 100%,
-      black 100%
-    );
+  p {
+    font-size: 1rem;
   }
 }
