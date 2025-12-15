@@ -77,8 +77,8 @@ p {
 /* Logo */
 .logo img {
   max-width: 160px;
-  margin-bottom: 1rem;
-  animation: logoGlow 4s ease-in-out infinite;
+  width: 100%;
+  height: auto;
 }
 
 /* Logo Animation */
