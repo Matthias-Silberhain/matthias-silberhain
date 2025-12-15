@@ -2,102 +2,88 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
+  <title>Matthias Silberhain</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Matthias Silberhain – Autor</title>
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
 
   <!-- CSS -->
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<script src="assets/js/script.js"></script>
+
 <body>
 
 <!-- ================= PRELOADER ================= -->
 <div id="preloader">
-  <img
-    src="assets/images/logo.png"
-    alt="Matthias Silberhain Logo"
-    class="preloader-logo"
-  >
+  <img src="assets/images/logo.png" alt="Logo" class="preloader-logo">
 </div>
+
 
 <!-- ================= HEADER ================= -->
 <header class="header">
 
-  <div class="header-inner">
-
-    <div class="logo">
-      <img src="assets/images/logo.png" alt="Matthias Silberhain">
-    </div>
-
-    <button class="burger" id="burger" aria-label="Menü öffnen">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-
-    <nav class="hauptnavigation" id="navigation">
-      <a href="index.html">Startseite</a>
-      <a href="about.html">Über mich</a>
-      <a href="werke.html">Werke</a>
-      <a href="termine.html">Termine</a>
-      <a href="kontakt.html">Kontakt</a>
-    </nav>
-
+  <div class="logo-container">
+    <img src="assets/images/logo.png" alt="Matthias Silberhain Logo" class="logo">
   </div>
 
-  <div class="lichtkante"></div>
+  <!-- Burger -->
+  <div class="burger" id="burger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="hauptnavigation" id="navigation">
+    <a href="index.html">Startseite</a>
+    <a href="about.html">Über mich</a>
+    <a href="werke.html">Werke</a>
+    <a href="termine.html">Termine</a>
+    <a href="kontakt.html">Kontakt</a>
+  </nav>
+
 </header>
 
-<!-- ================= MAIN ================= -->
+<!-- Lichtkante unter Header -->
+<div class="lichtkante"></div>
+
+
+<!-- ================= HAUPTINHALT ================= -->
 <main class="inhalt">
 
   <section class="intro">
-    <h1>Matthias Silberhain</h1>
+    <h1>Worte. Stille. Tiefe.</h1>
+
     <p>
-      Autor zwischen Literatur, Mythos und Gegenwart.<br>
-      Portfolio · Autorenwebsite · Zentrale Referenz für Leser und Verlage.
+      Schreiben ist für mich kein Erzählen, sondern ein Offenlegen.
+      Ein behutsames Freilegen dessen, was unter der Oberfläche ruht.
+    </p>
+
+    <p>
+      Diese Seite ist kein Schaufenster, sondern ein Raum.
+      Für Texte, Gedanken und Werke, die Zeit brauchen –
+      und Aufmerksamkeit verdienen.
     </p>
   </section>
 
 </main>
 
+
 <!-- ================= FOOTER ================= -->
 <footer class="footer">
-  <div class="lichtkante"></div>
-  <p>© <span id="jahr"></span> Matthias Silberhain · Alle Rechte vorbehalten</p>
+
+  <div class="footer-lichtkante"></div>
+
+  <p>
+    © <span id="jahr"></span> Matthias Silberhain
+  </p>
+
 </footer>
 
-<!-- ================= SCRIPTS ================= -->
-<script>
-  /* PRELOADER – absolut sicher */
-  window.addEventListener("load", () => {
-    const preloader = document.getElementById("preloader");
 
-    setTimeout(() => {
-      preloader.classList.add("fade-out");
-
-      setTimeout(() => {
-        preloader.style.display = "none";
-      }, 1400);
-
-    }, 3600);
-  });
-
-  /* MOBILE MENÜ */
-  const burger = document.getElementById("burger");
-  const nav = document.getElementById("navigation");
-
-  burger.addEventListener("click", () => {
-    nav.classList.toggle("offen");
-    burger.classList.toggle("aktiv");
-  });
-
-  /* JAHR */
-  document.getElementById("jahr").textContent = new Date().getFullYear();
-</script>
+<!-- ================= JAVASCRIPT ================= -->
+<script src="assets/js/script.js"></script>
 
 </body>
 </html>
