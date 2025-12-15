@@ -1,8 +1,32 @@
 /* =========================================================
-   Matthias Silberhain – Script
+   Matthias Silberhain – Menü & Preloader Script
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
+
+  /* =====================================================
+     PRELOADER ERZEUGEN
+     (kein HTML notwendig)
+  ===================================================== */
+
+  const preloader = document.createElement("div");
+  preloader.id = "preloader";
+
+  preloader.innerHTML = `
+    <div class="preloader-inner">
+      <img
+        src="assets/images/logo.png"
+        alt="Matthias Silberhain Logo"
+        class="preloader-logo"
+      >
+      <div id="logo-animation">
+        MATTHIAS&nbsp;SILBERHAIN
+      </div>
+    </div>
+  `;
+
+  document.body.prepend(preloader);
+
 
   /* =====================================================
      FOOTER JAHR
@@ -30,28 +54,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =====================================================
-     PRELOADER
+     PRELOADER AUSBLENDEN
   ===================================================== */
 
-  const preloader = document.getElementById("preloader");
+  window.addEventListener("load", () => {
 
-  if (preloader) {
-    window.addEventListener("load", () => {
+    const PRELOADER_DURATION = 3200; // Timing zur CSS-Animation
 
-      // Dauer der Schreibanimation + kleiner Puffer
-     const PRELOADER_DURATION = 3200;
+    setTimeout(() => {
+      preloader.classList.add("fade-out");
 
       setTimeout(() => {
-        preloader.classList.add("fade-out");
+        preloader.remove();
+      }, 600);
 
-        // Nach Fade-Out komplett entfernen
-        setTimeout(() => {
-          preloader.remove();
-        }, 600);
+    }, PRELOADER_DURATION);
 
-      }, PRELOADER_DURATION);
-
-    });
-  }
+  });
 
 });
