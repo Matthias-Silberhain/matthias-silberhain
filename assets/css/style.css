@@ -149,3 +149,59 @@ body {
     display: none;
   }
 }
+/* =====================
+   FOOTER SOCIAL ICONS
+===================== */
+
+.footer-social {
+  display: flex;
+  justify-content: center;
+  gap: 26px;
+  margin-bottom: 24px;
+}
+
+.footer-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(200,205,215,0.35);
+  border-radius: 50%;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.social-icon {
+  width: 20px;
+  height: 20px;
+  fill: #cfd2d6;
+  transition: fill 0.3s ease, filter 0.3s ease;
+}
+
+/* Hover – Silberglow */
+.footer-social a:hover {
+  border-color: rgba(200,205,215,0.85);
+  box-shadow: 0 0 14px rgba(200,205,215,0.35);
+}
+
+.footer-social a:hover .social-icon {
+  fill: #e6e8ec;
+  filter: drop-shadow(0 0 6px rgba(220,225,235,0.6));
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .footer-social {
+    gap: 18px;
+  }
+
+  .footer-social a {
+    width: 38px;
+    height: 38px;
+  }
+
+  .social-icon {
+    width: 18px;
+    height: 18px;
+  }
+}
