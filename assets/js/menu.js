@@ -1,37 +1,37 @@
-/* ================= PRELOADER ================= */
-
 document.addEventListener("DOMContentLoaded", () => {
 
-  const text = "MATTHIAS SILBERHAIN";
-  const textElement = document.getElementById("type-text");
-  const cursor = document.querySelector(".cursor");
   const preloader = document.getElementById("preloader");
+  const textEl = document.getElementById("type-text");
+  const cursor = document.getElementById("cursor");
+  const text = "MATTHIAS SILBERHAIN";
 
-  let index = 0;
+  let i = 0;
   const speed = 80;
 
-  const typing = setInterval(() => {
-    textElement.textContent += text.charAt(index);
-    index++;
+  document.body.style.overflow = "hidden";
 
-    if (index === text.length) {
-      clearInterval(typing);
+  function typeWriter() {
+    if (i < text.length) {
+      textEl.textContent += text.charAt(i);
+      i++;
+      setTimeout(typeWriter, speed);
+    } else {
       cursor.classList.add("stop");
 
       setTimeout(() => {
         preloader.style.opacity = "0";
-        preloader.style.transition = "opacity 0.4s ease";
-      }, 300);
-
-      setTimeout(() => {
-        preloader.remove();
-      }, 800);
+        setTimeout(() => {
+          preloader.remove();
+          document.body.style.overflow = "auto";
+        }, 400);
+      }, 600);
     }
-  }, speed);
+  }
+
+  typeWriter();
 });
 
-/* ================= BURGER MENÜ ================= */
-
+/* BURGER */
 const burger = document.getElementById("burger");
 const navigation = document.getElementById("navigation");
 
@@ -41,8 +41,7 @@ if (burger) {
   });
 }
 
-/* ================= FOOTER JAHR ================= */
-
+/* FOOTER JAHR */
 const jahr = document.getElementById("jahr");
 if (jahr) {
   jahr.textContent = new Date().getFullYear();
