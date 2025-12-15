@@ -4,7 +4,11 @@ document.addEventListener("DOMContentLoaded", () => {
      TYPEWRITER PRELOADER
   ========================= */
 
-  const text = "MATTHIAS SILBERHAIN";
+  // Text: Desktop einzeilig, Mobile zweizeilig
+  const text = window.innerWidth <= 600
+    ? "MATTHIAS\nSILBERHAIN"
+    : "MATTHIAS SILBERHAIN";
+
   const textEl = document.getElementById("type-text");
   const cursor = document.querySelector(".cursor");
   const preloader = document.getElementById("preloader");
@@ -17,9 +21,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function typeWriter() {
     if (index < text.length) {
-      textEl.textContent += text.charAt(index);
+
+      // Zeilenumbruch korrekt ausgeben
+      if (text.charAt(index) === "\n") {
+        textEl.innerHTML += "<br>";
+      } else {
+        textEl.innerHTML += text.charAt(index);
+      }
+
       index++;
       setTimeout(typeWriter, speed);
+
     } else {
       /* Cursor stoppen */
       cursor.style.display = "none";
@@ -39,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  /* Sofort starten */
+  /* Start */
   typeWriter();
 
   /* =========================
