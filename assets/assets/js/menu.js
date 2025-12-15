@@ -1,7 +1,6 @@
-// =========================
-// PRELOADER (IMMER)
-// =========================
-alert("JS geladen");
+/* =========================
+   PRELOADER
+========================= */
 
 const preloader = document.createElement("div");
 preloader.id = "preloader";
@@ -17,20 +16,20 @@ preloader.innerHTML = `
 
 document.body.appendChild(preloader);
 
-// Schreib-Effekt
+/* Schreibeffekt */
 const text = "MATTHIAS SILBERHAIN";
 const textEl = document.getElementById("type-text");
 const cursor = document.getElementById("cursor");
 
-let i = 0;
-const speed = 60; // Geschwindigkeit der Buchstaben
+let index = 0;
+const speed = 60;
 
-const typing = setInterval(() => {
-  textEl.textContent += text.charAt(i);
-  i++;
+const typingInterval = setInterval(() => {
+  textEl.textContent += text[index];
+  index++;
 
-  if (i === text.length) {
-    clearInterval(typing);
+  if (index >= text.length) {
+    clearInterval(typingInterval);
 
     cursor.classList.add("stop");
 
@@ -44,9 +43,10 @@ const typing = setInterval(() => {
   }
 }, speed);
 
-// =========================
-// BURGER MENÜ
-// =========================
+/* =========================
+   BURGER MENÜ
+========================= */
+
 const burger = document.getElementById("burger");
 const navigation = document.getElementById("navigation");
 
@@ -54,7 +54,9 @@ burger.addEventListener("click", () => {
   navigation.classList.toggle("aktiv");
 });
 
-// =========================
-// FOOTER JAHR
-// =========================
-document.getElementById("jahr").textContent = new Date().getFullYear();
+/* =========================
+   FOOTER JAHR
+========================= */
+
+document.getElementById("jahr").textContent =
+  new Date().getFullYear();
