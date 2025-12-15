@@ -6,7 +6,7 @@
   <title>Matthias Silberhain – Autor</title>
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
 
   <!-- CSS -->
   <link rel="stylesheet" href="assets/css/style.css">
@@ -14,9 +14,7 @@
 
 <body>
 
-<!-- =====================================
-     PRELOADER
-===================================== -->
+<!-- ================= PRELOADER ================= -->
 <div id="preloader">
   <img
     src="assets/images/logo.png"
@@ -25,26 +23,21 @@
   >
 </div>
 
-<!-- =====================================
-     HEADER
-===================================== -->
+<!-- ================= HEADER ================= -->
 <header class="header">
 
   <div class="header-inner">
 
-    <!-- Logo -->
     <div class="logo">
       <img src="assets/images/logo.png" alt="Matthias Silberhain">
     </div>
 
-    <!-- Burger (Mobile) -->
     <button class="burger" id="burger" aria-label="Menü öffnen">
       <span></span>
       <span></span>
       <span></span>
     </button>
 
-    <!-- Navigation -->
     <nav class="hauptnavigation" id="navigation">
       <a href="index.html">Startseite</a>
       <a href="about.html">Über mich</a>
@@ -55,50 +48,45 @@
 
   </div>
 
-  <!-- Lichtkante unter Menü -->
   <div class="lichtkante"></div>
 </header>
 
-<!-- =====================================
-     MAIN CONTENT
-===================================== -->
+<!-- ================= MAIN ================= -->
 <main class="inhalt">
 
   <section class="intro">
     <h1>Matthias Silberhain</h1>
     <p>
-      Autor zwischen Literatur, Mythos und Gegenwart.
-      Diese Seite dient als Portfolio, Autorenpräsenz
-      und zentrale Referenz für Leser, Verlage und Partner.
+      Autor zwischen Literatur, Mythos und Gegenwart.<br>
+      Portfolio · Autorenwebsite · Zentrale Referenz für Leser und Verlage.
     </p>
   </section>
 
 </main>
 
-<!-- =====================================
-     FOOTER
-===================================== -->
+<!-- ================= FOOTER ================= -->
 <footer class="footer">
   <div class="lichtkante"></div>
-
-  <p>
-    © <span id="jahr"></span> Matthias Silberhain · Alle Rechte vorbehalten
-  </p>
+  <p>© <span id="jahr"></span> Matthias Silberhain · Alle Rechte vorbehalten</p>
 </footer>
 
-<!-- =====================================
-     SCRIPTS
-===================================== -->
+<!-- ================= SCRIPTS ================= -->
 <script>
-  /* Preloader */
+  /* PRELOADER – absolut sicher */
   window.addEventListener("load", () => {
     const preloader = document.getElementById("preloader");
+
     setTimeout(() => {
       preloader.classList.add("fade-out");
-    }, 4200);
+
+      setTimeout(() => {
+        preloader.style.display = "none";
+      }, 1400);
+
+    }, 3600);
   });
 
-  /* Mobile Menü */
+  /* MOBILE MENÜ */
   const burger = document.getElementById("burger");
   const nav = document.getElementById("navigation");
 
@@ -107,7 +95,7 @@
     burger.classList.toggle("aktiv");
   });
 
-  /* Copyright Jahr */
+  /* JAHR */
   document.getElementById("jahr").textContent = new Date().getFullYear();
 </script>
 
