@@ -229,3 +229,16 @@ p {
     opacity: 0;
   }
 }
+/* =====================
+   PRELOADER – MOBILE
+===================== */
+
+@media (max-width: 768px) {
+
+  .preloader-logo {
+    width: 220px;
+    margin-bottom: 20px;
+  }
+
+  .preloader-text {
+    font-size: clamp
