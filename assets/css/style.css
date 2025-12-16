@@ -802,3 +802,125 @@ strong {
     margin: 40px 0;
   }
 }
+/* ==========================================================================
+   LOGO ANIMATION AUF DER STARTSEITE
+   ========================================================================== */
+
+/* Logo im Header animieren */
+.header .logo {
+  width: min(75vw, 420px);
+  max-width: 380px;
+  height: auto;
+  margin: 0 auto 25px;
+  display: block;
+  filter: brightness(1.1);
+  
+  /* Animationseigenschaften */
+  animation: headerLogoGlow 4s ease-in-out infinite,
+             headerLogoFloat 6s ease-in-out infinite;
+  transform-origin: center;
+  will-change: transform, filter;
+}
+
+/* Glow-Animation für silbernes Leuchten */
+@keyframes headerLogoGlow {
+  0%, 100% {
+    filter: brightness(1.1) 
+            drop-shadow(0 0 10px rgba(200, 200, 200, 0.3));
+  }
+  50% {
+    filter: brightness(1.3) 
+            drop-shadow(0 0 20px rgba(200, 200, 200, 0.6))
+            drop-shadow(0 0 30px rgba(192, 192, 192, 0.4));
+  }
+}
+
+/* Float-Animation für sanftes Schweben */
+@keyframes headerLogoFloat {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  33% {
+    transform: translateY(-5px) scale(1.02);
+  }
+  66% {
+    transform: translateY(3px) scale(0.99);
+  }
+}
+
+/* Pulsierende Border-Animation (optional) */
+.header .logo::after {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  animation: logoBorderPulse 3s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes logoBorderPulse {
+  0%, 100% {
+    border-color: transparent;
+    box-shadow: 0 0 0 0 rgba(192, 192, 192, 0);
+  }
+  50% {
+    border-color: rgba(192, 192, 192, 0.3);
+    box-shadow: 0 0 15px 5px rgba(192, 192, 192, 0.1);
+  }
+}
+
+/* Hover-Effekt für zusätzliche Interaktion */
+.header .logo:hover {
+  animation: headerLogoGlow 1.5s ease-in-out infinite,
+             headerLogoFloat 3s ease-in-out infinite,
+             logoHoverSpin 0.8s ease-out;
+}
+
+@keyframes logoHoverSpin {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(5deg) scale(1.05);
+  }
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+/* Responsive Anpassungen für Animation */
+@media screen and (max-width: 768px) {
+  .header .logo {
+    animation: headerLogoGlow 5s ease-in-out infinite,
+               headerLogoFloat 7s ease-in-out infinite;
+  }
+  
+  @keyframes headerLogoFloat {
+    0%, 100% {
+      transform: translateY(0) scale(1);
+    }
+    33% {
+      transform: translateY(-3px) scale(1.01);
+    }
+    66% {
+      transform: translateY(2px) scale(0.995);
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .header .logo {
+    animation: headerLogoGlow 6s ease-in-out infinite,
+               headerLogoFloat 8s ease-in-out infinite;
+  }
+}
+
+/* Verzögerter Start der Animation für bessere UX */
+.header .logo {
+  animation-delay: 1s;
+}
