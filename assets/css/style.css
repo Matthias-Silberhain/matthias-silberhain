@@ -1,179 +1,52 @@
-/* ==========================================================================
-   SILBER PRELOADER - VOLL RESPONSIV
-   ========================================================================== */
-.silber-preloader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background: linear-gradient(135deg, #0a0a0a 0%, #000000 100%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    opacity: 1;
-    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+/* =====================
+   RESET & GRUNDLEGENDE STYLES
+===================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* Logo Animation */
-.silber-logo {
-    width: clamp(120px, 25vw, 200px);
-    height: auto;
-    filter: drop-shadow(0 0 15px rgba(192, 192, 192, 0.3));
+html, body {
+  width: 100%;
+  height: 100%;
 }
 
-.logo-ring {
-    animation: draw-ring 2s ease-out forwards, 
-               rotate-ring 20s linear infinite 2s;
+body {
+  font-family: "EB Garamond", Garamond, serif;
+  background-color: #050505 !important; /* SCHWARZER HINTERGRUND */
+  color: #cfd2d6 !important;
+  line-height: 1.65;
 }
 
-.logo-core {
-    animation: draw-core 1.5s ease-out 0.5s forwards;
+/* =====================
+   PRELOADER
+===================== */
+#preloader {
+  position: fixed;
+  inset: 0;
+  background: #050505 !important; /* SCHWARZER HINTERGRUND */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.4s ease;
 }
 
-.logo-glint-1 {
-    animation: glint-pulse 3s ease-in-out infinite 1s;
+/* =====================
+   ALLE ANDEREN ELEMENTE
+===================== */
+.header, .inhalt, .footer, 
+.feature-card, .quote-section,
+.social-section {
+  background-color: transparent !important;
 }
 
-.logo-glint-2 {
-    animation: glint-pulse 2.5s ease-in-out infinite 1.5s;
+/* Dunkle Hintergründe für Karten */
+.feature-card {
+  background: rgba(10, 10, 10, 0.8) !important;
 }
 
-/* Typewriter verbessert */
-.silber-typewriter {
-    font-family: 'Cinzel', serif;
-    font-size: clamp(1.8rem, 5vw, 3.5rem);
-    color: #e8e8e8;
-    text-shadow: 0 0 20px rgba(192, 192, 192, 0.5);
-    letter-spacing: 0.15em;
-    position: relative;
-}
-
-.enhanced-cursor {
-    display: inline-block;
-    width: 3px;
-    height: 1.2em;
-    background: linear-gradient(to bottom, #c0c0c0, #ffffff);
-    margin-left: 8px;
-    animation: enhanced-blink 1s infinite, 
-               cursor-glow 2s ease-in-out infinite;
-    vertical-align: middle;
-    box-shadow: 0 0 10px #c0c0c0;
-}
-
-/* Progress Bar */
-.progress-bar {
-    width: min(300px, 80vw);
-    height: 2px;
-    background: rgba(192, 192, 192, 0.2);
-    border-radius: 1px;
-    overflow: hidden;
-    margin: 20px auto;
-}
-
-.progress-fill {
-    height: 100%;
-    width: 0%;
-    background: linear-gradient(90deg, #a0a0a0, #c0c0c0, #e8e8e8);
-    animation: loading-progress 2.5s ease-in-out forwards;
-    box-shadow: 0 0 10px rgba(192, 192, 192, 0.5);
-}
-
-/* ==========================================================================
-   SILBER HOVER EFFECTS - ALLGEMEIN
-   ========================================================================== */
-.nav-item:hover,
-.social-link:hover,
-.card-link:hover,
-.silber-button:hover {
-    color: #ffffff;
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
-}
-
-/* Social Media Icons Hover */
-.social-icon-wrapper {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.social-link:hover .social-icon-wrapper {
-    transform: translateY(-5px) scale(1.1);
-    background: linear-gradient(135deg, 
-                rgba(192, 192, 192, 0.1), 
-                rgba(255, 255, 255, 0.05));
-    box-shadow: 0 5px 20px rgba(192, 192, 192, 0.3);
-}
-
-.social-link:hover .social-icon {
-    fill: #ffffff;
-    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
-}
-
-/* ==========================================================================
-   ANIMATIONEN
-   ========================================================================== */
-@keyframes draw-ring {
-    to { stroke-dashoffset: 0; }
-}
-
-@keyframes rotate-ring {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-@keyframes draw-core {
-    from { stroke-dasharray: 0 1000; }
-    to { stroke-dasharray: 1000 1000; }
-}
-
-@keyframes glint-pulse {
-    0%, 100% { opacity: 0.3; transform: scale(1); }
-    50% { opacity: 0.9; transform: scale(1.1); }
-}
-
-@keyframes enhanced-blink {
-    0%, 50% { opacity: 1; }
-    51%, 100% { opacity: 0.3; }
-}
-
-@keyframes cursor-glow {
-    0%, 100% { box-shadow: 0 0 10px #c0c0c0; }
-    50% { box-shadow: 0 0 20px #ffffff, 0 0 30px #c0c0c0; }
-}
-
-@keyframes loading-progress {
-    0% { width: 0%; }
-    100% { width: 100%; }
-}
-
-/* ==========================================================================
-   RESPONSIVE ANPASSUNGEN
-   ========================================================================== */
-@media (max-width: 768px) {
-    .silber-typewriter {
-        font-size: clamp(1.5rem, 6vw, 2.5rem);
-    }
-    
-    .preloader-content {
-        padding: 20px;
-    }
-    
-    .social-grid {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 15px;
-    }
-}
-
-@media (max-width: 480px) {
-    .silber-logo {
-        width: 100px;
-    }
-    
-    .social-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-    
-    .hero-headline {
-        font-size: 1.8rem;
-    }
+.quote-section {
+  background: rgba(5, 5, 5, 0.9) !important;
 }
