@@ -1,243 +1,515 @@
-<!-- ================= MODERN HEADER ================= -->
-<header class="silber-header">
-    <nav class="header-nav">
-        <div class="nav-container">
-            <!-- Logo Link -->
-            <a href="index.html" class="brand-logo">
-                <div class="logo-mini">
-                    <div class="logo-dot"></div>
-                    <div class="logo-line"></div>
-                    <div class="logo-dot"></div>
-                </div>
-                <span class="logo-text">SILBERHAIN</span>
-            </a>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Matthias Silberhain | Autor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bücher von Matthias Silberhain: Recherchiert, präzise und ohne Beschönigung zu Macht, Verantwortung und historischen Spuren.">
 
-            <!-- Desktop Navigation -->
-            <div class="desktop-nav">
-                <a href="index.html" class="nav-item active">Start</a>
-                <a href="ueber-mich.html" class="nav-item">Über mich</a>
-                <a href="werke.html" class="nav-item">Werke</a>
-                <a href="blog.html" class="nav-item">Blog</a>
-                <a href="kontakt.html" class="nav-item">Kontakt</a>
-            </div>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
 
-            <!-- Mobile Menu Toggle -->
-            <button class="mobile-toggle" id="mobileToggle" aria-label="Menü öffnen">
-                <span class="toggle-line"></span>
-                <span class="toggle-line"></span>
-                <span class="toggle-line"></span>
-            </button>
-        </div>
-    </nav>
+  <!-- CSS - VERBINDUNG ZU DEINER EXISTIERENDEN DATEI -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  
+  <!-- Zusatz-CSS für die neuen Elemente -->
+  <style>
+    /* Zusätzliche Styles für neue Startseiten-Elemente */
+    .start-intro { max-width: 750px; margin: 0 auto; }
+    .intro h1 { 
+      margin-bottom: 40px; 
+      font-size: 2.2rem;
+      line-height: 1.3;
+    }
+    .intro p { 
+      font-size: 1.15rem; 
+      margin-bottom: 28px; 
+      text-align: left;
+      line-height: 1.7;
+    }
+    
+    /* Hervorhebung für wichtige Sätze */
+    .intro strong {
+      color: #e4e6ea;
+      font-weight: 500;
+    }
+    
+    /* Features Grid */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin: 60px 0;
+    }
+    
+    .feature-card {
+      background: rgba(15, 15, 15, 0.7);
+      border: 1px solid rgba(200, 205, 215, 0.15);
+      border-radius: 8px;
+      padding: 30px 25px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(200, 205, 215, 0.4);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+    
+    .card-icon {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      display: block;
+    }
+    
+    .card-title {
+      font-family: "Cinzel", serif;
+      color: #e4e6ea;
+      margin-bottom: 15px;
+      font-size: 1.3rem;
+      letter-spacing: 0.05em;
+    }
+    
+    .card-text {
+      color: #b0b5bc;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    
+    .card-link {
+      display: inline-block;
+      margin-top: 10px;
+      color: #d6d9de;
+      font-family: "Cinzel", serif;
+      letter-spacing: 0.1em;
+      text-decoration: none;
+      font-size: 0.9rem;
+      padding: 8px 0;
+      border-bottom: 1px solid transparent;
+      transition: all 0.3s ease;
+    }
+    
+    .card-link:hover {
+      color: #ffffff;
+      border-bottom-color: rgba(200, 205, 215, 0.5);
+      text-shadow: 0 0 10px rgba(200, 205, 215, 0.5);
+    }
+    
+    /* Quote Section */
+    .quote-section {
+      margin: 70px 0;
+      padding: 50px 20px;
+      border-top: 1px solid rgba(200, 205, 215, 0.15);
+      border-bottom: 1px solid rgba(200, 205, 215, 0.15);
+      background: linear-gradient(180deg, rgba(10,10,10,0.3) 0%, rgba(5,5,5,0.1) 100%);
+    }
+    
+    .silber-quote {
+      max-width: 650px;
+      margin: 0 auto;
+      font-size: 1.4rem;
+      font-style: italic;
+      text-align: center;
+      color: #e4e6ea;
+      line-height: 1.6;
+      font-weight: 400;
+    }
+    
+    .quote-author {
+      display: block;
+      margin-top: 20px;
+      font-size: 1.1rem;
+      font-style: normal;
+      color: #9da2a8;
+      letter-spacing: 0.05em;
+    }
+    
+    /* CTA Buttons */
+    .cta-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin: 40px 0 60px;
+      flex-wrap: wrap;
+    }
+    
+    .silber-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      background: transparent;
+      color: #d6d9de;
+      border: 1px solid rgba(200, 205, 215, 0.4);
+      border-radius: 4px;
+      font-family: "Cinzel", serif;
+      letter-spacing: 0.1em;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+    }
+    
+    .silber-button:hover {
+      background: rgba(200, 205, 215, 0.1);
+      color: #ffffff;
+      border-color: rgba(200, 205, 215, 0.7);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    }
+    
+    .button-arrow {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+      transition: transform 0.3s ease;
+    }
+    
+    .silber-button:hover .button-arrow {
+      transform: translateX(5px);
+    }
+    
+    /* Social Media Section */
+    .social-section {
+      margin-top: 60px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(200, 205, 215, 0.2);
+    }
+    
+    .social-title {
+      font-family: "Cinzel", serif;
+      text-align: center;
+      color: #e4e6ea;
+      margin-bottom: 30px;
+      letter-spacing: 0.1em;
+      font-size: 1.2rem;
+    }
+    
+    .social-grid {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      flex-wrap: wrap;
+      margin-bottom: 50px;
+    }
+    
+    .social-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: #9da2a8;
+      transition: all 0.3s ease;
+      width: 80px;
+    }
+    
+    .social-icon-wrapper {
+      width: 55px;
+      height: 55px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(200, 205, 215, 0.25);
+      border-radius: 50%;
+      margin-bottom: 12px;
+      transition: all 0.3s ease;
+      background: rgba(10, 10, 10, 0.5);
+    }
+    
+    .social-icon {
+      width: 26px;
+      height: 26px;
+      fill: #9da2a8;
+      transition: all 0.3s ease;
+    }
+    
+    .social-name {
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+    }
+    
+    .social-link:hover {
+      color: #ffffff;
+    }
+    
+    .social-link:hover .social-icon-wrapper {
+      border-color: rgba(200, 205, 215, 0.7);
+      background: rgba(200, 205, 215, 0.15);
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    }
+    
+    .social-link:hover .social-icon {
+      fill: #ffffff;
+      filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+    }
+    
+    /* Responsive Anpassungen */
+    @media (max-width: 768px) {
+      .intro h1 { font-size: 1.9rem; }
+      .intro p { text-align: center; font-size: 1.1rem; }
+      .cta-buttons { flex-direction: column; align-items: center; }
+      .social-grid { gap: 20px; }
+      .social-link { width: 70px; }
+      .feature-card { padding: 25px 20px; }
+      .silber-quote { font-size: 1.2rem; }
+    }
+    
+    @media (max-width: 480px) {
+      .features-grid { grid-template-columns: 1fr; }
+      .social-grid { gap: 15px; }
+      .social-link { width: 65px; }
+      .social-icon-wrapper { width: 50px; height: 50px; }
+      .intro h1 { font-size: 1.7rem; }
+    }
+  </style>
+</head>
 
-    <!-- Mobile Navigation -->
-    <div class="mobile-nav" id="mobileNav">
-        <a href="index.html" class="mobile-nav-item active">Start</a>
-        <a href="ueber-mich.html" class="mobile-nav-item">Über mich</a>
-        <a href="werke.html" class="mobile-nav-item">Werke</a>
-        <a href="blog.html" class="mobile-nav-item">Blog</a>
-        <a href="kontakt.html" class="mobile-nav-item">Kontakt</a>
+<body>
+
+<!-- ================= PRELOADER ================= -->
+<div id="preloader">
+  <div class="preloader-inner">
+    <img src="assets/images/logo.png" alt="Matthias Silberhain Logo" class="preloader-logo">
+    <div class="preloader-text">
+      <span id="type-text"></span><span class="cursor">|</span>
     </div>
+  </div>
+</div>
+
+<!-- ================= HEADER ================= -->
+<header class="header">
+  <img src="assets/images/logo.png" alt="Matthias Silberhain Logo" class="logo">
+  
+  <div class="burger" id="burger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <nav class="hauptnavigation" id="navigation">
+    <a href="index.html">Startseite</a>
+    <a href="ueber-mich.html">Über mich</a>
+    <a href="werke.html">Werke</a>
+    <a href="termine.html">Termine</a>
+    <a href="kontakt.html">Kontakt</a>
+  </nav>
 </header>
 
-<!-- ================= HERO SECTION ================= -->
-<main class="main-content">
-    <section class="silber-hero">
-        <div class="hero-container">
-            <!-- Headline mit Stagger-Animation -->
-            <div class="hero-headlines">
-                <h1 class="hero-headline">
-                    <span class="headline-word">Wenn</span>
-                    <span class="headline-word">Wahrheit</span>
-                    <span class="headline-word">unbequem</span>
-                    <span class="headline-word">wird,</span>
-                </h1>
-                <h1 class="hero-headline">
-                    <span class="headline-word">braucht</span>
-                    <span class="headline-word">sie</span>
-                    <span class="headline-word">eine</span>
-                    <span class="headline-word highlight-word">Stimme.</span>
-                </h1>
-            </div>
+<div class="lichtkante"></div>
 
-            <!-- Einführungstext -->
-            <div class="hero-intro">
-                <p class="intro-text">
-                    Diese Seite ist kein Ort für einfache Antworten oder beruhigende Geschichten. 
-                    Hier geht es um Macht, Verantwortung und die Fragen, die selten laut gestellt werden.
-                </p>
-                
-                <p class="intro-text">
-                    Um historische Spuren, gesellschaftliche Strukturen und Entscheidungen, 
-                    deren Folgen bis heute wirken.
-                </p>
-
-                <!-- Call-to-Action Button -->
-                <div class="hero-actions">
-                    <a href="werke.html" class="silber-button">
-                        <span>Werke entdecken</span>
-                        <svg class="button-arrow" viewBox="0 0 24 24">
-                            <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
-                        </svg>
-                    </a>
-                    <a href="#more-content" class="silber-button secondary">
-                        <span>Mehr erfahren</span>
-                    </a>
-                </div>
-            </div>
+<!-- ================= STARTSEITEN-INHALT ================= -->
+<main class="inhalt">
+  <section class="intro start-intro">
+    <!-- Haupt-Überschrift (dein Text) -->
+    <h1>Wenn Wahrheit unbequem wird, braucht sie eine Stimme.</h1>
+    
+    <!-- Dein Originaltext -->
+    <p>Diese Seite ist kein Ort für einfache Antworten oder beruhigende Geschichten.<br>
+    Hier geht es um Macht, Verantwortung und die Fragen, die selten laut gestellt werden. Um historische Spuren, gesellschaftliche Strukturen und Entscheidungen, deren Folgen bis heute wirken.</p>
+    
+    <p>Die Bücher von Matthias Silberhain richten sich an Leserinnen und Leser, die bereit sind, genauer hinzusehen. An Menschen, die hinter Schlagzeilen blicken wollen, statt sie zu konsumieren. An alle, die verstehen möchten, wie Geschichte geschrieben wird – und wer davon profitiert.</p>
+    
+    <p>Jedes Werk folgt einem klaren Anspruch: <strong>recherchiert, präzise und ohne Beschönigung</strong>. Nicht um zu provozieren, sondern um Klarheit zu schaffen. Nicht um zu belehren, sondern um Denkprozesse anzustoßen.</p>
+    
+    <p>Wenn du Literatur suchst, die fordert statt unterhält, die Fragen stellt statt Antworten zu verkaufen, dann bist du hier richtig.</p>
+    
+    <!-- CTA Buttons -->
+    <div class="cta-buttons">
+      <a href="werke.html" class="silber-button">
+        <span>Werke entdecken</span>
+        <svg class="button-arrow" viewBox="0 0 24 24">
+          <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+        </svg>
+      </a>
+      <a href="ueber-mich.html" class="silber-button">
+        <span>Über den Autor</span>
+      </a>
+    </div>
+  </section>
+  
+  <!-- Features Grid -->
+  <section id="features">
+    <h2 style="text-align: center; margin-bottom: 30px; font-size: 1.8rem;">Im Fokus</h2>
+    <p style="text-align: center; margin-bottom: 50px; color: #9da2a8; font-size: 1.1rem;">Themen, die zum Nachdenken anregen</p>
+    
+    <div class="features-grid">
+      <article class="feature-card">
+        <div class="card-icon">📚</div>
+        <h3 class="card-title">Aktuelle Publikation</h3>
+        <p class="card-text">Mein neuestes Werk untersucht die Mechanismen der Macht in modernen Demokratien.</p>
+        <a href="werke.html" class="card-link">Leseprobe ansehen</a>
+      </article>
+      
+      <article class="feature-card">
+        <div class="card-icon">🎤</div>
+        <h3 class="card-title">Nächste Veranstaltung</h3>
+        <p class="card-text">Lesung und Diskussion am 15. März in Berlin. Thema: "Verantwortung in der Geschichte".</p>
+        <a href="termine.html" class="card-link">Termine & Details</a>
+      </article>
+      
+      <article class="feature-card">
+        <div class="card-icon">✍️</div>
+        <h3 class="card-title">Aktuelle Gedanken</h3>
+        <p class="card-text">Reflexionen zur politischen Rhetorik und ihrem Einfluss auf die öffentliche Meinung.</p>
+        <a href="#blog" class="card-link">Zum Blog</a>
+      </article>
+    </div>
+  </section>
+  
+  <!-- Quote Section -->
+  <section class="quote-section">
+    <blockquote class="silber-quote">
+      "Die Wahrheit ist nicht immer bequem, aber sie ist immer notwendig."
+      <cite class="quote-author">— Matthias Silberhain</cite>
+    </blockquote>
+  </section>
+  
+  <!-- Social Media Section -->
+  <section class="social-section">
+    <h3 class="social-title">Folgen Sie den Gedanken</h3>
+    <div class="social-grid">
+      <!-- Snapchat -->
+      <a href="https://snapchat.com/t/8wVZ1Wpu" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Snapchat">
+        <div class="social-icon-wrapper">
+          <svg class="social-icon" viewBox="0 0 24 24">
+            <path d="M5.83 2H18.2c1.14 0 2.07.93 2.07 2.07v15.86c0 1.14-.93 2.07-2.07 2.07H5.83A2.07 2.07 0 0 1 3.76 19.9V4.07C3.76 2.93 4.69 2 5.83 2zm6.44 16.27c1.33 0 2.41-1.08 2.41-2.41 0-.44-.12-.85-.32-1.21.23-.05.47-.08.72-.08 1.33 0 2.41 1.08 2.41 2.41 0 1.33-1.08 2.41-2.41 2.41-1.33 0-2.41-1.08-2.41-2.41 0-.44.12-.85.32-1.21-.23.05-.47.08-.72.08-1.33 0-2.41-1.08-2.41-2.41 0-1.33 1.08-2.41 2.41-2.41.44 0 .85.12 1.21.32.05-.23.08-.47.08-.72 0-1.33-1.08-2.41-2.41-2.41-1.33 0-2.41 1.08-2.41 2.41 0 1.33 1.08 2.41 2.41 2.41.44 0 .85-.12 1.21-.32-.05.23-.08.47-.08.72 0 1.33 1.08 2.41 2.41 2.41z"/>
+          </svg>
         </div>
-    </section>
-
-    <!-- ================= FEATURED CONTENT ================= -->
-    <section class="featured-section" id="more-content">
-        <div class="section-container">
-            <div class="section-header">
-                <h2 class="section-title">Im Fokus</h2>
-                <p class="section-subtitle">Themen, die zum Nachdenken anregen</p>
-            </div>
-
-            <!-- Feature Cards -->
-            <div class="features-grid">
-                <article class="feature-card">
-                    <div class="card-icon">📚</div>
-                    <h3 class="card-title">Aktuelle Publikation</h3>
-                    <p class="card-text">
-                        Mein neuestes Werk untersucht die Mechanismen der Macht 
-                        in modernen Demokratien.
-                    </p>
-                    <a href="werke.html#neuestes" class="card-link">Leseprobe →</a>
-                </article>
-
-                <article class="feature-card">
-                    <div class="card-icon">🎤</div>
-                    <h3 class="card-title">Nächste Veranstaltung</h3>
-                    <p class="card-text">
-                        Lesung und Diskussion am 15. März in Berlin. 
-                        Thema: "Verantwortung in der Geschichte".
-                    </p>
-                    <a href="termine.html" class="card-link">Details →</a>
-                </article>
-
-                <article class="feature-card">
-                    <div class="card-icon">✍️</div>
-                    <h3 class="card-title">Blog-Eintrag</h3>
-                    <p class="card-text">
-                        Aktuelle Gedanken zur politischen Rhetorik und 
-                        ihrem Einfluss auf die öffentliche Meinung.
-                    </p>
-                    <a href="blog.html" class="card-link">Zum Blog →</a>
-                </article>
-            </div>
+        <span class="social-name">Snapchat</span>
+      </a>
+      
+      <!-- Clapper -->
+      <a href="https://clapperapp.com/M.Silberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Clapper">
+        <div class="social-icon-wrapper">
+          <svg class="social-icon" viewBox="0 0 24 24">
+            <path d="M19.5 3H4.5C3.67 3 3 3.67 3 4.5v15C3 20.33 3.67 21 4.5 21h15c.83 0 1.5-.67 1.5-1.5v-15C21 3.67 20.33 3 19.5 3zM10 17H6v-2h4v2zm0-4H6v-2h4v2zm0-4H6V7h4v2zm8 8h-6v-2h6v2zm0-4h-6v-2h6v2zm0-4h-6V7h6v2z"/>
+          </svg>
         </div>
-    </section>
-
-    <!-- ================= QUOTE SECTION ================= -->
-    <section class="quote-section">
-        <div class="quote-container">
-            <blockquote class="silber-quote">
-                "Die Wahrheit ist nicht immer bequem, aber sie ist immer notwendig."
-                <cite class="quote-author">— Matthias Silberhain</cite>
-            </blockquote>
+        <span class="social-name">Clapper</span>
+      </a>
+      
+      <!-- TikTok -->
+      <a href="https://www.tiktok.com/@m.silberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="TikTok">
+        <div class="social-icon-wrapper">
+          <svg class="social-icon" viewBox="0 0 24 24">
+            <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+          </svg>
         </div>
-    </section>
+        <span class="social-name">TikTok</span>
+      </a>
+      
+      <!-- Telegram -->
+      <a href="https://t.me/matthiassilberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Telegram">
+        <div class="social-icon-wrapper">
+          <svg class="social-icon" viewBox="0 0 24 24">
+            <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.697.064-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+          </svg>
+        </div>
+        <span class="social-name">Telegram</span>
+      </a>
+      
+      <!-- Instagram -->
+      <a href="https://www.instagram.com/matthiassilberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+        <div class="social-icon-wrapper">
+          <svg class="social-icon" viewBox="0 0 24 24">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"/>
+          </svg>
+        </div>
+        <span class="social-name">Instagram</span>
+      </a>
+      
+      <!-- Facebook -->
+      <a href="https://www.facebook.com/share/17ZahbpKWN/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">
+        <div class="social-icon-wrapper">
+          <svg class="social-icon" viewBox="0 0 24 24">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+        </div>
+        <span class="social-name">Facebook</span>
+      </a>
+      
+      <!-- YouTube -->
+      <a href="https://youtube.com/@matthiassilberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube">
+        <div class="social-icon-wrapper">
+          <svg class="social-icon" viewBox="0 0 24 24">
+            <path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.506 0-9.396.501A3.007 3.007 0 00.528 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/>
+          </svg>
+        </div>
+        <span class="social-name">YouTube</span>
+      </a>
+    </div>
+  </section>
 </main>
 
-<!-- ================= ENHANCED FOOTER ================= -->
-<footer class="silber-footer">
-    <div class="footer-container">
-        <!-- Social Media Links mit deinen Plattformen -->
-        <div class="social-section">
-            <h3 class="social-title">Folgen Sie den Gedanken</h3>
-            <div class="social-grid">
-                <!-- Snapchat -->
-                <a href="https://snapchat.com/t/8wVZ1Wpu" target="_blank" rel="noopener noreferrer" 
-                   class="social-link" aria-label="Snapchat">
-                    <div class="social-icon-wrapper">
-                        <svg class="social-icon" viewBox="0 0 24 24">
-                            <path d="M5.83 2H18.2c1.14 0 2.07.93 2.07 2.07v15.86c0 1.14-.93 2.07-2.07 2.07H5.83A2.07 2.07 0 0 1 3.76 19.9V4.07C3.76 2.93 4.69 2 5.83 2zm6.44 16.27c1.33 0 2.41-1.08 2.41-2.41 0-.44-.12-.85-.32-1.21.23-.05.47-.08.72-.08 1.33 0 2.41 1.08 2.41 2.41 0 1.33-1.08 2.41-2.41 2.41-1.33 0-2.41-1.08-2.41-2.41 0-.44.12-.85.32-1.21-.23.05-.47.08-.72.08-1.33 0-2.41-1.08-2.41-2.41 0-1.33 1.08-2.41 2.41-2.41.44 0 .85.12 1.21.32.05-.23.08-.47.08-.72 0-1.33-1.08-2.41-2.41-2.41-1.33 0-2.41 1.08-2.41 2.41 0 1.33 1.08 2.41 2.41 2.41.44 0 .85-.12 1.21-.32-.05.23-.08.47-.08.72 0 1.33 1.08 2.41 2.41 2.41z"/>
-                        </svg>
-                    </div>
-                    <span class="social-name">Snapchat</span>
-                </a>
+<div class="lichtkante"></div>
 
-                <!-- Clapper -->
-                <a href="https://clapperapp.com/M.Silberhain" target="_blank" rel="noopener noreferrer" 
-                   class="social-link" aria-label="Clapper">
-                    <div class="social-icon-wrapper">
-                        <svg class="social-icon" viewBox="0 0 24 24">
-                            <path d="M19.5 3H4.5C3.67 3 3 3.67 3 4.5v15C3 20.33 3.67 21 4.5 21h15c.83 0 1.5-.67 1.5-1.5v-15C21 3.67 20.33 3 19.5 3zM10 17H6v-2h4v2zm0-4H6v-2h4v2zm0-4H6V7h4v2zm8 8h-6v-2h6v2zm0-4h-6v-2h6v2zm0-4h-6V7h6v2z"/>
-                        </svg>
-                    </div>
-                    <span class="social-name">Clapper</span>
-                </a>
-
-                <!-- TikTok -->
-                <a href="https://www.tiktok.com/@m.silberhain" target="_blank" rel="noopener noreferrer" 
-                   class="social-link" aria-label="TikTok">
-                    <div class="social-icon-wrapper">
-                        <svg class="social-icon" viewBox="0 0 24 24">
-                            <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
-                        </svg>
-                    </div>
-                    <span class="social-name">TikTok</span>
-                </a>
-
-                <!-- Telegram -->
-                <a href="https://t.me/matthiassilberhain" target="_blank" rel="noopener noreferrer" 
-                   class="social-link" aria-label="Telegram">
-                    <div class="social-icon-wrapper">
-                        <svg class="social-icon" viewBox="0 0 24 24">
-                            <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.697.064-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
-                        </svg>
-                    </div>
-                    <span class="social-name">Telegram</span>
-                </a>
-
-                <!-- Instagram -->
-                <a href="https://www.instagram.com/matthiassilberhain" target="_blank" rel="noopener noreferrer" 
-                   class="social-link" aria-label="Instagram">
-                    <div class="social-icon-wrapper">
-                        <svg class="social-icon" viewBox="0 0 24 24">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"/>
-                        </svg>
-                    </div>
-                    <span class="social-name">Instagram</span>
-                </a>
-
-                <!-- Facebook -->
-                <a href="https://www.facebook.com/share/17ZahbpKWN/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" 
-                   class="social-link" aria-label="Facebook">
-                    <div class="social-icon-wrapper">
-                        <svg class="social-icon" viewBox="0 0 24 24">
-                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                        </svg>
-                    </div>
-                    <span class="social-name">Facebook</span>
-                </a>
-
-                <!-- YouTube -->
-                <a href="https://youtube.com/@matthiassilberhain" target="_blank" rel="noopener noreferrer" 
-                   class="social-link" aria-label="YouTube">
-                    <div class="social-icon-wrapper">
-                        <svg class="social-icon" viewBox="0 0 24 24">
-                            <path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.506 0-9.396.501A3.007 3.007 0 00.528 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/>
-                        </svg>
-                    </div>
-                    <span class="social-name">YouTube</span>
-                </a>
-            </div>
-        </div>
-
-        <!-- Footer Bottom -->
-        <div class="footer-bottom">
-            <div class="copyright">
-                © <span id="currentYear"></span> Matthias Silberhain. Alle Rechte vorbehalten.
-            </div>
-            <div class="footer-links">
-                <a href="datenschutz.html" class="footer-link">Datenschutz</a>
-                <a href="impressum.html" class="footer-link">Impressum</a>
-                <a href="kontakt.html" class="footer-link">Kontakt</a>
-            </div>
-        </div>
-    </div>
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="footer-lichtkante"></div>
+  <p>© <span id="jahr"></span> Matthias Silberhain</p>
 </footer>
+
+<!-- JS - VERBINDUNG ZU DEINER EXISTIERENDEN DATEI -->
+<script src="assets/js/menu.js"></script>
+
+<!-- Zusatz-JS für erweiterte Preloader-Funktionen -->
+<script>
+  // Verbesserte Preloader-Animation für Responsive
+  document.addEventListener('DOMContentLoaded', function() {
+    // Responsive Logo-Größe für Preloader
+    const preloaderLogo = document.querySelector('.preloader-logo');
+    if (preloaderLogo) {
+      // Größe basierend auf Bildschirmbreite anpassen
+      const updateLogoSize = () => {
+        if (window.innerWidth < 480) {
+          preloaderLogo.style.width = '180px';
+        } else if (window.innerWidth < 768) {
+          preloaderLogo.style.width = '240px';
+        } else {
+          preloaderLogo.style.width = '320px';
+        }
+      };
+      
+      // Initial und bei Resize
+      updateLogoSize();
+      window.addEventListener('resize', updateLogoSize);
+    }
+    
+    // Responsive Schriftgröße für Preloader
+    const preloaderText = document.querySelector('.preloader-text');
+    if (preloaderText) {
+      const updateTextSize = () => {
+        if (window.innerWidth < 480) {
+          preloaderText.style.fontSize = '22px';
+        } else if (window.innerWidth < 768) {
+          preloaderText.style.fontSize = '26px';
+        } else {
+          preloaderText.style.fontSize = '30px';
+        }
+      };
+      
+      updateTextSize();
+      window.addEventListener('resize', updateTextSize);
+    }
+    
+    // Smooth Scroll für interne Links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href !== '#') {
+          e.preventDefault();
+          const targetElement = document.querySelector(href);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 100,
+              behavior: 'smooth'
+            });
+          }
+        }
+      });
+    });
+  });
+</script>
+</body>
+</html>
