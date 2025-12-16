@@ -1394,3 +1394,15 @@ strong {
 .quellen-hinweis p:last-child {
   margin-bottom: 0;
 }
+/* ==========================================================================
+   COVERBILD MITTIG AUSRICHTEN
+   ========================================================================== */
+.buch-intro {
+  flex-direction: column; /* Stapelt Bild und Text vertikal */
+  align-items: center;    /* Zentriert beide Elemente horizontal */
+  text-align: center;     /* Zentriert den Text */
+}
+
+.buch-cover-container {
+  margin-bottom: 30px;    /* Fügt Abstand unter dem Bild ein */
+}
