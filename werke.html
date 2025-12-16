@@ -17,204 +17,217 @@
   
   <style>
     /* ==========================================================================
-       WERKE SEITE STYLES
+       WERKE SEITE STYLES - SERIÖSE VERSION
        ========================================================================== */
     
     .werke-container {
-      max-width: 900px;
+      max-width: 850px;
       margin: 0 auto;
       padding: 20px;
     }
     
     .werke-header {
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: 60px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid rgba(200, 205, 215, 0.2);
     }
     
     .werke-header h1 {
-      margin-bottom: 25px;
+      margin-bottom: 15px;
       font-family: "Cinzel", serif;
       color: #e4e6ea;
-      font-size: 2.3rem;
-      letter-spacing: 0.05em;
+      font-size: 2.5rem;
+      letter-spacing: 0.08em;
       text-shadow: 0 0 15px rgba(200, 200, 200, 0.2);
     }
     
-    /* Buchkarte */
-    .buch-karte {
-      display: flex;
-      flex-direction: column;
-      gap: 40px;
-      margin-bottom: 60px;
-      padding: 30px;
-      background: rgba(10, 10, 10, 0.7);
-      border: 1px solid rgba(200, 205, 215, 0.2);
-      border-radius: 4px;
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    .werke-subtitle {
+      color: #9da2a8;
+      font-size: 1.1rem;
+      font-style: italic;
+      max-width: 600px;
+      margin: 0 auto;
     }
     
-    @media screen and (min-width: 768px) {
-      .buch-karte {
-        flex-direction: row;
-      }
+    /* Buchkarte - Seriöse Version */
+    .buch-präsentation {
+      margin-bottom: 80px;
     }
     
-    /* Buchcover */
-    .buchcover-container {
-      flex: 0 0 300px;
+    /* Buchcover Bereich */
+    .buchcover-bereich {
       text-align: center;
+      margin-bottom: 40px;
     }
     
-    .buchcover {
-      width: 100%;
-      max-width: 280px;
+    .buchcover-rahmen {
+      display: inline-block;
+      padding: 15px;
+      background: rgba(10, 10, 10, 0.9);
+      border: 1px solid rgba(200, 205, 215, 0.25);
+      border-radius: 2px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+      margin-bottom: 30px;
+    }
+    
+    .buchcover-seriös {
+      width: 280px;
       height: auto;
-      border-radius: 4px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      transition: all 0.3s ease;
+      display: block;
+      border-radius: 1px;
     }
     
-    .buchcover:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6),
-                  0 0 20px rgba(192, 192, 192, 0.1);
+    /* Titelbereich */
+    .titel-bereich {
+      text-align: center;
+      margin-bottom: 40px;
+      padding-bottom: 25px;
+      border-bottom: 1px solid rgba(200, 205, 215, 0.15);
     }
     
-    /* Buchdetails */
-    .buch-details {
-      flex: 1;
-    }
-    
-    .buch-titel {
+    .buch-titel-seriös {
       font-family: "Cinzel", serif;
       color: #e4e6ea;
-      font-size: 2rem;
-      margin-bottom: 5px;
-      letter-spacing: 0.05em;
-      text-shadow: 0 0 15px rgba(200, 200, 200, 0.2);
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+      letter-spacing: 0.06em;
+      line-height: 1.3;
+      text-shadow: 0 0 12px rgba(200, 200, 200, 0.15);
     }
     
-    .buch-untertitel {
+    .buch-untertitel-seriös {
       font-family: "EB Garamond", serif;
       color: #b0b5bc;
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       font-style: italic;
-      margin-bottom: 25px;
-      line-height: 1.4;
-      border-bottom: 1px solid rgba(200, 205, 215, 0.2);
-      padding-bottom: 15px;
+      line-height: 1.5;
+      max-width: 700px;
+      margin: 0 auto;
     }
     
-    /* Buchtext */
-    .buch-text {
-      font-size: 1.1rem;
-      line-height: 1.75;
+    /* Inhaltstext */
+    .inhalt-bereich {
+      margin-bottom: 50px;
+    }
+    
+    .inhalt-text {
+      font-size: 1.15rem;
+      line-height: 1.8;
       color: #b0b5bc;
-    }
-    
-    .buch-text p {
-      margin-bottom: 25px;
       text-align: justify;
+      margin-bottom: 35px;
     }
     
-    .buch-text p:last-child {
+    .inhalt-text p {
+      margin-bottom: 25px;
+      text-indent: 0;
+    }
+    
+    .inhalt-text p:last-child {
       margin-bottom: 0;
     }
     
-    .text-hervorhebung {
-      color: #d6d9de;
-      font-weight: 500;
-    }
-    
-    /* Zitat-Block */
-    .zitat-block {
-      background: rgba(200, 205, 215, 0.05);
-      border-left: 3px solid rgba(200, 205, 215, 0.3);
-      padding: 25px 30px;
-      margin: 30px 0;
-      border-radius: 0 4px 4px 0;
-    }
-    
-    .zitat-block p {
-      font-style: italic;
-      color: #b0b5bc;
-      margin-bottom: 0;
-    }
-    
-    /* Quellen-Hinweis */
-    .quellen-hinweis {
-      margin-top: 25px;
-      padding: 20px;
+    /* Seriöse Zitat-Box */
+    .zitat-seriös {
       background: rgba(200, 205, 215, 0.03);
-      border: 1px solid rgba(200, 205, 215, 0.15);
-      border-radius: 4px;
-      font-size: 0.95rem;
+      border-left: 4px solid rgba(200, 205, 215, 0.3);
+      padding: 25px 30px;
+      margin: 35px 0;
+      font-style: italic;
+      color: #d6d9de;
+      line-height: 1.7;
+      font-size: 1.1rem;
+    }
+    
+    .zitat-seriös p {
+      margin: 0;
+    }
+    
+    /* Quellenbereich */
+    .quellen-bereich {
+      margin: 40px 0;
+      padding: 25px;
+      background: rgba(10, 10, 10, 0.6);
+      border: 1px solid rgba(200, 205, 215, 0.1);
+      border-radius: 2px;
+    }
+    
+    .quellen-titel {
+      font-family: "Cinzel", serif;
+      color: #e4e6ea;
+      font-size: 1.1rem;
+      margin-bottom: 15px;
+      letter-spacing: 0.05em;
+    }
+    
+    .quellen-text {
+      font-size: 1rem;
+      line-height: 1.7;
       color: #9da2a8;
     }
     
-    .quellen-hinweis p {
+    .quellen-text p {
       margin-bottom: 10px;
     }
     
-    .quellen-hinweis p:last-child {
+    .quellen-text p:last-child {
       margin-bottom: 0;
     }
     
-    /* Buttons */
-    .buch-buttons {
-      display: flex;
-      gap: 20px;
-      margin-top: 40px;
-      flex-wrap: wrap;
+    /* Seriöse Buttons */
+    .aktionen-bereich {
+      text-align: center;
+      margin-top: 50px;
+      padding-top: 30px;
+      border-top: 1px solid rgba(200, 205, 215, 0.15);
     }
     
-    .leseprobe-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      padding: 15px 40px;
+    .seriöser-button {
+      display: inline-block;
+      padding: 16px 45px;
       background: transparent;
       color: #d6d9de;
-      border: 1px solid rgba(200, 205, 215, 0.4);
-      border-radius: 4px;
+      border: 1px solid rgba(200, 205, 215, 0.35);
+      border-radius: 2px;
       font-family: "Cinzel", serif;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       text-decoration: none;
       font-size: 0.95rem;
       transition: all 0.3s ease;
       cursor: pointer;
-      position: relative;
-      overflow: hidden;
+      text-transform: uppercase;
     }
     
-    .leseprobe-button::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, 
-        transparent, 
-        rgba(192, 192, 192, 0.2), 
-        transparent);
-      transition: left 0.5s ease;
-      z-index: -1;
-    }
-    
-    .leseprobe-button:hover::before {
-      left: 100%;
-    }
-    
-    .leseprobe-button:hover {
-      background: rgba(200, 205, 215, 0.1);
+    .seriöser-button:hover {
+      background: rgba(200, 205, 215, 0.08);
       color: #ffffff;
-      border-color: rgba(200, 205, 215, 0.7);
-      transform: translateY(-3px);
-      box-shadow: 
-        0 8px 20px rgba(0, 0, 0, 0.25),
-        0 0 15px rgba(192, 192, 192, 0.2);
+      border-color: rgba(200, 205, 215, 0.6);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Platzhalter für weitere Werke */
+    .weitere-werke {
+      text-align: center;
+      margin-top: 80px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(200, 205, 215, 0.2);
+    }
+    
+    .weitere-werke h3 {
+      font-family: "Cinzel", serif;
+      color: #e4e6ea;
+      margin-bottom: 15px;
+      font-size: 1.3rem;
+      letter-spacing: 0.05em;
+    }
+    
+    .weitere-werke p {
+      color: #9da2a8;
+      max-width: 500px;
+      margin: 0 auto;
+      font-size: 1rem;
     }
     
     /* Responsive Anpassungen */
@@ -223,60 +236,69 @@
         padding: 15px;
       }
       
+      .werke-header {
+        margin-bottom: 40px;
+      }
+      
       .werke-header h1 {
+        font-size: 2rem;
+      }
+      
+      .buch-titel-seriös {
         font-size: 1.8rem;
       }
       
-      .buch-karte {
+      .buch-untertitel-seriös {
+        font-size: 1.2rem;
+      }
+      
+      .inhalt-text {
+        font-size: 1.1rem;
+        text-align: left;
+      }
+      
+      .buchcover-rahmen {
+        padding: 10px;
+      }
+      
+      .buchcover-seriös {
+        width: 240px;
+      }
+      
+      .zitat-seriös {
         padding: 20px;
       }
       
-      .buch-titel {
-        font-size: 1.6rem;
+      .quellen-bereich {
+        padding: 20px;
       }
       
-      .buch-untertitel {
-        font-size: 1.1rem;
-      }
-      
-      .buch-text {
-        font-size: 1.05rem;
-      }
-      
-      .buch-buttons {
-        flex-direction: column;
-        align-items: center;
-      }
-      
-      .leseprobe-button {
+      .seriöser-button {
+        padding: 14px 35px;
         width: 100%;
+        max-width: 300px;
       }
     }
     
     @media screen and (max-width: 480px) {
       .werke-header h1 {
-        font-size: 1.6rem;
+        font-size: 1.7rem;
       }
       
-      .buch-titel {
-        font-size: 1.4rem;
+      .buch-titel-seriös {
+        font-size: 1.5rem;
       }
       
-      .buch-untertitel {
-        font-size: 1rem;
+      .buch-untertitel-seriös {
+        font-size: 1.1rem;
       }
       
-      .buch-text {
-        font-size: 1rem;
-        text-align: left;
+      .inhalt-text {
+        font-size: 1.05rem;
       }
       
-      .buchcover-container {
-        flex: 0 0 250px;
-      }
-      
-      .buchcover {
-        max-width: 240px;
+      .buchcover-seriös {
+        width: 200px;
       }
     }
   </style>
@@ -310,70 +332,69 @@
   <section class="werke-container">
     <div class="werke-header">
       <h1>Werke</h1>
-      <p style="color: #b0b5bc; max-width: 700px; margin: 0 auto; font-size: 1.1rem;">
-        Bücher, die Fragen stellen statt Antworten zu geben. Literatur, die fordert statt zu unterhalten.
-      </p>
+      <p class="werke-subtitle">Historische Analysen mit wissenschaftlichem Anspruch</p>
     </div>
     
-    <!-- Buch 1: Der lange Weg in die Finsternis -->
-    <article class="buch-karte">
-      <div class="buchcover-container">
-        <img src="assets/images/derlangewegindiefinsternis.png" 
-             alt="Der lange Weg in die Finsternis - Buchcover" 
-             class="buchcover">
+    <!-- Buchpräsentation -->
+    <article class="buch-präsentation">
+      <!-- Buchcover -->
+      <div class="buchcover-bereich">
+        <div class="buchcover-rahmen">
+          <img src="assets/images/derlangewegindiefinsternis.png" 
+               alt="Buchcover: Der lange Weg in die Finsternis" 
+               class="buchcover-seriös">
+        </div>
       </div>
       
-      <div class="buch-details">
-        <h2 class="buch-titel">Der lange Weg in die Finsternis</h2>
-        <p class="buch-untertitel">Wie das Kaiserreich den Nationalsozialismus vorbereitete</p>
-        
-        <div class="buch-text">
-          <p><span class="text-hervorhebung">Dieses Buch ist kein Roman.</span><br>
-          Es ist auch keine rückblickende Vereinfachung der Geschichte.<br>
-          Es ist der Versuch, einen historischen Weg sichtbar zu machen, der lange vor 1933 begann und dennoch direkt in die Katastrophe führte.</p>
+      <!-- Titel -->
+      <div class="titel-bereich">
+        <h2 class="buch-titel-seriös">Der lange Weg in die Finsternis</h2>
+        <p class="buch-untertitel-seriös">Wie das Kaiserreich den Nationalsozialismus vorbereitete</p>
+      </div>
+      
+      <!-- Inhalt -->
+      <div class="inhalt-bereich">
+        <div class="inhalt-text">
+          <p><strong>Dieses Buch ist kein Roman.</strong> Es ist auch keine rückblickende Vereinfachung der Geschichte. Es ist der Versuch, einen historischen Weg sichtbar zu machen, der lange vor 1933 begann und dennoch direkt in die Katastrophe führte.</p>
           
           <p>Im Zentrum steht das deutsche Kaiserreich und die Frage, welche Strukturen, Denkweisen und politischen Mechanismen dort entstanden, die später vom Nationalsozialismus übernommen, radikalisiert und zur Vollendung gebracht wurden. Der Fokus liegt nicht auf einzelnen Personen, sondern auf Systemen. Auf Machtstrukturen, auf Gewöhnung an Gewalt, auf Sprache, die entmenschlicht, und auf eine politische Kultur, in der Gehorsam höher bewertet wurde als Verantwortung.</p>
           
-          <p>Das Buch zeigt, wie sich diese Entwicklung in vielen Bereichen zugleich vollzog. In Parlamenten, in denen Reichstagsdebatten bereits mit Feindbildern, Abwertung und Ausgrenzung arbeiteten. In Schulen und Kasernen, in denen Unterordnung zur Tugend und Härte zur Normalität wurde. In den Kolonien, in denen Gewalt nicht nur ausgeübt, sondern geplant, organisiert und gerechtfertigt wurde. Diese kolonialen Verbrechen werden hier nicht als Randnotiz behandelt, sondern als frühes Übungsfeld für Denkweisen und Methoden, die später im Inneren des Reiches wiederkehrten.</p>
+          <p>Das Buch zeigt, wie sich diese Entwicklung in vielen Bereichen zugleich vollzog. In Parlamenten, in denen Reichstagsdebatten bereits mit Feindbildern, Abwertung und Ausgrenzung arbeiteten. In Schulen und Kasernen, in denen Unterordnung zur Tugend und Härte zur Normalität wurde. In den Kolonien, in denen Gewalt nicht nur ausgeübt, sondern geplant, organisiert und gerechtfertigt wurde.</p>
           
-          <div class="zitat-block">
-            <p>Erzählt wird diese Geschichte in einer dichten, spannungsreichen Form, die sich wie ein Thriller liest, ohne die Grenze zur Fiktion zu überschreiten.</p>
+          <div class="zitat-seriös">
+            <p>Diese kolonialen Verbrechen werden hier nicht als Randnotiz behandelt, sondern als frühes Übungsfeld für Denkweisen und Methoden, die später im Inneren des Reiches wiederkehrten.</p>
           </div>
           
-          <p>Jeder Abschnitt folgt realen Abläufen, belegbaren Entscheidungen und dokumentierten Entwicklungen. Dieses Buch erfindet nichts. Es ordnet ein, verbindet und legt offen.</p>
+          <p>Erzählt wird diese Geschichte in einer dichten, spannungsreichen Form, die sich wie ein Thriller liest, ohne die Grenze zur Fiktion zu überschreiten. Jeder Abschnitt folgt realen Abläufen, belegbaren Entscheidungen und dokumentierten Entwicklungen. Dieses Buch erfindet nichts. Es ordnet ein, verbindet und legt offen.</p>
           
-          <div class="quellen-hinweis">
-            <p><strong>Quellenlage:</strong> Alle zentralen Aussagen sind durch historische Quellen belegbar. Die im Buch verwendeten Nachweise verweisen unter anderem auf Reichstagsprotokolle, zeitgenössische Presseberichte, Verwaltungsakten, Reden politischer Entscheidungsträger sowie auf die etablierte historische Forschung. Die Quellen sind am Ende des Buches vollständig aufgeführt und nachvollziehbar dokumentiert.</p>
+          <div class="quellen-bereich">
+            <div class="quellen-titel">Quellen und Belege</div>
+            <div class="quellen-text">
+              <p>Alle zentralen Aussagen sind durch historische Quellen belegbar. Die im Buch verwendeten Nachweise verweisen unter anderem auf Reichstagsprotokolle, zeitgenössische Presseberichte, Verwaltungsakten, Reden politischer Entscheidungsträger sowie auf die etablierte historische Forschung.</p>
+              <p>Die Quellen sind am Ende des Buches vollständig aufgeführt und nachvollziehbar dokumentiert.</p>
+            </div>
           </div>
           
           <p>Das Rückcover greift diese Linie bewusst auf. Das dunkle Kopfsteinpflaster steht für einen Weg, der fest und vertraut wirkt. Erst bei genauerem Hinsehen tritt das schemenhafte Gesicht Wilhelms II. hervor. Es steht nicht für Schuldzuweisung an eine einzelne Figur, sondern für die Epoche, in der dieser Weg geformt wurde. Für ein System, das seine eigenen Abgründe nicht erkannte oder nicht erkennen wollte.</p>
           
-          <p><span class="text-hervorhebung">Dieses Buch versteht sich nicht als moralische Anklage aus sicherer Distanz.</span> Es ist eine Analyse historischer Kontinuitäten. Es zeigt, wie sich Radikalisierung vorbereitet, wie sich Grenzen verschieben und wie Gesellschaften lernen, Unrecht zu akzeptieren, solange es schrittweise geschieht.</p>
+          <p><strong>Dieses Buch versteht sich nicht als moralische Anklage aus sicherer Distanz.</strong> Es ist eine Analyse historischer Kontinuitäten. Es zeigt, wie sich Radikalisierung vorbereitet, wie sich Grenzen verschieben und wie Gesellschaften lernen, Unrecht zu akzeptieren, solange es schrittweise geschieht.</p>
           
-          <p><span class="text-hervorhebung">Wer dieses Buch liest, wird keine einfache Erklärung finden.<br>
-          Aber ein klares Verständnis dafür, dass Geschichte nicht plötzlich kippt.<br>
-          Sie wird gebaut. Stein für Stein.</span></p>
+          <p><strong>Wer dieses Buch liest, wird keine einfache Erklärung finden. Aber ein klares Verständnis dafür, dass Geschichte nicht plötzlich kippt. Sie wird gebaut. Stein für Stein.</strong></p>
         </div>
-        
-        <div class="buch-buttons">
-          <button class="leseprobe-button" id="leseprobe-button">
-            <span>Leseprobe anfordern</span>
-            <svg class="button-arrow" viewBox="0 0 24 24" style="width: 18px; height: 18px;">
-              <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
-            </svg>
-          </button>
-        </div>
+      </div>
+      
+      <!-- Aktionen -->
+      <div class="aktionen-bereich">
+        <button class="seriöser-button" id="leseprobe-button">
+          Leseprobe anfordern
+        </button>
       </div>
     </article>
     
-    <!-- Platzhalter für zukünftige Werke -->
-    <div style="text-align: center; margin-top: 60px; padding-top: 40px; border-top: 1px solid rgba(200, 205, 215, 0.2);">
-      <h3 style="font-family: 'Cinzel', serif; color: #e4e6ea; margin-bottom: 15px; letter-spacing: 0.05em;">
-        Weitere Werke in Vorbereitung
-      </h3>
-      <p style="color: #9da2a8; max-width: 600px; margin: 0 auto;">
-        Neue Bücher sind in Arbeit und werden hier veröffentlicht, sobald sie verfügbar sind.
-      </p>
+    <!-- Zukünftige Werke -->
+    <div class="weitere-werke">
+      <h3>Weitere Werke</h3>
+      <p>Weitere historische Analysen sind in Vorbereitung und werden hier veröffentlicht, sobald sie verfügbar sind.</p>
     </div>
   </section>
 </main>
@@ -382,7 +403,7 @@
 <section class="social-section">
   <h3 class="social-title">Folgen Sie den Gedanken</h3>
   <div class="social-grid">
-    <!-- Snapchat -->
+    <!-- Social Media Icons bleiben gleich -->
     <a href="https://snapchat.com/t/8wVZ1Wpu" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Snapchat">
       <div class="social-icon-wrapper">
         <svg class="social-icon" viewBox="0 0 24 24">
@@ -392,7 +413,6 @@
       <span class="social-name">Snapchat</span>
     </a>
     
-    <!-- Clapper -->
     <a href="https://clapperapp.com/M.Silberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Clapper">
       <div class="social-icon-wrapper">
         <svg class="social-icon" viewBox="0 0 24 24">
@@ -402,7 +422,6 @@
       <span class="social-name">Clapper</span>
     </a>
     
-    <!-- TikTok -->
     <a href="https://www.tiktok.com/@m.silberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="TikTok">
       <div class="social-icon-wrapper">
         <svg class="social-icon" viewBox="0 0 24 24">
@@ -412,7 +431,6 @@
       <span class="social-name">TikTok</span>
     </a>
     
-    <!-- Telegram -->
     <a href="https://t.me/matthiassilberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Telegram">
       <div class="social-icon-wrapper">
         <svg class="social-icon" viewBox="0 0 24 24">
@@ -422,7 +440,6 @@
       <span class="social-name">Telegram</span>
     </a>
     
-    <!-- Instagram -->
     <a href="https://www.instagram.com/matthiassilberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
       <div class="social-icon-wrapper">
         <svg class="social-icon" viewBox="0 0 24 24">
@@ -432,7 +449,6 @@
       <span class="social-name">Instagram</span>
     </a>
     
-    <!-- Facebook -->
     <a href="https://www.facebook.com/share/17ZahbpKWN/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">
       <div class="social-icon-wrapper">
         <svg class="social-icon" viewBox="0 0 24 24">
@@ -442,7 +458,6 @@
       <span class="social-name">Facebook</span>
     </a>
     
-    <!-- YouTube -->
     <a href="https://youtube.com/@matthiassilberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube">
       <div class="social-icon-wrapper">
         <svg class="social-icon" viewBox="0 0 24 24">
@@ -512,20 +527,24 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
   
-  // Leseprobe Button
+  // Seriöser Leseprobe-Button
   const leseprobeButton = document.getElementById("leseprobe-button");
   if (leseprobeButton) {
     leseprobeButton.addEventListener("click", function() {
-      // Temporäre Funktion - kann später erweitert werden
-      const originalText = leseprobeButton.innerHTML;
-      leseprobeButton.innerHTML = '<span>Anfrage wird vorbereitet...</span>';
+      const originalText = leseprobeButton.textContent;
+      leseprobeButton.textContent = "Wird vorbereitet...";
       leseprobeButton.disabled = true;
       
       setTimeout(function() {
-        alert("Um eine Leseprobe zu erhalten, wenden Sie sich bitte direkt per E-Mail an m.silberhain@mail.de");
-        leseprobeButton.innerHTML = originalText;
-        leseprobeButton.disabled = false;
-      }, 1000);
+        // Öffnet das E-Mail-Programm des Benutzers
+        window.location.href = "mailto:m.silberhain@mail.de?subject=Leseprobe%20-%20Der%20lange%20Weg%20in%20die%20Finsternis&body=Sehr%20geehrter%20Herr%20Silberhain%2C%0A%0Aich%20m%C3%B6chte%20gerne%20eine%20Leseprobe%20Ihres%20Buches%20%22Der%20lange%20Weg%20in%20die%20Finsternis%22%20anfordern.%0A%0AMit%20freundlichen%20Gr%C3%BC%C3%9Fen%2C";
+        
+        // Nach 3 Sekunden zurücksetzen
+        setTimeout(function() {
+          leseprobeButton.textContent = originalText;
+          leseprobeButton.disabled = false;
+        }, 3000);
+      }, 500);
     });
   }
 });
