@@ -1276,3 +1276,121 @@ strong {
     font-size: 1rem;
   }
 }
+
+
+
+/* ==========================================================================
+   QUELLEN-SEITEN STYLES
+   ========================================================================== */
+
+.quellen-abschnitt {
+  margin-top: 50px;
+}
+
+.quellen-abschnitt h2 {
+  font-family: "Cinzel", serif;
+  color: #e4e6ea;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.untertitel {
+  text-align: center;
+  color: #b0b5bc;
+  font-style: italic;
+  margin-bottom: 40px;
+  font-size: 1.2rem;
+}
+
+.quelle-kategorie {
+  margin-bottom: 50px;
+  padding: 25px;
+  background: rgba(20, 20, 20, 0.5);
+  border: 1px solid rgba(200, 205, 215, 0.1);
+  border-radius: 6px;
+}
+
+.quelle-kategorie h3 {
+  font-family: "Cinzel", serif;
+  color: #e4e6ea;
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(200, 205, 215, 0.2);
+  padding-bottom: 10px;
+}
+
+.quelle-kategorie h4 {
+  font-family: "EB Garamond", serif;
+  color: #d6d9de;
+  font-size: 1.2rem;
+  margin-top: 25px;
+  margin-bottom: 15px;
+}
+
+.quellen-liste {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.quellen-liste li {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(200, 205, 215, 0.05);
+}
+
+.quellen-liste li:last-child {
+  border-bottom: none;
+}
+
+.quellen-liste a {
+  color: #cfd2d6;
+  text-decoration: none;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  display: block;
+  margin-bottom: 5px;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid transparent;
+}
+
+.quellen-liste a:hover {
+  color: #ffffff;
+  border-bottom: 1px solid rgba(200, 205, 215, 0.5);
+  text-shadow: 0 0 10px rgba(200, 200, 200, 0.3);
+}
+
+.quelle-beschreibung {
+  display: block;
+  color: #9da2a8;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-top: 5px;
+  font-style: italic;
+}
+
+.hinweis {
+  color: #b0b5bc;
+  font-size: 0.95rem;
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+.quellen-hinweis {
+  margin-top: 50px;
+  padding: 25px;
+  background: rgba(200, 205, 215, 0.05);
+  border-left: 3px solid rgba(200, 205, 215, 0.3);
+  border-radius: 0 4px 4px 0;
+}
+
+.quellen-hinweis p {
+  margin-bottom: 15px;
+  color: #b0b5bc;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.quellen-hinweis p:last-child {
+  margin-bottom: 0;
+}
