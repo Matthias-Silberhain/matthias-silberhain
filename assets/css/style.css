@@ -20,7 +20,7 @@ body {
 }
 
 /* =====================
-   PRELOADER - NUR SCHRIFT
+   PRELOADER MIT LOGO
 ===================== */
 #preloader {
   position: fixed;
@@ -37,6 +37,13 @@ body {
 
 .preloader-inner {
   text-align: center;
+}
+
+/* LOGO IM PRELOADER (ÜBER DEM TEXT) */
+.preloader-logo {
+  width: 250px;
+  margin-bottom: 30px;
+  display: block;
 }
 
 .preloader-text {
@@ -66,14 +73,11 @@ body {
   background-color: #000000;
 }
 
-/* LOGO - DAS FEHLTE! */
+/* LOGO AUF DER STARTSEITE */
 .logo {
-  width: min(80vw, 500px);
-  max-width: 400px;
-  height: auto;
+  width: min(80vw, 400px);
   margin: 0 auto 20px;
   display: block;
-  filter: brightness(1.1);
 }
 
 /* =====================
@@ -198,6 +202,10 @@ strong {
     display: block;
   }
   
+  .preloader-logo {
+    width: 180px;
+  }
+  
   .preloader-text {
     font-size: 24px;
   }
@@ -217,6 +225,10 @@ strong {
 }
 
 @media (max-width: 480px) {
+  .preloader-logo {
+    width: 150px;
+  }
+  
   .preloader-text {
     font-size: 20px;
   }
