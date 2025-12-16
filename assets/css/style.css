@@ -1069,3 +1069,210 @@ strong {
     font-size: 1rem;
   }
 }
+/* ==========================================================================
+   ÜBER MICH SPEZIFISCHE STYLES
+   ========================================================================== */
+
+.credo-headline {
+  font-family: "Cinzel", serif;
+  color: #e4e6ea;
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 2.3rem;
+  line-height: 1.3;
+  text-shadow: 0 0 15px rgba(200, 200, 200, 0.2);
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid rgba(200, 205, 215, 0.2);
+  padding-bottom: 30px;
+}
+
+.credo-container {
+  text-align: center;
+  margin: 50px auto;
+  max-width: 800px;
+}
+
+.credo-quote {
+  position: relative;
+  margin-bottom: 25px;
+}
+
+.quote-marks {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.quote-mark-left {
+  font-size: 5rem;
+  color: rgba(200, 205, 215, 0.4);
+  position: absolute;
+  left: -30px;
+  top: -20px;
+  font-family: "EB Garamond", serif;
+}
+
+.quote-mark-right {
+  font-size: 5rem;
+  color: rgba(200, 205, 215, 0.4);
+  position: absolute;
+  right: -30px;
+  bottom: -60px;
+  font-family: "EB Garamond", serif;
+}
+
+.credo-text {
+  font-family: "Cinzel", serif;
+  font-size: 1.8rem;
+  color: #e4e6ea;
+  line-height: 1.4;
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 15px rgba(200, 200, 200, 0.2);
+  padding: 0 40px;
+  display: inline-block;
+}
+
+.credo-subtitle {
+  font-style: italic;
+  color: #9da2a8;
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.ueber-mich-content {
+  margin-top: 40px;
+}
+
+.ueber-mich-content p {
+  margin-bottom: 28px;
+  font-size: 1.15rem;
+  line-height: 1.75;
+  color: #b0b5bc;
+  text-align: left;
+}
+
+.arbeit-methode {
+  background: rgba(200, 205, 215, 0.05);
+  border-left: 3px solid rgba(200, 205, 215, 0.3);
+  padding: 25px 30px;
+  margin: 40px 0;
+  border-radius: 0 4px 4px 0;
+}
+
+.arbeit-methode p {
+  margin-bottom: 0;
+  color: #b0b5bc;
+}
+
+.abschnitt-schluss {
+  margin-top: 50px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(200, 205, 215, 0.2);
+}
+
+.schluss-zitat {
+  font-size: 1.2rem;
+  text-align: center;
+  color: #d6d9de;
+  font-style: italic;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+/* Aktive Navigation */
+.hauptnavigation a.active {
+  color: #ffffff;
+  text-shadow: 0 0 12px rgba(200, 200, 200, 0.8);
+}
+
+.hauptnavigation a.active::after {
+  width: 80%;
+  background: linear-gradient(90deg, transparent, #ffffff, transparent);
+}
+
+/* ==========================================================================
+   RESPONSIVE ANPASSUNGEN FÜR ÜBER MICH
+   ========================================================================== */
+
+@media screen and (max-width: 768px) {
+  .credo-headline {
+    font-size: 1.8rem;
+    padding-bottom: 20px;
+  }
+  
+  .credo-text {
+    font-size: 1.5rem;
+    padding: 0 20px;
+  }
+  
+  .quote-mark-left,
+  .quote-mark-right {
+    font-size: 3.5rem;
+  }
+  
+  .quote-mark-left {
+    left: -15px;
+    top: -10px;
+  }
+  
+  .quote-mark-right {
+    right: -15px;
+    bottom: -40px;
+  }
+  
+  .arbeit-methode {
+    padding: 20px;
+    margin: 30px 0;
+  }
+  
+  .schluss-zitat {
+    font-size: 1.1rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .credo-headline {
+    font-size: 1.6rem;
+  }
+  
+  .credo-text {
+    font-size: 1.3rem;
+    padding: 0 10px;
+  }
+  
+  .quote-mark-left,
+  .quote-mark-right {
+    font-size: 2.8rem;
+  }
+  
+  .quote-mark-left {
+    left: -5px;
+  }
+  
+  .quote-mark-right {
+    right: -5px;
+    bottom: -30px;
+  }
+  
+  .credo-subtitle {
+    font-size: 1rem;
+  }
+  
+  .ueber-mich-content p {
+    font-size: 1.05rem;
+    text-align: center;
+  }
+  
+  .arbeit-methode {
+    padding: 15px;
+  }
+  
+  .schluss-zitat {
+    font-size: 1rem;
+  }
+}
