@@ -21,7 +21,7 @@
        ========================================================================== */
     
     .kontakt-container {
-      max-width: 700px;
+      max-width: 750px;
       margin: 0 auto;
       padding: 20px;
     }
@@ -32,45 +32,72 @@
     }
     
     .kontakt-header h1 {
-      margin-bottom: 15px;
+      margin-bottom: 25px;
+      font-family: "Cinzel", serif;
+      color: #e4e6ea;
+      font-size: 2.3rem;
+      letter-spacing: 0.05em;
+      text-shadow: 0 0 15px rgba(200, 200, 200, 0.2);
     }
     
-    .kontakt-intro {
+    /* Einleitungstext Styling */
+    .kontakt-einleitung {
+      background: rgba(200, 205, 215, 0.05);
+      border-left: 3px solid rgba(200, 205, 215, 0.3);
+      padding: 30px 35px;
+      margin: 30px 0 50px;
+      border-radius: 0 4px 4px 0;
       font-size: 1.1rem;
+      line-height: 1.75;
       color: #b0b5bc;
-      max-width: 600px;
-      margin: 0 auto 30px;
-      line-height: 1.6;
+    }
+    
+    .kontakt-einleitung p {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    
+    .kontakt-einleitung p:last-child {
+      margin-bottom: 0;
+    }
+    
+    .einleitung-highlight {
+      color: #d6d9de;
+      font-weight: 500;
+    }
+    
+    /* Kontaktinformationen */
+    .kontakt-details {
+      margin: 40px 0;
+      padding: 25px;
+      border-top: 1px solid rgba(200, 205, 215, 0.2);
+      border-bottom: 1px solid rgba(200, 205, 215, 0.2);
       text-align: center;
     }
     
-    .kontakt-info {
-      background: rgba(200, 205, 215, 0.05);
-      border-left: 3px solid rgba(200, 205, 215, 0.3);
-      padding: 20px;
-      margin: 30px 0;
-      border-radius: 0 4px 4px 0;
-    }
-    
-    .kontakt-info p {
+    .kontakt-details p {
       margin: 10px 0;
       color: #b0b5bc;
     }
     
-    .kontakt-info a {
+    .email-link {
       color: #d6d9de;
       text-decoration: none;
+      font-size: 1.1rem;
       transition: all 0.3s ease;
+      border-bottom: 1px solid rgba(200, 205, 215, 0.3);
+      padding-bottom: 2px;
     }
     
-    .kontakt-info a:hover {
+    .email-link:hover {
       color: #ffffff;
       text-shadow: 0 0 10px rgba(200, 200, 200, 0.5);
+      border-bottom-color: rgba(200, 205, 215, 0.7);
     }
     
     /* Formular Styling */
     .kontakt-form {
-      margin: 40px 0;
+      margin: 50px 0;
     }
     
     .form-gruppe {
@@ -218,8 +245,13 @@
         font-size: 1.8rem;
       }
       
-      .kontakt-intro {
+      .kontakt-einleitung {
+        padding: 20px;
         font-size: 1.05rem;
+      }
+      
+      .kontakt-details {
+        padding: 20px 15px;
       }
     }
     
@@ -228,12 +260,13 @@
         font-size: 1.6rem;
       }
       
-      .kontakt-intro {
+      .kontakt-einleitung {
+        padding: 15px;
         font-size: 1rem;
       }
       
-      .kontakt-info {
-        padding: 15px;
+      .email-link {
+        font-size: 1rem;
       }
     }
   </style>
@@ -267,19 +300,21 @@
   <section class="kontakt-container">
     <div class="kontakt-header">
       <h1>Kontakt</h1>
-      <p class="kontakt-intro">
-        Schön, dass du den Weg hierher gefunden hast.
-Wenn du Fragen zu meinen Büchern hast, Anmerkungen teilen möchtest oder dich für meine Arbeit interessierst, freue ich mich über deine Nachricht.
-
-Diese Seite ist bewusst als offener Raum gedacht. Rückmeldungen von Leserinnen und Lesern sind für mich ein wichtiger Teil des Austauschs. Ob es um inhaltliche Fragen, Gedanken zu bestimmten Themen oder konstruktive Hinweise geht – jede ernsthafte Nachricht wird gelesen und wertgeschätzt.
-
-Auch für Anfragen zu Kooperationen, Lesungen, Interviews oder anderen Projekten kannst du mich gerne kontaktieren. Bitte beschreibe dein Anliegen möglichst konkret, damit ich dir gezielt antworten kann.
-
-Ich bitte um Verständnis, dass Antworten manchmal etwas Zeit in Anspruch nehmen können. Gründliche Kommunikation ist mir wichtiger als schnelle, oberflächliche Reaktionen. Jede Rückmeldung erfolgt respektvoll und mit der nötigen Aufmerksamkeit.
-
-Nutze für deine Nachricht einfach das Kontaktformular oder die angegebene E-Mail-Adresse.
-Ich melde mich so bald wie möglich bei dir.
-      </p>
+    </div>
+    
+    <!-- Professioneller Einleitungstext -->
+    <div class="kontakt-einleitung">
+      <p><span class="einleitung-highlight">Schön, dass du den Weg hierher gefunden hast.</span><br>
+      Wenn du Fragen zu meinen Büchern hast, Anmerkungen teilen möchtest oder dich für meine Arbeit interessierst, freue ich mich über deine Nachricht.</p>
+      
+      <p>Diese Seite ist bewusst als offener Raum gedacht. Rückmeldungen von Leserinnen und Lesern sind für mich ein wichtiger Teil des Austauschs. Ob es um inhaltliche Fragen, Gedanken zu bestimmten Themen oder konstruktive Hinweise geht – jede ernsthafte Nachricht wird gelesen und wertgeschätzt.</p>
+      
+      <p>Auch für Anfragen zu Kooperationen, Lesungen, Interviews oder anderen Projekten kannst du mich gerne kontaktieren. Bitte beschreibe dein Anliegen möglichst konkret, damit ich dir gezielt antworten kann.</p>
+      
+      <p>Ich bitte um Verständnis, dass Antworten manchmal etwas Zeit in Anspruch nehmen können. Gründliche Kommunikation ist mir wichtiger als schnelle, oberflächliche Reaktionen. Jede Rückmeldung erfolgt respektvoll und mit der nötigen Aufmerksamkeit.</p>
+      
+      <p>Nutze für deine Nachricht einfach das Kontaktformular oder die angegebene E-Mail-Adresse.<br>
+      <span class="einleitung-highlight">Ich melde mich so bald wie möglich bei dir.</span></p>
     </div>
     
     <!-- Statusmeldungen -->
@@ -324,8 +359,9 @@ Ich melde mich so bald wie möglich bei dir.
     </form>
     
     <!-- Alternative Kontaktmöglichkeiten -->
-    <div class="kontakt-info">
-      <p><strong>Direkte E-Mail:</strong> <a href="mailto:m.silberhain@mail.de">m.silberhain@mail.de</a></p>
+    <div class="kontakt-details">
+      <p><strong>Direkter Kontakt per E-Mail:</strong></p>
+      <p><a href="mailto:m.silberhain@mail.de" class="email-link">m.silberhain@mail.de</a></p>
       <p><em>Sie können mir auch direkt eine E-Mail senden, wenn Sie das Formular nicht nutzen möchten.</em></p>
     </div>
   </section>
@@ -382,6 +418,144 @@ Ich melde mich so bald wie möglich bei dir.
           <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"/>
         </svg>
       </div>
+      <span class="social-name">Instagram</span>
+    </a>
+    
+    <!-- Facebook -->
+    <a href="https://www.facebook.com/share/17ZahbpKWN/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">
+      <div class="social-icon-wrapper">
+        <svg class="social-icon" viewBox="0 0 24 24">
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+        </svg>
+      </div>
+      <span class="social-name">Facebook</span>
+    </a>
+    
+    <!-- YouTube -->
+    <a href="https://youtube.com/@matthiassilberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube">
+      <div class="social-icon-wrapper">
+        <svg class="social-icon" viewBox="0 0 24 24">
+          <path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.506 0-9.396.501A3.007 3.007 0 00.528 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/>
+        </svg>
+      </div>
+      <span class="social-name">YouTube</span>
+    </a>
+  </div>
+</section>
+<div class="lichtkante"></div>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="footer-lichtkante"></div>
+  <p>© <span id="jahr"></span> Matthias Silberhain</p>
+</footer>
+
+<!-- ================= JAVASCRIPT ================= -->
+<script>
+// Footer Jahr aktualisieren
+document.addEventListener("DOMContentLoaded", function() {
+  const yearElement = document.getElementById("jahr");
+  if (yearElement) {
+    yearElement.textContent = new Date().getFullYear();
+  }
+  
+  // Mobile Menu Funktionalität
+  const burgerButton = document.getElementById("burger");
+  const navigation = document.getElementById("navigation");
+  
+  if (burgerButton && navigation) {
+    let isMenuOpen = false;
+    
+    burgerButton.addEventListener("click", function(event) {
+      event.stopPropagation();
+      isMenuOpen = !isMenuOpen;
+      navigation.classList.toggle("aktiv");
+      
+      const spans = burgerButton.querySelectorAll("span");
+      if (isMenuOpen) {
+        spans[0].style.transform = "rotate(45deg) translate(6px, 6px)";
+        spans[1].style.opacity = "0";
+        spans[2].style.transform = "rotate(-45deg) translate(6px, -6px)";
+        document.body.style.overflow = "hidden";
+      } else {
+        spans[0].style.transform = "none";
+        spans[1].style.opacity = "1";
+        spans[2].style.transform = "none";
+        document.body.style.overflow = "";
+      }
+    });
+    
+    // Menü schließen bei Klick auf Link
+    const navLinks = navigation.querySelectorAll("a");
+    navLinks.forEach(function(link) {
+      link.addEventListener("click", function() {
+        if (window.innerWidth <= 768) {
+          navigation.classList.remove("aktiv");
+          const spans = burgerButton.querySelectorAll("span");
+          spans[0].style.transform = "none";
+          spans[1].style.opacity = "1";
+          spans[2].style.transform = "none";
+          document.body.style.overflow = "";
+        }
+      });
+    });
+  }
+  
+  // Kontaktformular-Funktionalität
+  const kontaktFormular = document.getElementById("kontaktformular");
+  const sendenButton = document.getElementById("senden-button");
+  const statusErfolg = document.getElementById("status-erfolg");
+  const statusFehler = document.getElementById("status-fehler");
+  
+  if (kontaktFormular) {
+    kontaktFormular.addEventListener("submit", function(event) {
+      event.preventDefault(); // Verhindert das Neuladen der Seite
+      
+      // Formulardaten sammeln
+      const email = document.getElementById("email").value;
+      const betreff = document.getElementById("betreff").value;
+      const telefon = document.getElementById("telefon").value;
+      const handy = document.getElementById("handy").value;
+      const nachricht = document.getElementById("nachricht").value;
+      
+      // Prüfen, ob alle Pflichtfelder ausgefüllt sind
+      if (!email || !betreff || !nachricht) {
+        statusErfolg.style.display = "none";
+        statusFehler.style.display = "block";
+        statusFehler.innerHTML = '<p>Bitte füllen Sie alle Pflichtfelder aus (mit * markiert).</p>';
+        return;
+      }
+      
+      // Button deaktivieren während des Sendens
+      sendenButton.disabled = true;
+      sendenButton.innerHTML = '<span>Wird gesendet...</span>';
+      
+      // E-Mail-Versand simulieren (ohne Server)
+      // In der Praxis würde hier eine Server-Anfrage stehen
+      setTimeout(function() {
+        statusFehler.style.display = "none";
+        statusErfolg.style.display = "block";
+        
+        // Formular zurücksetzen
+        kontaktFormular.reset();
+        
+        // Button wieder aktivieren
+        sendenButton.disabled = false;
+        sendenButton.innerHTML = '<span>Nachricht senden</span>';
+        
+        // Nach 8 Sekunden die Erfolgsmeldung ausblenden
+        setTimeout(function() {
+          statusErfolg.style.display = "none";
+        }, 8000);
+        
+      }, 2000); // Simuliere 2 Sekunden Verzögerung
+    });
+  }
+});
+</script>
+
+</body>
+</html>      </div>
       <span class="social-name">Instagram</span>
     </a>
     
