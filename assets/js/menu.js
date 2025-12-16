@@ -8,17 +8,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const textEl = document.getElementById("type-text");
   const cursor = document.querySelector(".cursor");
   const preloader = document.getElementById("preloader");
-  const preloaderLogo = document.querySelector(".preloader-logo");
 
   // Prüfen ob Elemente existieren
-  if (!textEl || !cursor || !preloader || !preloaderLogo) {
+  if (!textEl || !cursor || !preloader) {
     console.error("Preloader Elemente fehlen!");
     return;
   }
 
-  // Logo SOFORT sichtbar machen (bleibt stehen)
-  preloaderLogo.style.opacity = "1";
-  
   let index = 0;
   const speed = 80;
 
@@ -34,16 +30,17 @@ document.addEventListener("DOMContentLoaded", () => {
       // Kurz warten dann Preloader ausblenden
       setTimeout(() => {
         preloader.style.opacity = "0";
+        preloader.style.transition = "opacity 0.6s ease";
       }, 800);
       
-      // Preloader komplett entfernen
+      // Preloader komplett ausblenden
       setTimeout(() => {
         preloader.style.display = "none";
-      }, 1200);
+      }, 1400);
     }
   }
 
-  // Start Typewriter mit kurzer Verzögerung (Logo ist schon da)
+  // Start Typewriter
   setTimeout(typeWriter, 300);
 
   /* =========================
