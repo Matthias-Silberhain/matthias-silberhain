@@ -1,350 +1,896 @@
-// ============================================================================
-// MATTHIAS SILBERHAIN - HAUPT JAVASCRIPT
-// ============================================================================
+/* ==========================================================================
+   CSS RESET & BASISSTYLES
+   ========================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-document.addEventListener("DOMContentLoaded", function() {
-  
-  // ========================================================================
-  // PRELOADER MIT TYPEWRITER-EFFEKT
-  // ========================================================================
-  
-  const preloader = document.getElementById("preloader");
-  const typeText = document.getElementById("type-text");
-  const cursor = document.querySelector(".cursor");
-  
-  // Prüfen ob Preloader-Elemente existieren
-  if (preloader && typeText && cursor) {
-    
-    const text = "MATTHIAS SILBERHAIN";
-    let charIndex = 0;
-    const typingSpeed = 90; // Geschwindigkeit in Millisekunden
-    const minDisplayTime = 2000; // Mindestzeit in ms
-    
-    // Startzeit speichern für Mindest-Anzeigezeit
-    const startTime = Date.now();
-    
-    // Typewriter-Funktion
-    function typeWriter() {
-      if (charIndex < text.length) {
-        // Zeichen für Zeichen hinzufügen
-        typeText.textContent += text.charAt(charIndex);
-        charIndex++;
-        
-        // Nächstes Zeichen mit Verzögerung
-        setTimeout(typeWriter, typingSpeed);
-      } else {
-        // Text vollständig - Cursor stoppen
-        cursor.style.animation = "none";
-        cursor.style.opacity = "0";
-        
-        // Mindest-Anzeigezeit berechnen
-        const elapsedTime = Date.now() - startTime;
-        const remainingTime = Math.max(0, minDisplayTime - elapsedTime);
-        
-        // Preloader nach Mindestzeit ausblenden
-        setTimeout(function() {
-          // Sanftes Ausblenden
-          preloader.style.opacity = "0";
-          preloader.style.transition = "opacity 0.6s ease";
-          
-          // Nach Fade-Out komplett entfernen
-          setTimeout(function() {
-            preloader.style.display = "none";
-            
-            // Event für andere Scripts
-            window.dispatchEvent(new CustomEvent("preloaderComplete"));
-          }, 600);
-          
-        }, remainingTime + 500); // +500ms Pause nach Textende
-      }
-    }
-    
-    // Typewriter mit kurzer Verzögerung starten
-    setTimeout(typeWriter, 400);
-    
-  } else {
-    // Fallback: Preloader sofort ausblenden wenn Elemente fehlen
-    console.warn("Preloader-Elemente nicht gefunden");
-    if (preloader) {
-      preloader.style.display = "none";
-    }
-  }
-  
-  // ========================================================================
-  // BURGER-MENÜ FUNKTIONALITÄT
-  // ========================================================================
-  
-  const burgerButton = document.getElementById("burger");
-  const navigation = document.getElementById("navigation");
-  
-  if (burgerButton && navigation) {
-    
-    let isMenuOpen = false;
-    
-    // Burger-Menü Toggle
-    burgerButton.addEventListener("click", function(event) {
-      event.stopPropagation();
-      
-      isMenuOpen = !isMenuOpen;
-      
-      // Navigation ein-/ausblenden
-      navigation.classList.toggle("aktiv");
-      
-      // Burger-Animation
-      const spans = burgerButton.querySelectorAll("span");
-      if (isMenuOpen) {
-        // Menü geöffnet - X-Form
-        spans[0].style.transform = "rotate(45deg) translate(6px, 6px)";
-        spans[1].style.opacity = "0";
-        spans[2].style.transform = "rotate(-45deg) translate(6px, -6px)";
-        
-        // Body-Scroll sperren
-        document.body.style.overflow = "hidden";
-        
-      } else {
-        // Menü geschlossen - Burger-Form
-        spans[0].style.transform = "none";
-        spans[1].style.opacity = "1";
-        spans[2].style.transform = "none";
-        
-        // Body-Scroll freigeben
-        document.body.style.overflow = "";
-      }
-      
-      // ARIA-Attribute aktualisieren
-      burgerButton.setAttribute("aria-expanded", isMenuOpen);
-    });
-    
-    // Menü schließen bei Klick auf Nav-Link
-    const navLinks = navigation.querySelectorAll("a");
-    navLinks.forEach(function(link) {
-      link.addEventListener("click", function() {
-        if (window.innerWidth <= 768) {
-          navigation.classList.remove("aktiv");
-          
-          // Burger zurücksetzen
-          const spans = burgerButton.querySelectorAll("span");
-          spans[0].style.transform = "none";
-          spans[1].style.opacity = "1";
-          spans[2].style.transform = "none";
-          
-          isMenuOpen = false;
-          burgerButton.setAttribute("aria-expanded", "false");
-          document.body.style.overflow = "";
-        }
-      });
-    });
-    
-    // Menü schließen bei Klick außerhalb
-    document.addEventListener("click", function(event) {
-      if (isMenuOpen && 
-          !navigation.contains(event.target) && 
-          !burgerButton.contains(event.target)) {
-        
-        navigation.classList.remove("aktiv");
-        
-        // Burger zurücksetzen
-        const spans = burgerButton.querySelectorAll("span");
-        spans[0].style.transform = "none";
-        spans[1].style.opacity = "1";
-        spans[2].style.transform = "none";
-        
-        isMenuOpen = false;
-        burgerButton.setAttribute("aria-expanded", "false");
-        document.body.style.overflow = "";
-      }
-    });
-    
-    // Menü schließen mit ESC-Taste
-    document.addEventListener("keydown", function(event) {
-      if (isMenuOpen && event.key === "Escape") {
-        navigation.classList.remove("aktiv");
-        
-        // Burger zurücksetzen
-        const spans = burgerButton.querySelectorAll("span");
-        spans[0].style.transform = "none";
-        spans[1].style.opacity = "1";
-        spans[2].style.transform = "none";
-        
-        isMenuOpen = false;
-        burgerButton.setAttribute("aria-expanded", "false");
-        document.body.style.overflow = "";
-      }
-    });
-    
-    // Menü automatisch schließen bei Resize zu Desktop
-    window.addEventListener("resize", function() {
-      if (window.innerWidth > 768 && isMenuOpen) {
-        navigation.classList.remove("aktiv");
-        
-        // Burger zurücksetzen
-        const spans = burgerButton.querySelectorAll("span");
-        spans[0].style.transform = "none";
-        spans[1].style.opacity = "1";
-        spans[2].style.transform = "none";
-        
-        isMenuOpen = false;
-        burgerButton.setAttribute("aria-expanded", "false");
-        document.body.style.overflow = "";
-      }
-    });
-  }
-  
-  // ========================================================================
-  // FOOTER JAHR AKTUALISIEREN
-  // ========================================================================
-  
-  const yearElement = document.getElementById("jahr");
-  if (yearElement) {
-    yearElement.textContent = new Date().getFullYear();
-  }
-  
-  // ========================================================================
-  // SMOOTH SCROLL FÜR INTERNE LINKS
-  // ========================================================================
-  
-  const internalLinks = document.querySelectorAll('a[href^="#"]');
-  internalLinks.forEach(function(link) {
-    link.addEventListener("click", function(event) {
-      const targetId = this.getAttribute("href");
-      
-      // Nur interne Links verarbeiten (nicht # allein)
-      if (targetId !== "#" && targetId.length > 1) {
-        const targetElement = document.querySelector(targetId);
-        
-        if (targetElement) {
-          event.preventDefault();
-          
-          // Header-Höhe berücksichtigen
-          const headerHeight = document.querySelector(".header").offsetHeight || 0;
-          const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-          
-          // Smooth Scroll
-          window.scrollTo({
-            top: targetPosition - headerHeight - 20,
-            behavior: "smooth"
-          });
-          
-          // URL ohne Seitenwechsel aktualisieren
-          if (history.pushState) {
-            history.pushState(null, null, targetId);
-          }
-        }
-      }
-    });
-  });
-  
-  // ========================================================================
-  // DARK MODE FUNKTIONALITÄT - KORRIGIERT FÜR MOBILE
-  // ========================================================================
-  
-  const darkModeToggle = document.getElementById("darkModeToggle");
-  const body = document.body;
-  
-  if (darkModeToggle) {
-    // Prüfe gespeicherte Einstellung (STANDARD: light = Schwarz)
-    const savedTheme = localStorage.getItem("ms-theme");
-    
-    // Initialisiere Theme - STANDARD IST SCHWARZ (light mode)
-    if (savedTheme === "dark") {
-      setDarkMode(); // Nur wenn explizit dark gespeichert
-    } else {
-      setLightMode(); // Standard ist Schwarz
-    }
-    
-    // Event Listener für Toggle - Mobile und Desktop
-    darkModeToggle.addEventListener("click", function(event) {
-      event.stopPropagation(); // Wichtig für Mobile!
-      
-      if (body.classList.contains("dark-mode")) {
-        setLightMode(); // Zurück zu Schwarz
-      } else {
-        setDarkMode(); // Zu Dunkelgrau
-      }
-    });
-    
-    // Touch Event für Mobile (zusätzlich zu click)
-    darkModeToggle.addEventListener("touchstart", function(event) {
-      event.preventDefault();
-      // Direktes Toggle statt click() für bessere Mobile Performance
-      if (body.classList.contains("dark-mode")) {
-        setLightMode();
-      } else {
-        setDarkMode();
-      }
-    }, { passive: false });
-    
-    function setDarkMode() {
-      body.classList.add("dark-mode");
-      localStorage.setItem("ms-theme", "dark");
-      console.log("🌙 Dunkelgrau aktiviert");
-    }
-    
-    function setLightMode() {
-      body.classList.remove("dark-mode");
-      localStorage.setItem("ms-theme", "light");
-      console.log("☀️ Schwarz aktiviert");
-    }
-    
-    // Debug Info
-    console.log("Dark Mode Toggle geladen - Standard: Schwarz");
-  }
-  
-  // ========================================================================
-  // PERFORMANCE OPTIMIERUNGEN
-  // ========================================================================
-  
-  // Font Loading Optimierung
-  if ("fonts" in document) {
-    document.fonts.ready.then(function() {
-      document.documentElement.classList.add("fonts-loaded");
-    });
-  }
-  
-  // Resize Debounce für Performance
-  let resizeTimeout;
-  window.addEventListener("resize", function() {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(function() {
-      // Hier könnten Resize-abhängige Funktionen hin
-    }, 250);
-  });
-  
-  // ========================================================================
-  // FEHLERBEHANDLUNG
-  // ========================================================================
-  
-  window.addEventListener("error", function(event) {
-    console.error("JavaScript Fehler:", event.error);
-  });
-  
-  window.addEventListener("unhandledrejection", function(event) {
-    console.error("Unbehandelte Promise-Ablehnung:", event.reason);
-  });
-  
-  // ========================================================================
-  // INITIALISIERUNGS-KONSOLE LOG
-  // ========================================================================
-  
-  console.log("Matthias Silberhain Website erfolgreich geladen");
-});
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
 
-// ============================================================================
-// WINDOW LOAD EVENT (NACH ALLEN RESSOURCEN)
-// ============================================================================
+body {
+  font-family: "EB Garamond", Garamond, serif;
+  background-color: #000000;
+  color: #cfd2d6;
+  line-height: 1.65;
+  min-height: 100vh;
+  transition: background-color 0.5s ease;
+}
 
-window.addEventListener("load", function() {
-  // Zusätzliche Initialisierung nach vollständigem Laden
-  console.log("Alle Ressourcen geladen");
-  
-  // Service Worker Registrierung (optional für PWA)
-  if ("serviceWorker" in navigator && window.location.protocol === "https:") {
-    navigator.serviceWorker.register("/service-worker.js")
-      .then(function(registration) {
-        console.log("ServiceWorker registriert:", registration.scope);
-      })
-      .catch(function(error) {
-        console.log("ServiceWorker Registrierung fehlgeschlagen:", error);
-      });
+/* ==========================================================================
+   PRELOADER MIT FIXIERTEM LOGO
+   ========================================================================== */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.6s ease;
+}
+
+.preloader-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* LOGO - ABSOLUT POSITIONIERT (BEWEGT SICH NICHT) */
+.preloader-logo {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 220px;
+  height: auto;
+  z-index: 10;
+  animation: logoAppear 1s ease-out forwards;
+  filter: brightness(1.1);
+}
+
+/* TEXT-CONTAINER UNTERHALB DES LOGOS */
+.text-container {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 100%;
+}
+
+.preloader-text {
+  font-family: "Cinzel", serif;
+  font-size: 34px;
+  letter-spacing: 0.2em;
+  color: #e0e0e0;
+  white-space: nowrap;
+  text-shadow: 0 0 10px rgba(200, 200, 200, 0.3);
+}
+
+.cursor {
+  display: inline-block;
+  width: 3px;
+  height: 1.2em;
+  background-color: #e0e0e0;
+  margin-left: 8px;
+  vertical-align: middle;
+  animation: blink 1s infinite;
+}
+
+/* ANIMATIONEN */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+@keyframes logoAppear {
+  from { 
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px);
   }
-});
+  to { 
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* ==========================================================================
+   HEADER
+   ========================================================================== */
+.header {
+  padding: 35px 20px 25px;
+  text-align: center;
+  background-color: #000000;
+  position: relative;
+  transition: background-color 0.5s ease;
+}
+
+.logo {
+  width: min(75vw, 420px);
+  max-width: 380px;
+  height: auto;
+  margin: 0 auto 25px;
+  display: block;
+  filter: brightness(1.1);
+}
+
+/* ==========================================================================
+   NAVIGATION
+   ========================================================================== */
+.hauptnavigation {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+  padding: 10px 0;
+}
+
+.hauptnavigation a {
+  font-family: "Cinzel", serif;
+  color: #d6d9de;
+  text-decoration: none;
+  letter-spacing: 0.15em;
+  font-size: 0.95rem;
+  padding: 10px 18px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.hauptnavigation a:hover {
+  color: #ffffff;
+  text-shadow: 0 0 12px rgba(200, 200, 200, 0.6);
+}
+
+.hauptnavigation a::after {
+  content: '';
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #e0e0e0, transparent);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.hauptnavigation a:hover::after {
+  width: 80%;
+}
+
+/* ==========================================================================
+   LICHTKANTEN
+   ========================================================================== */
+.lichtkante,
+.footer-lichtkante {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(200, 205, 215, 0.85),
+    transparent
+  );
+  margin: 25px 0;
+  box-shadow: 0 0 15px rgba(200, 205, 215, 0.3);
+  transition: all 0.5s ease;
+}
+
+/* ==========================================================================
+   INHALT
+   ========================================================================== */
+.inhalt {
+  padding: 60px 20px;
+  max-width: 720px;
+  margin: 0 auto;
+  animation: contentFadeIn 0.8s ease-out 0.5s both;
+  transition: background-color 0.5s ease;
+}
+
+@keyframes contentFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+h1 {
+  font-family: "Cinzel", serif;
+  letter-spacing: 0.1em;
+  color: #e4e6ea;
+  text-align: center;
+  margin-bottom: 35px;
+  font-size: 2.3rem;
+  line-height: 1.3;
+  text-shadow: 0 0 15px rgba(200, 200, 200, 0.2);
+}
+
+p {
+  margin-bottom: 28px;
+  font-size: 1.15rem;
+  line-height: 1.75;
+  color: #b0b5bc;
+  text-align: left;
+}
+
+strong {
+  color: #e4e6ea;
+  font-weight: 500;
+  text-shadow: 0 0 8px rgba(200, 200, 200, 0.3);
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.footer {
+  text-align: center;
+  padding: 25px 0;
+  font-size: 0.9rem;
+  color: #9da2a8;
+  background-color: transparent;
+  transition: background-color 0.5s ease;
+}
+
+.footer-lichtkante {
+  margin-bottom: 20px;
+}
+
+/* ==========================================================================
+   BURGER MENÜ (MOBIL)
+   ========================================================================== */
+.burger {
+  display: none;
+  width: 32px;
+  margin: 20px auto 0;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 5px;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 24px;
+}
+
+.burger span {
+  display: block;
+  height: 2px;
+  background-color: #cfd2d6;
+  transition: all 0.3s ease;
+  border-radius: 1px;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
+
+/* TABLET (768px - 1024px) */
+@media screen and (max-width: 1024px) {
+  .preloader-logo {
+    width: 180px;
+    top: 22%;
+  }
+  
+  .text-container {
+    top: 52%;
+  }
+  
+  .preloader-text {
+    font-size: 28px;
+  }
+  
+  .logo {
+    width: min(70vw, 320px);
+  }
+  
+  .hauptnavigation {
+    gap: 25px;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  p {
+    font-size: 1.1rem;
+  }
+}
+
+/* MOBILE (max-width: 768px) */
+@media screen and (max-width: 768px) {
+  .header {
+    padding: 25px 15px 15px;
+  }
+  
+  .preloader-logo {
+    width: 160px;
+    top: 20%;
+  }
+  
+  .text-container {
+    top: 50%;
+    margin-top: 0;
+  }
+  
+  .preloader-text {
+    font-size: 24px;
+  }
+  
+  .logo {
+    width: min(65vw, 280px);
+    margin-bottom: 20px;
+  }
+  
+  /* BURGER MENÜ AKTIVIEREN */
+  .hauptnavigation {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.98);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    z-index: 998;
+    padding: 20px;
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: all 0.4s ease;
+  }
+  
+  .hauptnavigation.aktiv {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .hauptnavigation a {
+    font-size: 1.2rem;
+    padding: 15px 25px;
+    width: 80%;
+    text-align: center;
+    border: 1px solid rgba(200, 205, 215, 0.2);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+  
+  .hauptnavigation a:hover {
+    background-color: rgba(200, 205, 215, 0.1);
+    border-color: rgba(200, 205, 215, 0.5);
+  }
+  
+  .burger {
+    display: flex;
+  }
+  
+  .inhalt {
+    padding: 40px 15px;
+  }
+  
+  h1 {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+  }
+  
+  p {
+    font-size: 1.05rem;
+    text-align: center;
+    line-height: 1.7;
+  }
+  
+  .lichtkante {
+    margin: 20px 0;
+  }
+}
+
+/* KLEINE MOBILS (max-width: 480px) */
+@media screen and (max-width: 480px) {
+  .preloader-logo {
+    width: 140px;
+    top: 18%;
+  }
+  
+  .text-container {
+    top: 48%;
+  }
+  
+  .preloader-text {
+    font-size: 20px;
+    letter-spacing: 0.15em;
+  }
+  
+  .cursor {
+    height: 1em;
+    margin-left: 5px;
+  }
+  
+  .logo {
+    width: min(60vw, 220px);
+  }
+  
+  .hauptnavigation a {
+    font-size: 1.1rem;
+    padding: 12px 20px;
+  }
+  
+  .inhalt {
+    padding: 30px 12px;
+  }
+  
+  h1 {
+    font-size: 1.6rem;
+    margin-bottom: 25px;
+  }
+  
+  p {
+    font-size: 1rem;
+    margin-bottom: 22px;
+  }
+  
+  .footer {
+    padding: 20px 0;
+    font-size: 0.85rem;
+  }
+}
+
+/* GROSSE BILDSCHIRME (min-width: 1920px) */
+@media screen and (min-width: 1920px) {
+  .preloader-logo {
+    width: 280px;
+  }
+  
+  .preloader-text {
+    font-size: 42px;
+  }
+  
+  .inhalt {
+    max-width: 900px;
+    padding: 80px 20px;
+  }
+  
+  h1 {
+    font-size: 2.8rem;
+  }
+  
+  p {
+    font-size: 1.3rem;
+    line-height: 1.8;
+  }
+  
+  .logo {
+    max-width: 500px;
+  }
+}
+
+/* ==========================================================================
+   DUNKELHEITS-ANPASSUNG
+   ========================================================================== */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #000000;
+    color: #cfd2d6;
+  }
+  
+  .header {
+    background-color: rgba(0, 0, 0, 0.95);
+  }
+}
+
+/* ==========================================================================
+   DRUCK-STYLES
+   ========================================================================== */
+@media print {
+  #preloader,
+  .burger,
+  .hauptnavigation,
+  .dark-mode-toggle {
+    display: none !important;
+  }
+  
+  body {
+    background-color: white !important;
+    color: black !important;
+    font-size: 12pt;
+  }
+  
+  .logo {
+    filter: invert(1);
+  }
+  
+  .inhalt {
+    padding: 20px 0;
+    max-width: 100%;
+  }
+  
+  h1 {
+    color: black !important;
+    font-size: 18pt;
+  }
+  
+  p {
+    color: #333 !important;
+    text-align: justify;
+  }
+}
+
+/* ==========================================================================
+   SILBERNE HOVER EFFECTS FÜR NAVIGATION
+   ========================================================================== */
+.hauptnavigation a {
+  position: relative;
+  overflow: hidden;
+}
+
+.hauptnavigation a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(192, 192, 192, 0.2), 
+    transparent);
+  transition: left 0.4s ease;
+  z-index: -1;
+}
+
+.hauptnavigation a:hover::before {
+  left: 100%;
+}
+
+.hauptnavigation a:hover {
+  color: #ffffff;
+  text-shadow: 
+    0 0 10px rgba(255, 255, 255, 0.5),
+    0 0 20px rgba(192, 192, 192, 0.3);
+}
+
+/* ==========================================================================
+   SOCIAL MEDIA STYLES
+   ========================================================================== */
+
+.social-section {
+  margin: 50px 0;
+  padding: 40px 20px;
+  text-align: center;
+  /* BORDERS ENTFERNT: keine feinen Striche mehr über/unter den Social Media Buttons */
+  border-top: none;
+  border-bottom: none;
+  transition: background-color 0.5s ease;
+}
+
+.social-title {
+  font-family: "Cinzel", serif;
+  color: #e4e6ea;
+  margin-bottom: 35px;
+  font-size: 1.4rem;
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 10px rgba(200, 200, 200, 0.3);
+}
+
+.social-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.social-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #9da2a8;
+  transition: all 0.3s ease;
+  width: 80px;
+}
+
+.social-icon-wrapper {
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(200, 205, 215, 0.25);
+  border-radius: 50%;
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+  background: rgba(10, 10, 10, 0.5);
+}
+
+.social-icon {
+  width: 26px;
+  height: 26px;
+  fill: #9da2a8;
+  transition: all 0.3s ease;
+}
+
+.social-name {
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+}
+
+/* SILBER HOVER EFFECTS FÜR SOCIAL MEDIA */
+.social-link:hover {
+  color: #ffffff;
+  transform: translateY(-3px);
+}
+
+.social-link:hover .social-icon-wrapper {
+  border-color: rgba(200, 205, 215, 0.7);
+  background: rgba(200, 205, 215, 0.15);
+  box-shadow: 
+    0 5px 15px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(192, 192, 192, 0.2);
+}
+
+.social-link:hover .social-icon {
+  fill: #ffffff;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+}
+
+/* ==========================================================================
+   CTA BUTTON STYLES
+   ========================================================================== */
+
+.cta-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 50px 0 30px;
+  flex-wrap: wrap;
+}
+
+.silber-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 35px;
+  background: transparent;
+  color: #d6d9de;
+  border: 1px solid rgba(200, 205, 215, 0.4);
+  border-radius: 4px;
+  font-family: "Cinzel", serif;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.silber-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(192, 192, 192, 0.2), 
+    transparent);
+  transition: left 0.5s ease;
+  z-index: -1;
+}
+
+.silber-button:hover::before {
+  left: 100%;
+}
+
+.silber-button:hover {
+  background: rgba(200, 205, 215, 0.1);
+  color: #ffffff;
+  border-color: rgba(200, 205, 215, 0.7);
+  transform: translateY(-3px);
+  box-shadow: 
+    0 8px 20px rgba(0, 0, 0, 0.25),
+    0 0 15px rgba(192, 192, 192, 0.2);
+}
+
+.button-arrow {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+  transition: transform 0.3s ease;
+}
+
+.silber-button:hover .button-arrow {
+  transform: translateX(5px);
+}
+
+/* Sekundärer Button */
+.silber-button.secondary {
+  border-color: rgba(200, 205, 215, 0.3);
+  background: rgba(10, 10, 10, 0.5);
+}
+
+.silber-button.secondary:hover {
+  background: rgba(200, 205, 215, 0.08);
+}
+
+/* ==========================================================================
+   COPYRIGHT ZENTRIERUNG
+   ========================================================================== */
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 25px 0;
+}
+
+.footer p {
+  margin: 0;
+  text-align: center;
+  width: 100%;
+}
+
+/* ==========================================================================
+   RESPONSIVE ANPASSUNGEN FÜR NEUE ELEMENTE
+   ========================================================================== */
+
+@media screen and (max-width: 768px) {
+  .social-grid {
+    gap: 20px;
+  }
+  
+  .social-link {
+    width: 70px;
+  }
+  
+  .social-icon-wrapper {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .social-icon {
+    width: 22px;
+    height: 22px;
+  }
+  
+  .cta-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .silber-button {
+    width: 80%;
+    justify-content: center;
+  }
+  
+  .social-title {
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .social-grid {
+    gap: 15px;
+  }
+  
+  .social-link {
+    width: 65px;
+  }
+  
+  .social-icon-wrapper {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .silber-button {
+    width: 90%;
+    padding: 14px 25px;
+  }
+  
+  .social-section {
+    padding: 30px 15px;
+    margin: 40px 0;
+  }
+}
+
+/* ==========================================================================
+   DARK MODE STYLES - FUNKTIONIERT IN ALLEN BROWSERN
+   ========================================================================== */
+
+/* Dark Mode aktiv - Hintergrund Dunkelgrau */
+body.dark-mode {
+  background-color: #1a1a1a !important;
+}
+
+body.dark-mode .header,
+body.dark-mode .inhalt,
+body.dark-mode .social-section,
+body.dark-mode .footer,
+body.dark-mode #preloader {
+  background-color: #1a1a1a !important;
+}
+
+/* Schriftfarben bleiben SILBER - nur Hintergrund ändert sich */
+body.dark-mode h1,
+body.dark-mode .social-title {
+  color: #e4e6ea !important;
+}
+
+body.dark-mode p,
+body.dark-mode .footer,
+body.dark-mode .social-name {
+  color: #b0b5bc !important;
+}
+
+body.dark-mode strong {
+  color: #e4e6ea !important;
+}
+
+/* Navigation bleibt silber */
+body.dark-mode .hauptnavigation a {
+  color: #d6d9de !important;
+}
+
+body.dark-mode .hauptnavigation a:hover {
+  color: #ffffff !important;
+}
+
+/* Lichtkanten (etwas heller für besseren Kontrast) */
+body.dark-mode .lichtkante,
+body.dark-mode .footer-lichtkante {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(220, 225, 235, 0.7),
+    transparent
+  ) !important;
+  box-shadow: 0 0 15px rgba(220, 225, 235, 0.2) !important;
+}
+
+/* Social Media - Farben bleiben silber */
+body.dark-mode .social-link {
+  color: #9da2a8 !important;
+}
+
+body.dark-mode .social-icon {
+  fill: #9da2a8 !important;
+}
+
+/* Buttons bleiben silber */
+body.dark-mode .silber-button {
+  color: #d6d9de !important;
+  border-color: rgba(220, 225, 235, 0.4) !important;
+}
+
+body.dark-mode .silber-button.secondary {
+  border-color: rgba(220, 225, 235, 0.3) !important;
+  background: rgba(30, 30, 30, 0.5) !important;
+}
+
+/* Mobile Navigation im Dark Mode */
+@media screen and (max-width: 768px) {
+  body.dark-mode .hauptnavigation {
+    background-color: rgba(26, 26, 26, 0.98) !important;
+  }
+  
+  body.dark-mode .hauptnavigation a {
+    border-color: rgba(220, 225, 235, 0.2) !important;
+  }
+}
