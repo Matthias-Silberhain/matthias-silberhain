@@ -267,6 +267,46 @@ document.addEventListener("DOMContentLoaded", function() {
   });
   
   // ========================================================================
+  // DARK MODE FUNKTIONALITÄT
+  // ========================================================================
+  
+  const darkModeToggle = document.getElementById("darkModeToggle");
+  const body = document.body;
+  
+  if (darkModeToggle) {
+    // Prüfe gespeicherte Einstellung
+    const savedTheme = localStorage.getItem("ms-theme");
+    
+    // Initialisiere Theme (Default: Dark Mode)
+    if (savedTheme === "light") {
+      setLightMode();
+    } else {
+      setDarkMode();
+    }
+    
+    // Event Listener für Toggle
+    darkModeToggle.addEventListener("click", function() {
+      if (body.classList.contains("dark-mode")) {
+        setLightMode();
+      } else {
+        setDarkMode();
+      }
+    });
+    
+    function setDarkMode() {
+      body.classList.add("dark-mode");
+      localStorage.setItem("ms-theme", "dark");
+      console.log("🌙 Dark Mode (Dunkelgrau) aktiviert");
+    }
+    
+    function setLightMode() {
+      body.classList.remove("dark-mode");
+      localStorage.setItem("ms-theme", "light");
+      console.log("☀️ Light Mode (Schwarz) aktiviert");
+    }
+  }
+  
+  // ========================================================================
   // INITIALISIERUNGS-KONSOLE LOG
   // ========================================================================
   
