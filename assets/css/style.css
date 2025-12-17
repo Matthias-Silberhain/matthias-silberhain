@@ -1,4 +1,4 @@
-   ==========================================================================
+/* ==========================================================================
    CSS RESET & BASISSTYLES
    ========================================================================== */
 * {
@@ -520,11 +520,10 @@ strong {
     text-align: justify;
   }
 }
+
 /* ==========================================================================
    SILBERNE HOVER EFFECTS FÜR NAVIGATION
    ========================================================================== */
-
-/* Verbesserte Hover-Effekte für Navigation */
 .hauptnavigation a {
   position: relative;
   overflow: hidden;
@@ -564,8 +563,9 @@ strong {
   margin: 50px 0;
   padding: 40px 20px;
   text-align: center;
-  border-top: 1px solid rgba(200, 205, 215, 0.2);
-  border-bottom: 1px solid rgba(200, 205, 215, 0.2);
+  /* BORDERS ENTFERNT: keine feinen Striche mehr über/unter den Social Media Buttons */
+  border-top: none;
+  border-bottom: none;
 }
 
 .social-title {
