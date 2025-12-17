@@ -1,28 +1,20 @@
 // ============================================================================
-// MATTHIAS SILBERHAIN - MENU & PRELOADER JAVASCRIPT (KORRIGIERT)
+// MATTHIAS SILBERHAIN - MENU & PRELOADER JAVASCRIPT
 // ============================================================================
 
 (function() {
   'use strict';
   
-  // Warte bis DOM vollständig geladen ist
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initMenuAndPreloader);
-  } else {
-    initMenuAndPreloader();
-  }
-  
   function initMenuAndPreloader() {
     console.log('🚀 Menu & Preloader initialisiert');
     
     // ========================================================================
-    // PRELOADER MIT TYPEWRITER-EFFEKT (ISOLIERT VON DARK MODE)
+    // PRELOADER MIT TYPEWRITER-EFFEKT
     // ========================================================================
     const preloader = document.getElementById("preloader");
     const typeText = document.getElementById("type-text");
     const cursor = document.querySelector(".cursor");
     
-    // Nur wenn Preloader-Elemente existieren
     if (preloader && typeText && cursor) {
       console.log('⌨️ Preloader gefunden, starte Typewriter...');
       
@@ -53,7 +45,6 @@
             
             setTimeout(function() {
               preloader.style.display = "none";
-              // Event für andere Scripts
               window.dispatchEvent(new CustomEvent("preloaderComplete"));
               console.log('✅ Preloader ausgeblendet');
             }, 600);
@@ -61,12 +52,10 @@
         }
       }
       
-      // Typewriter mit Verzögerung starten (wichtig für Dark Mode Initialisierung)
+      // Typewriter mit Verzögerung starten
       setTimeout(function() {
-        // Prüfe ob Dark Mode aktiv ist
-        if (document.body.classList.contains('dark-mode')) {
-          preloader.style.backgroundColor = '#1a1a1a';
-        }
+        // Preloader für Dark Mode anpassen
+        updatePreloaderForDarkMode();
         typeWriter();
       }, 500);
       
@@ -78,7 +67,7 @@
     }
     
     // ========================================================================
-    // BURGER-MENÜ FUNKTIONALITÄT (UNVERÄNDERT)
+    // BURGER-MENÜ FUNKTIONALITÄT
     // ========================================================================
     const burgerButton = document.getElementById("burger");
     const navigation = document.getElementById("navigation");
@@ -188,13 +177,17 @@
     // ========================================================================
     // DARK MODE PRELOADER FIX
     // ========================================================================
-    // Synchronisiere Preloader mit Dark Mode
     function updatePreloaderForDarkMode() {
       const preloader = document.getElementById("preloader");
       if (preloader && document.body.classList.contains('dark-mode')) {
         preloader.style.backgroundColor = '#1a1a1a';
+      } else if (preloader) {
+        preloader.style.backgroundColor = '#000000';
       }
     }
+    
+    // Initial anwenden
+    updatePreloaderForDarkMode();
     
     // Überwache Dark Mode Änderungen
     const observer = new MutationObserver(function(mutations) {
@@ -205,13 +198,22 @@
       });
     });
     
-    // Beobachte Body-Klassenänderungen
     observer.observe(document.body, { attributes: true });
     
-    // Initial anwenden
-    updatePreloaderForDarkMode();
+    // Event Listener für Dark Mode Änderungen
+    window.addEventListener('themeChanged', updatePreloaderForDarkMode);
     
     console.log('✅ Menu & Preloader Script vollständig geladen');
+  }
+  
+  // ========================================================================
+  // INITIALISIERUNG
+  // ========================================================================
+  
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMenuAndPreloader);
+  } else {
+    initMenuAndPreloader();
   }
   
   // Fehlerbehandlung
@@ -224,7 +226,7 @@
 })();
 
 // ============================================================================
-// WINDOW LOAD EVENT (NACH ALLEN RESSOURCEN)
+// WINDOW LOAD EVENT
 // ============================================================================
 window.addEventListener("load", function() {
   console.log("📦 Alle Ressourcen geladen");
