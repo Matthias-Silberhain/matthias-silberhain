@@ -1,823 +1,522 @@
-/* ================= RESET & BASICS ================= */
+/* ==========================================================================
+   CSS RESET & BASISSTYLES
+   ========================================================================== */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-:root {
-    /* Original Light Mode Farben */
-    --light-bg: #ffffff;
-    --light-text: #000000;
-    --light-accent: #333333;
-    --light-border: #e0e0e0;
-    
-    /* Dark Mode Farben - deutlicher Unterschied */
-    --dark-bg: #1a1a1a; /* Dunkles Grau (nicht Schwarz) */
-    --dark-text: #ffffff;
-    --dark-accent: #cccccc;
-    --dark-border: #444444;
-    
-    /* Silber-Akzente */
-    --silver: #c0c0c0;
-    --silver-light: #d8d8d8;
-    --silver-dark: #a0a0a0;
-    
-    --transition: all 0.3s ease;
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
 }
 
-/* ================= BODY ================= */
 body {
-    font-family: 'EB Garamond', serif;
-    line-height: 1.6;
-    background-color: var(--light-bg);
-    color: var(--light-text);
-    transition: background-color 0.3s ease, color 0.3s ease;
-    min-height: 100vh;
-    position: relative;
+  font-family: "EB Garamond", Garamond, serif;
+  background-color: #000000;
+  color: #cfd2d6;
+  line-height: 1.65;
+  min-height: 100vh;
 }
 
-body.dark-mode {
-    background-color: var(--dark-bg);
-    color: var(--dark-text);
+/* ==========================================================================
+   PRELOADER MIT FIXIERTEM LOGO
+   ========================================================================== */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.6s ease;
 }
 
-/* ================= DARK/LIGHT MODE TOGGLE ================= */
-.theme-toggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 1002;
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid var(--light-border);
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    transition: var(--transition);
+.preloader-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
-body.dark-mode .theme-toggle {
-    background: rgba(26, 26, 26, 0.9);
-    border-color: var(--dark-border);
+/* LOGO - ABSOLUT POSITIONIERT (BEWEGT SICH NICHT) */
+.preloader-logo {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 220px;
+  height: auto;
+  z-index: 10;
+  animation: logoAppear 1s ease-out forwards;
+  filter: brightness(1.1);
 }
 
-.theme-toggle:hover {
-    transform: scale(1.1);
-    box-shadow: 0 3px 15px rgba(0,0,0,0.2);
+/* TEXT-CONTAINER UNTERHALB DES LOGOS */
+.text-container {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 100%;
 }
 
-.theme-toggle svg {
-    width: 20px;
-    height: 20px;
-    stroke: var(--light-text);
+.preloader-text {
+  font-family: "Cinzel", serif;
+  font-size: 34px;
+  letter-spacing: 0.2em;
+  color: #e0e0e0;
+  white-space: nowrap;
+  text-shadow: 0 0 10px rgba(200, 200, 200, 0.3);
 }
 
-body.dark-mode .theme-toggle svg {
-    stroke: var(--dark-text);
+.cursor {
+  display: inline-block;
+  width: 3px;
+  height: 1.2em;
+  background-color: #e0e0e0;
+  margin-left: 8px;
+  vertical-align: middle;
+  animation: blink 1s infinite;
 }
 
-.theme-toggle .sun-icon {
-    display: none;
+/* ANIMATIONEN */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
 }
 
-.theme-toggle .moon-icon {
-    display: block;
+@keyframes logoAppear {
+  from { 
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
 }
 
-body.dark-mode .theme-toggle .sun-icon {
-    display: block;
-}
-
-body.dark-mode .theme-toggle .moon-icon {
-    display: none;
-}
-
-/* ================= HEADER - ORIGINAL LAYOUT ================= */
+/* ==========================================================================
+   HEADER
+   ========================================================================== */
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 40px;
-    background: transparent;
-    position: relative;
-    z-index: 1001;
-    max-width: 1200px;
-    margin: 0 auto;
+  padding: 35px 20px 25px;
+  text-align: center;
+  background-color: #000000;
+  position: relative;
 }
 
 .logo {
-    height: 50px;
-    width: auto;
-    transition: var(--transition);
+  width: min(75vw, 420px);
+  max-width: 380px;
+  height: auto;
+  margin: 0 auto 25px;
+  display: block;
+  filter: brightness(1.1);
 }
 
-.logo:hover {
-    opacity: 0.8;
-}
-
-.burger {
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 20px;
-    cursor: pointer;
-    z-index: 1002;
-}
-
-.burger span {
-    display: block;
-    height: 2px;
-    width: 100%;
-    background: var(--light-text);
-    transition: var(--transition);
-}
-
-body.dark-mode .burger span {
-    background: var(--dark-text);
-}
-
-.burger.aktiv span:nth-child(1) {
-    transform: rotate(45deg) translate(6px, 6px);
-}
-
-.burger.aktiv span:nth-child(2) {
-    opacity: 0;
-}
-
-.burger.aktiv span:nth-child(3) {
-    transform: rotate(-45deg) translate(6px, -6px);
-}
-
-/* ================= NAVIGATION - ORIGINAL LAYOUT ================= */
+/* ==========================================================================
+   NAVIGATION
+   ========================================================================== */
 .hauptnavigation {
-    display: flex;
-    gap: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+  padding: 10px 0;
 }
 
 .hauptnavigation a {
-    text-decoration: none;
-    color: var(--light-text);
-    font-family: 'Cinzel', serif;
-    font-size: 16px;
-    padding: 5px 0;
-    position: relative;
-    transition: var(--transition);
+  font-family: "Cinzel", serif;
+  color: #d6d9de;
+  text-decoration: none;
+  letter-spacing: 0.15em;
+  font-size: 0.95rem;
+  padding: 10px 18px;
+  transition: all 0.3s ease;
+  position: relative;
 }
 
-body.dark-mode .hauptnavigation a {
-    color: var(--dark-text);
-}
-
-.hauptnavigation a:hover,
-.hauptnavigation a.active {
-    color: var(--silver);
+.hauptnavigation a:hover {
+  color: #ffffff;
+  text-shadow: 0 0 12px rgba(200, 200, 200, 0.6);
 }
 
 .hauptnavigation a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background: var(--silver);
-    transition: var(--transition);
-}
-
-.hauptnavigation a:hover::after,
-.hauptnavigation a.active::after {
-    width: 100%;
-}
-
-/* ================= LICHTKANTE ================= */
-.lichtkante {
-    height: 1px;
-    background: linear-gradient(90deg, 
-        transparent 0%, 
-        var(--silver) 50%, 
-        transparent 100%);
-    margin: 20px auto;
-    width: 80%;
-    max-width: 1200px;
-}
-
-body.dark-mode .lichtkante {
-    background: linear-gradient(90deg, 
-        transparent 0%, 
-        #666 50%, 
-        transparent 100%);
-}
-
-/* ================= HERO SECTION (INDEX) - ORIGINAL ================= */
-.hero {
-    text-align: center;
-    padding: 60px 20px;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.hero-title {
-    font-family: 'Cinzel', serif;
-    font-size: 48px;
-    margin-bottom: 10px;
-    color: var(--light-text);
-}
-
-body.dark-mode .hero-title {
-    color: var(--dark-text);
-}
-
-.hero-subtitle {
-    font-size: 18px;
-    color: var(--light-text);
-    margin-bottom: 40px;
-    font-style: italic;
-}
-
-body.dark-mode .hero-subtitle {
-    color: var(--dark-text);
-}
-
-.hero-text {
-    text-align: left;
-    font-size: 18px;
-    line-height: 1.8;
-    margin-bottom: 40px;
-}
-
-.hero-text p {
-    margin-bottom: 20px;
-}
-
-.hero-text .einleitung {
-    font-size: 22px;
-    font-weight: 600;
-    margin-bottom: 30px;
-    color: var(--light-accent);
-    text-align: center;
-}
-
-body.dark-mode .hero-text .einleitung {
-    color: var(--dark-accent);
-}
-
-.hero-text .schluss {
-    font-style: italic;
-    margin-top: 30px;
-    padding-left: 20px;
-    border-left: 2px solid var(--silver);
-    color: var(--light-accent);
-}
-
-body.dark-mode .hero-text .schluss {
-    color: var(--dark-accent);
-}
-
-/* ================= ZITAT SECTION ================= */
-.zitat-section {
-    padding: 40px 20px;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.zitat-container {
-    text-align: center;
-    padding: 30px;
-    border: 1px solid var(--light-border);
-}
-
-body.dark-mode .zitat-container {
-    border-color: var(--dark-border);
-}
-
-.zitat-text {
-    font-size: 24px;
-    font-style: italic;
-    margin-bottom: 10px;
-    color: var(--light-text);
-}
-
-body.dark-mode .zitat-text {
-    color: var(--dark-text);
-}
-
-.zitat-author {
-    font-family: 'Cinzel', serif;
-    color: var(--silver);
-}
-
-/* ================= NEUESTES WERK ================= */
-.neuestes-werk {
-    padding: 60px 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.werk-container {
-    display: flex;
-    gap: 60px;
-    align-items: center;
-}
-
-.buch-cover {
-    background: linear-gradient(135deg, var(--silver-light) 0%, var(--silver-dark) 100%);
-    padding: 40px;
-    border-radius: 10px;
-    text-align: center;
-    min-width: 300px;
-    min-height: 400px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-body.dark-mode .buch-cover {
-    background: linear-gradient(135deg, #333 0%, #444 100%);
-}
-
-.buch-title {
-    font-family: 'Cinzel', serif;
-    color: var(--light-text);
-    margin-bottom: 20px;
-    font-size: 18px;
-}
-
-body.dark-mode .buch-title {
-    color: var(--dark-text);
-}
-
-.buch-placeholder {
-    font-size: 24px;
-    color: var(--light-text);
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    font-family: 'Cinzel', serif;
-}
-
-body.dark-mode .buch-placeholder {
-    color: var(--dark-text);
-}
-
-.werk-ueberschrift {
-    font-family: 'Cinzel', serif;
-    font-size: 32px;
-    margin-bottom: 20px;
-    color: var(--light-text);
-}
-
-body.dark-mode .werk-ueberschrift {
-    color: var(--dark-text);
-}
-
-.werk-beschreibung {
-    font-size: 18px;
-    margin-bottom: 30px;
-    line-height: 1.7;
-}
-
-.werk-details {
-    margin-bottom: 30px;
-}
-
-.detail-item {
-    display: flex;
-    margin-bottom: 10px;
-}
-
-.detail-label {
-    font-weight: 600;
-    min-width: 120px;
-    color: var(--silver);
-    font-family: 'Cinzel', serif;
-}
-
-.detail-value {
-    color: var(--light-text);
-}
-
-body.dark-mode .detail-value {
-    color: var(--dark-text);
-}
-
-/* ================= ÜBER MICH SECTION ================= */
-.ueber-mich {
-    padding: 60px 20px;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.credo-headline {
-    font-family: 'Cinzel', serif;
-    font-size: 32px;
-    text-align: center;
-    margin-bottom: 40px;
-    color: var(--light-text);
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--silver);
-}
-
-body.dark-mode .credo-headline {
-    color: var(--dark-text);
-}
-
-.credo-container {
-    margin-bottom: 40px;
-    text-align: center;
-}
-
-.credo-quote {
-    position: relative;
-    margin-bottom: 20px;
-}
-
-.quote-marks {
-    position: absolute;
-    width: 100%;
-    top: -20px;
-}
-
-.quote-mark-left {
-    font-size: 60px;
-    color: var(--silver);
-    opacity: 0.5;
-    position: absolute;
-    left: -30px;
-    top: -30px;
-}
-
-.quote-mark-right {
-    font-size: 60px;
-    color: var(--silver);
-    opacity: 0.5;
-    position: absolute;
-    right: -30px;
-    bottom: -50px;
-}
-
-.credo-text {
-    font-size: 28px;
-    font-style: italic;
-    color: var(--light-accent);
-    margin-bottom: 20px;
-}
-
-body.dark-mode .credo-text {
-    color: var(--dark-accent);
-}
-
-.credo-subtitle {
-    font-size: 18px;
-    color: var(--light-text);
-    line-height: 1.6;
-}
-
-body.dark-mode .credo-subtitle {
-    color: var(--dark-text);
-}
-
-.ueber-mich-content {
-    font-size: 18px;
-    line-height: 1.8;
-}
-
-.ueber-mich-content p {
-    margin-bottom: 20px;
-}
-
-.ueber-mich-content .break-line {
-    margin-top: 30px;
-}
-
-.ueber-mich-content .small-margin {
-    margin-bottom: 10px;
-}
-
-.ueber-mich-content .highlight-paragraph {
-    font-size: 20px;
-    margin: 30px 0;
-    padding-left: 20px;
-    border-left: 3px solid var(--silver);
-    color: var(--light-accent);
-}
-
-body.dark-mode .ueber-mich-content .highlight-paragraph {
-    color: var(--dark-accent);
-}
-
-.ueber-mich-content .attention-line {
-    font-style: italic;
-    margin: 20px 0;
-    padding-left: 20px;
-    border-left: 2px solid var(--silver);
-    color: var(--light-accent);
-}
-
-body.dark-mode .ueber-mich-content .attention-line {
-    color: var(--dark-accent);
-}
-
-.ueber-mich-intro {
-    font-size: 20px;
-}
-
-.abschnitt-schluss {
-    margin-top: 40px;
-    padding-top: 30px;
-    border-top: 1px solid var(--silver);
-}
-
-.schluss-zitat {
-    font-size: 20px;
-    font-style: italic;
-    text-align: center;
-    color: var(--light-accent);
-    padding: 30px;
-}
-
-body.dark-mode .schluss-zitat {
-    color: var(--dark-accent);
-}
-
-/* ================= CTA BUTTONS ================= */
-.cta-container {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    margin-top: 40px;
-}
-
-.silber-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 24px;
-    background: linear-gradient(135deg, var(--silver-light) 0%, var(--silver-dark) 100%);
-    color: var(--light-text);
-    text-decoration: none;
-    border: 1px solid var(--light-border);
-    border-radius: 4px;
-    font-family: 'Cinzel', serif;
-    font-size: 16px;
-    transition: var(--transition);
-    cursor: pointer;
-}
-
-body.dark-mode .silber-button {
-    background: linear-gradient(135deg, #444 0%, #555 100%);
-    color: var(--dark-text);
-    border-color: var(--dark-border);
-}
-
-.silber-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.silber-button.secondary {
-    background: transparent;
-    border: 1px solid var(--silver);
-    color: var(--silver);
-}
-
-.silber-button.secondary:hover {
-    background: rgba(192, 192, 192, 0.1);
-}
-
-.button-arrow {
-    width: 20px;
-    height: 20px;
-    fill: currentColor;
-}
-
-/* ================= SOCIAL MEDIA ================= */
-.social-section {
-    padding: 60px 20px;
-    text-align: center;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.social-title {
-    font-family: 'Cinzel', serif;
-    font-size: 24px;
-    margin-bottom: 40px;
-    color: var(--light-text);
-}
-
-body.dark-mode .social-title {
-    color: var(--dark-text);
-}
-
-.social-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 20px;
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-.social-link {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-decoration: none;
-    padding: 20px;
-    border-radius: 10px;
-    transition: var(--transition);
-    border: 1px solid transparent;
-}
-
-body.dark-mode .social-link {
-    border-color: transparent;
-}
-
-.social-link:hover {
-    transform: translateY(-5px);
-    border-color: var(--silver);
-}
-
-.social-icon-wrapper {
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 10px;
-}
-
-.social-icon {
-    width: 30px;
-    height: 30px;
-    fill: var(--silver);
-}
-
-.social-name {
-    font-family: 'Cinzel', serif;
-    color: var(--light-text);
-    font-size: 14px;
-}
-
-body.dark-mode .social-name {
-    color: var(--dark-text);
-}
-
-/* ================= FOOTER - ORIGINAL MIT EINEM SILBERSTRICH ================= */
+  content: '';
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #e0e0e0, transparent);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.hauptnavigation a:hover::after {
+  width: 80%;
+}
+
+/* ==========================================================================
+   LICHTKANTEN
+   ========================================================================== */
+.lichtkante,
+.footer-lichtkante {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(200, 205, 215, 0.85),
+    transparent
+  );
+  margin: 25px 0;
+  box-shadow: 0 0 15px rgba(200, 205, 215, 0.3);
+}
+
+/* ==========================================================================
+   INHALT
+   ========================================================================== */
+.inhalt {
+  padding: 60px 20px;
+  max-width: 720px;
+  margin: 0 auto;
+  animation: contentFadeIn 0.8s ease-out 0.5s both;
+}
+
+@keyframes contentFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+h1 {
+  font-family: "Cinzel", serif;
+  letter-spacing: 0.1em;
+  color: #e4e6ea;
+  text-align: center;
+  margin-bottom: 35px;
+  font-size: 2.3rem;
+  line-height: 1.3;
+  text-shadow: 0 0 15px rgba(200, 200, 200, 0.2);
+}
+
+p {
+  margin-bottom: 28px;
+  font-size: 1.15rem;
+  line-height: 1.75;
+  color: #b0b5bc;
+  text-align: left;
+}
+
+strong {
+  color: #e4e6ea;
+  font-weight: 500;
+  text-shadow: 0 0 8px rgba(200, 200, 200, 0.3);
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
 .footer {
-    text-align: center;
-    padding: 30px 20px;
-    position: relative;
-    margin-top: 60px;
+  text-align: center;
+  padding: 25px 0;
+  font-size: 0.9rem;
+  color: #9da2a8;
+  background-color: transparent;
 }
 
-/* Silberstrich über dem Footer */
-.footer::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 200px;
-    height: 1px;
-    background: var(--silver);
+.footer-lichtkante {
+  margin-bottom: 20px;
+}
+
+/* ==========================================================================
+   BURGER MENÜ (MOBIL)
+   ========================================================================== */
+.burger {
+  display: none;
+  width: 32px;
+  margin: 20px auto 0;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 5px;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 24px;
+}
+
+.burger span {
+  display: block;
+  height: 2px;
+  background-color: #cfd2d6;
+  transition: all 0.3s ease;
+  border-radius: 1px;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
+
+/* TABLET (768px - 1024px) */
+@media screen and (max-width: 1024px) {
+  .preloader-logo {
+    width: 180px;
+    top: 22%;
+  }
+  
+  .text-container {
+    top: 52%;
+  }
+  
+  .preloader-text {
+    font-size: 28px;
+  }
+  
+  .logo {
+    width: min(70vw, 320px);
+  }
+  
+  .hauptnavigation {
+    gap: 25px;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  p {
+    font-size: 1.1rem;
+  }
+}
+
+/* MOBILE (max-width: 768px) */
+@media screen and (max-width: 768px) {
+  .header {
+    padding: 25px 15px 15px;
+  }
+  
+  .preloader-logo {
+    width: 160px;
+    top: 20%;
+  }
+  
+  .text-container {
+    top: 50%;
+    margin-top: 0;
+  }
+  
+  .preloader-text {
+    font-size: 24px;
+  }
+  
+  .logo {
+    width: min(65vw, 280px);
     margin-bottom: 20px;
-}
-
-body.dark-mode .footer::before {
-    background: #666;
-}
-
-.footer p {
-    font-size: 14px;
-    margin: 0;
-    padding: 20px 0 0;
-    color: #666;
-    font-family: 'Cinzel', serif;
-}
-
-body.dark-mode .footer p {
-    color: #999;
-}
-
-/* ================= MOBILE MENU OVERLAY ================= */
-.menu-overlay {
+  }
+  
+  /* BURGER MENÜ AKTIVIEREN */
+  .hauptnavigation {
     display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.5);
-    z-index: 999;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.98);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    z-index: 998;
+    padding: 20px;
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: all 0.4s ease;
+  }
+  
+  .hauptnavigation.aktiv {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .hauptnavigation a {
+    font-size: 1.2rem;
+    padding: 15px 25px;
+    width: 80%;
+    text-align: center;
+    border: 1px solid rgba(200, 205, 215, 0.2);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+  
+  .hauptnavigation a:hover {
+    background-color: rgba(200, 205, 215, 0.1);
+    border-color: rgba(200, 205, 215, 0.5);
+  }
+  
+  .burger {
+    display: flex;
+  }
+  
+  .inhalt {
+    padding: 40px 15px;
+  }
+  
+  h1 {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+  }
+  
+  p {
+    font-size: 1.05rem;
+    text-align: center;
+    line-height: 1.7;
+  }
+  
+  .lichtkante {
+    margin: 20px 0;
+  }
 }
 
-.menu-overlay.aktiv {
-    display: block;
+/* KLEINE MOBILS (max-width: 480px) */
+@media screen and (max-width: 480px) {
+  .preloader-logo {
+    width: 140px;
+    top: 18%;
+  }
+  
+  .text-container {
+    top: 48%;
+  }
+  
+  .preloader-text {
+    font-size: 20px;
+    letter-spacing: 0.15em;
+  }
+  
+  .cursor {
+    height: 1em;
+    margin-left: 5px;
+  }
+  
+  .logo {
+    width: min(60vw, 220px);
+  }
+  
+  .hauptnavigation a {
+    font-size: 1.1rem;
+    padding: 12px 20px;
+  }
+  
+  .inhalt {
+    padding: 30px 12px;
+  }
+  
+  h1 {
+    font-size: 1.6rem;
+    margin-bottom: 25px;
+  }
+  
+  p {
+    font-size: 1rem;
+    margin-bottom: 22px;
+  }
+  
+  .footer {
+    padding: 20px 0;
+    font-size: 0.85rem;
+  }
 }
 
-/* ================= RESPONSIVE DESIGN ================= */
-@media (max-width: 768px) {
-    .header {
-        padding: 15px 20px;
-    }
-    
-    .burger {
-        display: flex;
-    }
-    
-    .hauptnavigation {
-        position: fixed;
-        top: 0;
-        left: -100%;
-        width: 80%;
-        height: 100vh;
-        background: var(--light-bg);
-        flex-direction: column;
-        padding: 80px 20px 20px;
-        transition: left 0.3s ease;
-        z-index: 1000;
-        box-shadow: 5px 0 15px rgba(0,0,0,0.1);
-        gap: 0;
-    }
-    
-    body.dark-mode .hauptnavigation {
-        background: var(--dark-bg);
-    }
-    
-    .hauptnavigation.aktiv {
-        left: 0;
-    }
-    
-    .hauptnavigation a {
-        padding: 15px;
-        margin: 5px 0;
-        border-bottom: 1px solid var(--light-border);
-        width: 100%;
-        text-align: left;
-    }
-    
-    body.dark-mode .hauptnavigation a {
-        border-bottom-color: var(--dark-border);
-    }
-    
-    .hauptnavigation a::after {
-        display: none;
-    }
-    
-    .hero-title {
-        font-size: 36px;
-    }
-    
-    .hero-text {
-        font-size: 16px;
-    }
-    
-    .werk-container {
-        flex-direction: column;
-        gap: 40px;
-    }
-    
-    .buch-cover {
-        min-width: 250px;
-        min-height: 350px;
-    }
-    
-    .social-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .theme-toggle {
-        top: 70px;
-        right: 20px;
-    }
-    
-    .cta-container {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .silber-button {
-        width: 100%;
-        max-width: 300px;
-    }
+/* GROSSE BILDSCHIRME (min-width: 1920px) */
+@media screen and (min-width: 1920px) {
+  .preloader-logo {
+    width: 280px;
+  }
+  
+  .preloader-text {
+    font-size: 42px;
+  }
+  
+  .inhalt {
+    max-width: 900px;
+    padding: 80px 20px;
+  }
+  
+  h1 {
+    font-size: 2.8rem;
+  }
+  
+  p {
+    font-size: 1.3rem;
+    line-height: 1.8;
+  }
+  
+  .logo {
+    max-width: 500px;
+  }
 }
 
-@media (max-width: 480px) {
-    .social-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .hero-title {
-        font-size: 28px;
-    }
-    
-    .credo-headline {
-        font-size: 24px;
-    }
+/* ==========================================================================
+   DUNKELHEITS-ANPASSUNG
+   ========================================================================== */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #000000;
+    color: #cfd2d6;
+  }
+  
+  .header {
+    background-color: rgba(0, 0, 0, 0.95);
+  }
+}
+
+/* ==========================================================================
+   DRUCK-STYLES
+   ========================================================================== */
+@media print {
+  #preloader,
+  .burger,
+  .hauptnavigation {
+    display: none !important;
+  }
+  
+  body {
+    background-color: white !important;
+    color: black !important;
+    font-size: 12pt;
+  }
+  
+  .logo {
+    filter: invert(1);
+  }
+  
+  .inhalt {
+    padding: 20px 0;
+    max-width: 100%;
+  }
+  
+  h1 {
+    color: black !important;
+    font-size: 18pt;
+  }
+  
+  p {
+    color: #333 !important;
+    text-align: justify;
+  }
 }
