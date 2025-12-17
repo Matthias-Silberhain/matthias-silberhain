@@ -802,3 +802,121 @@ strong {
     margin: 40px 0;
   }
 }
+
+/* ==========================================================================
+   DARK MODE STYLES - DUNKELGRAUES DESIGN
+   ========================================================================== */
+
+/* Dark Mode aktiv - Hintergrund Dunkelgrau */
+body.dark-mode {
+  background-color: #1a1a1a !important;
+}
+
+/* Schriftfarben bleiben SILBER - nur Hintergrund ändert sich */
+body.dark-mode .header {
+  background-color: #1a1a1a !important;
+}
+
+/* FONTS BLEIBEN UNVERÄNDERT - Nur Hintergrund ändert sich */
+body.dark-mode h1 {
+  /* Farbe bleibt gleich wie im Original */
+  color: #e4e6ea !important;
+}
+
+body.dark-mode p {
+  /* Farbe bleibt gleich wie im Original */
+  color: #b0b5bc !important;
+}
+
+body.dark-mode strong {
+  /* Farbe bleibt gleich wie im Original */
+  color: #e4e6ea !important;
+}
+
+/* Navigation bleibt silber */
+body.dark-mode .hauptnavigation a {
+  color: #d6d9de !important;
+}
+
+body.dark-mode .hauptnavigation a:hover {
+  color: #ffffff !important;
+}
+
+/* Lichtkanten (etwas heller für besseren Kontrast) */
+body.dark-mode .lichtkante,
+body.dark-mode .footer-lichtkante {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(220, 225, 235, 0.7),
+    transparent
+  ) !important;
+  box-shadow: 0 0 15px rgba(220, 225, 235, 0.2) !important;
+}
+
+/* Social Media - Farben bleiben silber */
+body.dark-mode .social-title {
+  color: #e4e6ea !important;
+}
+
+body.dark-mode .social-link {
+  color: #9da2a8 !important;
+}
+
+body.dark-mode .social-icon {
+  fill: #9da2a8 !important;
+}
+
+/* Buttons bleiben silber */
+body.dark-mode .silber-button {
+  color: #d6d9de !important;
+  border-color: rgba(220, 225, 235, 0.4) !important;
+}
+
+body.dark-mode .silber-button.secondary {
+  border-color: rgba(220, 225, 235, 0.3) !important;
+  background: rgba(30, 30, 30, 0.5) !important;
+}
+
+/* Footer bleibt silber */
+body.dark-mode .footer {
+  color: #9da2a8 !important;
+}
+
+/* Mobile Navigation im Dark Mode */
+@media screen and (max-width: 768px) {
+  body.dark-mode .hauptnavigation {
+    background-color: rgba(26, 26, 26, 0.98) !important;
+  }
+  
+  body.dark-mode .hauptnavigation a {
+    border-color: rgba(220, 225, 235, 0.2) !important;
+  }
+}
+
+/* ==========================================================================
+   RESPONSIVE ANPASSUNGEN FÜR DARK MODE TOGGLE
+   ========================================================================== */
+
+@media screen and (max-width: 768px) {
+  .dark-mode-toggle {
+    top: 25px;
+    right: 15px;
+    width: 36px;
+    height: 36px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .dark-mode-toggle {
+    top: 20px;
+    right: 10px;
+    width: 32px;
+    height: 32px;
+  }
+  
+  .moon-icon, .sun-icon {
+    width: 18px;
+    height: 18px;
+  }
+}
