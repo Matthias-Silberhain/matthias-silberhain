@@ -235,6 +235,62 @@ document.addEventListener("DOMContentLoaded", function() {
   });
   
   // ========================================================================
+  // DARK MODE FUNKTIONALITÄT - KORRIGIERT FÜR MOBILE
+  // ========================================================================
+  
+  const darkModeToggle = document.getElementById("darkModeToggle");
+  const body = document.body;
+  
+  if (darkModeToggle) {
+    // Prüfe gespeicherte Einstellung (STANDARD: light = Schwarz)
+    const savedTheme = localStorage.getItem("ms-theme");
+    
+    // Initialisiere Theme - STANDARD IST SCHWARZ (light mode)
+    if (savedTheme === "dark") {
+      setDarkMode(); // Nur wenn explizit dark gespeichert
+    } else {
+      setLightMode(); // Standard ist Schwarz
+    }
+    
+    // Event Listener für Toggle - Mobile und Desktop
+    darkModeToggle.addEventListener("click", function(event) {
+      event.stopPropagation(); // Wichtig für Mobile!
+      
+      if (body.classList.contains("dark-mode")) {
+        setLightMode(); // Zurück zu Schwarz
+      } else {
+        setDarkMode(); // Zu Dunkelgrau
+      }
+    });
+    
+    // Touch Event für Mobile (zusätzlich zu click)
+    darkModeToggle.addEventListener("touchstart", function(event) {
+      event.preventDefault();
+      // Direktes Toggle statt click() für bessere Mobile Performance
+      if (body.classList.contains("dark-mode")) {
+        setLightMode();
+      } else {
+        setDarkMode();
+      }
+    }, { passive: false });
+    
+    function setDarkMode() {
+      body.classList.add("dark-mode");
+      localStorage.setItem("ms-theme", "dark");
+      console.log("🌙 Dunkelgrau aktiviert");
+    }
+    
+    function setLightMode() {
+      body.classList.remove("dark-mode");
+      localStorage.setItem("ms-theme", "light");
+      console.log("☀️ Schwarz aktiviert");
+    }
+    
+    // Debug Info
+    console.log("Dark Mode Toggle geladen - Standard: Schwarz");
+  }
+  
+  // ========================================================================
   // PERFORMANCE OPTIMIERUNGEN
   // ========================================================================
   
@@ -265,46 +321,6 @@ document.addEventListener("DOMContentLoaded", function() {
   window.addEventListener("unhandledrejection", function(event) {
     console.error("Unbehandelte Promise-Ablehnung:", event.reason);
   });
-  
-  // ========================================================================
-  // DARK MODE FUNKTIONALITÄT
-  // ========================================================================
-  
-  const darkModeToggle = document.getElementById("darkModeToggle");
-  const body = document.body;
-  
-  if (darkModeToggle) {
-    // Prüfe gespeicherte Einstellung
-    const savedTheme = localStorage.getItem("ms-theme");
-    
-    // Initialisiere Theme (Default: Dark Mode)
-    if (savedTheme === "light") {
-      setLightMode();
-    } else {
-      setDarkMode();
-    }
-    
-    // Event Listener für Toggle
-    darkModeToggle.addEventListener("click", function() {
-      if (body.classList.contains("dark-mode")) {
-        setLightMode();
-      } else {
-        setDarkMode();
-      }
-    });
-    
-    function setDarkMode() {
-      body.classList.add("dark-mode");
-      localStorage.setItem("ms-theme", "dark");
-      console.log("🌙 Dark Mode (Dunkelgrau) aktiviert");
-    }
-    
-    function setLightMode() {
-      body.classList.remove("dark-mode");
-      localStorage.setItem("ms-theme", "light");
-      console.log("☀️ Light Mode (Schwarz) aktiviert");
-    }
-  }
   
   // ========================================================================
   // INITIALISIERUNGS-KONSOLE LOG
