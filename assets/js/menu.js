@@ -2,208 +2,214 @@
 // MATTHIAS SILBERHAIN - HAUPT JAVASCRIPT
 // ============================================================================
 
+// Warten bis DOM vollständig geladen ist
 document.addEventListener("DOMContentLoaded", function() {
   
   // ========================================================================
   // PRELOADER MIT TYPEWRITER-EFFEKT
   // ========================================================================
+  initializePreloader();
   
+  // ========================================================================
+  // BURGER-MENÜ FUNKTIONALITÄT
+  // ========================================================================
+  initializeNavigation();
+  
+  // ========================================================================
+  // FOOTER JAHR AKTUALISIEREN
+  // ========================================================================
+  updateFooterYear();
+  
+  // ========================================================================
+  // SMOOTH SCROLL FÜR INTERNE LINKS
+  // ========================================================================
+  initializeSmoothScroll();
+  
+  // ========================================================================
+  // PERFORMANCE OPTIMIERUNGEN
+  // ========================================================================
+  initializePerformanceOptimizations();
+  
+  // ========================================================================
+  // INITIALISIERUNGS-LOG
+  // ========================================================================
+  console.log("Matthias Silberhain Website erfolgreich geladen");
+});
+
+// ========================================================================
+// HAUPTFUNKTIONEN
+// ========================================================================
+
+function initializePreloader() {
   const preloader = document.getElementById("preloader");
   const typeText = document.getElementById("type-text");
   const cursor = document.querySelector(".cursor");
   
   // Prüfen ob Preloader-Elemente existieren
-  if (preloader && typeText && cursor) {
-    
-    const text = "MATTHIAS SILBERHAIN";
-    let charIndex = 0;
-    const typingSpeed = 90; // Geschwindigkeit in Millisekunden
-    const minDisplayTime = 2000; // Mindestzeit in ms
-    
-    // Startzeit speichern für Mindest-Anzeigezeit
-    const startTime = Date.now();
-    
-    // Typewriter-Funktion
-    function typeWriter() {
-      if (charIndex < text.length) {
-        // Zeichen für Zeichen hinzufügen
-        typeText.textContent += text.charAt(charIndex);
-        charIndex++;
+  if (!preloader || !typeText || !cursor) {
+    console.warn("Preloader-Elemente nicht gefunden - Preloader übersprungen");
+    if (preloader) preloader.style.display = "none";
+    return;
+  }
+  
+  const text = "MATTHIAS SILBERHAIN";
+  let charIndex = 0;
+  const typingSpeed = 90;
+  const minDisplayTime = 2000;
+  
+  // Startzeit speichern für Mindest-Anzeigezeit
+  const startTime = Date.now();
+  
+  // Typewriter-Funktion
+  function typeWriter() {
+    if (charIndex < text.length) {
+      // Zeichen für Zeichen hinzufügen
+      typeText.textContent += text.charAt(charIndex);
+      charIndex++;
+      
+      // Nächstes Zeichen mit Verzögerung
+      setTimeout(typeWriter, typingSpeed);
+    } else {
+      // Text vollständig - Cursor stoppen
+      cursor.style.animation = "none";
+      cursor.style.opacity = "0";
+      
+      // Mindest-Anzeigezeit berechnen
+      const elapsedTime = Date.now() - startTime;
+      const remainingTime = Math.max(0, minDisplayTime - elapsedTime);
+      
+      // Preloader nach Mindestzeit ausblenden
+      setTimeout(function() {
+        // Sanftes Ausblenden
+        preloader.style.opacity = "0";
+        preloader.style.transition = "opacity 0.6s ease";
         
-        // Nächstes Zeichen mit Verzögerung
-        setTimeout(typeWriter, typingSpeed);
-      } else {
-        // Text vollständig - Cursor stoppen
-        cursor.style.animation = "none";
-        cursor.style.opacity = "0";
-        
-        // Mindest-Anzeigezeit berechnen
-        const elapsedTime = Date.now() - startTime;
-        const remainingTime = Math.max(0, minDisplayTime - elapsedTime);
-        
-        // Preloader nach Mindestzeit ausblenden
+        // Nach Fade-Out komplett entfernen
         setTimeout(function() {
-          // Sanftes Ausblenden
-          preloader.style.opacity = "0";
-          preloader.style.transition = "opacity 0.6s ease";
+          preloader.style.display = "none";
           
-          // Nach Fade-Out komplett entfernen
-          setTimeout(function() {
-            preloader.style.display = "none";
-            
-            // Event für andere Scripts
-            window.dispatchEvent(new CustomEvent("preloaderComplete"));
-          }, 600);
-          
-        }, remainingTime + 500); // +500ms Pause nach Textende
-      }
-    }
-    
-    // Typewriter mit kurzer Verzögerung starten
-    setTimeout(typeWriter, 400);
-    
-  } else {
-    // Fallback: Preloader sofort ausblenden wenn Elemente fehlen
-    console.warn("Preloader-Elemente nicht gefunden");
-    if (preloader) {
-      preloader.style.display = "none";
+          // Event für andere Scripts
+          window.dispatchEvent(new CustomEvent("preloaderComplete"));
+        }, 600);
+        
+      }, remainingTime + 500); // +500ms Pause nach Textende
     }
   }
   
-  // ========================================================================
-  // BURGER-MENÜ FUNKTIONALITÄT
-  // ========================================================================
-  
+  // Typewriter mit kurzer Verzögerung starten
+  setTimeout(typeWriter, 400);
+}
+
+function initializeNavigation() {
   const burgerButton = document.getElementById("burger");
   const navigation = document.getElementById("navigation");
   
-  if (burgerButton && navigation) {
-    
-    let isMenuOpen = false;
-    
-    // Burger-Menü Toggle
-    burgerButton.addEventListener("click", function(event) {
-      event.stopPropagation();
-      
-      isMenuOpen = !isMenuOpen;
-      
-      // Navigation ein-/ausblenden
-      navigation.classList.toggle("aktiv");
-      
-      // Burger-Animation
-      const spans = burgerButton.querySelectorAll("span");
-      if (isMenuOpen) {
-        // Menü geöffnet - X-Form
-        spans[0].style.transform = "rotate(45deg) translate(6px, 6px)";
-        spans[1].style.opacity = "0";
-        spans[2].style.transform = "rotate(-45deg) translate(6px, -6px)";
-        
-        // Body-Scroll sperren
-        document.body.style.overflow = "hidden";
-        
-      } else {
-        // Menü geschlossen - Burger-Form
-        spans[0].style.transform = "none";
-        spans[1].style.opacity = "1";
-        spans[2].style.transform = "none";
-        
-        // Body-Scroll freigeben
-        document.body.style.overflow = "";
-      }
-      
-      // ARIA-Attribute aktualisieren
-      burgerButton.setAttribute("aria-expanded", isMenuOpen);
-    });
-    
-    // Menü schließen bei Klick auf Nav-Link
-    const navLinks = navigation.querySelectorAll("a");
-    navLinks.forEach(function(link) {
-      link.addEventListener("click", function() {
-        if (window.innerWidth <= 768) {
-          navigation.classList.remove("aktiv");
-          
-          // Burger zurücksetzen
-          const spans = burgerButton.querySelectorAll("span");
-          spans[0].style.transform = "none";
-          spans[1].style.opacity = "1";
-          spans[2].style.transform = "none";
-          
-          isMenuOpen = false;
-          burgerButton.setAttribute("aria-expanded", "false");
-          document.body.style.overflow = "";
-        }
-      });
-    });
-    
-    // Menü schließen bei Klick außerhalb
-    document.addEventListener("click", function(event) {
-      if (isMenuOpen && 
-          !navigation.contains(event.target) && 
-          !burgerButton.contains(event.target)) {
-        
-        navigation.classList.remove("aktiv");
-        
-        // Burger zurücksetzen
-        const spans = burgerButton.querySelectorAll("span");
-        spans[0].style.transform = "none";
-        spans[1].style.opacity = "1";
-        spans[2].style.transform = "none";
-        
-        isMenuOpen = false;
-        burgerButton.setAttribute("aria-expanded", "false");
-        document.body.style.overflow = "";
-      }
-    });
-    
-    // Menü schließen mit ESC-Taste
-    document.addEventListener("keydown", function(event) {
-      if (isMenuOpen && event.key === "Escape") {
-        navigation.classList.remove("aktiv");
-        
-        // Burger zurücksetzen
-        const spans = burgerButton.querySelectorAll("span");
-        spans[0].style.transform = "none";
-        spans[1].style.opacity = "1";
-        spans[2].style.transform = "none";
-        
-        isMenuOpen = false;
-        burgerButton.setAttribute("aria-expanded", "false");
-        document.body.style.overflow = "";
-      }
-    });
-    
-    // Menü automatisch schließen bei Resize zu Desktop
-    window.addEventListener("resize", function() {
-      if (window.innerWidth > 768 && isMenuOpen) {
-        navigation.classList.remove("aktiv");
-        
-        // Burger zurücksetzen
-        const spans = burgerButton.querySelectorAll("span");
-        spans[0].style.transform = "none";
-        spans[1].style.opacity = "1";
-        spans[2].style.transform = "none";
-        
-        isMenuOpen = false;
-        burgerButton.setAttribute("aria-expanded", "false");
-        document.body.style.overflow = "";
-      }
-    });
+  // Prüfen ob Navigationselemente existieren
+  if (!burgerButton || !navigation) {
+    console.warn("Navigation-Elemente nicht gefunden - Menüfunktion deaktiviert");
+    return;
   }
   
-  // ========================================================================
-  // FOOTER JAHR AKTUALISIEREN
-  // ========================================================================
+  let isMenuOpen = false;
   
+  // Burger-Menü Toggle
+  burgerButton.addEventListener("click", function(event) {
+    event.stopPropagation();
+    
+    isMenuOpen = !isMenuOpen;
+    
+    // Navigation ein-/ausblenden
+    navigation.classList.toggle("aktiv");
+    
+    // Burger-Animation
+    const spans = burgerButton.querySelectorAll("span");
+    if (isMenuOpen) {
+      // Menü geöffnet - X-Form
+      spans[0].style.transform = "rotate(45deg) translate(6px, 6px)";
+      spans[1].style.opacity = "0";
+      spans[2].style.transform = "rotate(-45deg) translate(6px, -6px)";
+      
+      // Body-Scroll sperren
+      document.body.style.overflow = "hidden";
+      
+      // ARIA-Attribute aktualisieren
+      burgerButton.setAttribute("aria-expanded", "true");
+      burgerButton.setAttribute("aria-label", "Menü schließen");
+    } else {
+      // Menü geschlossen - Burger-Form
+      spans[0].style.transform = "none";
+      spans[1].style.opacity = "1";
+      spans[2].style.transform = "none";
+      
+      // Body-Scroll freigeben
+      document.body.style.overflow = "";
+      
+      // ARIA-Attribute aktualisieren
+      burgerButton.setAttribute("aria-expanded", "false");
+      burgerButton.setAttribute("aria-label", "Menü öffnen");
+    }
+  });
+  
+  // Menü schließen bei Klick auf Nav-Link
+  const navLinks = navigation.querySelectorAll("a");
+  navLinks.forEach(function(link) {
+    link.addEventListener("click", function() {
+      if (window.innerWidth <= 768 && isMenuOpen) {
+        closeMobileMenu();
+      }
+    });
+  });
+  
+  // Menü schließen bei Klick außerhalb
+  document.addEventListener("click", function(event) {
+    if (isMenuOpen && 
+        !navigation.contains(event.target) && 
+        !burgerButton.contains(event.target)) {
+      closeMobileMenu();
+    }
+  });
+  
+  // Menü schließen mit ESC-Taste
+  document.addEventListener("keydown", function(event) {
+    if (isMenuOpen && event.key === "Escape") {
+      closeMobileMenu();
+    }
+  });
+  
+  // Menü automatisch schließen bei Resize zu Desktop
+  window.addEventListener("resize", function() {
+    if (window.innerWidth > 768 && isMenuOpen) {
+      closeMobileMenu();
+    }
+  });
+  
+  // Hilfsfunktion zum Schließen des Mobilmenüs
+  function closeMobileMenu() {
+    navigation.classList.remove("aktiv");
+    
+    // Burger zurücksetzen
+    const spans = burgerButton.querySelectorAll("span");
+    spans[0].style.transform = "none";
+    spans[1].style.opacity = "1";
+    spans[2].style.transform = "none";
+    
+    isMenuOpen = false;
+    burgerButton.setAttribute("aria-expanded", "false");
+    burgerButton.setAttribute("aria-label", "Menü öffnen");
+    document.body.style.overflow = "";
+  }
+}
+
+function updateFooterYear() {
   const yearElement = document.getElementById("jahr");
   if (yearElement) {
     yearElement.textContent = new Date().getFullYear();
   }
-  
-  // ========================================================================
-  // SMOOTH SCROLL FÜR INTERNE LINKS
-  // ========================================================================
-  
+}
+
+function initializeSmoothScroll() {
   const internalLinks = document.querySelectorAll('a[href^="#"]');
+  
   internalLinks.forEach(function(link) {
     link.addEventListener("click", function(event) {
       const targetId = this.getAttribute("href");
@@ -216,7 +222,8 @@ document.addEventListener("DOMContentLoaded", function() {
           event.preventDefault();
           
           // Header-Höhe berücksichtigen
-          const headerHeight = document.querySelector(".header").offsetHeight || 0;
+          const header = document.querySelector(".header");
+          const headerHeight = header ? header.offsetHeight : 0;
           const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
           
           // Smooth Scroll
@@ -233,15 +240,15 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     });
   });
-  
-  // ========================================================================
-  // PERFORMANCE OPTIMIERUNGEN
-  // ========================================================================
-  
+}
+
+function initializePerformanceOptimizations() {
   // Font Loading Optimierung
   if ("fonts" in document) {
     document.fonts.ready.then(function() {
       document.documentElement.classList.add("fonts-loaded");
+    }).catch(function(error) {
+      console.log("Font Loading Optimierung fehlgeschlagen:", error);
     });
   }
   
@@ -250,14 +257,11 @@ document.addEventListener("DOMContentLoaded", function() {
   window.addEventListener("resize", function() {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(function() {
-      // Hier könnten Resize-abhängige Funktionen hin
+      // Resize-abhängige Funktionen hier
     }, 250);
   });
   
-  // ========================================================================
-  // FEHLERBEHANDLUNG
-  // ========================================================================
-  
+  // Fehlerbehandlung
   window.addEventListener("error", function(event) {
     console.error("JavaScript Fehler:", event.error);
   });
@@ -265,20 +269,12 @@ document.addEventListener("DOMContentLoaded", function() {
   window.addEventListener("unhandledrejection", function(event) {
     console.error("Unbehandelte Promise-Ablehnung:", event.reason);
   });
-  
-  // ========================================================================
-  // INITIALISIERUNGS-KONSOLE LOG
-  // ========================================================================
-  
-  console.log("Matthias Silberhain Website erfolgreich geladen");
-});
+}
 
 // ============================================================================
 // WINDOW LOAD EVENT (NACH ALLEN RESSOURCEN)
 // ============================================================================
-
 window.addEventListener("load", function() {
-  // Zusätzliche Initialisierung nach vollständigem Laden
   console.log("Alle Ressourcen geladen");
   
   // Service Worker Registrierung (optional für PWA)
