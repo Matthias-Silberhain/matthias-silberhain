@@ -35,7 +35,12 @@ body {
   justify-content: center;
   align-items: center;
   z-index: 9999;
-  transition: opacity 0.6s ease;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+#preloader.hidden {
+  opacity: 0;
+  visibility: hidden;
 }
 
 .preloader-inner {
@@ -86,18 +91,18 @@ body {
   animation: blink 1s infinite;
 }
 
-/* ANIMATIONEN */
+/* ANIMATIONEN - KORRIGIERTE SYNTAX */
 @keyframes blink {
   0%, 50% { opacity: 1; }
   51%, 100% { opacity: 0; }
 }
 
 @keyframes logoAppear {
-  from { 
+  0% { 
     opacity: 0;
     transform: translateX(-50%) translateY(-20px);
   }
-  to { 
+  100% { 
     opacity: 1;
     transform: translateX(-50%) translateY(0);
   }
@@ -192,11 +197,11 @@ body {
 }
 
 @keyframes contentFadeIn {
-  from {
+  0% {
     opacity: 0;
     transform: translateY(20px);
   }
-  to {
+  100% {
     opacity: 1;
     transform: translateY(0);
   }
@@ -563,7 +568,6 @@ strong {
   margin: 50px 0;
   padding: 40px 20px;
   text-align: center;
-  /* BORDERS ENTFERNT: keine feinen Striche mehr über/unter den Social Media Buttons */
   border-top: none;
   border-bottom: none;
 }
@@ -804,47 +808,46 @@ strong {
 }
 
 /* ==========================================================================
-   DARK MODE STYLES - KORRIGIERT FÜR MOBILE
+   DARK MODE STYLES - KONSOLIDIERT & OPTIMIERT
    ========================================================================== */
 
-/* Dark Mode aktiv - Hintergrund Dunkelgrau mit höherer Spezifität */
-body.dark-mode,
+body.dark-mode {
+  background-color: #1a1a1a;
+}
+
+/* Alle Container im Dark Mode */
 body.dark-mode .header,
 body.dark-mode .inhalt,
 body.dark-mode main,
 body.dark-mode section,
-body.dark-mode footer {
-  background-color: #1a1a1a !important;
-}
-
-/* Preloader im Dark Mode */
+body.dark-mode footer,
 body.dark-mode #preloader {
-  background-color: #1a1a1a !important;
+  background-color: #1a1a1a;
 }
 
-/* Schriftfarben bleiben SILBER - nur Hintergrund ändert sich mit !important */
+/* Schriftfarben bleiben SILBER */
 body.dark-mode h1,
 body.dark-mode .social-title {
-  color: #e4e6ea !important;
+  color: #e4e6ea;
 }
 
 body.dark-mode p,
 body.dark-mode .footer,
 body.dark-mode .social-name {
-  color: #b0b5bc !important;
+  color: #b0b5bc;
 }
 
 body.dark-mode strong {
-  color: #e4e6ea !important;
+  color: #e4e6ea;
 }
 
 /* Navigation bleibt silber */
 body.dark-mode .hauptnavigation a {
-  color: #d6d9de !important;
+  color: #d6d9de;
 }
 
 body.dark-mode .hauptnavigation a:hover {
-  color: #ffffff !important;
+  color: #ffffff;
 }
 
 /* Lichtkanten (etwas heller für besseren Kontrast) */
@@ -855,66 +858,62 @@ body.dark-mode .footer-lichtkante {
     transparent,
     rgba(220, 225, 235, 0.7),
     transparent
-  ) !important;
-  box-shadow: 0 0 15px rgba(220, 225, 235, 0.2) !important;
+  );
+  box-shadow: 0 0 15px rgba(220, 225, 235, 0.2);
 }
 
 /* Social Media - Farben bleiben silber */
 body.dark-mode .social-link {
-  color: #9da2a8 !important;
+  color: #9da2a8;
 }
 
 body.dark-mode .social-icon {
-  fill: #9da2a8 !important;
+  fill: #9da2a8;
 }
 
 /* Buttons bleiben silber */
 body.dark-mode .silber-button {
-  color: #d6d9de !important;
-  border-color: rgba(220, 225, 235, 0.4) !important;
+  color: #d6d9de;
+  border-color: rgba(220, 225, 235, 0.4);
 }
 
 body.dark-mode .silber-button.secondary {
-  border-color: rgba(220, 225, 235, 0.3) !important;
-  background: rgba(30, 30, 30, 0.5) !important;
+  border-color: rgba(220, 225, 235, 0.3);
+  background: rgba(30, 30, 30, 0.5);
 }
 
 /* ==========================================================================
-   MOBILE DARK MODE FIXES - SPEZIFISCH FÜR MOBILE
+   MOBILE DARK MODE ANPASSUNGEN
    ========================================================================== */
 
-/* Sicherstellen, dass Dark Mode auf Mobile funktioniert */
 @media screen and (max-width: 768px) {
   body.dark-mode .header {
-    background-color: #1a1a1a !important;
-    padding: 25px 15px 15px !important;
+    background-color: #1a1a1a;
+    padding: 25px 15px 15px;
   }
   
-  /* Burger Menu im Dark Mode */
   body.dark-mode .burger span {
-    background-color: #d6d9de !important;
+    background-color: #d6d9de;
   }
   
-  /* Mobile Navigation im Dark Mode */
   body.dark-mode .hauptnavigation {
-    background-color: rgba(26, 26, 26, 0.98) !important;
+    background-color: rgba(26, 26, 26, 0.98);
   }
   
   body.dark-mode .hauptnavigation a {
-    border-color: rgba(220, 225, 235, 0.2) !important;
+    border-color: rgba(220, 225, 235, 0.2);
   }
 }
 
-/* Kleine Mobile Geräte */
 @media screen and (max-width: 480px) {
   body.dark-mode .header {
-    padding: 20px 10px 10px !important;
-    background-color: #1a1a1a !important;
+    padding: 20px 10px 10px;
+    background-color: #1a1a1a;
   }
 }
 
 /* ==========================================================================
-   DARK MODE TOGGLE STYLES - FÜR ALLE GERÄTE
+   DARK MODE TOGGLE STYLES
    ========================================================================== */
 
 .dark-mode-toggle {
