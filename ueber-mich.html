@@ -18,6 +18,9 @@
 
 <body>
 
+<!-- Mobile Menu Overlay -->
+<div class="menu-overlay" id="menuOverlay"></div>
+
 <!-- ================= HEADER ================= -->
 <header class="header">
   <img src="assets/images/logo.png" alt="Matthias Silberhain Logo" class="logo">
@@ -42,17 +45,17 @@
 <!-- ================= HAUPTINHALT ================= -->
 <main class="inhalt">
   <section class="ueber-mich">
-    <!-- FIXIERTE HAUPTÜBERSCHRIFT -->
-    <h1 class="credo-headline">Ich schreibe, weil die Wahrheit eine Stimme braucht.</h1>
+    <!-- HAUPTTITEL -->
+    <h1 class="credo-headline">Über mich</h1>
     
-    <!-- ZITAT BLOCK MIT ANFÜHRUNGSZEICHEN -->
+    <!-- ZITAT BLOCK -->
     <div class="credo-container">
       <div class="credo-quote">
         <div class="quote-marks">
           <span class="quote-mark-left">"</span>
           <span class="quote-mark-right">"</span>
         </div>
-        <p class="credo-text"></p>
+        <p class="credo-text">Ich schreibe, weil die Wahrheit eine Stimme braucht.</p>
       </div>
       <p class="credo-subtitle">
         Dieses Credo begleitet meine Arbeit als Autor von Anfang an. Es ist kein marketingtauglicher Leitsatz, sondern der Grund, warum ich schreibe und veröffentliche.
@@ -61,26 +64,52 @@
     
     <!-- HAUPTTEXT -->
     <div class="ueber-mich-content">
-      <p>
-        Mein Name ist <strong>Matthias Silberhain</strong>. In meinen Büchern setze ich mich mit Macht, Verantwortung und den oft unsichtbaren Mechanismen auseinander, die Geschichte, Politik und Gesellschaft prägen. Mich interessieren nicht die einfachen Erklärungen oder die bequem erzählten Oberflächen. Mich interessiert das, was darunterliegt: Zusammenhänge, Motive und die Folgen menschlichen Handelns.
+      <p class="ueber-mich-intro">
+        Mein Name ist <strong>Matthias Silberhain</strong>. In meinen Büchern setze ich mich mit Macht, Verantwortung und den oft unsichtbaren Mechanismen auseinander, die Geschichte, Politik und Gesellschaft prägen.
+      </p>
+      
+      <p class="break-line">
+        Mich interessieren nicht die einfachen Erklärungen oder die bequem erzählten Oberflächen.
+      </p>
+      <p class="small-margin">
+        Mich interessiert das, was darunterliegt:
+      </p>
+      <p class="highlight-paragraph">
+        Zusammenhänge, Motive und die Folgen menschlichen Handelns.
       </p>
       
       <p>
-        Ich schreibe über Themen, die unbequem sind. Über Strukturen, die selten offen benannt werden. Über historische und gesellschaftliche Entwicklungen, deren Auswirkungen bis in unsere Gegenwart reichen. Dabei geht es mir nicht darum, zu polarisieren oder zu provozieren, sondern darum, Klarheit zu schaffen. Wahrheit entsteht nicht durch Lautstärke, sondern durch Genauigkeit, Konsequenz und den Mut, Dinge auszusprechen.
+        Ich schreibe über Themen, die unbequem sind. Über Strukturen, die selten offen benannt werden.
+      </p>
+      <p class="break-line">
+        Über historische und gesellschaftliche Entwicklungen, deren Auswirkungen bis in unsere Gegenwart reichen.
+      </p>
+      <p>
+        Dabei geht es mir nicht darum, zu polarisieren oder zu provozieren, sondern darum, Klarheit zu schaffen.
+      </p>
+      <p class="attention-line">
+        Wahrheit entsteht nicht durch Lautstärke, sondern durch Genauigkeit, Konsequenz und den Mut, Dinge auszusprechen.
       </p>
       
-      <div class="arbeit-methode">
-        <p>
-          Meine Texte entstehen aus <strong>intensiver Recherche, kritischer Analyse</strong> und persönlicher Auseinandersetzung mit den behandelten Themen. Ich trenne Fakten von Meinungen und kennzeichne, wo Interpretation beginnt. Diese Haltung prägt meinen Stil: sachlich, direkt und frei von unnötiger Dramatisierung. Leserinnen und Leser sollen nicht gelenkt, sondern befähigt werden, selbst zu denken.
-        </p>
-      </div>
-      
       <p>
-        Ich schreibe nicht für den schnellen Konsum. Meine Bücher richten sich an Menschen, die bereit sind, genauer hinzusehen, Fragen zuzulassen und sich mit komplexen Inhalten auseinanderzusetzen. An Leser, die verstehen wollen, wie Macht wirkt, warum Geschichte wiederkehrt und welche Verantwortung daraus entsteht.
+        Meine Texte entstehen aus <strong>intensiver Recherche, kritischer Analyse</strong> und persönlicher Auseinandersetzung mit den behandelten Themen. Ich trenne Fakten von Meinungen und kennzeichne, wo Interpretation beginnt. Diese Haltung prägt meinen Stil: sachlich, direkt und frei von unnötiger Dramatisierung. Leserinnen und Leser sollen nicht gelenkt, sondern befähigt werden, selbst zu denken.
       </p>
       
+      <p class="break-line">
+        Ich schreibe nicht für den schnellen Konsum.
+      </p>
       <p>
-        Unter dem Namen <strong>Matthias Silberhain</strong> verfolge ich eine klare Linie: Literatur mit Substanz, Haltung und Tiefe. Bücher, die nicht beruhigen, sondern aufklären. Texte, die bleiben, weil sie etwas berühren und etwas fordern.
+        Meine Bücher richten sich an Menschen, die bereit sind, genauer hinzusehen, Fragen zuzulassen und sich mit komplexen Inhalten auseinanderzusetzen.
+      </p>
+      <p>
+        An Leser, die verstehen wollen, wie Macht wirkt, warum Geschichte wiederkehrt und welche Verantwortung daraus entsteht.
+      </p>
+      
+      <p class="break-line">
+        Unter dem Namen <strong>Matthias Silberhain</strong> verfolge ich eine klare Linie:
+      </p>
+      <p>
+        Literatur mit Substanz, Haltung und Tiefe. Bücher, die nicht beruhigen, sondern aufklären. Texte, die bleiben, weil sie etwas berühren und etwas fordern.
       </p>
       
       <div class="abschnitt-schluss">
@@ -184,64 +213,11 @@
 
 <!-- ================= FOOTER ================= -->
 <footer class="footer">
-  <div class="footer-lichtkante"></div>
   <p>© <span id="jahr"></span> Matthias Silberhain</p>
 </footer>
 
 <!-- ================= JAVASCRIPT ================= -->
 <script src="assets/js/menu.js"></script>
-
-<script>
-// Footer Jahr aktualisieren (für Unterseiten ohne Preloader)
-document.addEventListener("DOMContentLoaded", function() {
-  const yearElement = document.getElementById("jahr");
-  if (yearElement) {
-    yearElement.textContent = new Date().getFullYear();
-  }
-  
-  // Mobile Menu Funktionalität für Unterseiten
-  const burgerButton = document.getElementById("burger");
-  const navigation = document.getElementById("navigation");
-  
-  if (burgerButton && navigation) {
-    let isMenuOpen = false;
-    
-    burgerButton.addEventListener("click", function(event) {
-      event.stopPropagation();
-      isMenuOpen = !isMenuOpen;
-      navigation.classList.toggle("aktiv");
-      
-      const spans = burgerButton.querySelectorAll("span");
-      if (isMenuOpen) {
-        spans[0].style.transform = "rotate(45deg) translate(6px, 6px)";
-        spans[1].style.opacity = "0";
-        spans[2].style.transform = "rotate(-45deg) translate(6px, -6px)";
-        document.body.style.overflow = "hidden";
-      } else {
-        spans[0].style.transform = "none";
-        spans[1].style.opacity = "1";
-        spans[2].style.transform = "none";
-        document.body.style.overflow = "";
-      }
-    });
-    
-    // Menü schließen bei Klick auf Link
-    const navLinks = navigation.querySelectorAll("a");
-    navLinks.forEach(function(link) {
-      link.addEventListener("click", function() {
-        if (window.innerWidth <= 768) {
-          navigation.classList.remove("aktiv");
-          const spans = burgerButton.querySelectorAll("span");
-          spans[0].style.transform = "none";
-          spans[1].style.opacity = "1";
-          spans[2].style.transform = "none";
-          document.body.style.overflow = "";
-        }
-      });
-    });
-  }
-});
-</script>
 
 </body>
 </html>
