@@ -19,6 +19,7 @@ body {
   color: #cfd2d6;
   line-height: 1.65;
   min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* ==========================================================================
@@ -116,6 +117,7 @@ body {
   text-align: center;
   background-color: #000000;
   position: relative;
+  transition: background-color 0.3s ease;
 }
 
 .logo {
@@ -184,6 +186,7 @@ body {
   );
   margin: 25px 0;
   box-shadow: 0 0 15px rgba(200, 205, 215, 0.3);
+  transition: all 0.3s ease;
 }
 
 /* ==========================================================================
@@ -241,6 +244,7 @@ strong {
   font-size: 0.9rem;
   color: #9da2a8;
   background-color: transparent;
+  transition: color 0.3s ease;
 }
 
 .footer-lichtkante {
@@ -480,12 +484,12 @@ strong {
    DUNKELHEITS-ANPASSUNG
    ========================================================================== */
 @media (prefers-color-scheme: dark) {
-  body {
+  body:not(.dark-mode) {
     background-color: #000000;
     color: #cfd2d6;
   }
   
-  .header {
+  .header:not(.dark-mode) {
     background-color: rgba(0, 0, 0, 0.95);
   }
 }
@@ -496,7 +500,9 @@ strong {
 @media print {
   #preloader,
   .burger,
-  .hauptnavigation {
+  .hauptnavigation,
+  .dark-mode-toggle,
+  .social-section {
     display: none !important;
   }
   
@@ -988,4 +994,163 @@ body.dark-mode .sun-icon {
     width: 18px;
     height: 18px;
   }
+}
+
+/* ==========================================================================
+   ÜBER MICH - SPEZIFISCHE STYLES
+   ========================================================================== */
+
+.ueber-mich .credo-headline {
+  margin-bottom: 50px;
+  position: relative;
+}
+
+.credo-container {
+  margin-bottom: 50px;
+  position: relative;
+}
+
+.credo-quote {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.quote-marks {
+  position: relative;
+}
+
+.quote-mark-left {
+  position: absolute;
+  left: -20px;
+  top: -10px;
+  font-size: 4rem;
+  color: rgba(200, 205, 215, 0.3);
+  font-family: "EB Garamond", serif;
+}
+
+.quote-mark-right {
+  position: absolute;
+  right: -20px;
+  bottom: -30px;
+  font-size: 4rem;
+  color: rgba(200, 205, 215, 0.3);
+  font-family: "EB Garamond", serif;
+}
+
+.credo-text {
+  font-family: "Cinzel", serif;
+  font-size: 1.8rem;
+  text-align: center;
+  color: #e4e6ea;
+  padding: 0 40px;
+  line-height: 1.4;
+  margin-bottom: 15px;
+}
+
+.credo-subtitle {
+  text-align: center;
+  font-style: italic;
+  color: #b0b5bc;
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+}
+
+.ueber-mich-content {
+  margin-top: 40px;
+}
+
+.ueber-mich-intro {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.break-line {
+  margin-top: 30px;
+  margin-bottom: 15px;
+  font-weight: 500;
+  color: #d6d9de;
+}
+
+.small-margin {
+  margin-bottom: 5px;
+}
+
+.highlight-paragraph {
+  color: #e4e6ea;
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin-bottom: 30px;
+  text-align: center;
+  text-shadow: 0 0 10px rgba(200, 200, 200, 0.2);
+}
+
+.attention-line {
+  font-style: italic;
+  color: #d6d9de;
+  border-left: 2px solid rgba(200, 205, 215, 0.5);
+  padding-left: 20px;
+  margin: 30px 0;
+}
+
+.abschnitt-schluss {
+  margin-top: 50px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(200, 205, 215, 0.2);
+}
+
+.schluss-zitat {
+  font-size: 1.2rem;
+  font-style: italic;
+  text-align: center;
+  color: #e4e6ea;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* Dark Mode Anpassungen für Über mich */
+body.dark-mode .credo-text {
+  color: #e4e6ea;
+}
+
+body.dark-mode .credo-subtitle {
+  color: #b0b5bc;
+}
+
+body.dark-mode .quote-mark-left,
+body.dark-mode .quote-mark-right {
+  color: rgba(220, 225, 235, 0.3);
+}
+
+body.dark-mode .attention-line {
+  border-left-color: rgba(220, 225, 235, 0.5);
+  color: #d6d9de;
+}
+
+body.dark-mode .abschnitt-schluss {
+  border-top-color: rgba(220, 225, 235, 0.2);
+}
+
+/* ==========================================================================
+   MENU OVERLAY STYLES
+   ========================================================================== */
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 997;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.menu-overlay.active {
+  display: block;
+  opacity: 1;
 }
