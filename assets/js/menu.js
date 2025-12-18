@@ -1,184 +1,170 @@
 // ============================================================================
-// EINFACHE MENU & PRELOADER IMPLEMENTATION
+// EINFACHES MENU & PRELOADER
 // ============================================================================
 
 (function() {
     'use strict';
-
-    // 1. Preloader mit Typewriter-Effekt
+    
+    console.log('📱 Menu & Preloader Script geladen');
+    
+    // 1. PRELOADER
     function initPreloader() {
         const preloader = document.getElementById('preloader');
         const typeText = document.getElementById('type-text');
-        const cursor = document.querySelector('.cursor');
-
-        if (!preloader || !typeText || !cursor) {
-            console.warn('Preloader-Elemente nicht gefunden');
-            if (preloader) {
-                preloader.style.display = 'none';
-            }
+        
+        if (!preloader || !typeText) {
+            if (preloader) preloader.style.display = 'none';
             return;
         }
-
+        
+        console.log('⌨️ Starte Typewriter...');
+        
         const text = 'MATTHIAS SILBERHAIN';
         let index = 0;
-        const typingSpeed = 90;
-        const minDisplayTime = 2000;
+        const speed = 90;
+        const minTime = 2000;
         const startTime = Date.now();
-
+        
         function typeWriter() {
             if (index < text.length) {
                 typeText.textContent += text.charAt(index);
                 index++;
-                setTimeout(typeWriter, typingSpeed);
+                setTimeout(typeWriter, speed);
             } else {
-                // Text vollständig - Cursor stoppen
-                cursor.style.animation = 'none';
-                cursor.style.opacity = '0';
-
-                // Mindest-Anzeigezeit berechnen
-                const elapsedTime = Date.now() - startTime;
-                const remainingTime = Math.max(0, minDisplayTime - elapsedTime);
-
-                // Preloader nach Mindestzeit ausblenden
+                // Text fertig - Cursor stoppen
+                const cursor = document.querySelector('.cursor');
+                if (cursor) {
+                    cursor.style.animation = 'none';
+                    cursor.style.opacity = '0';
+                }
+                
+                // Mindestzeit warten
+                const elapsed = Date.now() - startTime;
+                const remaining = Math.max(0, minTime - elapsed);
+                
                 setTimeout(function() {
                     preloader.style.opacity = '0';
-                    preloader.style.transition = 'opacity 0.6s ease';
-
+                    preloader.style.transition = 'opacity 0.5s ease';
+                    
                     setTimeout(function() {
                         preloader.style.display = 'none';
-                        console.log('Preloader ausgeblendet');
-                    }, 600);
-                }, remainingTime + 500);
+                        console.log('✅ Preloader ausgeblendet');
+                    }, 500);
+                }, remaining + 500);
             }
         }
-
-        // Typewriter mit Verzögerung starten
-        setTimeout(typeWriter, 500);
+        
+        // Starte mit Verzögerung
+        setTimeout(typeWriter, 300);
     }
-
-    // 2. Mobile Navigation (Burger-Menü)
+    
+    // 2. MOBILE MENU
     function initMobileMenu() {
-        const burgerButton = document.getElementById('burger');
-        const navigation = document.getElementById('navigation');
-        const menuOverlay = document.getElementById('menuOverlay');
-
-        if (!burgerButton || !navigation) {
-            console.warn('Burger-Menü Elemente nicht gefunden');
+        const burger = document.getElementById('burger');
+        const nav = document.getElementById('navigation');
+        const overlay = document.getElementById('menuOverlay');
+        
+        if (!burger || !nav) {
+            console.log('⚠️ Menu Elemente nicht gefunden');
             return;
         }
-
-        let isMenuOpen = false;
-
-        // Funktion zum Öffnen des Menüs
-        function openMenu() {
-            navigation.classList.add('aktiv');
-            burgerButton.classList.add('aktiv');
-            if (menuOverlay) {
-                menuOverlay.classList.add('active');
-            }
-            document.body.style.overflow = 'hidden';
-            isMenuOpen = true;
-            burgerButton.setAttribute('aria-expanded', 'true');
-        }
-
-        // Funktion zum Schließen des Menüs
-        function closeMenu() {
-            navigation.classList.remove('aktiv');
-            burgerButton.classList.remove('aktiv');
-            if (menuOverlay) {
-                menuOverlay.classList.remove('active');
-            }
-            document.body.style.overflow = '';
-            isMenuOpen = false;
-            burgerButton.setAttribute('aria-expanded', 'false');
-        }
-
-        // Event-Listener für den Burger-Button
-        burgerButton.addEventListener('click', function(event) {
-            event.stopPropagation();
-            if (isMenuOpen) {
-                closeMenu();
+        
+        console.log('🍔 Initialisiere Mobile Menu');
+        
+        let isOpen = false;
+        
+        // Burger Click Event
+        burger.addEventListener('click', function(e) {
+            e.stopPropagation();
+            
+            if (!isOpen) {
+                // ÖFFNE MENU
+                nav.classList.add('aktiv');
+                burger.classList.add('aktiv');
+                if (overlay) overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                isOpen = true;
+                console.log('📱 Menu geöffnet');
             } else {
-                openMenu();
+                // SCHLIEßE MENU
+                nav.classList.remove('aktiv');
+                burger.classList.remove('aktiv');
+                if (overlay) overlay.classList.remove('active');
+                document.body.style.overflow = '';
+                isOpen = false;
+                console.log('📱 Menu geschlossen');
             }
         });
-
-        // Event-Listener für das Overlay (um das Menü zu schließen)
-        if (menuOverlay) {
-            menuOverlay.addEventListener('click', closeMenu);
+        
+        // Overlay Click Event
+        if (overlay) {
+            overlay.addEventListener('click', function() {
+                if (isOpen) {
+                    nav.classList.remove('aktiv');
+                    burger.classList.remove('aktiv');
+                    overlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                    isOpen = false;
+                }
+            });
         }
-
-        // Event-Listener für die Navigation-Links (um das Menü zu schließen)
-        const navLinks = navigation.querySelectorAll('a');
+        
+        // Nav Links Click Event
+        const navLinks = nav.querySelectorAll('a');
         navLinks.forEach(function(link) {
             link.addEventListener('click', function() {
-                if (isMenuOpen) {
-                    closeMenu();
+                if (isOpen) {
+                    nav.classList.remove('aktiv');
+                    burger.classList.remove('aktiv');
+                    if (overlay) overlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                    isOpen = false;
                 }
             });
         });
-
-        // Event-Listener für die ESC-Taste
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape' && isMenuOpen) {
-                closeMenu();
-            }
-        });
-
-        // Event-Listener für das Schließen des Menüs bei Fenster-Resize (wenn zu Desktop)
-        window.addEventListener('resize', function() {
-            if (window.innerWidth > 768 && isMenuOpen) {
-                closeMenu();
+        
+        // ESC Key Event
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && isOpen) {
+                nav.classList.remove('aktiv');
+                burger.classList.remove('aktiv');
+                if (overlay) overlay.classList.remove('active');
+                document.body.style.overflow = '';
+                isOpen = false;
             }
         });
     }
-
-    // 3. Footer-Jahr aktualisieren
+    
+    // 3. FOOTER JAHR
     function updateFooterYear() {
-        const yearElement = document.getElementById('jahr');
-        if (yearElement) {
-            yearElement.textContent = new Date().getFullYear();
+        const year = document.getElementById('jahr');
+        if (year) {
+            year.textContent = new Date().getFullYear();
         }
     }
-
-    // 4. Smooth Scroll für interne Links
-    function initSmoothScroll() {
-        const internalLinks = document.querySelectorAll('a[href^="#"]');
-        internalLinks.forEach(function(link) {
-            link.addEventListener('click', function(event) {
-                const targetId = this.getAttribute('href');
-                if (targetId !== '#' && targetId.length > 1) {
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        event.preventDefault();
-                        const headerHeight = document.querySelector('.header')?.offsetHeight || 0;
-                        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-                        window.scrollTo({
-                            top: targetPosition - headerHeight - 20,
-                            behavior: 'smooth'
-                        });
-                        if (history.pushState) {
-                            history.pushState(null, null, targetId);
-                        }
-                    }
-                }
-            });
-        });
-    }
-
-    // 5. Hauptinitialisierung
-    function init() {
+    
+    // 4. HAUPTFUNKTION
+    function initAll() {
+        console.log('🚀 Starte Initialisierung...');
+        
+        // Preloader
         initPreloader();
+        
+        // Mobile Menu
         initMobileMenu();
+        
+        // Footer Jahr
         updateFooterYear();
-        initSmoothScroll();
+        
+        console.log('✅ Alles initialisiert');
     }
-
-    // Initialisierung starten
+    
+    // 5. STARTE INITIALISIERUNG
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', init);
+        document.addEventListener('DOMContentLoaded', initAll);
     } else {
-        init();
+        // DOM bereits geladen
+        setTimeout(initAll, 100);
     }
-
+    
 })();
