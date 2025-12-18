@@ -1287,3 +1287,107 @@ body.dark-mode .kerninhalt .zitat::before {
     font-size: 1.1rem;
   }
 }
+/* ==========================================================================
+   DARK MODE FIXES FÜR PC - SPEZIFIKATIONEN VERSTÄRKEN
+   ========================================================================== */
+
+/* GARANTIERTE DARK MODE HINTERGRÜNDE FÜR ALLE CONTAINER */
+body.dark-mode,
+body.dark-mode .header,
+body.dark-mode .inhalt,
+body.dark-mode .startseite,
+body.dark-mode .ueber-mich,
+body.dark-mode main,
+body.dark-mode section,
+body.dark-mode article,
+body.dark-mode div:not(.preloader-inner):not(.text-container):not(.social-icon-wrapper),
+body.dark-mode .social-section,
+body.dark-mode .footer {
+  background-color: #1a1a1a !important;
+}
+
+/* SPEZIELL FÜR INDEX-STARTPAGE ELEMENTE */
+body.dark-mode .einleitung,
+body.dark-mode .kerninhalt,
+body.dark-mode .lead-text,
+body.dark-mode .sub-lead-text,
+body.dark-mode .highlight,
+body.dark-mode .zitat {
+  background-color: #1a1a1a !important;
+}
+
+/* PRELOADER DARK MODE FIX */
+body.dark-mode #preloader {
+  background-color: #1a1a1a !important;
+}
+
+/* SILBERBALKEN DARK MODE */
+body.dark-mode .social-lichtkante {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(220, 225, 235, 0.7),
+    transparent
+  ) !important;
+  box-shadow: 0 0 15px rgba(220, 225, 235, 0.2) !important;
+}
+
+/* TEXTFARBEN FÜR ALLE ELEMENTE SICHERSTELLEN */
+body.dark-mode,
+body.dark-mode p,
+body.dark-mode span:not(.social-name),
+body.dark-mode div,
+body.dark-mode section {
+  color: #b0b5bc !important;
+}
+
+/* ÜBERSCHRIFTEN IM DARK MODE */
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode .credo-headline,
+body.dark-mode .social-title,
+body.dark-mode .lead-text {
+  color: #e4e6ea !important;
+}
+
+/* SPEZIELLE ELEMENTE FÜR INDEX.HTML */
+body.dark-mode .highlight {
+  color: #e4e6ea !important;
+  border-left-color: rgba(220, 225, 235, 0.3) !important;
+  border-right-color: rgba(220, 225, 235, 0.3) !important;
+}
+
+body.dark-mode .zitat {
+  color: #e4e6ea !important;
+}
+
+body.dark-mode .zitat-autor {
+  color: #b0b5bc !important;
+}
+
+/* ==========================================================================
+   MEDIA QUERY FIX FÜR PC (min-width: 769px)
+   ========================================================================== */
+
+@media screen and (min-width: 769px) {
+  /* STELLE SICHER DASS DARK MODE AUF PC VOLLSTÄNDIG FUNKTIONIERT */
+  body.dark-mode {
+    background-color: #1a1a1a !important;
+  }
+  
+  /* ALLE CONTAINER AUF PC */
+  body.dark-mode .header,
+  body.dark-mode .inhalt,
+  body.dark-mode .social-section,
+  body.dark-mode .footer {
+    background-color: #1a1a1a !important;
+  }
+  
+  /* VERHINDERE WEIßE RÄNDER AM RAND */
+  body.dark-mode html,
+  body.dark-mode body {
+    background-color: #1a1a1a !important;
+  }
+}
