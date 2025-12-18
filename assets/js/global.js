@@ -110,25 +110,21 @@
     // Theme sofort anwenden (verhindert Flackern)
     applyTheme(currentTheme);
     
-    // ========================================
-    // EVENT LISTENER FÜR ALLE BROWSER
-    // ========================================
-    
-    // 1. CLICK EVENT (Standard für Desktop)
+    // Event Listener
     darkModeToggle.addEventListener('click', function(event) {
       event.preventDefault();
       event.stopPropagation();
       toggleDarkMode();
     });
     
-    // 2. TOUCH EVENT (für Mobile/Safari)
+    // Touch Event für Mobile
     darkModeToggle.addEventListener('touchstart', function(event) {
       event.preventDefault();
       event.stopPropagation();
       toggleDarkMode();
     }, { passive: false });
     
-    // 3. KEYBOARD EVENT (für Barrierefreiheit)
+    // Keyboard Event
     darkModeToggle.addEventListener('keydown', function(event) {
       if (event.key === 'Enter' || event.key === ' ') {
         event.preventDefault();
