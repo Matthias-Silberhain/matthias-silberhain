@@ -44,6 +44,12 @@
             });
           });
           
+          // Copyright Jahr sofort setzen
+          const yearElement = document.getElementById('jahr');
+          if (yearElement && !yearElement.textContent) {
+            yearElement.textContent = new Date().getFullYear();
+          }
+          
           console.log('✅ Website ist jetzt voll klickbar!');
         }, 100);
       });
@@ -266,7 +272,7 @@
 
 <!-- ================= FOOTER ================= -->
 <footer class="footer">
- <footer class="footer"> <p>© <span id="jahr"></span> Matthias Silberhain</p> </footer>
+  <p>© <span id="jahr"></span> Matthias Silberhain</p>
 </footer>
 
 <!-- ================= JAVASCRIPT ================= -->
