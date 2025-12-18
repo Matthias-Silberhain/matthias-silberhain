@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Matthias Silberhain | Kontakt</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Kontaktieren Sie Matthias Silberhain">
+  <meta name="description" content="Kontaktieren Sie Matthias Silberhain für Anfragen, Lesungen und Zusammenarbeit">
   
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
@@ -15,9 +15,50 @@
   <!-- Favicon -->
   <link rel="icon" href="assets/images/logo.png" type="image/png">
   
+  <!-- Dark Mode Preload - KORRIGIERT -->
+  <script>
+    (function() {
+      // SOFORTIGE DARK MODE ANWENDUNG
+      try {
+        const savedTheme = localStorage.getItem('ms-theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+          document.documentElement.classList.add('dark-mode');
+          document.body.classList.add('dark-mode');
+        }
+      } catch(e) {
+        // Ignoriere Fehler
+      }
+      
+      // SOFORTIGE KLICKBARKEIT SICHERSTELLEN
+      document.addEventListener('DOMContentLoaded', function() {
+        // Alle interaktiven Elemente klickbar machen
+        const interactiveElements = ['button', 'a', '.burger', '.dark-mode-toggle', '.silber-button', '.social-link'];
+        
+        setTimeout(function() {
+          interactiveElements.forEach(selector => {
+            document.querySelectorAll(selector).forEach(el => {
+              el.style.pointerEvents = 'auto';
+              el.style.cursor = 'pointer';
+            });
+          });
+          
+          // Copyright Jahr sofort setzen
+          const yearElement = document.getElementById('jahr');
+          if (yearElement && !yearElement.textContent) {
+            yearElement.textContent = new Date().getFullYear();
+          }
+          
+          console.log('✅ Website ist jetzt voll klickbar!');
+        }, 100);
+      });
+    })();
+  </script>
+  
   <style>
     /* ==========================================================================
-       KONTAKTFORMULAR STYLES
+       KONTAKT SEITE STYLES
        ========================================================================== */
     
     .kontakt-container {
@@ -40,7 +81,7 @@
       text-shadow: 0 0 15px rgba(200, 200, 200, 0.2);
     }
     
-    /* Einleitungstext Styling */
+    /* Professioneller Einleitungstext */
     .kontakt-einleitung {
       background: rgba(200, 205, 215, 0.05);
       border-left: 3px solid rgba(200, 205, 215, 0.3);
@@ -66,173 +107,152 @@
       font-weight: 500;
     }
     
-    /* Kontaktinformationen */
-    .kontakt-details {
+    /* Haupt-Kontakt Box */
+    .kontakt-box {
       margin: 40px 0;
-      padding: 25px;
-      border-top: 1px solid rgba(200, 205, 215, 0.2);
-      border-bottom: 1px solid rgba(200, 205, 215, 0.2);
+      padding: 35px;
+      background: rgba(10, 10, 10, 0.3);
+      border: 1px solid rgba(200, 205, 215, 0.2);
+      border-radius: 4px;
       text-align: center;
+      transition: all 0.3s ease;
     }
     
-    .kontakt-details p {
-      margin: 10px 0;
-      color: #b0b5bc;
+    .kontakt-box:hover {
+      background: rgba(10, 10, 10, 0.4);
+      border-color: rgba(200, 205, 215, 0.4);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    
+    .kontakt-box h2 {
+      font-family: "Cinzel", serif;
+      color: #e4e6ea;
+      margin-bottom: 25px;
+      letter-spacing: 0.05em;
+      font-size: 1.5rem;
+    }
+    
+    .email-container {
+      margin: 30px 0;
+      padding: 25px;
+      background: rgba(200, 205, 215, 0.05);
+      border-radius: 4px;
     }
     
     .email-link {
       color: #d6d9de;
       text-decoration: none;
-      font-size: 1.1rem;
+      font-size: 1.4rem;
       transition: all 0.3s ease;
-      border-bottom: 1px solid rgba(200, 205, 215, 0.3);
-      padding-bottom: 2px;
+      padding: 12px 25px;
+      border: 2px solid rgba(200, 205, 215, 0.4);
+      border-radius: 4px;
+      display: inline-block;
+      background: rgba(10, 10, 10, 0.5);
+      letter-spacing: 0.05em;
     }
     
     .email-link:hover {
       color: #ffffff;
-      text-shadow: 0 0 10px rgba(200, 200, 200, 0.5);
-      border-bottom-color: rgba(200, 205, 215, 0.7);
+      text-shadow: 0 0 15px rgba(200, 200, 200, 0.5);
+      border-color: rgba(200, 205, 215, 0.7);
+      background: rgba(10, 10, 10, 0.7);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
     }
     
-    /* Formular Styling */
-    .kontakt-form {
-      margin: 50px 0;
+    .kontakt-box p {
+      margin: 15px 0;
+      color: #b0b5bc;
+      line-height: 1.6;
     }
     
-    .form-gruppe {
-      margin-bottom: 25px;
+    .kontakt-tipps {
+      margin-top: 30px;
+      padding-top: 25px;
+      border-top: 1px solid rgba(200, 205, 215, 0.2);
     }
     
-    .form-label {
-      display: block;
-      margin-bottom: 8px;
+    .kontakt-tipps h3 {
       font-family: "Cinzel", serif;
       color: #e4e6ea;
+      margin-bottom: 15px;
       letter-spacing: 0.05em;
-      font-size: 0.95rem;
+      font-size: 1.2rem;
     }
     
-    .form-input,
-    .form-textarea {
-      width: 100%;
-      padding: 12px 15px;
-      background: rgba(10, 10, 10, 0.7);
-      border: 1px solid rgba(200, 205, 215, 0.3);
-      border-radius: 4px;
-      color: #cfd2d6;
-      font-family: "EB Garamond", serif;
-      font-size: 1rem;
-      transition: all 0.3s ease;
+    .tipp-liste {
+      text-align: left;
+      max-width: 500px;
+      margin: 0 auto;
+      color: #b0b5bc;
     }
     
-    .form-input:focus,
-    .form-textarea:focus {
-      outline: none;
-      border-color: rgba(200, 205, 215, 0.7);
-      box-shadow: 0 0 15px rgba(192, 192, 192, 0.2);
-    }
-    
-    .form-textarea {
-      min-height: 150px;
-      resize: vertical;
-    }
-    
-    .optional-badge {
-      color: #9da2a8;
-      font-size: 0.85rem;
-      font-style: italic;
-      margin-left: 5px;
-    }
-    
-    /* Statusmeldungen */
-    .status-meldung {
-      padding: 15px;
-      margin: 20px 0;
-      border-radius: 4px;
-      text-align: center;
-      display: none;
-      animation: fadeIn 0.5s ease;
-    }
-    
-    .status-erfolg {
-      background: rgba(46, 125, 50, 0.2);
-      border: 1px solid rgba(76, 175, 80, 0.3);
-      color: #a5d6a7;
-    }
-    
-    .status-fehler {
-      background: rgba(211, 47, 47, 0.2);
-      border: 1px solid rgba(244, 67, 54, 0.3);
-      color: #ef9a9a;
-    }
-    
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    /* Senden Button */
-    .senden-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      padding: 15px 40px;
-      background: transparent;
-      color: #d6d9de;
-      border: 1px solid rgba(200, 205, 215, 0.4);
-      border-radius: 4px;
-      font-family: "Cinzel", serif;
-      letter-spacing: 0.1em;
-      text-decoration: none;
-      font-size: 0.95rem;
-      transition: all 0.3s ease;
-      cursor: pointer;
+    .tipp-liste li {
+      margin-bottom: 12px;
+      padding-left: 25px;
       position: relative;
-      overflow: hidden;
-      margin-top: 10px;
-      width: 100%;
     }
     
-    .senden-button::before {
-      content: '';
+    .tipp-liste li:before {
+      content: "→";
       position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, 
-        transparent, 
-        rgba(192, 192, 192, 0.2), 
-        transparent);
-      transition: left 0.5s ease;
-      z-index: -1;
+      left: 0;
+      color: #d6d9de;
     }
     
-    .senden-button:hover::before {
-      left: 100%;
+    /* Aktionsbuttons */
+    .kontakt-aktionen {
+      margin: 50px 0 30px;
+      text-align: center;
     }
     
-    .senden-button:hover {
-      background: rgba(200, 205, 215, 0.1);
-      color: #ffffff;
-      border-color: rgba(200, 205, 215, 0.7);
-      transform: translateY(-3px);
-      box-shadow: 
-        0 8px 20px rgba(0, 0, 0, 0.25),
-        0 0 15px rgba(192, 192, 192, 0.2);
+    .kontakt-aktionen h3 {
+      font-family: "Cinzel", serif;
+      color: #e4e6ea;
+      margin-bottom: 25px;
+      letter-spacing: 0.05em;
+      font-size: 1.3rem;
     }
     
-    .senden-button:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-      transform: none;
+    .aktions-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 30px;
     }
     
-    .senden-button:disabled:hover {
-      transform: none;
-      box-shadow: none;
+    /* Dark Mode Anpassungen */
+    body.dark-mode .kontakt-einleitung {
+      background: rgba(220, 225, 235, 0.07);
+      border-left-color: rgba(220, 225, 235, 0.4);
+      color: #b0b5bc;
+    }
+    
+    body.dark-mode .kontakt-box {
+      background: rgba(30, 30, 30, 0.5);
+      border-color: rgba(220, 225, 235, 0.25);
+    }
+    
+    body.dark-mode .kontakt-box:hover {
+      background: rgba(30, 30, 30, 0.7);
+      border-color: rgba(220, 225, 235, 0.4);
+    }
+    
+    body.dark-mode .email-container {
+      background: rgba(220, 225, 235, 0.05);
+    }
+    
+    body.dark-mode .email-link {
+      border-color: rgba(220, 225, 235, 0.4);
+      background: rgba(30, 30, 30, 0.6);
+    }
+    
+    body.dark-mode .email-link:hover {
+      border-color: rgba(220, 225, 235, 0.7);
+      background: rgba(30, 30, 30, 0.8);
     }
     
     /* Responsive Anpassungen */
@@ -250,8 +270,24 @@
         font-size: 1.05rem;
       }
       
-      .kontakt-details {
-        padding: 20px 15px;
+      .kontakt-box {
+        padding: 25px 20px;
+      }
+      
+      .email-link {
+        font-size: 1.2rem;
+        padding: 10px 20px;
+      }
+      
+      .aktions-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .aktions-buttons a {
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
       }
     }
     
@@ -266,7 +302,13 @@
       }
       
       .email-link {
-        font-size: 1rem;
+        font-size: 1.1rem;
+        padding: 10px 15px;
+      }
+      
+      .tipp-liste li {
+        padding-left: 20px;
+        font-size: 0.95rem;
       }
     }
   </style>
@@ -274,11 +316,32 @@
 
 <body>
 
+<!-- Mobile Menu Overlay -->
+<div class="menu-overlay" id="menuOverlay"></div>
+
 <!-- ================= HEADER ================= -->
 <header class="header">
   <img src="assets/images/logo.png" alt="Matthias Silberhain Logo" class="logo">
   
-  <div class="burger" id="burger">
+  <!-- Dark Mode Toggle Button -->
+  <button id="darkModeToggle" class="dark-mode-toggle" aria-label="Dark Mode umschalten" title="Dark Mode umschalten">
+    <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+    </svg>
+    <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </button>
+
+  <div class="burger" id="burger" title="Menü öffnen/schließen">
     <span></span>
     <span></span>
     <span></span>
@@ -312,57 +375,51 @@
       <p>Auch für Anfragen zu Kooperationen, Lesungen, Interviews oder anderen Projekten kannst du mich gerne kontaktieren. Bitte beschreibe dein Anliegen möglichst konkret, damit ich dir gezielt antworten kann.</p>
       
       <p>Ich bitte um Verständnis, dass Antworten manchmal etwas Zeit in Anspruch nehmen können. Gründliche Kommunikation ist mir wichtiger als schnelle, oberflächliche Reaktionen. Jede Rückmeldung erfolgt respektvoll und mit der nötigen Aufmerksamkeit.</p>
-      
-      <p>Nutze für deine Nachricht einfach das Kontaktformular oder die angegebene E-Mail-Adresse.<br>
-      <span class="einleitung-highlight">Ich melde mich so bald wie möglich bei dir.</span></p>
     </div>
     
-    <!-- Statusmeldungen -->
-    <div id="status-erfolg" class="status-meldung status-erfolg">
-      <p>Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet. Ich werde mich in Kürze bei Ihnen melden.</p>
+    <!-- Haupt-Kontakt Box -->
+    <div class="kontakt-box">
+      <h2>Direkter Kontakt per E-Mail</h2>
+      
+      <div class="email-container">
+        <p><strong>Primäre Kontaktadresse:</strong></p>
+        <a href="mailto:m.silberhain@mail.de" class="email-link">
+          m.silberhain@mail.de
+        </a>
+        <p style="margin-top: 15px; font-size: 0.95rem; color: #9da2a8;">
+          Klicken Sie auf die Adresse oder kopieren Sie sie in Ihr E-Mail-Programm.
+        </p>
+      </div>
+      
+      <p>Ich prüfe meine E-Mails regelmäßig und bemühe mich, Anfragen innerhalb von 5-7 Werktagen zu beantworten. Für dringende Anfragen bitte dies im Betreff der E-Mail vermerken.</p>
+      
+      <div class="kontakt-tipps">
+        <h3>Empfohlene Angaben für Ihre Anfrage:</h3>
+        <ul class="tipp-liste">
+          <li><strong>Betreff:</strong> Klare Beschreibung Ihres Anliegens</li>
+          <li><strong>Name:</strong> Ihr vollständiger Name</li>
+          <li><strong>Anliegen:</strong> Ausführliche Beschreibung Ihrer Anfrage</li>
+          <li><strong>Bezug:</strong> Bei welchem Werk/Thema geht es?</li>
+          <li><strong>Kontaktmöglichkeit:</strong> Unter welcher Adresse/Nr. sind Sie erreichbar?</li>
+        </ul>
+      </div>
     </div>
     
-    <div id="status-fehler" class="status-meldung status-fehler">
-      <p>Es gab ein Problem beim Senden Ihrer Nachricht. Bitte versuchen Sie es erneut oder senden Sie eine E-Mail direkt an m.silberhain@mail.de</p>
-    </div>
-    
-    <!-- Kontaktformular -->
-    <form id="kontaktformular" class="kontakt-form">
-      <div class="form-gruppe">
-        <label for="email" class="form-label">Ihre E-Mail-Adresse *</label>
-        <input type="email" id="email" class="form-input" required placeholder="Ihre E-Mail für die Rückmeldung">
+    <!-- Aktionsbuttons -->
+    <div class="kontakt-aktionen">
+      <h3>Weitere Möglichkeiten</h3>
+      <p>Wenn Sie sich für meine Arbeit interessieren oder vorab mehr erfahren möchten:</p>
+      <div class="aktions-buttons">
+        <a href="werke.html" class="silber-button">
+          <span>Meine Werke entdecken</span>
+          <svg class="button-arrow" viewBox="0 0 24 24">
+            <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+          </svg>
+        </a>
+        <a href="termine.html" class="silber-button secondary">
+          <span>Kommende Termine</span>
+        </a>
       </div>
-      
-      <div class="form-gruppe">
-        <label for="betreff" class="form-label">Betreff *</label>
-        <input type="text" id="betreff" class="form-input" required placeholder="Worum geht es?">
-      </div>
-      
-      <div class="form-gruppe">
-        <label for="telefon" class="form-label">Telefon <span class="optional-badge">(optional)</span></label>
-        <input type="tel" id="telefon" class="form-input" placeholder="Ihre Telefonnummer">
-      </div>
-      
-      <div class="form-gruppe">
-        <label for="handy" class="form-label">Handy <span class="optional-badge">(optional)</span></label>
-        <input type="tel" id="handy" class="form-input" placeholder="Ihre Mobilnummer">
-      </div>
-      
-      <div class="form-gruppe">
-        <label for="nachricht" class="form-label">Ihre Nachricht *</label>
-        <textarea id="nachricht" class="form-textarea" required placeholder="Ihre Nachricht an mich..."></textarea>
-      </div>
-      
-      <button type="submit" class="senden-button" id="senden-button">
-        <span>Nachricht senden</span>
-      </button>
-    </form>
-    
-    <!-- Alternative Kontaktmöglichkeiten -->
-    <div class="kontakt-details">
-      <p><strong>Direkter Kontakt per E-Mail:</strong></p>
-      <p><a href="mailto:m.silberhain@mail.de" class="email-link">m.silberhain@mail.de</a></p>
-      <p><em>Sie können mir auch direkt eine E-Mail senden, wenn Sie das Formular nicht nutzen möchten.</em></p>
     </div>
   </section>
 </main>
@@ -446,113 +503,12 @@
 
 <!-- ================= FOOTER ================= -->
 <footer class="footer">
-  <div class="footer-lichtkante"></div>
   <p>© <span id="jahr"></span> Matthias Silberhain</p>
 </footer>
 
 <!-- ================= JAVASCRIPT ================= -->
-<script>
-// Footer Jahr aktualisieren
-document.addEventListener("DOMContentLoaded", function() {
-  const yearElement = document.getElementById("jahr");
-  if (yearElement) {
-    yearElement.textContent = new Date().getFullYear();
-  }
-  
-  // Mobile Menu Funktionalität
-  const burgerButton = document.getElementById("burger");
-  const navigation = document.getElementById("navigation");
-  
-  if (burgerButton && navigation) {
-    let isMenuOpen = false;
-    
-    burgerButton.addEventListener("click", function(event) {
-      event.stopPropagation();
-      isMenuOpen = !isMenuOpen;
-      navigation.classList.toggle("aktiv");
-      
-      const spans = burgerButton.querySelectorAll("span");
-      if (isMenuOpen) {
-        spans[0].style.transform = "rotate(45deg) translate(6px, 6px)";
-        spans[1].style.opacity = "0";
-        spans[2].style.transform = "rotate(-45deg) translate(6px, -6px)";
-        document.body.style.overflow = "hidden";
-      } else {
-        spans[0].style.transform = "none";
-        spans[1].style.opacity = "1";
-        spans[2].style.transform = "none";
-        document.body.style.overflow = "";
-      }
-    });
-    
-    // Menü schließen bei Klick auf Link
-    const navLinks = navigation.querySelectorAll("a");
-    navLinks.forEach(function(link) {
-      link.addEventListener("click", function() {
-        if (window.innerWidth <= 768) {
-          navigation.classList.remove("aktiv");
-          const spans = burgerButton.querySelectorAll("span");
-          spans[0].style.transform = "none";
-          spans[1].style.opacity = "1";
-          spans[2].style.transform = "none";
-          document.body.style.overflow = "";
-        }
-      });
-    });
-  }
-  
-  // Kontaktformular-Funktionalität
-  const kontaktFormular = document.getElementById("kontaktformular");
-  const sendenButton = document.getElementById("senden-button");
-  const statusErfolg = document.getElementById("status-erfolg");
-  const statusFehler = document.getElementById("status-fehler");
-  
-  if (kontaktFormular) {
-    kontaktFormular.addEventListener("submit", function(event) {
-      event.preventDefault(); // Verhindert das Neuladen der Seite
-      
-      // Formulardaten sammeln
-      const email = document.getElementById("email").value;
-      const betreff = document.getElementById("betreff").value;
-      const telefon = document.getElementById("telefon").value;
-      const handy = document.getElementById("handy").value;
-      const nachricht = document.getElementById("nachricht").value;
-      
-      // Prüfen, ob alle Pflichtfelder ausgefüllt sind
-      if (!email || !betreff || !nachricht) {
-        statusErfolg.style.display = "none";
-        statusFehler.style.display = "block";
-        statusFehler.innerHTML = '<p>Bitte füllen Sie alle Pflichtfelder aus (mit * markiert).</p>';
-        return;
-      }
-      
-      // Button deaktivieren während des Sendens
-      sendenButton.disabled = true;
-      sendenButton.innerHTML = '<span>Wird gesendet...</span>';
-      
-      // E-Mail-Versand simulieren (ohne Server)
-      // In der Praxis würde hier eine Server-Anfrage stehen
-      setTimeout(function() {
-        statusFehler.style.display = "none";
-        statusErfolg.style.display = "block";
-        
-        // Formular zurücksetzen
-        kontaktFormular.reset();
-        
-        // Button wieder aktivieren
-        sendenButton.disabled = false;
-        sendenButton.innerHTML = '<span>Nachricht senden</span>';
-        
-        // Nach 8 Sekunden die Erfolgsmeldung ausblenden
-        setTimeout(function() {
-          statusErfolg.style.display = "none";
-        }, 8000);
-        
-      }, 2000); // Simuliere 2 Sekunden Verzögerung
-    });
-  }
-});
-</script>
+<script src="assets/js/global.js"></script>
+<script src="assets/js/menu.js"></script>
 
 </body>
 </html>
