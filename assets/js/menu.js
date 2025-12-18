@@ -1,276 +1,285 @@
 // ============================================================================
-// MATTHIAS SILBERHAIN - MENU & PRELOADER JAVASCRIPT
+// FUNKTIONIERENDE MENU & PRELOADER JAVASCRIPT
 // ============================================================================
 
 (function() {
-  'use strict';
-  
-  // ========================================================================
-  // 1. BROWSER ERKENNUNG FÜR DEBUGGING
-  // ========================================================================
-  function detectBrowser() {
-    const userAgent = navigator.userAgent;
-    let browser = "Unknown";
-    
-    if (userAgent.indexOf("Chrome") > -1 && userAgent.indexOf("Edg") === -1) {
-      browser = "Chrome";
-    } else if (userAgent.indexOf("Safari") > -1 && userAgent.indexOf("Chrome") === -1) {
-      browser = "Safari";
-    } else if (userAgent.indexOf("Firefox") > -1) {
-      browser = "Firefox";
-    } else if (userAgent.indexOf("Edg") > -1) {
-      browser = "Edge";
-    } else if (userAgent.indexOf("Opera") > -1 || userAgent.indexOf("OPR") > -1) {
-      browser = "Opera";
-    } else if (userAgent.indexOf("DuckDuckGo") > -1) {
-      browser = "DuckDuckGo";
-    }
-    
-    console.log(`🌐 Browser: ${browser}`);
-    return browser;
-  }
-  
-  // ========================================================================
-  // 2. PRELOADER FÜR DARK MODE ANPASSEN
-  // ========================================================================
-  function updatePreloaderForDarkMode() {
-    const preloader = document.getElementById("preloader");
-    if (preloader) {
-      if (document.documentElement.classList.contains('dark-mode')) {
-        preloader.style.backgroundColor = '#1a1a1a';
-      } else {
-        preloader.style.backgroundColor = '#000000';
-      }
-    }
-  }
-  
-  // ========================================================================
-  // 3. HAUPTINITIALISIERUNG
-  // ========================================================================
-  function initMenuAndPreloader() {
-    console.log('🚀 Menu & Preloader initialisiert');
-    
-    // Browser erkennen
-    detectBrowser();
+    'use strict';
     
     // ========================================================================
-    // 3A. PRELOADER MIT TYPEWRITER-EFFEKT
+    // 1. PRELOADER MIT TYPEWRITER-EFFEKT
     // ========================================================================
-    const preloader = document.getElementById("preloader");
-    const typeText = document.getElementById("type-text");
-    const cursor = document.querySelector(".cursor");
-    
-    if (preloader && typeText && cursor) {
-      console.log('⌨️ Preloader gefunden, starte Typewriter...');
-      
-      const text = "MATTHIAS SILBERHAIN";
-      let charIndex = 0;
-      const typingSpeed = 90;
-      const minDisplayTime = 2000;
-      const startTime = Date.now();
-      
-      function typeWriter() {
-        if (charIndex < text.length) {
-          typeText.textContent += text.charAt(charIndex);
-          charIndex++;
-          setTimeout(typeWriter, typingSpeed);
-        } else {
-          // Text vollständig - Cursor stoppen
-          cursor.style.animation = "none";
-          cursor.style.opacity = "0";
-          
-          // Mindest-Anzeigezeit berechnen
-          const elapsedTime = Date.now() - startTime;
-          const remainingTime = Math.max(0, minDisplayTime - elapsedTime);
-          
-          // Preloader nach Mindestzeit ausblenden
-          setTimeout(function() {
-            preloader.style.opacity = "0";
-            preloader.style.transition = "opacity 0.6s ease";
+    function initPreloader() {
+        const preloader = document.getElementById("preloader");
+        const typeText = document.getElementById("type-text");
+        
+        if (preloader && typeText) {
+            console.log('⌨️ Preloader gefunden, starte Typewriter...');
             
-            setTimeout(function() {
-              preloader.style.display = "none";
-              window.dispatchEvent(new CustomEvent("preloaderComplete"));
-              console.log('✅ Preloader ausgeblendet');
-            }, 600);
-          }, remainingTime + 500);
-        }
-      }
-      
-      // Typewriter mit Verzögerung starten
-      setTimeout(function() {
-        // Preloader für Dark Mode anpassen
-        updatePreloaderForDarkMode();
-        typeWriter();
-      }, 500);
-      
-    } else {
-      console.warn('⚠️ Preloader-Elemente nicht gefunden');
-      if (preloader) {
-        preloader.style.display = "none";
-      }
-    }
-    
-    // ========================================================================
-    // 3B. BURGER-MENÜ FUNKTIONALITÄT
-    // ========================================================================
-    const burgerButton = document.getElementById("burger");
-    const navigation = document.getElementById("navigation");
-    
-    if (burgerButton && navigation) {
-      let isMenuOpen = false;
-      
-      burgerButton.addEventListener("click", function(event) {
-        event.stopPropagation();
-        isMenuOpen = !isMenuOpen;
-        navigation.classList.toggle("aktiv");
-        
-        const spans = burgerButton.querySelectorAll("span");
-        if (isMenuOpen) {
-          spans[0].style.transform = "rotate(45deg) translate(6px, 6px)";
-          spans[1].style.opacity = "0";
-          spans[2].style.transform = "rotate(-45deg) translate(6px, -6px)";
-          document.body.style.overflow = "hidden";
-        } else {
-          spans[0].style.transform = "none";
-          spans[1].style.opacity = "1";
-          spans[2].style.transform = "none";
-          document.body.style.overflow = "";
-        }
-        
-        burgerButton.setAttribute("aria-expanded", isMenuOpen);
-      });
-      
-      // Menü schließen bei Klick auf Nav-Link
-      const navLinks = navigation.querySelectorAll("a");
-      navLinks.forEach(function(link) {
-        link.addEventListener("click", function() {
-          if (window.innerWidth <= 768 && isMenuOpen) {
-            closeMobileMenu();
-          }
-        });
-      });
-      
-      // Menü schließen bei Klick außerhalb
-      document.addEventListener("click", function(event) {
-        if (isMenuOpen && 
-            !navigation.contains(event.target) && 
-            !burgerButton.contains(event.target)) {
-          closeMobileMenu();
-        }
-      });
-      
-      // Menü schließen mit ESC
-      document.addEventListener("keydown", function(event) {
-        if (isMenuOpen && event.key === "Escape") {
-          closeMobileMenu();
-        }
-      });
-      
-      // Menü schließen bei Resize zu Desktop
-      window.addEventListener("resize", function() {
-        if (window.innerWidth > 768 && isMenuOpen) {
-          closeMobileMenu();
-        }
-      });
-      
-      function closeMobileMenu() {
-        navigation.classList.remove("aktiv");
-        const spans = burgerButton.querySelectorAll("span");
-        spans[0].style.transform = "none";
-        spans[1].style.opacity = "1";
-        spans[2].style.transform = "none";
-        isMenuOpen = false;
-        burgerButton.setAttribute("aria-expanded", "false");
-        document.body.style.overflow = "";
-      }
-    }
-    
-    // ========================================================================
-    // 3C. FOOTER JAHR AKTUALISIEREN
-    // ========================================================================
-    const yearElement = document.getElementById("jahr");
-    if (yearElement) {
-      yearElement.textContent = new Date().getFullYear();
-    }
-    
-    // ========================================================================
-    // 3D. SMOOTH SCROLL FÜR INTERNE LINKS
-    // ========================================================================
-    const internalLinks = document.querySelectorAll('a[href^="#"]');
-    internalLinks.forEach(function(link) {
-      link.addEventListener("click", function(event) {
-        const targetId = this.getAttribute("href");
-        if (targetId !== "#" && targetId.length > 1) {
-          const targetElement = document.querySelector(targetId);
-          if (targetElement) {
-            event.preventDefault();
-            const headerHeight = document.querySelector(".header")?.offsetHeight || 0;
-            const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-            window.scrollTo({
-              top: targetPosition - headerHeight - 20,
-              behavior: "smooth"
-            });
-            if (history.pushState) {
-              history.pushState(null, null, targetId);
+            const text = "MATTHIAS SILBERHAIN";
+            let index = 0;
+            const speed = 90;
+            const minTime = 2000;
+            const startTime = Date.now();
+            
+            function typeWriter() {
+                if (index < text.length) {
+                    typeText.textContent += text.charAt(index);
+                    index++;
+                    setTimeout(typeWriter, speed);
+                } else {
+                    // Text vollständig - Cursor stoppen
+                    const cursor = document.querySelector(".cursor");
+                    if (cursor) {
+                        cursor.style.animation = "none";
+                        cursor.style.opacity = "0";
+                    }
+                    
+                    // Mindest-Anzeigezeit berechnen
+                    const elapsed = Date.now() - startTime;
+                    const remaining = Math.max(0, minTime - elapsed);
+                    
+                    // Preloader nach Mindestzeit ausblenden
+                    setTimeout(() => {
+                        preloader.style.opacity = "0";
+                        preloader.style.transition = "opacity 0.6s ease";
+                        
+                        setTimeout(() => {
+                            preloader.style.display = "none";
+                            console.log('✅ Preloader ausgeblendet');
+                        }, 600);
+                    }, remaining + 500);
+                }
             }
-          }
+            
+            // Typewriter mit Verzögerung starten
+            setTimeout(() => {
+                typeWriter();
+            }, 300);
+            
+        } else {
+            console.warn('⚠️ Preloader-Elemente nicht gefunden');
+            if (preloader) {
+                preloader.style.display = "none";
+            }
         }
-      });
-    });
-    
-    // ========================================================================
-    // 3E. DARK MODE PRELOADER SYNC
-    // ========================================================================
-    
-    // Initial anwenden
-    updatePreloaderForDarkMode();
-    
-    // Überwache Dark Mode Änderungen auf HTML und Body
-    const observer = new MutationObserver(function(mutations) {
-      mutations.forEach(function(mutation) {
-        if (mutation.attributeName === 'class' && 
-            (mutation.target === document.body || mutation.target === document.documentElement)) {
-          updatePreloaderForDarkMode();
-        }
-      });
-    });
-    
-    // Beobachte Body und HTML für Dark Mode Änderungen
-    observer.observe(document.body, { attributes: true });
-    observer.observe(document.documentElement, { attributes: true });
-    
-    // Event Listener für Dark Mode Änderungen von global.js
-    window.addEventListener('themeChanged', updatePreloaderForDarkMode);
-    
-    console.log('✅ Menu & Preloader Script vollständig geladen');
-  }
-  
-  // ========================================================================
-  // 4. INITIALISIERUNG STARTEN
-  // ========================================================================
-  
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initMenuAndPreloader);
-  } else {
-    initMenuAndPreloader();
-  }
-  
-  // ========================================================================
-  // 5. FEHLERBEHANDLUNG
-  // ========================================================================
-  
-  window.addEventListener("error", function(event) {
-    if (event.message && (event.message.includes('preloader') || event.message.includes('menu'))) {
-      console.error("Menu/Preloader Fehler:", event.error);
     }
-  });
-  
+    
+    // ========================================================================
+    // 2. BURGER-MENÜ FUNKTIONALITÄT (KORRIGIERT)
+    // ========================================================================
+    function initMobileMenu() {
+        const burgerButton = document.getElementById("burger");
+        const navigation = document.getElementById("navigation");
+        const menuOverlay = document.getElementById("menuOverlay");
+        
+        if (burgerButton && navigation) {
+            console.log('🍔 Mobile Menu gefunden');
+            
+            let isMenuOpen = false;
+            
+            // Burger Button Click Event
+            burgerButton.addEventListener("click", function(event) {
+                event.stopPropagation();
+                toggleMobileMenu();
+            });
+            
+            // Overlay Click Event
+            if (menuOverlay) {
+                menuOverlay.addEventListener("click", function() {
+                    if (isMenuOpen) {
+                        closeMobileMenu();
+                    }
+                });
+            }
+            
+            // Navigation Links Click Event
+            const navLinks = navigation.querySelectorAll("a");
+            navLinks.forEach(function(link) {
+                link.addEventListener("click", function() {
+                    if (window.innerWidth <= 768 && isMenuOpen) {
+                        closeMobileMenu();
+                    }
+                });
+            });
+            
+            // ESC Key Event
+            document.addEventListener("keydown", function(event) {
+                if (isMenuOpen && event.key === "Escape") {
+                    closeMobileMenu();
+                }
+            });
+            
+            // Resize Event
+            window.addEventListener("resize", function() {
+                if (window.innerWidth > 768 && isMenuOpen) {
+                    closeMobileMenu();
+                }
+            });
+            
+            // Toggle Menu Function
+            function toggleMobileMenu() {
+                isMenuOpen = !isMenuOpen;
+                
+                if (isMenuOpen) {
+                    openMobileMenu();
+                } else {
+                    closeMobileMenu();
+                }
+            }
+            
+            // Open Menu Function
+            function openMobileMenu() {
+                navigation.classList.add("aktiv");
+                burgerButton.classList.add("aktiv");
+                document.body.style.overflow = "hidden";
+                
+                if (menuOverlay) {
+                    menuOverlay.classList.add("active");
+                }
+                
+                burgerButton.setAttribute("aria-expanded", "true");
+                console.log('📱 Mobile Menu geöffnet');
+            }
+            
+            // Close Menu Function
+            function closeMobileMenu() {
+                navigation.classList.remove("aktiv");
+                burgerButton.classList.remove("aktiv");
+                document.body.style.overflow = "";
+                
+                if (menuOverlay) {
+                    menuOverlay.classList.remove("active");
+                }
+                
+                burgerButton.setAttribute("aria-expanded", "false");
+                isMenuOpen = false;
+                console.log('📱 Mobile Menu geschlossen');
+            }
+            
+            // Click outside to close
+            document.addEventListener("click", function(event) {
+                if (isMenuOpen && 
+                    !navigation.contains(event.target) && 
+                    !burgerButton.contains(event.target)) {
+                    closeMobileMenu();
+                }
+            });
+        } else {
+            console.warn('⚠️ Mobile Menu Elemente nicht gefunden');
+        }
+    }
+    
+    // ========================================================================
+    // 3. FOOTER JAHR AKTUALISIEREN
+    // ========================================================================
+    function updateFooterYear() {
+        const yearElement = document.getElementById("jahr");
+        if (yearElement) {
+            yearElement.textContent = new Date().getFullYear();
+            console.log('📅 Footer Jahr aktualisiert:', yearElement.textContent);
+        }
+    }
+    
+    // ========================================================================
+    // 4. SMOOTH SCROLL FÜR INTERNE LINKS
+    // ========================================================================
+    function initSmoothScroll() {
+        const internalLinks = document.querySelectorAll('a[href^="#"]');
+        internalLinks.forEach(function(link) {
+            link.addEventListener("click", function(event) {
+                const targetId = this.getAttribute("href");
+                if (targetId !== "#" && targetId.length > 1) {
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        event.preventDefault();
+                        const headerHeight = document.querySelector(".header")?.offsetHeight || 0;
+                        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                        window.scrollTo({
+                            top: targetPosition - headerHeight - 20,
+                            behavior: "smooth"
+                        });
+                        
+                        // Update URL
+                        if (history.pushState) {
+                            history.pushState(null, null, targetId);
+                        }
+                    }
+                }
+            });
+        });
+    }
+    
+    // ========================================================================
+    // 5. DARK MODE PRELOADER SYNC (EINFACHERE VERSION)
+    // ========================================================================
+    function initDarkModeSync() {
+        const preloader = document.getElementById("preloader");
+        
+        if (preloader) {
+            // Prüfe initialen Dark Mode
+            if (document.documentElement.classList.contains('dark-mode')) {
+                preloader.style.backgroundColor = '#1a1a1a';
+            }
+            
+            // Beobachte Dark Mode Änderungen (einfache Methode)
+            const observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.attributeName === 'class') {
+                        if (document.documentElement.classList.contains('dark-mode')) {
+                            preloader.style.backgroundColor = '#1a1a1a';
+                        } else {
+                            preloader.style.backgroundColor = '#000000';
+                        }
+                    }
+                });
+            });
+            
+            // Beobachte das html Element
+            observer.observe(document.documentElement, { attributes: true });
+        }
+    }
+    
+    // ========================================================================
+    // 6. HAUPTINITIALISIERUNG
+    // ========================================================================
+    function initAll() {
+        console.log('🚀 Starte Initialisierung...');
+        
+        // 1. Preloader starten
+        initPreloader();
+        
+        // 2. Mobile Menu initialisieren
+        initMobileMenu();
+        
+        // 3. Footer Jahr aktualisieren
+        updateFooterYear();
+        
+        // 4. Smooth Scroll initialisieren
+        initSmoothScroll();
+        
+        // 5. Dark Mode Sync für Preloader
+        initDarkModeSync();
+        
+        console.log('✅ Alle Funktionen initialisiert');
+    }
+    
+    // ========================================================================
+    // 7. INITIALISIERUNG STARTEN
+    // ========================================================================
+    
+    // Warte auf DOM
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initAll);
+    } else {
+        // DOM ist bereits geladen
+        setTimeout(initAll, 100);
+    }
+    
+    // ========================================================================
+    // 8. WINDOW LOAD EVENT
+    // ========================================================================
+    window.addEventListener("load", function() {
+        console.log("📦 Alle Ressourcen geladen");
+    });
+    
 })();
-
-// ============================================================================
-// WINDOW LOAD EVENT
-// ============================================================================
-window.addEventListener("load", function() {
-  console.log("📦 Alle Ressourcen geladen");
-});
