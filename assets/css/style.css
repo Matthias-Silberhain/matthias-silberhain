@@ -2056,3 +2056,57 @@ body.dark-mode .quellen-liste li:hover {
     padding: 20px 15px;
   }
 }
+/* ==========================================================================
+   ZUSÄTZLICHE ICONS FÜR DIGITALE LESEPROBE
+   ========================================================================== */
+
+/* Buch-Icon für digitale Leseprobe */
+.button-icon {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+.silber-button:hover .button-icon {
+  transform: scale(1.15);
+}
+
+/* Spezifische Icon-Farben */
+.silber-button .button-icon {
+  color: #c0c0c0;
+}
+
+.silber-button.secondary .button-icon {
+  color: #c0c0c0;
+}
+
+.silber-button.tertiary .button-icon {
+  color: #a0a0a0;
+}
+
+/* Responsive Anpassungen */
+@media (max-width: 768px) {
+  .buch-actions {
+    flex-direction: column;
+  }
+  
+  .button-group {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .button-group .silber-button {
+    flex: 1;
+    min-width: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .button-group {
+    flex-direction: column;
+  }
+  
+  .button-group .silber-button {
+    width: 100%;
+  }
+}
