@@ -1673,3 +1673,386 @@ body.dark-mode .logo:hover {
     filter: brightness(1.12) drop-shadow(0 0 22px rgba(220, 220, 220, 0.35));
   }
 }
+/* ==========================================================================
+   BUCH TEXT STYLES - MACHT UND UNTERGANG
+   ========================================================================== */
+
+/* Einleitung */
+.text-einleitung {
+  margin-bottom: 30px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid rgba(200, 200, 200, 0.2);
+}
+
+.text-einleitung p {
+  font-family: "EB Garamond", serif;
+  font-size: 1.25rem;
+  line-height: 1.8;
+  color: #e4e6ea;
+  margin-bottom: 20px;
+}
+
+.text-einleitung p:first-child {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #f0f0f0;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  position: relative;
+  padding-left: 20px;
+}
+
+.text-einleitung p:first-child::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10px;
+  bottom: 10px;
+  width: 3px;
+  background: linear-gradient(to bottom, #c0c0c0, transparent);
+}
+
+/* Hauptteil */
+.text-hauptteil {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin: 30px 0;
+}
+
+.text-abschnitt {
+  padding: 20px;
+  background: rgba(20, 20, 20, 0.3);
+  border-radius: 6px;
+  border: 1px solid rgba(200, 200, 200, 0.1);
+  transition: all 0.3s ease;
+}
+
+.text-abschnitt:hover {
+  border-color: rgba(200, 200, 200, 0.3);
+  background: rgba(25, 25, 25, 0.4);
+  transform: translateX(5px);
+}
+
+.text-abschnitt p {
+  font-family: "EB Garamond", serif;
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: #b0b5bc;
+  margin: 0;
+}
+
+.text-abschnitt.highlight {
+  border-left: 4px solid rgba(200, 200, 200, 0.5);
+  background: rgba(30, 30, 30, 0.4);
+}
+
+.text-abschnitt.highlight h4 {
+  font-family: "Cinzel", serif;
+  font-size: 1.3rem;
+  color: #e4e6ea;
+  margin-bottom: 15px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.text-abschnitt.highlight h4::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    rgba(200, 200, 200, 0.6) 0%, 
+    transparent 100%);
+}
+
+/* Kernaussage */
+.text-kernaussage {
+  margin: 35px 0;
+}
+
+.kernaussage-box {
+  padding: 25px;
+  background: linear-gradient(135deg, 
+    rgba(25, 25, 25, 0.6) 0%, 
+    rgba(35, 35, 35, 0.7) 100%);
+  border: 1px solid rgba(200, 200, 200, 0.2);
+  border-radius: 8px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.kernaussage-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(200, 200, 200, 0.4) 50%, 
+    transparent);
+}
+
+.kernaussage-icon {
+  width: 40px;
+  height: 40px;
+  color: #c0c0c0;
+  flex-shrink: 0;
+  margin-top: 5px;
+  stroke-width: 1.5;
+}
+
+.kernaussage-text {
+  font-family: "EB Garamond", serif;
+  font-size: 1.3rem;
+  line-height: 1.7;
+  color: #f0f0f0;
+  margin: 0;
+  flex: 1;
+}
+
+.kernaussage-text strong {
+  color: #ffffff;
+  font-weight: 600;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+/* Zielgruppe */
+.text-zielgruppe {
+  margin: 30px 0;
+  padding: 25px;
+  background: rgba(20, 20, 20, 0.3);
+  border-radius: 6px;
+  border: 1px solid rgba(200, 200, 200, 0.15);
+}
+
+.text-zielgruppe h4 {
+  font-family: "Cinzel", serif;
+  font-size: 1.4rem;
+  color: #e4e6ea;
+  margin-bottom: 20px;
+  letter-spacing: 0.05em;
+  text-align: center;
+}
+
+.text-zielgruppe > p {
+  font-family: "EB Garamond", serif;
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: #b0b5bc;
+  text-align: center;
+  margin-bottom: 25px;
+  padding: 0 20px;
+}
+
+.zielgruppe-warnung {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  background: rgba(40, 20, 20, 0.3);
+  border: 1px solid rgba(200, 100, 100, 0.3);
+  border-radius: 6px;
+  margin-top: 20px;
+}
+
+.warnung-icon {
+  width: 40px;
+  height: 40px;
+  color: rgba(220, 120, 120, 0.8);
+  flex-shrink: 0;
+  stroke-width: 2;
+}
+
+.warnung-text {
+  font-family: "EB Garamond", serif;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #f0c0c0;
+  margin: 0;
+  flex: 1;
+}
+
+.warnung-text strong {
+  color: #ffa0a0;
+  font-weight: 600;
+}
+
+.warnung-text em {
+  font-style: italic;
+  color: #e0d0d0;
+}
+
+/* Quellen */
+.text-quellen {
+  margin: 30px 0;
+}
+
+.text-quellen h4 {
+  font-family: "Cinzel", serif;
+  font-size: 1.3rem;
+  color: #e4e6ea;
+  margin-bottom: 20px;
+  letter-spacing: 0.05em;
+  text-align: center;
+}
+
+.quellen-liste {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  counter-reset: quellen-counter;
+}
+
+.quellen-liste li {
+  counter-increment: quellen-counter;
+  font-family: "EB Garamond", serif;
+  font-size: 1.05rem;
+  color: #b0b5bc;
+  padding: 12px 15px 12px 40px;
+  background: rgba(20, 20, 20, 0.4);
+  border: 1px solid rgba(200, 200, 200, 0.1);
+  border-radius: 4px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.quellen-liste li::before {
+  content: counter(quellen-counter);
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: "Cinzel", serif;
+  font-size: 0.9rem;
+  color: #c0c0c0;
+  font-weight: 600;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(30, 30, 30, 0.6);
+  border-radius: 50%;
+}
+
+.quellen-liste li:hover {
+  border-color: rgba(200, 200, 200, 0.3);
+  background: rgba(30, 30, 30, 0.5);
+  transform: translateY(-2px);
+}
+
+/* ================= DARK MODE ANPASSUNGEN ================= */
+body.dark-mode .text-abschnitt {
+  background: rgba(40, 40, 40, 0.3);
+  border-color: rgba(220, 220, 220, 0.15);
+}
+
+body.dark-mode .text-abschnitt:hover {
+  background: rgba(50, 50, 50, 0.4);
+  border-color: rgba(220, 220, 220, 0.3);
+}
+
+body.dark-mode .text-abschnitt.highlight {
+  background: rgba(45, 45, 45, 0.4);
+  border-color: rgba(220, 220, 220, 0.6);
+}
+
+body.dark-mode .kernaussage-box {
+  background: linear-gradient(135deg, 
+    rgba(40, 40, 40, 0.7) 0%, 
+    rgba(50, 50, 50, 0.8) 100%);
+  border-color: rgba(220, 220, 220, 0.25);
+}
+
+body.dark-mode .text-zielgruppe {
+  background: rgba(40, 40, 40, 0.3);
+  border-color: rgba(220, 220, 220, 0.2);
+}
+
+body.dark-mode .zielgruppe-warnung {
+  background: rgba(60, 30, 30, 0.4);
+  border-color: rgba(220, 120, 120, 0.4);
+}
+
+body.dark-mode .quellen-liste li {
+  background: rgba(40, 40, 40, 0.4);
+  border-color: rgba(220, 220, 220, 0.15);
+}
+
+body.dark-mode .quellen-liste li:hover {
+  background: rgba(50, 50, 50, 0.5);
+  border-color: rgba(220, 220, 220, 0.3);
+}
+
+/* ================= RESPONSIVE DESIGN ================= */
+@media screen and (max-width: 768px) {
+  .text-einleitung p {
+    font-size: 1.15rem;
+  }
+  
+  .text-einleitung p:first-child {
+    font-size: 1.25rem;
+  }
+  
+  .text-abschnitt p {
+    font-size: 1.1rem;
+  }
+  
+  .kernaussage-text {
+    font-size: 1.2rem;
+  }
+  
+  .warnung-text {
+    font-size: 1.1rem;
+  }
+  
+  .quellen-liste {
+    grid-template-columns: 1fr;
+  }
+  
+  .zielgruppe-warnung {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+  
+  .warnung-icon {
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .text-abschnitt {
+    padding: 15px;
+  }
+  
+  .text-abschnitt.highlight h4 {
+    font-size: 1.2rem;
+  }
+  
+  .kernaussage-box {
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .kernaussage-icon {
+    margin: 0 auto;
+  }
+  
+  .text-zielgruppe {
+    padding: 20px 15px;
+  }
+}
