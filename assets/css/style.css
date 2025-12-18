@@ -936,6 +936,354 @@ body.dark-mode .social-lichtkante {
 }
 
 /* ==========================================================================
+   SILBERHAIN ZITAT DESIGN - ÜBER MICH SEITE
+   ========================================================================== */
+.credo-container {
+  margin: 4rem auto 5rem;
+  max-width: 900px;
+  position: relative;
+}
+
+.credo-quote-wrapper {
+  position: relative;
+  padding: 3rem 2rem;
+  margin-bottom: 2.5rem;
+  background: linear-gradient(135deg, 
+    rgba(184, 162, 122, 0.05) 0%, 
+    rgba(184, 162, 122, 0.02) 100%);
+  border: 1px solid rgba(184, 162, 122, 0.15);
+  border-radius: 1px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.credo-quote-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(184, 162, 122, 0.5) 20%, 
+    rgba(184, 162, 122, 0.8) 50%, 
+    rgba(184, 162, 122, 0.5) 80%, 
+    transparent);
+  transition: all 0.3s ease;
+}
+
+.credo-quote-wrapper::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(184, 162, 122, 0.5) 20%, 
+    rgba(184, 162, 122, 0.8) 50%, 
+    rgba(184, 162, 122, 0.5) 80%, 
+    transparent);
+  transition: all 0.3s ease;
+}
+
+.credo-quote {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  position: relative;
+  z-index: 2;
+}
+
+.quote-ornament {
+  flex-shrink: 0;
+  width: 80px;
+  height: 20px;
+  color: #b8a27a;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.quote-ornament-left {
+  transform: rotate(180deg);
+}
+
+.quote-ornament-right {
+  transform: rotate(0);
+}
+
+.quote-text {
+  font-family: 'EB Garamond', serif;
+  font-size: 2.4rem;
+  font-weight: 500;
+  line-height: 1.3;
+  color: #2c2c2c;
+  text-align: center;
+  margin: 0;
+  flex-grow: 1;
+  letter-spacing: 0.2px;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.credo-signature {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  position: relative;
+}
+
+.credo-signature::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 25%;
+  right: 25%;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(184, 162, 122, 0.3) 50%, 
+    transparent);
+  transition: all 0.3s ease;
+}
+
+.signature-line {
+  width: 40px;
+  height: 1px;
+  background: #b8a27a;
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+
+.signature-text {
+  font-family: 'Cinzel', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #b8a27a;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  opacity: 0.9;
+  transition: all 0.3s ease;
+}
+
+.credo-subtitle {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.4rem;
+  line-height: 1.7;
+  color: #555;
+  text-align: center;
+  max-width: 700px;
+  margin: 2rem auto 0;
+  padding: 1.5rem;
+  border-top: 1px solid rgba(184, 162, 122, 0.2);
+  border-bottom: 1px solid rgba(184, 162, 122, 0.2);
+  background: rgba(250, 250, 250, 0.5);
+  transition: all 0.3s ease;
+}
+
+/* ================= SILBER DARK MODE - VERBESSERTER HINTERGRUND ================= */
+body.dark-mode .credo-quote-wrapper {
+  background: linear-gradient(135deg, 
+    rgba(192, 192, 192, 0.15) 0%, 
+    rgba(150, 150, 150, 0.08) 100%);
+  border-color: rgba(200, 200, 200, 0.4);
+  box-shadow: 
+    0 0 25px rgba(200, 200, 200, 0.2),
+    inset 0 0 40px rgba(200, 200, 200, 0.1);
+}
+
+body.dark-mode .credo-quote-wrapper::before,
+body.dark-mode .credo-quote-wrapper::after {
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(220, 220, 220, 0.6) 20%, 
+    rgba(255, 255, 255, 0.8) 50%, 
+    rgba(220, 220, 220, 0.6) 80%, 
+    transparent);
+}
+
+body.dark-mode .quote-text {
+  color: #f0f0f0;
+  text-shadow: 
+    0 1px 3px rgba(0,0,0,0.3),
+    0 0 15px rgba(200, 200, 200, 0.15);
+}
+
+body.dark-mode .quote-ornament {
+  color: #d0d0d0;
+  opacity: 0.9;
+  filter: drop-shadow(0 0 5px rgba(200, 200, 200, 0.4));
+}
+
+body.dark-mode .credo-signature::before {
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(200, 200, 200, 0.6) 50%, 
+    transparent);
+}
+
+body.dark-mode .signature-line {
+  background: #c0c0c0;
+  opacity: 0.8;
+  box-shadow: 0 0 8px rgba(200, 200, 200, 0.4);
+}
+
+body.dark-mode .signature-text {
+  color: #c0c0c0;
+  text-shadow: 0 0 8px rgba(200, 200, 200, 0.4);
+  opacity: 1;
+}
+
+body.dark-mode .credo-subtitle {
+  color: #ddd;
+  border-top-color: rgba(200, 200, 200, 0.4);
+  border-bottom-color: rgba(200, 200, 200, 0.4);
+  background: rgba(30, 30, 30, 0.7);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+/* ================= RESPONSIVE ZITAT ================= */
+@media screen and (max-width: 768px) {
+  .credo-quote {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .quote-ornament {
+    width: 100px;
+    height: 15px;
+  }
+  
+  .quote-text {
+    font-size: 2rem;
+    padding: 0 1rem;
+  }
+  
+  .credo-quote-wrapper {
+    padding: 2.5rem 1.5rem;
+  }
+  
+  .credo-signature {
+    gap: 1rem;
+  }
+  
+  .signature-line {
+    width: 30px;
+  }
+  
+  .credo-subtitle {
+    font-size: 1.2rem;
+    padding: 1rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .quote-text {
+    font-size: 1.8rem;
+  }
+  
+  .credo-quote-wrapper {
+    padding: 2rem 1rem;
+  }
+  
+  .credo-container {
+    margin: 3rem auto 4rem;
+  }
+  
+  .credo-subtitle {
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+}
+
+/* ==========================================================================
+   ÜBER-MICH SPEZIFISCHE STYLES
+   ========================================================================== */
+.ueber-mich-content {
+  margin-top: 3rem;
+}
+
+.ueber-mich-intro {
+  font-size: 1.3rem;
+  text-align: center;
+  margin-bottom: 2.5rem;
+  color: #e4e6ea;
+}
+
+.break-line {
+  text-align: center;
+  margin: 2rem 0;
+  font-size: 1.2rem;
+  color: #e4e6ea;
+}
+
+.small-margin {
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.highlight-paragraph {
+  font-size: 1.4rem;
+  text-align: center;
+  color: #e4e6ea;
+  margin: 1.5rem 0 3rem;
+  font-weight: 500;
+  text-shadow: 0 0 10px rgba(200, 200, 200, 0.3);
+}
+
+.attention-line {
+  font-size: 1.3rem;
+  text-align: center;
+  color: #e4e6ea;
+  margin: 2.5rem 0;
+  font-style: italic;
+  padding: 1.5rem;
+  border-left: 2px solid rgba(184, 162, 122, 0.3);
+  border-right: 2px solid rgba(184, 162, 122, 0.3);
+}
+
+.abschnitt-schluss {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(200, 205, 215, 0.2);
+}
+
+.schluss-zitat {
+  font-size: 1.3rem;
+  text-align: center;
+  color: #e4e6ea;
+  font-style: italic;
+  padding: 2rem;
+  background: rgba(20, 20, 20, 0.3);
+  border-radius: 2px;
+}
+
+/* Dark Mode für Über-mich spezifische Styles */
+body.dark-mode .ueber-mich-intro,
+body.dark-mode .break-line,
+body.dark-mode .highlight-paragraph,
+body.dark-mode .attention-line,
+body.dark-mode .schluss-zitat {
+  color: #f0f0f0;
+}
+
+body.dark-mode .attention-line {
+  border-left-color: rgba(200, 200, 200, 0.4);
+  border-right-color: rgba(200, 200, 200, 0.4);
+}
+
+body.dark-mode .schluss-zitat {
+  background: rgba(40, 40, 40, 0.5);
+}
+
+/* ==========================================================================
    DRUCK-STYLES
    ========================================================================== */
 @media print {
