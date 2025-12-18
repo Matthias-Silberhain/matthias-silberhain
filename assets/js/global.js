@@ -1,320 +1,219 @@
 // ============================================================================
-// GLOBAL DARK MODE - UNIVERSAL FÜR ALLE BROWSER
+// EINFACHE & FUNKTIONIERENDE DARK MODE IMPLEMENTATION
 // ============================================================================
 
 (function() {
-  'use strict';
-  
-  // ========================================================================
-  // 1. BROWSER ERKENNUNG FÜR DEBUGGING
-  // ========================================================================
-  function detectBrowser() {
-    const userAgent = navigator.userAgent;
-    let browser = "Unknown";
+    'use strict';
     
-    if (userAgent.indexOf("Chrome") > -1 && userAgent.indexOf("Edg") === -1) {
-      browser = "Chrome";
-    } else if (userAgent.indexOf("Safari") > -1 && userAgent.indexOf("Chrome") === -1) {
-      browser = "Safari";
-    } else if (userAgent.indexOf("Firefox") > -1) {
-      browser = "Firefox";
-    } else if (userAgent.indexOf("Edg") > -1) {
-      browser = "Edge";
-    } else if (userAgent.indexOf("Opera") > -1 || userAgent.indexOf("OPR") > -1) {
-      browser = "Opera";
-    } else if (userAgent.indexOf("DuckDuckGo") > -1) {
-      browser = "DuckDuckGo";
-    }
+    console.log('🌓 Dark Mode wird initialisiert...');
     
-    console.log(`🌐 Browser: ${browser}`);
-    console.log(`🕵️ User Agent: ${userAgent}`);
-    return browser;
-  }
-  
-  // ========================================================================
-  // 2. LOCALSTORAGE PRÜFUNG
-  // ========================================================================
-  function isLocalStorageAvailable() {
-    try {
-      const test = '__test__';
-      localStorage.setItem(test, test);
-      localStorage.removeItem(test);
-      return true;
-    } catch (e) {
-      console.warn('⚠️ LocalStorage nicht verfügbar:', e.message);
-      return false;
-    }
-  }
-  
-  // ========================================================================
-  // 3. UNIVERSAL THEME ANWENDUNG (FÜR ALLE BROWSER)
-  // ========================================================================
-  function applyTheme(theme) {
-    const html = document.documentElement;
-    const body = document.body;
-    const toggleButton = document.getElementById('darkModeToggle');
-    
-    console.log('🎨 Apply Theme:', theme);
-    
-    if (theme === 'dark') {
-      // SETZE KLASSE AUF BOTH HTML UND BODY FÜR MAXIMALE SPEZIFIKATION
-      html.classList.add('dark-mode');
-      body.classList.add('dark-mode');
-      
-      // INLINE STYLES FÜR BROWSER DIE CSS KLASSEN IGNORIEREN
-      setTimeout(() => {
-        html.style.backgroundColor = '#1a1a1a';
-        body.style.backgroundColor = '#1a1a1a';
-        body.style.color = '#b0b5bc';
+    // 1. FUNKTION: Dark Mode umschalten
+    function toggleDarkMode() {
+        const html = document.documentElement;
+        const body = document.body;
         
-        // FORCE RE-PAINT FÜR SAFARI UND WEBKIT
-        void html.offsetHeight;
-        void body.offsetHeight;
-      }, 10);
-      
-      console.log('🌙 Dark Mode aktiviert');
-      
-    } else {
-      // ENTFERNE DARK MODE
-      html.classList.remove('dark-mode');
-      body.classList.remove('dark-mode');
-      
-      // ENTFERNE INLINE STYLES
-      setTimeout(() => {
-        html.style.backgroundColor = '';
-        body.style.backgroundColor = '';
-        body.style.color = '';
-      }, 10);
-      
-      console.log('☀️ Light Mode aktiviert');
-    }
-    
-    // TOGGLE BUTTON AKTUALISIEREN
-    if (toggleButton) {
-      const moonIcon = toggleButton.querySelector('.moon-icon');
-      const sunIcon = toggleButton.querySelector('.sun-icon');
-      
-      if (moonIcon && sunIcon) {
-        if (theme === 'dark') {
-          moonIcon.style.display = 'none';
-          sunIcon.style.display = 'block';
-          toggleButton.setAttribute('aria-label', 'Zum Light Mode wechseln');
-          toggleButton.classList.add('dark-mode-active');
-        } else {
-          moonIcon.style.display = 'block';
-          sunIcon.style.display = 'none';
-          toggleButton.setAttribute('aria-label', 'Zum Dark Mode wechseln');
-          toggleButton.classList.remove('dark-mode-active');
-        }
-      }
-    }
-    
-    // DISPATCH EVENT FÜR ANDERE SCRIPTS
-    setTimeout(() => {
-      window.dispatchEvent(new CustomEvent('themeChanged', { 
-        detail: { theme: theme, timestamp: Date.now() }
-      }));
-    }, 50);
-  }
-  
-  // ========================================================================
-  // 4. DARK MODE UMSCHALTEN
-  // ========================================================================
-  function toggleDarkMode() {
-    const html = document.documentElement;
-    const body = document.body;
-    let newTheme;
-    
-    // PRÜFE OB DARK MODE AKTIV (AUF HTML ODER BODY)
-    if (html.classList.contains('dark-mode') || body.classList.contains('dark-mode')) {
-      newTheme = 'light';
-    } else {
-      newTheme = 'dark';
-    }
-    
-    console.log('🔄 Wechsle zu Theme:', newTheme);
-    
-    // Theme anwenden
-    applyTheme(newTheme);
-    
-    // In localStorage speichern
-    if (isLocalStorageAvailable()) {
-      try {
-        localStorage.setItem('ms-theme', newTheme);
-        console.log('💾 Theme gespeichert:', newTheme);
-      } catch (error) {
-        console.warn('❌ Konnte Theme nicht speichern:', error);
-      }
-    }
-    
-    return newTheme;
-  }
-  
-  // ========================================================================
-  // 5. INITIALISIERUNG
-  // ========================================================================
-  function initGlobalDarkMode() {
-    console.log('🌓 Global Dark Mode wird initialisiert...');
-    
-    // Browser erkennen
-    detectBrowser();
-    
-    const html = document.documentElement;
-    const body = document.body;
-    let darkModeToggle = document.getElementById('darkModeToggle');
-    
-    // FALLBACK FÜR TOGGLE BUTTON
-    if (!darkModeToggle) {
-      console.warn('⚠️ Dark Mode Toggle nicht gefunden mit ID');
-      // Versuche alternative Selektion
-      darkModeToggle = document.querySelector('.dark-mode-toggle');
-      if (darkModeToggle) {
-        console.log('✅ Dark Mode Toggle über Klasse gefunden');
-        darkModeToggle.id = 'darkModeToggle';
-      }
-    }
-    
-    if (!darkModeToggle) {
-      console.error('❌ Kein Dark Mode Toggle auf dieser Seite gefunden');
-      return;
-    }
-    
-    // LADE GESPEICHERTES THEME
-    let currentTheme = 'light'; // Standard
-    
-    if (isLocalStorageAvailable()) {
-      try {
-        const savedTheme = localStorage.getItem('ms-theme');
-        console.log('📂 Gespeichertes Theme:', savedTheme);
+        // Prüfe ob Dark Mode aktiv ist
+        const isDark = html.classList.contains('dark-mode') || 
+                      body.classList.contains('dark-mode');
         
-        if (savedTheme === 'dark' || savedTheme === 'light') {
-          currentTheme = savedTheme;
+        console.log('🔄 Dark Mode umschalten. Aktuell:', isDark ? 'Dark' : 'Light');
+        
+        if (isDark) {
+            // Zu Light Mode wechseln
+            html.classList.remove('dark-mode');
+            body.classList.remove('dark-mode');
+            
+            // Inline Styles entfernen
+            html.style.backgroundColor = '';
+            body.style.backgroundColor = '';
+            body.style.color = '';
+            
+            // Speichern
+            localStorage.setItem('ms-theme', 'light');
+            console.log('☀️ Light Mode aktiviert');
         } else {
-          // KEIN GESPEICHERTES THEME, PRÜFE SYSTEM
-          if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            currentTheme = 'dark';
-          }
+            // Zu Dark Mode wechseln
+            html.classList.add('dark-mode');
+            body.classList.add('dark-mode');
+            
+            // Inline Styles für Browser die Klassen ignorieren
+            setTimeout(() => {
+                html.style.backgroundColor = '#1a1a1a';
+                body.style.backgroundColor = '#1a1a1a';
+                body.style.color = '#b0b5bc';
+            }, 10);
+            
+            // Speichern
+            localStorage.setItem('ms-theme', 'dark');
+            console.log('🌙 Dark Mode aktiviert');
         }
-      } catch (error) {
-        console.warn('❌ Konnte Theme nicht laden:', error);
-      }
+        
+        // Button Icon aktualisieren
+        updateToggleButton();
+        
+        return !isDark;
     }
     
-    console.log('🎨 Aktuelles Theme:', currentTheme);
-    
-    // THEME SOFORT ANWENDEN
-    applyTheme(currentTheme);
-    
-    // ========================================================================
-    // 6. EVENT LISTENER FÜR ALLE BROWSER
-    // ========================================================================
-    
-    // CLICK EVENT (Desktop & Mobile)
-    darkModeToggle.addEventListener('click', function(event) {
-      event.preventDefault();
-      event.stopPropagation();
-      toggleDarkMode();
-    });
-    
-    // TOUCH EVENT (Mobile/Safari)
-    darkModeToggle.addEventListener('touchstart', function(event) {
-      event.preventDefault();
-      event.stopPropagation();
-      toggleDarkMode();
-    }, { passive: false });
-    
-    // KEYBOARD EVENT (Barrierefreiheit)
-    darkModeToggle.addEventListener('keydown', function(event) {
-      if (event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault();
-        toggleDarkMode();
-      }
-    });
-    
-    // MOUSEENTER FÜR FEEDBACK
-    darkModeToggle.addEventListener('mouseenter', function() {
-      this.style.transform = 'scale(1.05)';
-    });
-    
-    darkModeToggle.addEventListener('mouseleave', function() {
-      if (!this.classList.contains('dark-mode-active')) {
-        this.style.transform = 'scale(1)';
-      }
-    });
-    
-    console.log('✅ Dark Mode Toggle Event Listener registriert');
-    
-    // ========================================================================
-    // 7. SYSTEM THEME ÄNDERUNGEN VERFOLGEN
-    // ========================================================================
-    if (window.matchMedia) {
-      const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-      
-      darkModeMediaQuery.addEventListener('change', function(e) {
-        // NUR WENN KEIN THEME GESPEICHERT IST
-        if (isLocalStorageAvailable()) {
-          try {
-            const savedTheme = localStorage.getItem('ms-theme');
-            if (!savedTheme) {
-              if (e.matches) {
-                applyTheme('dark');
-              } else {
-                applyTheme('light');
-              }
+    // 2. FUNKTION: Toggle Button Icon aktualisieren
+    function updateToggleButton() {
+        const toggleBtn = document.getElementById('darkModeToggle');
+        if (!toggleBtn) return;
+        
+        const isDark = document.documentElement.classList.contains('dark-mode') || 
+                      document.body.classList.contains('dark-mode');
+        
+        const moonIcon = toggleBtn.querySelector('.moon-icon');
+        const sunIcon = toggleBtn.querySelector('.sun-icon');
+        
+        if (moonIcon && sunIcon) {
+            if (isDark) {
+                moonIcon.style.display = 'none';
+                sunIcon.style.display = 'block';
+                toggleBtn.setAttribute('aria-label', 'Zum Light Mode wechseln');
+            } else {
+                moonIcon.style.display = 'block';
+                sunIcon.style.display = 'none';
+                toggleBtn.setAttribute('aria-label', 'Zum Dark Mode wechseln');
             }
-          } catch (error) {
-            // IGNORIERE FEHLER
-          }
         }
-      });
     }
     
-    // ========================================================================
-    // 8. DEBUG INFORMATIONEN
-    // ========================================================================
-    setTimeout(() => {
-      const darkModeActive = html.classList.contains('dark-mode') || body.classList.contains('dark-mode');
-      console.log('🔍 Dark Mode aktiv:', darkModeActive);
-      console.log('📊 Dokument Struktur geladen');
-    }, 1000);
-  }
-  
-  // ========================================================================
-  // 9. INITIALISIERUNG STARTEN
-  // ========================================================================
-  
-  // SO FRÜH WIE MÖGLICH STARTEN
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initGlobalDarkMode);
-  } else {
-    // DOM IST BEREITS GELADEN
-    setTimeout(initGlobalDarkMode, 10);
-  }
-  
-  // ========================================================================
-  // 10. FALLBACK FÜR VOLLSTÄNDIG GELADENE SEITE
-  // ========================================================================
-  window.addEventListener('load', function() {
-    console.log('📦 Seite vollständig geladen, Dark Mode final prüfen');
-    
-    // ERZWINGE ERNEUTES ANWENDEN DER STYLES FÜR SAFARI/DUCKDUCKGO
-    const html = document.documentElement;
-    const body = document.body;
-    
-    if (html.classList.contains('dark-mode') || body.classList.contains('dark-mode')) {
-      // TEMPORÄR ENTFERNEN UND WIEDER HINZUFÜGEN FÜR RE-FLOW
-      html.classList.remove('dark-mode');
-      body.classList.remove('dark-mode');
-      
-      setTimeout(() => {
-        html.classList.add('dark-mode');
-        body.classList.add('dark-mode');
+    // 3. FUNKTION: Dark Mode beim Laden setzen
+    function setInitialTheme() {
+        const html = document.documentElement;
+        const body = document.body;
         
-        // INLINE STYLES FÜR WEBKIT
-        html.style.backgroundColor = '#1a1a1a';
-        body.style.backgroundColor = '#1a1a1a';
-      }, 10);
+        try {
+            // Prüfe gespeichertes Theme
+            const savedTheme = localStorage.getItem('ms-theme');
+            console.log('📂 Gespeichertes Theme:', savedTheme);
+            
+            let isDark = false;
+            
+            if (savedTheme === 'dark') {
+                isDark = true;
+            } else if (savedTheme === 'light') {
+                isDark = false;
+            } else {
+                // Kein gespeichertes Theme, prüfe Systemeinstellung
+                const prefersDark = window.matchMedia && 
+                                   window.matchMedia('(prefers-color-scheme: dark)').matches;
+                isDark = prefersDark;
+            }
+            
+            // Theme anwenden
+            if (isDark) {
+                html.classList.add('dark-mode');
+                body.classList.add('dark-mode');
+                
+                // Inline Styles sofort setzen
+                setTimeout(() => {
+                    html.style.backgroundColor = '#1a1a1a';
+                    body.style.backgroundColor = '#1a1a1a';
+                    body.style.color = '#b0b5bc';
+                }, 10);
+                
+                console.log('🌙 Dark Mode initial aktiviert');
+            } else {
+                html.classList.remove('dark-mode');
+                body.classList.remove('dark-mode');
+                console.log('☀️ Light Mode initial aktiviert');
+            }
+            
+            // Button aktualisieren
+            updateToggleButton();
+            
+        } catch (error) {
+            console.warn('❌ Fehler beim Laden des Themes:', error);
+        }
     }
-  });
-  
+    
+    // 4. INITIALISIERUNG
+    function initDarkMode() {
+        console.log('🚀 Dark Mode initialisiert');
+        
+        // Initiales Theme setzen
+        setInitialTheme();
+        
+        // Toggle Button finden
+        const toggleBtn = document.getElementById('darkModeToggle');
+        
+        if (!toggleBtn) {
+            console.error('❌ Dark Mode Toggle Button nicht gefunden!');
+            return;
+        }
+        
+        console.log('✅ Dark Mode Toggle Button gefunden');
+        
+        // Event Listener hinzufügen
+        toggleBtn.addEventListener('click', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            toggleDarkMode();
+        });
+        
+        // Touch Support für Mobile
+        toggleBtn.addEventListener('touchstart', function(event) {
+            event.preventDefault();
+            toggleDarkMode();
+        }, { passive: false });
+        
+        // Keyboard Support
+        toggleBtn.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                toggleDarkMode();
+            }
+        });
+        
+        console.log('✅ Dark Mode Event Listener registriert');
+    }
+    
+    // 5. STARTPUNKT
+    // Theme SOFORT setzen (vor DOMContentLoaded)
+    try {
+        const savedTheme = localStorage.getItem('ms-theme');
+        const prefersDark = window.matchMedia && 
+                           window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            document.documentElement.classList.add('dark-mode');
+            document.body.classList.add('dark-mode');
+            
+            // Inline Styles sofort setzen
+            document.documentElement.style.backgroundColor = '#1a1a1a';
+            document.body.style.backgroundColor = '#1a1a1a';
+            document.body.style.color = '#b0b5bc';
+        }
+    } catch (e) {
+        // Ignoriere Fehler
+    }
+    
+    // Initialisierung starten
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initDarkMode);
+    } else {
+        initDarkMode();
+    }
+    
+    // Debugging Helper (optional)
+    window.debugDarkMode = {
+        toggle: toggleDarkMode,
+        getStatus: function() {
+            return document.documentElement.classList.contains('dark-mode') ? 'dark' : 'light';
+        },
+        forceDark: function() {
+            document.documentElement.classList.add('dark-mode');
+            document.body.classList.add('dark-mode');
+            localStorage.setItem('ms-theme', 'dark');
+            updateToggleButton();
+        },
+        forceLight: function() {
+            document.documentElement.classList.remove('dark-mode');
+            document.body.classList.remove('dark-mode');
+            localStorage.setItem('ms-theme', 'light');
+            updateToggleButton();
+        }
+    };
+    
 })();
