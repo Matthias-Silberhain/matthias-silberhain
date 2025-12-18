@@ -23,7 +23,7 @@ body {
 }
 
 /* ==========================================================================
-   PRELOADER MIT FIXIERTEM LOGO
+   PRELOADER MIT FIXIERTEM LOGO - KORRIGIERT FÜR ALLE BROWSER
    ========================================================================== */
 #preloader {
   position: fixed;
@@ -32,10 +32,10 @@ body {
   width: 100%;
   height: 100%;
   background: #000000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  z-index: 99999;
   transition: opacity 0.6s ease, visibility 0.6s ease;
 }
 
@@ -48,29 +48,39 @@ body {
   position: relative;
   width: 100%;
   height: 100%;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center;
+  gap: 40px !important;
 }
 
-/* LOGO - ABSOLUT POSITIONIERT (BEWEGT SICH NICHT) */
+/* LOGO - FLEXBOX FIX FÜR ALLE BROWSER */
 .preloader-logo {
-  position: absolute;
-  top: 25%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 220px;
+  position: relative !important;
+  width: 180px;
   height: auto;
-  z-index: 10;
-  animation: logoAppear 1s ease-out forwards;
+  z-index: 100001;
+  display: block !important;
+  margin-bottom: 20px !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
   filter: brightness(1.1);
+  animation: logoAppear 1s ease-out forwards;
 }
 
 /* TEXT-CONTAINER UNTERHALB DES LOGOS */
 .text-container {
-  position: absolute;
-  top: 55%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: relative !important;
   text-align: center;
   width: 100%;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
+  margin-top: 0 !important;
+  z-index: 100000;
 }
 
 .preloader-text {
@@ -80,6 +90,7 @@ body {
   color: #e0e0e0;
   white-space: nowrap;
   text-shadow: 0 0 10px rgba(200, 200, 200, 0.3);
+  margin-top: 0 !important;
 }
 
 .cursor {
@@ -101,11 +112,11 @@ body {
 @keyframes logoAppear {
   0% { 
     opacity: 0;
-    transform: translateX(-50%) translateY(-20px);
+    transform: translateY(-20px);
   }
   100% { 
     opacity: 1;
-    transform: translateX(-50%) translateY(0);
+    transform: translateY(0);
   }
 }
 
@@ -185,7 +196,9 @@ body {
     rgba(200, 205, 215, 0.85),
     transparent
   );
-  margin: 25px 0;
+  margin: 25px auto;
+  width: 80%;
+  max-width: 800px;
   box-shadow: 0 0 15px rgba(200, 205, 215, 0.3);
   transition: all 0.3s ease;
 }
@@ -266,6 +279,7 @@ strong {
   flex-direction: column;
   justify-content: space-between;
   height: 24px;
+  z-index: 999;
 }
 
 .burger span {
@@ -283,12 +297,7 @@ strong {
 /* TABLET (768px - 1024px) */
 @media screen and (max-width: 1024px) {
   .preloader-logo {
-    width: 180px;
-    top: 22%;
-  }
-  
-  .text-container {
-    top: 52%;
+    width: 160px;
   }
   
   .preloader-text {
@@ -319,17 +328,12 @@ strong {
   }
   
   .preloader-logo {
-    width: 160px;
-    top: 20%;
-  }
-  
-  .text-container {
-    top: 50%;
-    margin-top: 0;
+    width: 140px;
   }
   
   .preloader-text {
     font-size: 24px;
+    letter-spacing: 0.15em;
   }
   
   .logo {
@@ -405,12 +409,7 @@ strong {
 /* KLEINE MOBILS (max-width: 480px) */
 @media screen and (max-width: 480px) {
   .preloader-logo {
-    width: 140px;
-    top: 18%;
-  }
-  
-  .text-container {
-    top: 48%;
+    width: 120px;
   }
   
   .preloader-text {
@@ -455,7 +454,7 @@ strong {
 /* GROSSE BILDSCHIRME (min-width: 1920px) */
 @media screen and (min-width: 1920px) {
   .preloader-logo {
-    width: 280px;
+    width: 220px;
   }
   
   .preloader-text {
@@ -1021,13 +1020,15 @@ html.dark-mode .silber-button.secondary {
   cursor: pointer;
   width: 40px;
   height: 40px;
-  display: flex;
+  display: flex !important;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   transition: all 0.3s ease;
   z-index: 1001;
   padding: 0;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .dark-mode-toggle:hover {
@@ -1123,6 +1124,17 @@ html.dark-mode .sun-icon {
 @supports (-webkit-touch-callout: none) {
   html.dark-mode body {
     -webkit-text-fill-color: #b0b5bc;
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  #preloader {
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translateZ(0);
+  }
+  
+  .preloader-logo {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
   }
 }
 
@@ -1130,6 +1142,11 @@ html.dark-mode .sun-icon {
 @-moz-document url-prefix() {
   html.dark-mode body {
     background-color: #1a1a1a;
+  }
+  
+  #preloader .preloader-inner {
+    display: flex !important;
+    flex-direction: column !important;
   }
 }
 
@@ -1145,6 +1162,11 @@ html.dark-mode .sun-icon {
   @supports (-webkit-appearance:none) {
     html.dark-mode body {
       background-color: #1a1a1a !important;
+      color: #b0b5bc !important;
+    }
+    
+    .preloader-logo {
+      margin-bottom: 40px !important;
     }
   }
 }
@@ -1212,4 +1234,222 @@ html.dark-mode .sun-icon {
 .menu-overlay.active {
   display: block;
   opacity: 1;
+}
+
+/* ==========================================================================
+   KRITISCHE FIXES FÜR ALLE BROWSER-PROBLEME
+   ========================================================================== */
+
+/* 1. PRELOADER LAYOUT FIX - VERHINDERT ÜBERLAPPUNG */
+#preloader .preloader-inner {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 100% !important;
+  position: relative !important;
+  gap: 30px !important;
+}
+
+/* Logo FIX - Verhindert absolute Positionierung */
+.preloader-logo {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
+  width: 180px !important;
+  margin-bottom: 20px !important;
+  display: block !important;
+}
+
+/* Typewriter FIX - Sicherer Abstand */
+.text-container {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
+  margin-top: 0 !important;
+  text-align: center !important;
+}
+
+/* 2. UNIVERSAL DARK MODE FIX - FUNKTIONIERT IN ALLEN BROWSERN */
+html.dark-mode, 
+html.dark-mode body,
+html.dark-mode .header,
+html.dark-mode .inhalt,
+html.dark-mode .startseite,
+html.dark-mode .social-section,
+html.dark-mode .footer,
+html.dark-mode main,
+html.dark-mode section,
+html.dark-mode div,
+html.dark-mode article {
+  background-color: #1a1a1a !important;
+  color: #b0b5bc !important;
+  border-color: #333 !important;
+}
+
+/* Spezifische Text-Elemente */
+html.dark-mode p,
+html.dark-mode span,
+html.dark-mode li,
+html.dark-mode div:not(.social-icon-wrapper):not(.dark-mode-toggle),
+html.dark-mode section:not(.social-section) {
+  color: #b0b5bc !important;
+}
+
+/* Überschriften */
+html.dark-mode h1,
+html.dark-mode h2,
+html.dark-mode h3,
+html.dark-mode h4,
+html.dark-mode h5,
+html.dark-mode h6 {
+  color: #e4e6ea !important;
+}
+
+/* 3. SAFARI SPEZIFISCHE FIXES */
+@supports (-webkit-touch-callout: none) {
+  #preloader .preloader-inner {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+  
+  .preloader-logo {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  
+  /* Safari Dark Mode Force */
+  html.dark-mode body {
+    -webkit-font-smoothing: antialiased !important;
+    background-color: #1a1a1a !important;
+  }
+  
+  /* Safari Preloader Dark Mode */
+  html.dark-mode #preloader {
+    background-color: #1a1a1a !important;
+    -webkit-backface-visibility: hidden;
+  }
+}
+
+/* 4. DUCKDUCKGO / GECKO ENGINE FIXES */
+@supports (-moz-appearance:none) {
+  #preloader {
+    display: flex !important;
+  }
+  
+  #preloader .preloader-inner {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  
+  .preloader-logo {
+    margin-bottom: 40px !important;
+  }
+}
+
+/* 5. RESPONSIVE PRELOADER FIXES */
+@media (max-width: 768px) {
+  .preloader-logo {
+    width: 140px !important;
+    margin-bottom: 20px !important;
+  }
+  
+  .preloader-text {
+    font-size: 24px !important;
+  }
+  
+  #preloader .preloader-inner {
+    gap: 20px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .preloader-logo {
+    width: 120px !important;
+    margin-bottom: 15px !important;
+  }
+  
+  .preloader-text {
+    font-size: 20px !important;
+    letter-spacing: 0.15em !important;
+  }
+}
+
+/* 6. LICHTKANTEN FIX */
+.lichtkante, .social-lichtkante {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(200, 205, 215, 0.85), transparent);
+  margin: 25px auto;
+  width: 80%;
+  max-width: 800px;
+  box-shadow: 0 0 15px rgba(200, 205, 215, 0.3);
+}
+
+/* 7. MOBILE NAVIGATION FIX */
+@media (max-width: 768px) {
+  .hauptnavigation.aktiv {
+    background-color: rgba(26, 26, 26, 0.98) !important;
+    backdrop-filter: blur(10px);
+  }
+  
+  .dark-mode-toggle {
+    top: 25px;
+    right: 15px;
+    z-index: 1002;
+  }
+}
+
+/* 8. INLINE STYLES ÜBERSCHREIBEN FÜR WEBKIT */
+body[style*="background-color"] {
+  background-color: #1a1a1a !important;
+}
+
+/* 9. PRELOADER VERBERGEN ANIMATION */
+#preloader.fade-out {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+/* 10. FORCE DARK MODE ON CRITICAL ELEMENTS */
+html.dark-mode .credo-headline,
+html.dark-mode .lead-text,
+html.dark-mode .sub-lead-text,
+html.dark-mode .highlight,
+html.dark-mode .zitat {
+  color: #e4e6ea !important;
+}
+
+/* 11. SOCIAL MEDIA DARK MODE FIX */
+html.dark-mode .social-icon-wrapper {
+  background: rgba(30, 30, 30, 0.5) !important;
+  border-color: rgba(220, 225, 235, 0.25) !important;
+}
+
+html.dark-mode .social-icon {
+  fill: #b0b5bc !important;
+}
+
+/* 12. BUTTONS IM DARK MODE */
+html.dark-mode .silber-button {
+  color: #d6d9de !important;
+  border-color: rgba(220, 225, 235, 0.4) !important;
+  background: rgba(30, 30, 30, 0.3) !important;
+}
+
+/* 13. FINALE KORREKTUREN FÜR PRELOADER ZENTRIERUNG */
+#preloader {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+#preloader .preloader-inner {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center;
 }
