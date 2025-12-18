@@ -1,5 +1,5 @@
 /* ==========================================================================
-   CSS RESET & BASISSTYLES
+   CSS RESET & BASISSTYLES - KORRIGIERT
    ========================================================================== */
 * {
   margin: 0;
@@ -10,7 +10,7 @@
 html, body {
   width: 100%;
   height: 100%;
-  overflow-x: hidden;
+  /* overflow-x: hidden ENTFERNT - blockiert das Scrollen! */
 }
 
 body {
@@ -20,10 +20,13 @@ body {
   line-height: 1.65;
   min-height: 100vh;
   transition: background-color 0.3s ease, color 0.3s ease;
+  /* Scrollen ermöglichen */
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 /* ==========================================================================
-   PRELOADER MIT FIXIERTEM LOGO - KORRIGIERT FÜR ALLE BROWSER
+   PRELOADER - KORRIGIERT
    ========================================================================== */
 #preloader {
   position: fixed;
@@ -35,13 +38,17 @@ body {
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
-  z-index: 99999;
+  z-index: 9999; /* Nicht 99999, das blockiert das Menü! */
+  opacity: 1;
+  visibility: visible;
   transition: opacity 0.6s ease, visibility 0.6s ease;
 }
 
+/* WICHTIG: Diese Klasse wird von JavaScript hinzugefügt */
 #preloader.hidden {
-  opacity: 0;
-  visibility: hidden;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
 
 .preloader-inner {
@@ -53,34 +60,22 @@ body {
   align-items: center !important;
   justify-content: center !important;
   text-align: center;
-  gap: 40px !important;
 }
 
-/* LOGO - FLEXBOX FIX FÜR ALLE BROWSER */
+/* LOGO - Flexbox Layout */
 .preloader-logo {
-  position: relative !important;
   width: 180px;
   height: auto;
-  z-index: 100001;
-  display: block !important;
-  margin-bottom: 20px !important;
-  top: auto !important;
-  left: auto !important;
-  transform: none !important;
+  margin-bottom: 30px;
+  display: block;
   filter: brightness(1.1);
   animation: logoAppear 1s ease-out forwards;
 }
 
-/* TEXT-CONTAINER UNTERHALB DES LOGOS */
+/* TEXT-CONTAINER */
 .text-container {
-  position: relative !important;
   text-align: center;
   width: 100%;
-  top: auto !important;
-  left: auto !important;
-  transform: none !important;
-  margin-top: 0 !important;
-  z-index: 100000;
 }
 
 .preloader-text {
@@ -90,7 +85,6 @@ body {
   color: #e0e0e0;
   white-space: nowrap;
   text-shadow: 0 0 10px rgba(200, 200, 200, 0.3);
-  margin-top: 0 !important;
 }
 
 .cursor {
@@ -103,7 +97,7 @@ body {
   animation: blink 1s infinite;
 }
 
-/* ANIMATIONEN - KORRIGIERTE SYNTAX */
+/* ANIMATIONEN */
 @keyframes blink {
   0%, 50% { opacity: 1; }
   51%, 100% { opacity: 0; }
@@ -141,7 +135,7 @@ body {
 }
 
 /* ==========================================================================
-   NAVIGATION
+   NAVIGATION - KORRIGIERT FÜR MOBILE
    ========================================================================== */
 .hauptnavigation {
   display: flex;
@@ -149,6 +143,7 @@ body {
   gap: 32px;
   flex-wrap: wrap;
   padding: 10px 0;
+  z-index: 1000; /* Wichtig für Mobile */
 }
 
 .hauptnavigation a {
@@ -196,9 +191,7 @@ body {
     rgba(200, 205, 215, 0.85),
     transparent
   );
-  margin: 25px auto;
-  width: 80%;
-  max-width: 800px;
+  margin: 25px 0;
   box-shadow: 0 0 15px rgba(200, 205, 215, 0.3);
   transition: all 0.3s ease;
 }
@@ -266,7 +259,7 @@ strong {
 }
 
 /* ==========================================================================
-   BURGER MENÜ (MOBIL)
+   BURGER MENÜ (MOBIL) - KORRIGIERT
    ========================================================================== */
 .burger {
   display: none;
@@ -279,7 +272,8 @@ strong {
   flex-direction: column;
   justify-content: space-between;
   height: 24px;
-  z-index: 999;
+  position: relative;
+  z-index: 1001; /* Über Navigation */
 }
 
 .burger span {
@@ -288,6 +282,20 @@ strong {
   background-color: #cfd2d6;
   transition: all 0.3s ease;
   border-radius: 1px;
+  transform-origin: center;
+}
+
+/* Burger Animation */
+.burger.aktiv span:nth-child(1) {
+  transform: translateY(11px) rotate(45deg);
+}
+
+.burger.aktiv span:nth-child(2) {
+  opacity: 0;
+}
+
+.burger.aktiv span:nth-child(3) {
+  transform: translateY(-11px) rotate(-45deg);
 }
 
 /* ==========================================================================
@@ -321,7 +329,7 @@ strong {
   }
 }
 
-/* MOBILE (max-width: 768px) */
+/* MOBILE (max-width: 768px) - KORRIGIERT */
 @media screen and (max-width: 768px) {
   .header {
     padding: 25px 15px 15px;
@@ -333,7 +341,6 @@ strong {
   
   .preloader-text {
     font-size: 24px;
-    letter-spacing: 0.15em;
   }
   
   .logo {
@@ -341,7 +348,7 @@ strong {
     margin-bottom: 20px;
   }
   
-  /* BURGER MENÜ AKTIVIEREN */
+  /* BURGER MENÜ AKTIVIEREN - KORRIGIERT */
   .hauptnavigation {
     display: none;
     position: fixed;
@@ -354,17 +361,17 @@ strong {
     justify-content: center;
     align-items: center;
     gap: 25px;
-    z-index: 998;
+    z-index: 999; /* Unter Burger aber über Inhalt */
     padding: 20px;
     opacity: 0;
-    transform: translateY(-100%);
+    transform: translateX(-100%);
     transition: all 0.4s ease;
   }
   
   .hauptnavigation.aktiv {
-    display: flex;
+    display: flex !important;
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(0);
   }
   
   .hauptnavigation a {
@@ -384,6 +391,11 @@ strong {
   
   .burger {
     display: flex;
+  }
+  
+  /* Verhindert Scrollen wenn Menü offen */
+  body.menu-open {
+    overflow: hidden !important;
   }
   
   .inhalt {
@@ -896,10 +908,111 @@ strong {
 }
 
 /* ==========================================================================
+   DARK MODE TOGGLE STYLES - KORRIGIERT
+   ========================================================================== */
+
+.dark-mode-toggle {
+  position: absolute;
+  top: 35px;
+  right: 20px;
+  background: transparent;
+  border: 1px solid rgba(200, 205, 215, 0.3);
+  color: #d6d9de;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  z-index: 1002; /* Über Burger Menü */
+  padding: 0;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.dark-mode-toggle:hover {
+  color: #ffffff;
+  background: rgba(200, 205, 215, 0.1);
+  border-color: rgba(200, 205, 215, 0.6);
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(200, 205, 215, 0.2);
+}
+
+.moon-icon, .sun-icon {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+  transition: all 0.3s ease;
+}
+
+.sun-icon {
+  display: none;
+}
+
+/* Dark Mode aktiv - Sonne zeigen */
+html.dark-mode .dark-mode-toggle .moon-icon {
+  display: none;
+}
+
+html.dark-mode .dark-mode-toggle .sun-icon {
+  display: block;
+}
+
+/* ==========================================================================
+   RESPONSIVE ANPASSUNGEN FÜR DARK MODE TOGGLE
+   ========================================================================== */
+
+@media screen and (max-width: 768px) {
+  .dark-mode-toggle {
+    top: 25px;
+    right: 15px;
+    width: 36px;
+    height: 36px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .dark-mode-toggle {
+    top: 20px;
+    right: 10px;
+    width: 32px;
+    height: 32px;
+  }
+  
+  .moon-icon, .sun-icon {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* ==========================================================================
+   MENU OVERLAY STYLES - KORRIGIERT
+   ========================================================================== */
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 998; /* Unter Navigation, über Inhalt */
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.menu-overlay.active {
+  display: block;
+  opacity: 1;
+}
+
+/* ==========================================================================
    UNIVERSAL DARK MODE FIXES - FUNKTIONIERT IN ALLEN BROWSERN
    ========================================================================== */
 
-/* DARK MODE FÜR HTML UND BODY GLEICHZEITIG FÜR MAXIMALE SPEZIFIKATION */
+/* DARK MODE FÜR HTML UND BODY */
 html.dark-mode,
 html.dark-mode body {
   background-color: #1a1a1a !important;
@@ -973,7 +1086,7 @@ html.dark-mode .hauptnavigation a:hover {
   color: #ffffff !important;
 }
 
-/* LICHTKANTEN IM DARK MODE (ETWAS HELLER FÜR KONTRAST) */
+/* LICHTKANTEN IM DARK MODE */
 html.dark-mode .lichtkante,
 html.dark-mode .footer-lichtkante,
 html.dark-mode .social-lichtkante {
@@ -1007,117 +1120,7 @@ html.dark-mode .silber-button.secondary {
 }
 
 /* ==========================================================================
-   DARK MODE TOGGLE STYLES
-   ========================================================================== */
-
-.dark-mode-toggle {
-  position: absolute;
-  top: 35px;
-  right: 20px;
-  background: transparent;
-  border: 1px solid rgba(200, 205, 215, 0.3);
-  color: #d6d9de;
-  cursor: pointer;
-  width: 40px;
-  height: 40px;
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  transition: all 0.3s ease;
-  z-index: 1001;
-  padding: 0;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
-.dark-mode-toggle:hover {
-  color: #ffffff;
-  background: rgba(200, 205, 215, 0.1);
-  border-color: rgba(200, 205, 215, 0.6);
-  transform: scale(1.1);
-  box-shadow: 0 0 10px rgba(200, 205, 215, 0.2);
-}
-
-.moon-icon, .sun-icon {
-  width: 20px;
-  height: 20px;
-  fill: currentColor;
-  transition: all 0.3s ease;
-}
-
-.sun-icon {
-  display: none;
-}
-
-/* Dark Mode aktiv - Sonne zeigen */
-html.dark-mode .moon-icon {
-  display: none;
-}
-
-html.dark-mode .sun-icon {
-  display: block;
-}
-
-/* ==========================================================================
-   RESPONSIVE ANPASSUNGEN FÜR DARK MODE TOGGLE
-   ========================================================================== */
-
-@media screen and (max-width: 768px) {
-  .dark-mode-toggle {
-    top: 25px;
-    right: 15px;
-    width: 36px;
-    height: 36px;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .dark-mode-toggle {
-    top: 20px;
-    right: 10px;
-    width: 32px;
-    height: 32px;
-  }
-  
-  .moon-icon, .sun-icon {
-    width: 18px;
-    height: 18px;
-  }
-}
-
-/* ==========================================================================
-   MOBILE DARK MODE ANPASSUNGEN
-   ========================================================================== */
-
-@media screen and (max-width: 768px) {
-  html.dark-mode .header {
-    background-color: #1a1a1a !important;
-    padding: 25px 15px 15px !important;
-  }
-  
-  html.dark-mode .burger span {
-    background-color: #d6d9de !important;
-  }
-  
-  html.dark-mode .hauptnavigation {
-    background-color: rgba(26, 26, 26, 0.98) !important;
-  }
-  
-  html.dark-mode .hauptnavigation a {
-    border-color: rgba(220, 225, 235, 0.2) !important;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  html.dark-mode .header {
-    padding: 20px 10px 10px !important;
-    background-color: #1a1a1a !important;
-  }
-}
-
-/* ==========================================================================
-   BROWSER-SPEZIFISCHE FIXES FÜR DARK MODE
+   BROWSER-SPEZIFISCHE FIXES
    ========================================================================== */
 
 /* SAFARI & WEBKIT BROWSER FIX */
@@ -1216,240 +1219,44 @@ html.dark-mode .sun-icon {
 }
 
 /* ==========================================================================
-   MENU OVERLAY STYLES
-   ========================================================================== */
-.menu-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  z-index: 997;
-  display: none;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.menu-overlay.active {
-  display: block;
-  opacity: 1;
-}
-
-/* ==========================================================================
-   KRITISCHE FIXES FÜR ALLE BROWSER-PROBLEME
+   KRITISCHE FIXES FÜR ALLE PROBLEME
    ========================================================================== */
 
-/* 1. PRELOADER LAYOUT FIX - VERHINDERT ÜBERLAPPUNG */
+/* Preloader Layout Fix */
 #preloader .preloader-inner {
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
   justify-content: center !important;
   height: 100% !important;
-  position: relative !important;
-  gap: 30px !important;
 }
 
-/* Logo FIX - Verhindert absolute Positionierung */
-.preloader-logo {
-  position: relative !important;
-  top: auto !important;
-  left: auto !important;
-  transform: none !important;
-  width: 180px !important;
-  margin-bottom: 20px !important;
-  display: block !important;
-}
-
-/* Typewriter FIX - Sicherer Abstand */
-.text-container {
-  position: relative !important;
-  top: auto !important;
-  left: auto !important;
-  transform: none !important;
-  margin-top: 0 !important;
-  text-align: center !important;
-}
-
-/* 2. UNIVERSAL DARK MODE FIX - FUNKTIONIERT IN ALLEN BROWSERN */
-html.dark-mode, 
-html.dark-mode body,
+/* Dark Mode Universal Fix */
 html.dark-mode .header,
 html.dark-mode .inhalt,
-html.dark-mode .startseite,
 html.dark-mode .social-section,
-html.dark-mode .footer,
-html.dark-mode main,
-html.dark-mode section,
-html.dark-mode div,
-html.dark-mode article {
+html.dark-mode .footer {
   background-color: #1a1a1a !important;
-  color: #b0b5bc !important;
-  border-color: #333 !important;
 }
 
-/* Spezifische Text-Elemente */
-html.dark-mode p,
-html.dark-mode span,
-html.dark-mode li,
-html.dark-mode div:not(.social-icon-wrapper):not(.dark-mode-toggle),
-html.dark-mode section:not(.social-section) {
-  color: #b0b5bc !important;
-}
-
-/* Überschriften */
-html.dark-mode h1,
-html.dark-mode h2,
-html.dark-mode h3,
-html.dark-mode h4,
-html.dark-mode h5,
-html.dark-mode h6 {
-  color: #e4e6ea !important;
-}
-
-/* 3. SAFARI SPEZIFISCHE FIXES */
-@supports (-webkit-touch-callout: none) {
-  #preloader .preloader-inner {
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-  }
-  
-  .preloader-logo {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-  
-  /* Safari Dark Mode Force */
-  html.dark-mode body {
-    -webkit-font-smoothing: antialiased !important;
-    background-color: #1a1a1a !important;
-  }
-  
-  /* Safari Preloader Dark Mode */
-  html.dark-mode #preloader {
-    background-color: #1a1a1a !important;
-    -webkit-backface-visibility: hidden;
-  }
-}
-
-/* 4. DUCKDUCKGO / GECKO ENGINE FIXES */
-@supports (-moz-appearance:none) {
-  #preloader {
-    display: flex !important;
-  }
-  
-  #preloader .preloader-inner {
-    display: flex !important;
-    flex-direction: column !important;
-  }
-  
-  .preloader-logo {
-    margin-bottom: 40px !important;
-  }
-}
-
-/* 5. RESPONSIVE PRELOADER FIXES */
-@media (max-width: 768px) {
-  .preloader-logo {
-    width: 140px !important;
-    margin-bottom: 20px !important;
-  }
-  
-  .preloader-text {
-    font-size: 24px !important;
-  }
-  
-  #preloader .preloader-inner {
-    gap: 20px !important;
-  }
-}
-
-@media (max-width: 480px) {
-  .preloader-logo {
-    width: 120px !important;
-    margin-bottom: 15px !important;
-  }
-  
-  .preloader-text {
-    font-size: 20px !important;
-    letter-spacing: 0.15em !important;
-  }
-}
-
-/* 6. LICHTKANTEN FIX */
-.lichtkante, .social-lichtkante {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(200, 205, 215, 0.85), transparent);
-  margin: 25px auto;
-  width: 80%;
-  max-width: 800px;
-  box-shadow: 0 0 15px rgba(200, 205, 215, 0.3);
-}
-
-/* 7. MOBILE NAVIGATION FIX */
+/* Mobile Menu Fix */
 @media (max-width: 768px) {
   .hauptnavigation.aktiv {
-    background-color: rgba(26, 26, 26, 0.98) !important;
-    backdrop-filter: blur(10px);
+    display: flex !important;
   }
   
-  .dark-mode-toggle {
-    top: 25px;
-    right: 15px;
-    z-index: 1002;
+  .menu-overlay.active + .inhalt {
+    filter: blur(2px);
   }
 }
 
-/* 8. INLINE STYLES ÜBERSCHREIBEN FÜR WEBKIT */
+/* Scroll Fix */
+body {
+  overflow-y: auto !important;
+  position: relative;
+}
+
+/* Inline Styles Überschreiben */
 body[style*="background-color"] {
-  background-color: #1a1a1a !important;
-}
-
-/* 9. PRELOADER VERBERGEN ANIMATION */
-#preloader.fade-out {
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.5s ease, visibility 0.5s ease;
-}
-
-/* 10. FORCE DARK MODE ON CRITICAL ELEMENTS */
-html.dark-mode .credo-headline,
-html.dark-mode .lead-text,
-html.dark-mode .sub-lead-text,
-html.dark-mode .highlight,
-html.dark-mode .zitat {
-  color: #e4e6ea !important;
-}
-
-/* 11. SOCIAL MEDIA DARK MODE FIX */
-html.dark-mode .social-icon-wrapper {
-  background: rgba(30, 30, 30, 0.5) !important;
-  border-color: rgba(220, 225, 235, 0.25) !important;
-}
-
-html.dark-mode .social-icon {
-  fill: #b0b5bc !important;
-}
-
-/* 12. BUTTONS IM DARK MODE */
-html.dark-mode .silber-button {
-  color: #d6d9de !important;
-  border-color: rgba(220, 225, 235, 0.4) !important;
-  background: rgba(30, 30, 30, 0.3) !important;
-}
-
-/* 13. FINALE KORREKTUREN FÜR PRELOADER ZENTRIERUNG */
-#preloader {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
-#preloader .preloader-inner {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-  text-align: center;
+  background-color: inherit !important;
 }
