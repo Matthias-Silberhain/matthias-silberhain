@@ -334,19 +334,29 @@ strong {
 }
 
 /* ==========================================================================
-   FOOTER
+   FOOTER - KORRIGIERT MIT ZENTRIERTEM TEXT
    ========================================================================== */
 .footer {
   text-align: center;
-  padding: 25px 0;
+  padding: 25px 20px;
   font-size: 0.9rem;
   color: #9da2a8;
   background-color: transparent;
   transition: color 0.3s ease;
+  width: 100%;
+}
+
+.footer p {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  display: block;
+  width: 100%;
 }
 
 .footer-lichtkante {
   margin-bottom: 20px;
+  width: 100%;
 }
 
 /* ==========================================================================
@@ -467,6 +477,16 @@ strong {
     width: 36px;
     height: 36px;
   }
+  
+  /* Footer für Mobile zentriert halten */
+  .footer {
+    text-align: center;
+    padding: 20px 15px;
+  }
+  
+  .footer p {
+    text-align: center;
+  }
 }
 
 /* KLEINE MOBILS (max-width: 480px) */
@@ -509,8 +529,12 @@ strong {
   }
   
   .footer {
-    padding: 20px 0;
+    padding: 20px 12px;
     font-size: 0.85rem;
+  }
+  
+  .footer p {
+    text-align: center;
   }
   
   .dark-mode-toggle {
