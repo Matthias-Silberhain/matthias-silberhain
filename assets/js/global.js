@@ -1,91 +1,90 @@
 // ============================================================================
-// EINFACHE DARK MODE IMPLEMENTATION
+// EINFACHER DARK MODE - KEINE KOMPLEXITÄT
 // ============================================================================
 
 (function() {
     'use strict';
-
-    // 1. Funktion zum Umschalten des Dark Mode
+    
+    console.log('🌓 Dark Mode Script geladen');
+    
+    // 1. Funktion zum Umschalten
     function toggleDarkMode() {
         const html = document.documentElement;
         const body = document.body;
         
-        // Prüfen, ob Dark Mode aktiv ist
+        // Prüfe ob Dark Mode aktiv
         const isDark = html.classList.contains('dark-mode');
         
+        console.log('🔄 Toggle Dark Mode. Aktuell:', isDark ? 'Dark' : 'Light');
+        
         if (isDark) {
-            // Deaktiviere Dark Mode
+            // Zu Light wechseln
             html.classList.remove('dark-mode');
             body.classList.remove('dark-mode');
             localStorage.setItem('ms-theme', 'light');
-            console.log('Dark Mode deaktiviert');
+            updateToggleIcon(false);
+            console.log('☀️ Light Mode aktiviert');
         } else {
-            // Aktiviere Dark Mode
+            // Zu Dark wechseln
             html.classList.add('dark-mode');
             body.classList.add('dark-mode');
             localStorage.setItem('ms-theme', 'dark');
-            console.log('Dark Mode aktiviert');
-        }
-        
-        // Aktualisiere das Icon des Buttons
-        updateToggleButton();
-    }
-
-    // 2. Funktion zum Aktualisieren des Toggle-Buttons
-    function updateToggleButton() {
-        const toggleButton = document.getElementById('darkModeToggle');
-        if (!toggleButton) return;
-        
-        const isDark = document.documentElement.classList.contains('dark-mode');
-        const moonIcon = toggleButton.querySelector('.moon-icon');
-        const sunIcon = toggleButton.querySelector('.sun-icon');
-        
-        if (isDark) {
-            moonIcon.style.display = 'none';
-            sunIcon.style.display = 'block';
-            toggleButton.setAttribute('aria-label', 'Zum Light Mode wechseln');
-        } else {
-            moonIcon.style.display = 'block';
-            sunIcon.style.display = 'none';
-            toggleButton.setAttribute('aria-label', 'Zum Dark Mode wechseln');
+            updateToggleIcon(true);
+            console.log('🌙 Dark Mode aktiviert');
         }
     }
-
-    // 3. Initialisierung des Dark Mode beim Laden der Seite
-    function initDarkMode() {
-        // Prüfen, ob ein Theme in localStorage gespeichert ist
-        const savedTheme = localStorage.getItem('ms-theme');
+    
+    // 2. Button Icon aktualisieren
+    function updateToggleIcon(isDark) {
+        const toggleBtn = document.getElementById('darkModeToggle');
+        if (!toggleBtn) return;
         
-        // Falls kein Theme gespeichert ist, das System-Theme verwenden
-        if (savedTheme === null) {
-            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-            if (prefersDark) {
-                document.documentElement.classList.add('dark-mode');
-                document.body.classList.add('dark-mode');
+        const moonIcon = toggleBtn.querySelector('.moon-icon');
+        const sunIcon = toggleBtn.querySelector('.sun-icon');
+        
+        if (moonIcon && sunIcon) {
+            if (isDark) {
+                moonIcon.style.display = 'none';
+                sunIcon.style.display = 'block';
+                toggleBtn.setAttribute('aria-label', 'Zum Light Mode wechseln');
+            } else {
+                moonIcon.style.display = 'block';
+                sunIcon.style.display = 'none';
+                toggleBtn.setAttribute('aria-label', 'Zum Dark Mode wechseln');
             }
-        } else if (savedTheme === 'dark') {
-            document.documentElement.classList.add('dark-mode');
-            document.body.classList.add('dark-mode');
         }
+    }
+    
+    // 3. Initialisiere
+    function init() {
+        console.log('🚀 Initialisiere Dark Mode...');
         
-        // Toggle-Button aktualisieren
-        updateToggleButton();
+        // Setze initiales Icon
+        const isDark = document.documentElement.classList.contains('dark-mode');
+        updateToggleIcon(isDark);
         
-        // Event-Listener für den Toggle-Button hinzufügen
-        const toggleButton = document.getElementById('darkModeToggle');
-        if (toggleButton) {
-            toggleButton.addEventListener('click', toggleDarkMode);
+        // Finde Toggle Button
+        const toggleBtn = document.getElementById('darkModeToggle');
+        
+        if (toggleBtn) {
+            console.log('✅ Dark Mode Toggle Button gefunden');
+            
+            // EINFACHER CLICK EVENT
+            toggleBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                toggleDarkMode();
+            });
+            
         } else {
-            console.error('Dark Mode Toggle Button nicht gefunden!');
+            console.error('❌ Dark Mode Toggle Button NICHT GEFUNDEN!');
         }
     }
-
-    // 4. Initialisierung starten, sobald das DOM vollständig geladen ist
+    
+    // 4. Starte wenn DOM bereit
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initDarkMode);
+        document.addEventListener('DOMContentLoaded', init);
     } else {
-        // DOMContentLoaded wurde bereits ausgelöst
-        initDarkMode();
+        init();
     }
-
+    
 })();
