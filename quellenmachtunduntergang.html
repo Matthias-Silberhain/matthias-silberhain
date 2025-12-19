@@ -1,1 +1,507 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Quellen: Macht und Untergang | Matthias Silberhain</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Quellenverzeichnis zum Werk 'Macht und Untergang - Die entstellte Wahrheit des Kaiserreichs' von Matthias Silberhain.">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/logo.png" type="image/png">
+    
+    <!-- Dark Mode Preload -->
+    <script>
+        (function() {
+            // SOFORTIGE DARK MODE ANWENDUNG
+            try {
+                const savedTheme = localStorage.getItem('ms-theme');
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                
+                if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                    document.documentElement.classList.add('dark-mode');
+                    document.body.classList.add('dark-mode');
+                }
+            } catch(e) {
+                // Ignoriere Fehler
+            }
+            
+            // SOFORTIGE KLICKBARKEIT SICHERSTELLEN
+            document.addEventListener('DOMContentLoaded', function() {
+                const interactiveElements = ['button', 'a', '.burger', '.dark-mode-toggle', '.silber-button', '.social-link'];
+                
+                setTimeout(function() {
+                    interactiveElements.forEach(selector => {
+                        document.querySelectorAll(selector).forEach(el => {
+                            el.style.pointerEvents = 'auto';
+                            el.style.cursor = 'pointer';
+                        });
+                    });
+                    
+                    // Copyright Jahr sofort setzen
+                    const yearElement = document.getElementById('jahr');
+                    if (yearElement && !yearElement.textContent) {
+                        yearElement.textContent = new Date().getFullYear();
+                    }
+                    
+                    console.log('✅ Website ist jetzt voll klickbar!');
+                }, 100);
+            });
+        })();
+    </script>
+    
+    <style>
+        /* ==========================================================================
+           QUELLEN SEITE STYLES - Im selben Stil wie Termine/Kontakt
+           ========================================================================== */
+        
+        .quellen-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header-Bereich mit Cover */
+        .quellen-header {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 40px;
+            align-items: start;
+            margin-bottom: 50px;
+            padding: 30px;
+            background: linear-gradient(135deg, 
+                rgba(10, 10, 10, 0.4) 0%, 
+                rgba(30, 30, 30, 0.6) 100%);
+            border-radius: 8px;
+            border: 1px solid rgba(200, 205, 215, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .quellen-header {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 20px;
+            }
+        }
+        
+        .quellen-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(200, 205, 215, 0.3) 50%, 
+                transparent 100%);
+        }
+        
+        .buch-cover-quelle {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(200, 205, 215, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .buch-cover-quelle:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+        }
+        
+        .quellen-header-text h1 {
+            font-family: "Cinzel", serif;
+            color: #e4e6ea;
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            letter-spacing: 0.05em;
+            text-shadow: 0 0 15px rgba(200, 200, 200, 0.2);
+        }
+        
+        .quellen-header-text .untertitel {
+            color: #b0b5bc;
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            font-style: italic;
+            border-bottom: 1px solid rgba(200, 205, 215, 0.2);
+            padding-bottom: 15px;
+        }
+        
+        .quellen-header-text p {
+            color: #b0b5bc;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+        
+        /* Hinweis-Kasten im Stil der anderen Seiten */
+        .hinweis-kasten {
+            background: rgba(200, 205, 215, 0.05);
+            border-left: 3px solid rgba(200, 205, 215, 0.3);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 4px 4px 0;
+            color: #9da2a8;
+            font-size: 0.95rem;
+        }
+        
+        .hinweis-kasten strong {
+            color: #d6d9de;
+        }
+        
+        /* Quellen Kategorien - Im Stil der Termine-Seite */
+        .quellen-abschnitt {
+            margin: 50px 0;
+        }
+        
+        .quelle-kategorie {
+            background: rgba(10, 10, 10, 0.3);
+            border: 1px solid rgba(200, 205, 215, 0.15);
+            border-radius: 6px;
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .quelle-kategorie:hover {
+            background: rgba(10, 10, 10, 0.4);
+            border-color: rgba(200, 205, 215, 0.25);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .quelle-kategorie h3 {
+            font-family: "Cinzel", serif;
+            color: #e4e6ea;
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            letter-spacing: 0.05em;
+        }
+        
+        .kategorie-untertitel {
+            color: #9da2a8;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            font-style: italic;
+            border-bottom: 1px solid rgba(200, 205, 215, 0.1);
+            padding-bottom: 10px;
+        }
+        
+        /* Quellen-Liste */
+        .quellen-liste {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .quellen-liste li {
+            margin-bottom: 15px;
+            padding-left: 20px;
+            position: relative;
+            color: #b0b5bc;
+            line-height: 1.6;
+        }
+        
+        .quellen-liste li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: rgba(200, 205, 215, 0.5);
+            font-size: 1.2rem;
+        }
+        
+        .quellen-liste strong {
+            color: #e4e6ea;
+            font-weight: 500;
+        }
+        
+        .quellen-liste a {
+            color: #d6d9de;
+            text-decoration: none;
+            border-bottom: 1px dotted rgba(200, 200, 200, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .quellen-liste a:hover {
+            color: #ffffff;
+            border-bottom: 1px solid rgba(200, 200, 200, 0.6);
+        }
+        
+        /* Hinweis-Bereich */
+        .quellen-hinweis {
+            background: rgba(200, 205, 215, 0.05);
+            border: 1px solid rgba(200, 205, 215, 0.2);
+            border-radius: 6px;
+            padding: 30px;
+            margin: 40px 0;
+        }
+        
+        .quellen-hinweis p {
+            color: #b0b5bc;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .quellen-hinweis strong {
+            color: #d6d9de;
+        }
+        
+        /* DARK MODE STYLES */
+        body.dark-mode .quelle-kategorie {
+            background: rgba(30, 30, 30, 0.5);
+            border-color: rgba(220, 225, 235, 0.2);
+        }
+        
+        body.dark-mode .quelle-kategorie:hover {
+            background: rgba(30, 30, 30, 0.7);
+            border-color: rgba(220, 225, 235, 0.3);
+        }
+        
+        body.dark-mode .quellen-header {
+            background: linear-gradient(135deg, 
+                rgba(30, 30, 30, 0.5) 0%, 
+                rgba(50, 50, 50, 0.7) 100%);
+            border-color: rgba(220, 225, 235, 0.2);
+        }
+        
+        body.dark-mode .hinweis-kasten {
+            background: rgba(220, 225, 235, 0.05);
+            border-left-color: rgba(220, 225, 235, 0.4);
+        }
+        
+        body.dark-mode .quellen-hinweis {
+            background: rgba(220, 225, 235, 0.05);
+            border-color: rgba(220, 225, 235, 0.25);
+        }
+        
+        /* Responsive Anpassungen */
+        @media screen and (max-width: 768px) {
+            .quellen-container {
+                padding: 15px;
+            }
+            
+            .quellen-header-text h1 {
+                font-size: 1.8rem;
+            }
+            
+            .quelle-kategorie {
+                padding: 20px;
+            }
+            
+            .quelle-kategorie h3 {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            .quellen-header-text h1 {
+                font-size: 1.6rem;
+            }
+            
+            .quellen-header {
+                padding: 15px;
+            }
+            
+            .quelle-kategorie {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
 
+<body>
+
+<!-- Mobile Menu Overlay -->
+<div class="menu-overlay" id="menuOverlay"></div>
+
+<!-- ================= HEADER ================= -->
+<header class="header">
+    <img src="assets/images/logo.png" alt="Matthias Silberhain Logo" class="logo">
+    
+    <!-- Dark Mode Toggle Button -->
+    <button id="darkModeToggle" class="dark-mode-toggle" aria-label="Dark Mode umschalten" title="Dark Mode umschalten">
+        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+    </button>
+
+    <div class="burger" id="burger" title="Menü öffnen/schließen">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <nav class="hauptnavigation" id="navigation">
+        <a href="index.html">Startseite</a>
+        <a href="ueber-mich.html">Über mich</a>
+        <a href="werke.html">Werke</a>
+        <a href="quellen.html">Quellen</a>
+        <a href="termine.html">Termine</a>
+        <a href="kontakt.html">Kontakt</a>
+    </nav>
+</header>
+
+<div class="lichtkante"></div>
+
+<!-- ================= HAUPTINHALT ================= -->
+<main class="inhalt">
+    <section class="quellen-container">
+        
+        <!-- ================= BUCH: MACHT UND UNTERGANG ================= -->
+        <div class="quellen-header">
+            <div class="buch-cover-container">
+                <img src="assets/images/buchcover-macht-und-untergang.png" 
+                     alt="Buchcover: Macht und Untergang" 
+                     class="buch-cover-quelle">
+            </div>
+            
+            <div class="quellen-header-text">
+                <h1>MACHT UND UNTERGANG</h1>
+                <p class="untertitel">Die entstellte Wahrheit des Kaiserreichs</p>
+                
+                <p>Diese Seite versammelt alle zentralen digitalen Quellen und Forschungsliteratur, die der historischen Analyse in diesem Werk zugrunde liegen.<br>
+                Jede Quelle dient der vollständigen Nachvollziehbarkeit und Vertiefung der im Buch dargestellten historischen Zusammenhänge.</p>
+                
+                <div class="hinweis-kasten">
+                    <strong>Hinweis zur Nutzung:</strong> Die hier aufgeführten Quellen umfassen Archivbestände, digitale Sammlungen und Fachpublikationen, die die historische Analyse des Werkes belegen.
+                </div>
+            </div>
+        </div>
+
+        <!-- QUELLENINHALT -->
+        <div class="quellen-abschnitt">
+            
+            <!-- I. Reichstagsprotokolle -->
+            <div class="quelle-kategorie">
+                <h3>I. Reichstagsprotokolle (Stenographische Berichte)</h3>
+                <ul class="quellen-liste">
+                    <li><strong>Sitzung vom 19.01.1871</strong> – Rede Eduard Lasker</li>
+                    <li><strong>Sitzung vom 02.05.1884</strong> – Debatte zur Verlängerung des Sozialistengesetzes, Reden Wilhelm von Kardorff, August Bebel</li>
+                    <li><strong>Sitzung vom 17.01.1885</strong> – Rede Ignaz Auer</li>
+                    <li><strong>Sitzung vom 17.03.1893</strong> – Rede Paul Singer, Erwiderung Ernst von Heydebrand und der Lasa</li>
+                    <li><strong>Sitzung vom 28.03.1907</strong> – Rede Karl Liebknecht zu Kolonialverbrechen in Deutsch-Südwestafrika</li>
+                    <li><strong>Sitzung vom 07.10.1916</strong> – Rede Philipp Scheidemann zur öffentlichen Hinrichtung</li>
+                    <li><strong>Sitzung vom 22.10.1918</strong> – Rede Philipp Scheidemann mit Verlesung des Geheimbefehls zur Ernährungslage in Belgien</li>
+                </ul>
+            </div>
+            
+            <!-- II. Akten des Auswärtigen Amtes -->
+            <div class="quelle-kategorie">
+                <h3>II. Akten des Auswärtigen Amtes (Politisches Archiv, Berlin)</h3>
+                <ul class="quellen-liste">
+                    <li><strong>R 1507/1023</strong> – Geheimbericht Politische Polizei Berlin, 01.11.1918</li>
+                    <li><strong>R 901/68695</strong> – Rückversicherungsvertrag mit Russland, Auslaufen 1890</li>
+                    <li><strong>R 1001/2089</strong> – Vernichtungsbefehl Lothar von Trotha, Oktober 1904</li>
+                    <li><strong>R 1001/2114</strong> – Lagerberichte Swakopmund und Lüderitzbucht, 1905–1907</li>
+                    <li><strong>R 1001/2095</strong> – Schriftwechsel zur Ernährungslage in Konzentrationslagern, November 1905</li>
+                </ul>
+            </div>
+            
+            <!-- III. Militärarchiv -->
+            <div class="quelle-kategorie">
+                <h3>III. Militärarchiv (Bundesarchiv-Militärarchiv, Freiburg)</h3>
+                <ul class="quellen-liste">
+                    <li><strong>RM 120/378</strong> – Bericht zur Meuterei Wilhelmshaven, 29.10.1918</li>
+                    <li><strong>PH 3/556</strong> – Kriegstagebuch OHL, Oktober 1918 (Ludendorff)</li>
+                    <li><strong>PH 6 I/46</strong> – Befehl zur öffentlichen Hinrichtung, September 1916</li>
+                    <li><strong>MSG 2/12755</strong> – Feldpostbriefe Oktober/November 1918</li>
+                </ul>
+            </div>
+            
+            <!-- IV. Preußische Staatsakten -->
+            <div class="quelle-kategorie">
+                <h3>IV. Preußische Staats- und Ministerialakten (Geheimes Staatsarchiv, Berlin)</h3>
+                <ul class="quellen-liste">
+                    <li><strong>I. HA Rep. 77</strong> – Politische Polizei, Spitzelwesen, Sozialdemokratie</li>
+                    <li><strong>I. HA Rep. 76</strong> – Kultusministerium, Überwachung von Schülern, 1882</li>
+                    <li><strong>I. HA Rep. 90</strong> – Justizministerium, politische Prozesse 1878–1914</li>
+                </ul>
+            </div>
+            
+            <!-- V. Nachlässe -->
+            <div class="quelle-kategorie">
+                <h3>V. Nachlässe und private Papiere</h3>
+                <ul class="quellen-liste">
+                    <li><strong>Nachlass Rudolf von Valentini</strong> (Bundesarchiv N 1031)</li>
+                    <li><strong>Nachlass Max von Baden</strong> (Bundesarchiv N 1017)</li>
+                    <li><strong>Nachlass August Bebel</strong> (Archiv der sozialen Demokratie, Bonn)</li>
+                    <li><strong>Georg Alexander von Müller: Der Kaiser …</strong>, hg. Walter Görlitz, Göttingen 1965</li>
+                </ul>
+            </div>
+            
+            <!-- VI. Gesetzestexte -->
+            <div class="quelle-kategorie">
+                <h3>VI. Gesetzestexte und amtliche Veröffentlichungen</h3>
+                <ul class="quellen-liste">
+                    <li><strong>Reichsverfassung vom 16.04.1871</strong></li>
+                    <li><strong>Sozialistengesetz 1878</strong></li>
+                    <li><strong>Verfassungsänderung 28.10.1918</strong></li>
+                    <li><strong>Preußisches Dreiklassenwahlrecht 1849</strong></li>
+                    <li><strong>Eingeborenenverordnung Deutsch-Südwestafrika 1907</strong></li>
+                </ul>
+            </div>
+            
+            <!-- VII. Wissenschaftliche Editionen -->
+            <div class="quelle-kategorie">
+                <h3>VII. Wissenschaftliche Editionen und Dokumentationen</h3>
+                <ul class="quellen-liste">
+                    <li><strong>Die Große Politik der Europäischen Kabinette 1871–1914</strong>, 40 Bände</li>
+                    <li><strong>Ursachen und Folgen</strong>, Michaelis/Schraepler, 26 Bände</li>
+                    <li><strong>Zimmerer/Zeller: Völkermord in Deutsch-Südwestafrika</strong>, Berlin 2003</li>
+                    <li><strong>Dieter Fricke (Hg.): Das Sozialistengesetz</strong>, Berlin 1983</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- ================= ALLGEMEINER HINWEIS ================= -->
+        <div class="quellen-hinweis">
+            <p><strong>Hinweis zu externen Links:</strong> Diese Website enthält Verlinkungen zu externen Webseiten Dritter. Ich habe keinen Einfluss auf deren Inhalte und übernehme keine Haftung. Sollten Ihnen problematische Inhalte auffallen, bitte ich um einen Hinweis.</p>
+            <p><strong>📍 Nutzungshinweise zu den Quellen:</strong> Die hier aufgeführten Quellen umfassen Archivbestände, digitale Sammlungen und Fachpublikationen, die die historische Analyse des Werkes belegen. Reichstagsprotokolle sind gesetzliche Amtspublikationen, die regelmäßig online verfügbar gemacht werden.</p>
+        </div>
+    </section>
+</main>
+
+<!-- ================= SOCIAL MEDIA ================= -->
+<section class="social-section">
+    <h3 class="social-title">Folgen Sie den Gedanken</h3>
+    <div class="social-grid">
+        <!-- Social Media Icons hier einfügen (wie in Ihrer index.html) -->
+    </div>
+</section>
+<div class="lichtkante"></div>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+    <div class="footer-links">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+    </div>
+    <p>© <span id="jahr"></span> Matthias Silberhain</p>
+</footer>
+
+<!-- ================= JAVASCRIPT ================= -->
+<script src="assets/js/global.js"></script>
+<script src="assets/js/menu.js"></script>
+
+</body>
+</html>
