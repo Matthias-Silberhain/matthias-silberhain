@@ -1,1 +1,531 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Quellen: Blut und Krone | Matthias Silberhain</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Quellenverzeichnis zum Werk 'BLUT UND KRONE - Das Ende der Illusion (1871-1918)' von Matthias Silberhain.">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/logo.png" type="image/png">
+    
+    <!-- Dark Mode Preload -->
+    <script>
+        (function() {
+            // SOFORTIGE DARK MODE ANWENDUNG
+            try {
+                const savedTheme = localStorage.getItem('ms-theme');
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                
+                if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                    document.documentElement.classList.add('dark-mode');
+                    document.body.classList.add('dark-mode');
+                }
+            } catch(e) {
+                // Ignoriere Fehler
+            }
+            
+            // SOFORTIGE KLICKBARKEIT SICHERSTELLEN
+            document.addEventListener('DOMContentLoaded', function() {
+                const interactiveElements = ['button', 'a', '.burger', '.dark-mode-toggle', '.silber-button', '.social-link'];
+                
+                setTimeout(function() {
+                    interactiveElements.forEach(selector => {
+                        document.querySelectorAll(selector).forEach(el => {
+                            el.style.pointerEvents = 'auto';
+                            el.style.cursor = 'pointer';
+                        });
+                    });
+                    
+                    // Copyright Jahr sofort setzen
+                    const yearElement = document.getElementById('jahr');
+                    if (yearElement && !yearElement.textContent) {
+                        yearElement.textContent = new Date().getFullYear();
+                    }
+                    
+                    console.log('✅ Website ist jetzt voll klickbar!');
+                }, 100);
+            });
+        })();
+    </script>
+    
+    <style>
+        /* ==========================================================================
+           QUELLEN SEITE STYLES - Im selben Stil wie Termine/Kontakt
+           ========================================================================== */
+        
+        .quellen-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header-Bereich mit Cover */
+        .quellen-header {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 40px;
+            align-items: start;
+            margin-bottom: 50px;
+            padding: 30px;
+            background: linear-gradient(135deg, 
+                rgba(10, 10, 10, 0.4) 0%, 
+                rgba(30, 30, 30, 0.6) 100%);
+            border-radius: 8px;
+            border: 1px solid rgba(200, 205, 215, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .quellen-header {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 20px;
+            }
+        }
+        
+        .quellen-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(200, 205, 215, 0.3) 50%, 
+                transparent 100%);
+        }
+        
+        .buch-cover-quelle {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(200, 205, 215, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .buch-cover-quelle:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+        }
+        
+        .quellen-header-text h1 {
+            font-family: "Cinzel", serif;
+            color: #e4e6ea;
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            letter-spacing: 0.05em;
+            text-shadow: 0 0 15px rgba(200, 200, 200, 0.2);
+        }
+        
+        .quellen-header-text .untertitel {
+            color: #b0b5bc;
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            font-style: italic;
+            border-bottom: 1px solid rgba(200, 205, 215, 0.2);
+            padding-bottom: 15px;
+        }
+        
+        .quellen-header-text p {
+            color: #b0b5bc;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+        
+        /* Hinweis-Kasten im Stil der anderen Seiten */
+        .hinweis-kasten {
+            background: rgba(200, 205, 215, 0.05);
+            border-left: 3px solid rgba(200, 205, 215, 0.3);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 4px 4px 0;
+            color: #9da2a8;
+            font-size: 0.95rem;
+        }
+        
+        .hinweis-kasten strong {
+            color: #d6d9de;
+        }
+        
+        /* Quellen Kategorien - Im Stil der Termine-Seite */
+        .quellen-abschnitt {
+            margin: 50px 0;
+        }
+        
+        .quelle-kategorie {
+            background: rgba(10, 10, 10, 0.3);
+            border: 1px solid rgba(200, 205, 215, 0.15);
+            border-radius: 6px;
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .quelle-kategorie:hover {
+            background: rgba(10, 10, 10, 0.4);
+            border-color: rgba(200, 205, 215, 0.25);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .quelle-kategorie h3 {
+            font-family: "Cinzel", serif;
+            color: #e4e6ea;
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            letter-spacing: 0.05em;
+        }
+        
+        .kategorie-untertitel {
+            color: #9da2a8;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            font-style: italic;
+            border-bottom: 1px solid rgba(200, 205, 215, 0.1);
+            padding-bottom: 10px;
+        }
+        
+        /* Quellen-Liste */
+        .quellen-liste {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .quellen-liste li {
+            margin-bottom: 15px;
+            padding-left: 20px;
+            position: relative;
+            color: #b0b5bc;
+            line-height: 1.6;
+        }
+        
+        .quellen-liste li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: rgba(200, 205, 215, 0.5);
+            font-size: 1.2rem;
+        }
+        
+        .quellen-liste strong {
+            color: #e4e6ea;
+            font-weight: 500;
+        }
+        
+        .quellen-liste a {
+            color: #d6d9de;
+            text-decoration: none;
+            border-bottom: 1px dotted rgba(200, 200, 200, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .quellen-liste a:hover {
+            color: #ffffff;
+            border-bottom: 1px solid rgba(200, 200, 200, 0.6);
+        }
+        
+        /* Hinweis-Bereich */
+        .quellen-hinweis {
+            background: rgba(200, 205, 215, 0.05);
+            border: 1px solid rgba(200, 205, 215, 0.2);
+            border-radius: 6px;
+            padding: 30px;
+            margin: 40px 0;
+        }
+        
+        .quellen-hinweis p {
+            color: #b0b5bc;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .quellen-hinweis strong {
+            color: #d6d9de;
+        }
+        
+        /* DARK MODE STYLES */
+        body.dark-mode .quelle-kategorie {
+            background: rgba(30, 30, 30, 0.5);
+            border-color: rgba(220, 225, 235, 0.2);
+        }
+        
+        body.dark-mode .quelle-kategorie:hover {
+            background: rgba(30, 30, 30, 0.7);
+            border-color: rgba(220, 225, 235, 0.3);
+        }
+        
+        body.dark-mode .quellen-header {
+            background: linear-gradient(135deg, 
+                rgba(30, 30, 30, 0.5) 0%, 
+                rgba(50, 50, 50, 0.7) 100%);
+            border-color: rgba(220, 225, 235, 0.2);
+        }
+        
+        body.dark-mode .hinweis-kasten {
+            background: rgba(220, 225, 235, 0.05);
+            border-left-color: rgba(220, 225, 235, 0.4);
+        }
+        
+        body.dark-mode .quellen-hinweis {
+            background: rgba(220, 225, 235, 0.05);
+            border-color: rgba(220, 225, 235, 0.25);
+        }
+        
+        /* Responsive Anpassungen */
+        @media screen and (max-width: 768px) {
+            .quellen-container {
+                padding: 15px;
+            }
+            
+            .quellen-header-text h1 {
+                font-size: 1.8rem;
+            }
+            
+            .quelle-kategorie {
+                padding: 20px;
+            }
+            
+            .quelle-kategorie h3 {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            .quellen-header-text h1 {
+                font-size: 1.6rem;
+            }
+            
+            .quellen-header {
+                padding: 15px;
+            }
+            
+            .quelle-kategorie {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
 
+<body>
+
+<!-- Mobile Menu Overlay -->
+<div class="menu-overlay" id="menuOverlay"></div>
+
+<!-- ================= HEADER ================= -->
+<header class="header">
+    <img src="assets/images/logo.png" alt="Matthias Silberhain Logo" class="logo">
+    
+    <!-- Dark Mode Toggle Button -->
+    <button id="darkModeToggle" class="dark-mode-toggle" aria-label="Dark Mode umschalten" title="Dark Mode umschalten">
+        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+    </button>
+
+    <div class="burger" id="burger" title="Menü öffnen/schließen">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <nav class="hauptnavigation" id="navigation">
+        <a href="index.html">Startseite</a>
+        <a href="ueber-mich.html">Über mich</a>
+        <a href="werke.html">Werke</a>
+        <a href="quellen.html">Quellen</a>
+        <a href="termine.html">Termine</a>
+        <a href="kontakt.html">Kontakt</a>
+    </nav>
+</header>
+
+<div class="lichtkante"></div>
+
+<!-- ================= HAUPTINHALT ================= -->
+<main class="inhalt">
+    <section class="quellen-container">
+        
+        <!-- ================= BUCH: BLUT UND KRONE ================= -->
+        <div class="quellen-header">
+            <div class="buch-cover-container">
+                <img src="assets/images/buchcover-blut-und-krone.png" 
+                     alt="Buchcover: Blut und Krone" 
+                     class="buch-cover-quelle">
+            </div>
+            
+            <div class="quellen-header-text">
+                <h1>BLUT UND KRONE</h1>
+                <p class="untertitel">Das Ende der Illusion (1871–1918)</p>
+                
+                <p>Diese Seite versammelt alle zentralen digitalen Quellen und Forschungsliteratur, die der historischen Analyse in diesem Werk zugrunde liegen.<br>
+                Jede Quelle dient der vollständigen Nachvollziehbarkeit und Vertiefung der im Buch dargestellten historischen Zusammenhänge.</p>
+                
+                <div class="hinweis-kasten">
+                    <strong>Hinweis zur Nutzung:</strong> Die hier aufgeführten Quellen umfassen Archivbestände, digitale Sammlungen und Fachpublikationen, die die historische Analyse des Werkes belegen.
+                </div>
+            </div>
+        </div>
+
+        <!-- QUELLENINHALT -->
+        <div class="quellen-abschnitt">
+            
+            <!-- I. Primärquellen -->
+            <div class="quelle-kategorie">
+                <h3>I. Primärquellen: Reichstag, Verfassung, Gesetze</h3>
+                <ul class="quellen-liste">
+                    <li><strong>Reichstagsprotokolle (vollständig digitalisiert)</strong><br>
+                        Verhandlungen des Deutschen Reichstags 1867–1918<br>
+                        <a href="https://www.reichstagsprotokolle.de" target="_blank">https://www.reichstagsprotokolle.de</a></li>
+                    <li><strong>Reichstagsprotokoll vom 19. Januar 1871</strong><br>
+                        Debatte zur Kaiserproklamation in Versailles<br>
+                        <a href="https://www.reichstagsprotokolle.de/Blatt_k12_bsb00000100_00117.html" target="_blank">Blatt 117</a></li>
+                    <li><strong>Reichstagsprotokoll vom 22. März 1887</strong><br>
+                        Erbfolge und weibliche Thronansprüche<br>
+                        <a href="https://www.reichstagsprotokolle.de/Blatt_k12_bsb00000100_00356.html" target="_blank">Blatt 356</a></li>
+                    <li><strong>Reichstagsprotokoll zur Debatte über das Dreiklassenwahlrecht, 1900</strong><br>
+                        <a href="https://www.reichstagsprotokolle.de/Blatt_k12_bsb00000100_00670.html" target="_blank">Blatt 670</a></li>
+                    <li><strong>Reichstagsprotokolle 1915–1918</strong><br>
+                        u. a. Sitzung vom 5. Oktober 1916 (Drucksache 347/1916)</li>
+                    <li><strong>Verfassung des Deutschen Reiches von 1871</strong><br>
+                        <a href="https://www.documentarchiv.de/kaiserreich/verf1871.html" target="_blank">Volltext bei documentArchiv.de</a></li>
+                    <li><strong>Sozialistengesetz 1878–1890 (Reichsgesetzblatt)</strong><br>
+                        <a href="https://www.reichsgesetzblatt.de/" target="_blank">Reichsgesetzblatt-Portal</a></li>
+                    <li><strong>Reichsanweisung zur Presseaufsicht (Militärzensur), 1910</strong><br>
+                        <a href="https://www.reichstagsprotokolle.de/Blatt_k24_bsb00018491_00212.html" target="_blank">Blatt 212</a></li>
+                </ul>
+            </div>
+            
+            <!-- II. Archiv- und Amtsquellen -->
+            <div class="quelle-kategorie">
+                <h3>II. Archiv- und Amtsquellen</h3>
+                <ul class="quellen-liste">
+                    <li><strong>Bundesarchiv Deutschland – Themenportal Deutsches Kaiserreich</strong><br>
+                        <a href="https://www.bundesarchiv.de/DE/Content/Recherche/archivgut/themen-kaiserreich.html" target="_blank">Portal des Bundesarchivs</a></li>
+                    <li><strong>Bundesarchiv „invenio" – Recherche digitalisierter Akten</strong><br>
+                        <a href="https://invenio.bundesarchiv.de" target="_blank">Suchportal invenio</a></li>
+                    <li><strong>Hofarchiv Berlin</strong><br>
+                        Ärztlicher Bericht zu Wilhelm II., Dokument Nr. 1278</li>
+                    <li><strong>Politisches Archiv des Auswärtigen Amts</strong><br>
+                        Akten zur Parlamentarisierung 1918</li>
+                    <li><strong>Kriegsarchiv Potsdam</strong><br>
+                        Geheimer Erlass des Großen Generalstabs, August 1914</li>
+                    <li><strong>Staatsarchiv Greiz</strong><br>
+                        Familienarchiv Reuß, Bestand FA-RZS Nr. 304a</li>
+                </ul>
+            </div>
+            
+            <!-- III. Kolonial- und Militärquellen -->
+            <div class="quelle-kategorie">
+                <h3>III. Kolonial- und Militärquellen</h3>
+                <ul class="quellen-liste">
+                    <li><strong>Kolonialarchiv</strong><br>
+                        Berichte zum Vernichtungskrieg gegen Herero und Nama</li>
+                    <li><strong>Militärberichte Deutsch-Südwestafrika, 1905</strong><br>
+                        Zwangsarbeit, sexualisierte Gewalt</li>
+                    <li><strong>Militärgericht Köln</strong><br>
+                        Fallakten 1916–1918</li>
+                </ul>
+            </div>
+            
+            <!-- IV. Zeitgenössische Presse -->
+            <div class="quelle-kategorie">
+                <h3>IV. Zeitgenössische Presse und Medien</h3>
+                <ul class="quellen-liste">
+                    <li><strong>SPD-Zeitung Vorwärts, Dezember 1918</strong></li>
+                    <li><strong>Leipziger Volksblatt</strong></li>
+                    <li><strong>Sozialistische Monatshefte</strong> (digitale Sammlungen)</li>
+                    <li><strong>Deutsche Digitale Bibliothek – Pressezensur und Medienlenkung im Kaiserreich</strong><br>
+                        <a href="https://www.deutsche-digitale-bibliothek.de/searchresults?query=pressezensur+kaiserreich" target="_blank">DDB-Suche</a></li>
+                </ul>
+            </div>
+            
+            <!-- V. Wissenschaftliche Literatur -->
+            <div class="quelle-kategorie">
+                <h3>V. Wissenschaftliche Fachliteratur</h3>
+                <ul class="quellen-liste">
+                    <li><strong>Fritz Fischer: Der Griff nach der Weltmacht</strong> (1961)</li>
+                    <li><strong>Hermann Kellenbenz: Jüdische Finanzwelt im Kaiserreich</strong> (1979)</li>
+                    <li><strong>John C. G. Röhl: Wilhelm II. – Der Aufbau der Persönlichen Monarchie</strong> (1993)</li>
+                    <li><strong>Weimarer Staatsrechtslehre</strong> (1922): Der Verlust der monarchischen Legitimität</li>
+                </ul>
+            </div>
+            
+            <!-- VI. Digitale Quellenportale -->
+            <div class="quelle-kategorie">
+                <h3>VI. Übergeordnete digitale Quellenportale</h3>
+                <ul class="quellen-liste">
+                    <li><strong>German History in Documents and Images (GHDI)</strong><br>
+                        <a href="https://germanhistorydocs.org" target="_blank">https://germanhistorydocs.org</a></li>
+                    <li><strong>Quellen zur Geschichte der deutschen Sozialpolitik 1867–1914</strong><br>
+                        <a href="https://quellen-sozialpolitik-kaiserreich.de/baende/digitale-baende.html" target="_blank">Digitale Bände</a></li>
+                    <li><strong>Deutsches Historisches Museum (DHM) – Rückversicherungsvertrag 1887</strong><br>
+                        <a href="https://www.dhm.de/lemo/kapitel/deutsches-kaiserreich/aussenpolitik/rueckversicherungsvertrag.html" target="_blank">DHM-Link</a></li>
+                    <li><strong>Archivportal-D – Schul-, Polizei- und Verwaltungsberichte</strong><br>
+                        <a href="https://www.archivportal-d.de/" target="_blank">https://www.archivportal-d.de/</a></li>
+                </ul>
+            </div>
+            
+            <!-- VII. Kontextuelle Ergänzungen -->
+            <div class="quelle-kategorie">
+                <h3>VII. Kontextuelle Ergänzungen (nicht als Primärbeweis verwendet)</h3>
+                <ul class="quellen-liste">
+                    <li><strong>Wikipedia – Familie Reuß</strong><br>
+                        <a href="https://de.wikipedia.org/wiki/Reuß_(Linie)" target="_blank">https://de.wikipedia.org/wiki/Reuß_(Linie)</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- ================= ALLGEMEINER HINWEIS ================= -->
+        <div class="quellen-hinweis">
+            <p><strong>Hinweis zu externen Links:</strong> Diese Website enthält Verlinkungen zu externen Webseiten Dritter. Ich habe keinen Einfluss auf deren Inhalte und übernehme keine Haftung. Sollten Ihnen problematische Inhalte auffallen, bitte ich um einen Hinweis.</p>
+            <p><strong>📍 Nutzungshinweise zu den Quellen:</strong> Die hier aufgeführten Quellen umfassen Archivbestände, digitale Sammlungen und Fachpublikationen, die die historische Analyse des Werkes belegen. Reichstagsprotokolle sind gesetzliche Amtspublikationen, die regelmäßig online verfügbar gemacht werden.</p>
+        </div>
+    </section>
+</main>
+
+<!-- ================= SOCIAL MEDIA ================= -->
+<section class="social-section">
+    <h3 class="social-title">Folgen Sie den Gedanken</h3>
+    <div class="social-grid">
+        <!-- Social Media Icons hier einfügen (wie in Ihrer index.html) -->
+    </div>
+</section>
+<div class="lichtkante"></div>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+    <div class="footer-links">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+    </div>
+    <p>© <span id="jahr"></span> Matthias Silberhain</p>
+</footer>
+
+<!-- ================= JAVASCRIPT ================= -->
+<script src="assets/js/global.js"></script>
+<script src="assets/js/menu.js"></script>
+
+</body>
+</html>
