@@ -1,1 +1,525 @@
 
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Matthias Silberhain | Macht und Untergang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Macht und Untergang von Matthias Silberhain - Die Anatomie des Scheiterns">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="assets/images/logo.png" type="image/png">
+  
+  <!-- Dark Mode Preload -->
+  <script>
+    (function() {
+      try {
+        const savedTheme = localStorage.getItem('ms-theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+          document.documentElement.classList.add('dark-mode');
+          document.body.classList.add('dark-mode');
+        }
+      } catch(e) {}
+    })();
+  </script>
+  
+  <style>
+    /* Nutze die gleichen Styles wie werke.html */
+    .werke-container {
+      max-width: 850px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .werke-header {
+      text-align: center;
+      margin-bottom: 60px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid rgba(200, 205, 215, 0.2);
+    }
+    
+    .werke-header h1 {
+      margin-bottom: 15px;
+      font-family: "Cinzel", serif;
+      color: #e4e6ea;
+      font-size: 2.5rem;
+      letter-spacing: 0.08em;
+      text-shadow: 0 0 15px rgba(200, 200, 200, 0.2);
+    }
+    
+    .werke-subtitle {
+      color: #9da2a8;
+      font-size: 1.1rem;
+      font-style: italic;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    /* Buchkarte */
+    .buch-präsentation {
+      margin-bottom: 80px;
+    }
+    
+    .buchcover-bereich {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    
+    .buchcover-rahmen {
+      display: inline-block;
+      padding: 15px;
+      background: rgba(10, 10, 10, 0.9);
+      border: 1px solid rgba(200, 205, 215, 0.25);
+      border-radius: 2px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+      margin-bottom: 30px;
+    }
+    
+    .buchcover-seriös {
+      width: 280px;
+      height: auto;
+      display: block;
+      border-radius: 1px;
+    }
+    
+    .titel-bereich {
+      text-align: center;
+      margin-bottom: 40px;
+      padding-bottom: 25px;
+      border-bottom: 1px solid rgba(200, 205, 215, 0.15);
+    }
+    
+    .buch-titel-seriös {
+      font-family: "Cinzel", serif;
+      color: #e4e6ea;
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+      letter-spacing: 0.06em;
+      line-height: 1.3;
+      text-shadow: 0 0 12px rgba(200, 200, 200, 0.15);
+    }
+    
+    .buch-untertitel-seriös {
+      font-family: "EB Garamond", serif;
+      color: #b0b5bc;
+      font-size: 1.4rem;
+      font-style: italic;
+      line-height: 1.5;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .inhalt-bereich {
+      margin-bottom: 50px;
+    }
+    
+    .inhalt-text {
+      font-size: 1.15rem;
+      line-height: 1.8;
+      color: #b0b5bc;
+      text-align: justify;
+      margin-bottom: 35px;
+    }
+    
+    .inhalt-text p {
+      margin-bottom: 25px;
+    }
+    
+    .zitat-seriös {
+      background: rgba(200, 205, 215, 0.03);
+      border-left: 4px solid rgba(200, 205, 215, 0.3);
+      padding: 25px 30px;
+      margin: 35px 0;
+      font-style: italic;
+      color: #d6d9de;
+      line-height: 1.7;
+      font-size: 1.1rem;
+    }
+    
+    .quellen-bereich {
+      margin: 40px 0;
+      padding: 25px;
+      background: rgba(10, 10, 10, 0.6);
+      border: 1px solid rgba(200, 205, 215, 0.1);
+      border-radius: 2px;
+    }
+    
+    .quellen-titel {
+      font-family: "Cinzel", serif;
+      color: #e4e6ea;
+      font-size: 1.1rem;
+      margin-bottom: 15px;
+      letter-spacing: 0.05em;
+    }
+    
+    .quellen-text {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #9da2a8;
+    }
+    
+    .aktionen-bereich {
+      text-align: center;
+      margin-top: 50px;
+      padding-top: 30px;
+      border-top: 1px solid rgba(200, 205, 215, 0.15);
+    }
+    
+    .seriöser-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 45px;
+      background: transparent;
+      color: #d6d9de;
+      border: 1px solid rgba(200, 205, 215, 0.35);
+      border-radius: 2px;
+      font-family: "Cinzel", serif;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+    
+    .seriöser-button:hover {
+      background: rgba(200, 205, 215, 0.08);
+      color: #ffffff;
+      border-color: rgba(200, 205, 215, 0.6);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Status-Box für kommendes Werk */
+    .status-container {
+      background: rgba(10, 10, 10, 0.7);
+      border: 1px solid rgba(200, 205, 215, 0.2);
+      border-radius: 4px;
+      padding: 25px;
+      margin: 30px auto 40px;
+      max-width: 600px;
+      text-align: center;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    }
+    
+    .status-title {
+      font-family: "Cinzel", serif;
+      color: #e4e6ea;
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    
+    .status-item {
+      background: rgba(200, 205, 215, 0.05);
+      padding: 20px;
+      border-radius: 4px;
+      border: 1px solid rgba(200, 205, 215, 0.1);
+    }
+    
+    .status-label {
+      color: #9da2a8;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 5px;
+    }
+    
+    .status-value {
+      font-family: "Cinzel", serif;
+      font-size: 1.3rem;
+      color: #ffffff;
+      text-shadow: 0 0 10px rgba(200, 200, 200, 0.3);
+    }
+    
+    /* Responsive */
+    @media screen and (max-width: 768px) {
+      .werke-container {
+        padding: 15px;
+      }
+      
+      .werke-header {
+        margin-bottom: 40px;
+      }
+      
+      .werke-header h1 {
+        font-size: 2rem;
+      }
+      
+      .buch-titel-seriös {
+        font-size: 1.8rem;
+      }
+      
+      .buch-untertitel-seriös {
+        font-size: 1.2rem;
+      }
+      
+      .inhalt-text {
+        font-size: 1.1rem;
+        text-align: left;
+      }
+      
+      .buchcover-seriös {
+        width: 240px;
+      }
+      
+      .status-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .seriöser-button {
+        width: 100%;
+        max-width: 300px;
+        margin-bottom: 10px;
+      }
+    }
+    
+    @media screen and (max-width: 480px) {
+      .buchcover-seriös {
+        width: 200px;
+      }
+      
+      .status-container {
+        padding: 20px 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- Mobile Menu Overlay -->
+<div class="menu-overlay" id="menuOverlay"></div>
+
+<!-- ================= HEADER ================= -->
+<header class="header">
+  <img src="assets/images/logo.png" alt="Matthias Silberhain Logo" class="logo">
+  
+  <!-- Dark Mode Toggle Button -->
+  <button id="darkModeToggle" class="dark-mode-toggle" aria-label="Dark Mode umschalten" title="Dark Mode umschalten">
+    <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+    </svg>
+    <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </button>
+
+  <div class="burger" id="burger" title="Menü öffnen/schließen">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <nav class="hauptnavigation" id="navigation">
+    <a href="index.html">Startseite</a>
+    <a href="ueber-mich.html">Über mich</a>
+    <a href="werke.html" class="active">Werke</a>
+    <a href="termine.html">Termine</a>
+    <a href="kontakt.html">Kontakt</a>
+  </nav>
+</header>
+
+<div class="lichtkante"></div>
+
+<!-- ================= WERKE INHALT ================= -->
+<main class="inhalt">
+  <section class="werke-container">
+    <div class="werke-header">
+      <h1>Macht und Untergang</h1>
+      <p class="werke-subtitle">Eine historische Analyse in Vorbereitung</p>
+    </div>
+    
+    <!-- Buchpräsentation -->
+    <article class="buch-präsentation">
+      <!-- Buchcover -->
+      <div class="buchcover-bereich">
+        <div class="buchcover-rahmen">
+          <img src="assets/images/machtunduntergang.png" 
+               alt="Buchcover: Macht und Untergang" 
+               class="buchcover-seriös">
+        </div>
+      </div>
+      
+      <!-- Titel -->
+      <div class="titel-bereich">
+        <h2 class="buch-titel-seriös">Macht und Untergang</h2>
+        <p class="buch-untertitel-seriös">Die Anatomie des Scheiterns von Imperien</p>
+      </div>
+      
+      <!-- Inhalt -->
+      <div class="inhalt-bereich">
+        <div class="inhalt-text">
+          <p><strong>Dieses kommende Werk</strong> untersucht die tiefgreifenden Mechanismen, durch die Machtstrukturen den Untergang von Imperien und Gesellschaften herbeiführen. Es ist keine lineare Erzählung von Aufstieg und Fall, sondern eine systematische Analyse der wiederkehrenden Muster des Scheiterns.</p>
+          
+          <p>Im Zentrum steht die Frage: Warum scheitern scheinbar unerschütterliche Machtgebilde? Das Buch analysiert historische Beispiele von der Antike bis ins 20. Jahrhundert und identifiziert gemeinsame Faktoren – von internen Widersprüchen über institutionelle Erstarrung bis hin zum Verlust der Anpassungsfähigkeit.</p>
+          
+          <div class="zitat-seriös">
+            <p>Macht ist nicht stabil, weil sie existiert. Sie wird instabil, wenn sie sich für unantastbar hält.</p>
+          </div>
+          
+          <p>Das Buch folgt einem klaren analytischen Rahmen: Jedes Kapitel beleuchtet einen spezifischen Aspekt des Machtzerfalls – von der wirtschaftlichen Überdehnung über die soziale Fragmentierung bis zur ideologischen Erschöpfung. Die historischen Beispiele dienen nicht der bloßen Illustration, sondern der systematischen Untersuchung dieser Prozesse.</p>
+          
+          <div class="quellen-bereich">
+            <div class="quellen-titel">Forschungsansatz</div>
+            <div class="quellen-text">
+              <p>Die Analyse basiert auf vergleichender historischer Forschung und der Auswertung primärer Quellen. Besonderer Wert wird auf die Untersuchung struktureller Gemeinsamkeiten gelegt, nicht auf die Darstellung individueller Entscheidungen.</p>
+              <p>Das Werk versteht sich als Beitrag zur historischen Sozialwissenschaft und richtet sich sowohl an Fachwissenschaftler als auch an historisch interessierte Leser.</p>
+            </div>
+          </div>
+          
+          <p><strong>Das Buchcover</strong> mit seiner abstrakten Darstellung von Machtstrukturen und ihrer Fragilität spiegelt den analytischen Ansatz des Werkes wider. Es zeigt nicht Personen oder Ereignisse, sondern Systeme und deren innere Spannungen.</p>
+          
+          <p><strong>Dieses Werk zielt nicht darauf ab, einfache Lehren zu ziehen.</strong> Es möchte vielmehr das Verständnis für komplexe historische Prozesse vertiefen und zeigen, wie Machtgebilde durch ihre eigenen Strukturen zur Selbstzerstörung tendieren können.</p>
+        </div>
+      </div>
+      
+      <!-- Status-Information -->
+      <div class="status-container">
+        <div class="status-title">Projektstatus</div>
+        
+        <div class="status-grid">
+          <div class="status-item">
+            <div class="status-label">Status</div>
+            <div class="status-value">In Arbeit</div>
+          </div>
+          
+          <div class="status-item">
+            <div class="status-label">Geplantes Erscheinen</div>
+            <div class="status-value">2024/2025</div>
+          </div>
+          
+          <div class="status-item">
+            <div class="status-label">Umfang</div>
+            <div class="status-value">Ca. 300 Seiten</div>
+          </div>
+          
+          <div class="status-item">
+            <div class="status-label">Sprache</div>
+            <div class="status-value">Deutsch</div>
+          </div>
+        </div>
+        
+        <div style="background: rgba(200, 205, 215, 0.08); padding: 15px; border-radius: 4px; margin-top: 15px; border: 1px solid rgba(200, 205, 215, 0.15);">
+          <div style="font-family: 'Cinzel', serif; font-size: 1.1rem; color: #ffffff; margin-bottom: 5px;">
+            In intensiver Forschungsphase
+          </div>
+          <div style="color: #b0b5bc; font-size: 0.9rem;">
+            Aktuell in der Quellenanalyse und Textausarbeitung
+          </div>
+        </div>
+      </div>
+      
+      <!-- Aktionen -->
+      <div class="aktionen-bereich">
+        <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 25px;">
+          <!-- Zurück zu Werken -->
+          <a href="werke.html" class="seriöser-button" style="background: rgba(200,205,215,0.1); min-width: 200px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" style="margin-right: 10px; vertical-align: middle;">
+              <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" fill="currentColor"/>
+            </svg>
+            Zurück zu den Werken
+          </a>
+          
+          <!-- Benachrichtigung -->
+          <button class="seriöser-button" onclick="zeigeBenachrichtigung()" style="border-style: dashed; min-width: 200px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" style="margin-right: 10px; vertical-align: middle;">
+              <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.93 6 11v5l-2 2v1h16v-1l-2-2z" fill="currentColor"/>
+            </svg>
+            Bei Veröffentlichung informieren
+          </button>
+        </div>
+        
+        <!-- Erklärung -->
+        <div style="background: rgba(200,205,215,0.05); padding: 20px; margin-top: 20px; border-radius: 4px; border-left: 3px solid rgba(200,205,215,0.3);">
+          <p style="margin: 0 0 15px 0; color: #e4e6ea; font-size: 1rem; font-weight: 500;">
+            <svg width="16" height="16" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 8px;">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="#b0b5bc"/>
+            </svg>
+            Über dieses Projekt:
+          </p>
+          <ul style="margin: 0; padding-left: 20px; color: #b0b5bc; font-size: 0.95rem; line-height: 1.6;">
+            <li style="margin-bottom: 8px;">
+              <strong>Wissenschaftlicher Anspruch:</strong> Systematische, vergleichende Analyse historischer Prozesse
+            </li>
+            <li style="margin-bottom: 8px;">
+              <strong>Zielgruppe:</strong> Historisch interessierte Leser, Studierende, Fachwissenschaftler
+            </li>
+            <li style="margin-bottom: 0;">
+              <strong>Besonderheit:</strong> Fokus auf strukturelle Mechanismen statt auf individuelle Entscheidungen
+            </li>
+          </ul>
+        </div>
+      </div>
+    </article>
+  </section>
+</main>
+
+<!-- ================= SOCIAL MEDIA ================= -->
+<section class="social-section">
+  <!-- Social Media Grid hier einfügen (wie in werke.html) -->
+  <h3 class="social-title">Folgen Sie den Gedanken</h3>
+  <div class="social-grid">
+    <!-- Social Media Icons wie in werke.html -->
+    <!-- ... -->
+  </div>
+</section>
+<div class="lichtkante"></div>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+    <div class="footer-links">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+    </div>
+    <p>© <span id="jahr"></span> Matthias Silberhain</p>
+</footer>
+
+<!-- ================= JAVASCRIPT ================= -->
+<script src="assets/js/global.js"></script>
+<script src="assets/js/menu.js"></script>
+
+<!-- ================= SEITENSPEZIFISCHES SCRIPT ================= -->
+<script>
+// Copyright Jahr setzen
+document.getElementById('jahr').textContent = new Date().getFullYear();
+
+// Benachrichtigungsfunktion
+function zeigeBenachrichtigung() {
+    const email = prompt("Geben Sie Ihre E-Mail-Adresse ein, um über die Veröffentlichung informiert zu werden:");
+    
+    if (email && email.includes("@")) {
+        alert("Vielen Dank! Sie werden benachrichtigt, sobald 'Macht und Untergang' verfügbar ist.\n\nEingetragene E-Mail: " + email);
+    } else if (email !== null) {
+        alert("Bitte geben Sie eine gültige E-Mail-Adresse ein.");
+    }
+}
+</script>
+
+</body>
+</html>
