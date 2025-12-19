@@ -1,1 +1,160 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Matthias Silberhain | Impressum</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Impressum von Matthias Silberhain - Rechtliche Informationen">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/logo.png" type="image/png">
+    
+    <!-- Dark Mode Preload -->
+    <script>
+        (function() {
+            try {
+                const savedTheme = localStorage.getItem('ms-theme');
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                    document.documentElement.classList.add('dark-mode');
+                    document.body.classList.add('dark-mode');
+                }
+            } catch(e) {}
+        })();
+    </script>
+</head>
 
+<body>
+
+<!-- Preloader -->
+<div id="preloader">
+    <div class="preloader-inner">
+        <img src="assets/images/logo.png" alt="Logo" class="preloader-logo">
+        <div class="text-container">
+            <h1 class="preloader-text">
+                <span id="type-text"></span>
+                <span class="cursor"></span>
+            </h1>
+        </div>
+    </div>
+</div>
+
+<!-- Mobile Menu Overlay -->
+<div class="menu-overlay" id="menuOverlay"></div>
+
+<!-- ================= HEADER ================= -->
+<header class="header">
+    <img src="assets/images/logo.png" alt="Matthias Silberhain Logo" class="logo">
+    
+    <!-- Dark Mode Toggle Button -->
+    <button id="darkModeToggle" class="dark-mode-toggle" aria-label="Dark Mode umschalten">
+        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+    </button>
+
+    <div class="burger" id="burger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <nav class="hauptnavigation" id="navigation">
+        <a href="index.html">Startseite</a>
+        <a href="ueber-mich.html">Über mich</a>
+        <a href="werke.html">Werke</a>
+        <a href="termine.html">Termine</a>
+        <a href="kontakt.html">Kontakt</a>
+    </nav>
+</header>
+
+<div class="lichtkante"></div>
+
+<!-- ================= HAUPTINHALT ================= -->
+<main class="inhalt">
+    <section class="impressum-content">
+        <h1>Impressum</h1>
+        
+        <div class="impressum-section">
+            <h2>Angaben gemäß § 5 TMG</h2>
+            <p><strong>Matthias Silberhain</strong><br>
+               [Deine Straße und Hausnummer]<br>
+               [Deine Postleitzahl und Stadt]</p>
+            
+            <h2>Kontakt</h2>
+            <p>Telefon: [Deine Telefonnummer]<br>
+               E-Mail: [Deine E-Mail-Adresse]<br>
+               Website: www.matthias-silberhain.de</p>
+            
+            <h2>Umsatzsteuer-Identifikationsnummer</h2>
+            <p>Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br>
+               [Deine USt-IdNr., falls vorhanden]</p>
+            
+            <h2>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
+            <p>Matthias Silberhain<br>
+               [Deine Straße und Hausnummer]<br>
+               [Deine Postleitzahl und Stadt]</p>
+            
+            <h2>Berufsbezeichnung und berufsrechtliche Regelungen</h2>
+            <p>Berufsbezeichnung: Autor<br>
+               Zuständige Kammer: [Falls zutreffend]<br>
+               Verliehen in: [Land, falls zutreffend]</p>
+            
+            <h2>Redaktionell verantwortlich</h2>
+            <p>Matthias Silberhain<br>
+               [Deine Straße und Hausnummer]<br>
+               [Deine Postleitzahl und Stadt]</p>
+        </div>
+        
+        <div class="impressum-section">
+            <h2>Haftungsausschluss (Disclaimer)</h2>
+            
+            <h3>Haftung für Inhalte</h3>
+            <p>Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.</p>
+            
+            <h3>Urheberrecht</h3>
+            <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet.</p>
+            
+            <h3>Verweise und Links</h3>
+            <p>Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.</p>
+        </div>
+    </section>
+</main>
+
+<!-- ================= SOCIAL MEDIA ================= -->
+<!-- Hier kannst du den Social Media Bereich einfügen, falls gewünscht -->
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+    <div class="footer-links">
+        <a href="index.html">Startseite</a>
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="kontakt.html">Kontakt</a>
+    </div>
+    <p>© <span id="jahr"></span> Matthias Silberhain</p>
+</footer>
+
+<!-- ================= JAVASCRIPT ================= -->
+<script src="assets/js/global.js"></script>
+<script src="assets/js/menu.js"></script>
+
+</body>
+</html>
