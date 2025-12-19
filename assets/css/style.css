@@ -2110,3 +2110,153 @@ body.dark-mode .quellen-liste li:hover {
     width: 100%;
   }
 }
+/* ==========================================================================
+   FOOTER-LINKS STYLES
+   ========================================================================== */
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    font-family: "Cinzel", serif;
+    color: #9da2a8;
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    padding: 5px 10px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.footer-links a:hover {
+    color: #ffffff;
+}
+
+.footer-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 1px;
+    background: rgba(200, 205, 215, 0.6);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.footer-links a:hover::after {
+    width: 80%;
+}
+
+/* ==========================================================================
+   IMPRESSUM & DATENSCHUTZ CONTENT STYLES
+   ========================================================================== */
+
+.impressum-content,
+.datenschutz-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.impressum-section,
+.datenschutz-section {
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(200, 205, 215, 0.15);
+}
+
+.impressum-section:last-child,
+.datenschutz-section:last-child {
+    border-bottom: none;
+}
+
+.impressum-section h2,
+.datenschutz-section h2 {
+    font-family: "Cinzel", serif;
+    color: #e4e6ea;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    letter-spacing: 0.05em;
+}
+
+.impressum-section h3,
+.datenschutz-section h3 {
+    font-family: "Cinzel", serif;
+    color: #d6d9de;
+    margin: 25px 0 15px;
+    font-size: 1.2rem;
+    letter-spacing: 0.03em;
+}
+
+.impressum-section p,
+.datenschutz-section p {
+    margin-bottom: 15px;
+    line-height: 1.7;
+    color: #b0b5bc;
+}
+
+.impressum-section a,
+.datenschutz-section a {
+    color: #c0c0c0;
+    text-decoration: none;
+    border-bottom: 1px dotted rgba(200, 200, 200, 0.3);
+    transition: all 0.3s ease;
+}
+
+.impressum-section a:hover,
+.datenschutz-section a:hover {
+    color: #ffffff;
+    border-bottom: 1px solid rgba(200, 200, 200, 0.6);
+}
+
+/* ==========================================================================
+   RESPONSIVE FOOTER-LINKS
+   ========================================================================== */
+
+@media screen and (max-width: 768px) {
+    .footer-links {
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+    
+    .footer-links a {
+        font-size: 0.8rem;
+        padding: 4px 8px;
+    }
+    
+    .impressum-section h2,
+    .datenschutz-section h2 {
+        font-size: 1.3rem;
+    }
+    
+    .impressum-section h3,
+    .datenschutz-section h3 {
+        font-size: 1.1rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .footer-links {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+    
+    .footer-links a {
+        font-size: 0.85rem;
+        padding: 8px 15px;
+        border: 1px solid rgba(200, 205, 215, 0.1);
+        border-radius: 4px;
+        width: 200px;
+        text-align: center;
+    }
+    
+    .footer-links a:hover {
+        background: rgba(200, 205, 215, 0.05);
+    }
+}
