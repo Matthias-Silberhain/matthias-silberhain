@@ -1,1 +1,736 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Der Lange Weg In Die Finsternis | Matthias Silberhain</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Quellen und Forschungsgrundlagen zu den Werken von Matthias Silberhain - Vollständige, verlinkte Archivdokumente und wissenschaftliche Literatur.">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="assets/images/logo.png" type="image/png">
+  
+  <!-- Dark Mode Preload -->
+  <script>
+    (function() {
+      // SOFORTIGE DARK MODE ANWENDUNG
+      try {
+        const savedTheme = localStorage.getItem('ms-theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+          document.documentElement.classList.add('dark-mode');
+          document.body.classList.add('dark-mode');
+        }
+      } catch(e) {
+        // Ignoriere Fehler
+      }
+      
+      // SOFORTIGE KLICKBARKEIT SICHERSTELLEN
+      document.addEventListener('DOMContentLoaded', function() {
+        const interactiveElements = ['button', 'a', '.burger', '.dark-mode-toggle', '.silber-button', '.social-link'];
+        
+        setTimeout(function() {
+          interactiveElements.forEach(selector => {
+            document.querySelectorAll(selector).forEach(el => {
+              el.style.pointerEvents = 'auto';
+              el.style.cursor = 'pointer';
+            });
+          });
+          
+          // Copyright Jahr sofort setzen
+          const yearElement = document.getElementById('jahr');
+          if (yearElement && !yearElement.textContent) {
+            yearElement.textContent = new Date().getFullYear();
+          }
+          
+          console.log('✅ Website ist jetzt voll klickbar!');
+        }, 100);
+      });
+    })();
+  </script>
+  
+  <style>
+    /* ==========================================================================
+       QUELLEN SEITE STYLES - Im selben Stil wie Termine/Kontakt
+       ========================================================================== */
+    
+    .quellen-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    /* Header-Bereich mit Cover */
+    .quellen-header {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 40px;
+      align-items: start;
+      margin-bottom: 50px;
+      padding: 30px;
+      background: linear-gradient(135deg, 
+        rgba(10, 10, 10, 0.4) 0%, 
+        rgba(30, 30, 30, 0.6) 100%);
+      border-radius: 8px;
+      border: 1px solid rgba(200, 205, 215, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    @media screen and (max-width: 768px) {
+      .quellen-header {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 20px;
+      }
+    }
+    
+    .quellen-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(200, 205, 215, 0.3) 50%, 
+        transparent 100%);
+    }
+    
+    .buch-cover-quelle {
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(200, 205, 215, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .buch-cover-quelle:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+    }
+    
+    .quellen-header-text h1 {
+      font-family: "Cinzel", serif;
+      color: #e4e6ea;
+      font-size: 2.2rem;
+      margin-bottom: 15px;
+      letter-spacing: 0.05em;
+      text-shadow: 0 0 15px rgba(200, 200, 200, 0.2);
+    }
+    
+    .quellen-header-text .untertitel {
+      color: #b0b5bc;
+      font-size: 1.2rem;
+      margin-bottom: 25px;
+      font-style: italic;
+      border-bottom: 1px solid rgba(200, 205, 215, 0.2);
+      padding-bottom: 15px;
+    }
+    
+    .quellen-header-text p {
+      color: #b0b5bc;
+      line-height: 1.7;
+      margin-bottom: 15px;
+      font-size: 1.05rem;
+    }
+    
+    /* Hinweis-Kasten im Stil der anderen Seiten */
+    .hinweis-kasten {
+      background: rgba(200, 205, 215, 0.05);
+      border-left: 3px solid rgba(200, 205, 215, 0.3);
+      padding: 20px;
+      margin: 25px 0;
+      border-radius: 0 4px 4px 0;
+      color: #9da2a8;
+      font-size: 0.95rem;
+    }
+    
+    .hinweis-kasten strong {
+      color: #d6d9de;
+    }
+    
+    /* Quellen Kategorien - Im Stil der Termine-Seite */
+    .quellen-abschnitt {
+      margin: 50px 0;
+    }
+    
+    .quelle-kategorie {
+      background: rgba(10, 10, 10, 0.3);
+      border: 1px solid rgba(200, 205, 215, 0.15);
+      border-radius: 6px;
+      padding: 30px;
+      margin-bottom: 30px;
+      transition: all 0.3s ease;
+    }
+    
+    .quelle-kategorie:hover {
+      background: rgba(10, 10, 10, 0.4);
+      border-color: rgba(200, 205, 215, 0.25);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    
+    .quelle-kategorie h3 {
+      font-family: "Cinzel", serif;
+      color: #e4e6ea;
+      font-size: 1.4rem;
+      margin-bottom: 25px;
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .kategorie-icon {
+      font-size: 1.6rem;
+    }
+    
+    .kategorie-untertitel {
+      color: #9da2a8;
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+      font-style: italic;
+      border-bottom: 1px solid rgba(200, 205, 215, 0.1);
+      padding-bottom: 10px;
+    }
+    
+    /* Quellen-Liste mit edlen Links */
+    .quellen-liste {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .quellen-liste li {
+      margin-bottom: 25px;
+      padding-bottom: 25px;
+      border-bottom: 1px solid rgba(200, 205, 215, 0.1);
+    }
+    
+    .quellen-liste li:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+    
+    /* EDLE LINK-STYLES im Stil der Website */
+    .quellen-liste a {
+      color: #d6d9de;
+      text-decoration: none;
+      font-size: 1.1rem;
+      line-height: 1.5;
+      display: inline-block;
+      padding: 5px 0;
+      position: relative;
+      transition: all 0.3s ease;
+      border-bottom: 1px solid transparent;
+    }
+    
+    .quellen-liste a::before {
+      content: '↗';
+      position: absolute;
+      right: -25px;
+      opacity: 0;
+      transition: all 0.3s ease;
+      color: rgba(200, 205, 215, 0.5);
+    }
+    
+    .quellen-liste a:hover {
+      color: #ffffff;
+      text-shadow: 0 0 10px rgba(200, 200, 200, 0.3);
+      border-bottom: 1px solid rgba(200, 205, 215, 0.4);
+      transform: translateX(5px);
+    }
+    
+    .quellen-liste a:hover::before {
+      opacity: 1;
+      right: -30px;
+    }
+    
+    .quelle-beschreibung {
+      display: block;
+      color: #9da2a8;
+      font-size: 0.95rem;
+      margin-top: 8px;
+      line-height: 1.5;
+      padding-left: 20px;
+      position: relative;
+    }
+    
+    .quelle-beschreibung::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: rgba(200, 205, 215, 0.3);
+    }
+    
+    /* Wissenschaftliche Literatur Styling */
+    .wissenschaft-liste {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+    }
+    
+    .wissenschaft-liste li {
+      margin-bottom: 15px;
+      padding-left: 25px;
+      position: relative;
+      color: #b0b5bc;
+      line-height: 1.6;
+    }
+    
+    .wissenschaft-liste li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: rgba(200, 205, 215, 0.5);
+      font-size: 1.2rem;
+    }
+    
+    .wissenschaft-liste h4 {
+      font-family: "Cinzel", serif;
+      color: #e4e6ea;
+      margin: 25px 0 15px;
+      font-size: 1.1rem;
+      letter-spacing: 0.05em;
+    }
+    
+    /* Hinweis-Bereich */
+    .quellen-hinweis {
+      background: rgba(200, 205, 215, 0.05);
+      border: 1px solid rgba(200, 205, 215, 0.2);
+      border-radius: 6px;
+      padding: 30px;
+      margin: 40px 0;
+    }
+    
+    .quellen-hinweis p {
+      color: #b0b5bc;
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+    
+    .quellen-hinweis strong {
+      color: #d6d9de;
+    }
+    
+    /* DARK MODE STYLES - konsistent mit anderen Seiten */
+    body.dark-mode .quelle-kategorie {
+      background: rgba(30, 30, 30, 0.5);
+      border-color: rgba(220, 225, 235, 0.2);
+    }
+    
+    body.dark-mode .quelle-kategorie:hover {
+      background: rgba(30, 30, 30, 0.7);
+      border-color: rgba(220, 225, 235, 0.3);
+    }
+    
+    body.dark-mode .quellen-header {
+      background: linear-gradient(135deg, 
+        rgba(30, 30, 30, 0.5) 0%, 
+        rgba(50, 50, 50, 0.7) 100%);
+      border-color: rgba(220, 225, 235, 0.2);
+    }
+    
+    body.dark-mode .quellen-liste a {
+      color: #e4e6ea;
+    }
+    
+    body.dark-mode .quellen-liste a:hover {
+      color: #ffffff;
+      text-shadow: 0 0 15px rgba(220, 220, 220, 0.4);
+    }
+    
+    body.dark-mode .quelle-beschreibung {
+      color: #b0b5bc;
+    }
+    
+    body.dark-mode .hinweis-kasten {
+      background: rgba(220, 225, 235, 0.05);
+      border-left-color: rgba(220, 225, 235, 0.4);
+    }
+    
+    body.dark-mode .quellen-hinweis {
+      background: rgba(220, 225, 235, 0.05);
+      border-color: rgba(220, 225, 235, 0.25);
+    }
+    
+    /* Responsive Anpassungen */
+    @media screen and (max-width: 768px) {
+      .quellen-container {
+        padding: 15px;
+      }
+      
+      .quellen-header-text h1 {
+        font-size: 1.8rem;
+      }
+      
+      .quelle-kategorie {
+        padding: 20px;
+      }
+      
+      .quelle-kategorie h3 {
+        font-size: 1.2rem;
+      }
+      
+      .quellen-liste a {
+        font-size: 1rem;
+      }
+    }
+    
+    @media screen and (max-width: 480px) {
+      .quellen-header-text h1 {
+        font-size: 1.6rem;
+      }
+      
+      .quellen-header {
+        padding: 15px;
+      }
+      
+      .quelle-kategorie {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
 
+<body>
+
+<!-- Mobile Menu Overlay -->
+<div class="menu-overlay" id="menuOverlay"></div>
+
+<!-- ================= HEADER ================= -->
+<header class="header">
+  <img src="assets/images/logo.png" alt="Matthias Silberhain Logo" class="logo">
+  
+  <!-- Dark Mode Toggle Button -->
+  <button id="darkModeToggle" class="dark-mode-toggle" aria-label="Dark Mode umschalten" title="Dark Mode umschalten">
+    <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+    </svg>
+    <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </button>
+
+  <div class="burger" id="burger" title="Menü öffnen/schließen">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <nav class="hauptnavigation" id="navigation">
+    <a href="index.html">Startseite</a>
+    <a href="ueber-mich.html">Über mich</a>
+    <a href="werke.html">Werke</a>
+    <a href="quellen.html" class="active">Quellen</a>
+    <a href="termine.html">Termine</a>
+    <a href="kontakt.html">Kontakt</a>
+  </nav>
+</header>
+
+<div class="lichtkante"></div>
+
+<!-- ================= HAUPTINHALT ================= -->
+<main class="inhalt">
+  <section class="quellen-container">
+    
+    <!-- Header-Bereich mit Buchcover -->
+    <div class="quellen-header">
+      <div class="buch-cover-container">
+        <img src="assets/images/derlangewegindiefinsternis.png" 
+             alt="Buchcover: Der lange Weg in die Finsternis" 
+             class="buch-cover-quelle">
+      </div>
+      
+      <div class="quellen-header-text">
+        <h1>Der lange Weg in die Finsternis</h1>
+        <p class="untertitel">Wie das Kaiserreich den Nationalsozialismus vorbereitete</p>
+        
+        <p>Diese Seite versammelt alle zentralen digitalen Quellen und Forschungsliteratur, die der historischen Analyse in diesem Werk zugrunde liegen.<br>
+        Jeder Link führt direkt zu den Originaldokumenten oder wissenschaftlichen Werken und dient der vollständigen Nachvollziehbarkeit und Vertiefung.</p>
+        
+        <div class="hinweis-kasten">
+          <strong>Hinweis zur Nutzung:</strong> Alle Links führen zu originalen oder digitalisierten Archivressourcen öffentlicher Institutionen, die zum Zeitpunkt der Veröffentlichung frei zugänglich sind.
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= QUELLENABSCHNITT ================= -->
+    <section class="quellen-abschnitt">
+      
+      <!-- Reichstagsprotokolle -->
+      <div class="quelle-kategorie">
+        <h3><span class="kategorie-icon">📜</span> Reichstagsprotokolle & Parlamentsdokumente</h3>
+        <p class="kategorie-untertitel">Kaiserreich, Weimar, NS-Zeit (1867–1942)</p>
+        <ul class="quellen-liste">
+          <li>
+            <a href="https://www.reichstagsprotokolle.de/en_rtbiauf.html" target="_blank" rel="noopener noreferrer">
+              Reichstagsprotokolle – Gesamtsammlung & Navigation
+            </a>
+            <span class="quelle-beschreibung">Vollständige digitale Protokolle mit Browsing, Suche und PDF-Downloads (1867–1942).</span>
+          </li>
+          
+          <li>
+            <a href="http://mdz.bib-bvb.de/digbib/reichstag/" target="_blank" rel="noopener noreferrer">
+              Reichstagsprotokolle über Clio-Online (MDZ-Direktzugang 1867–1895)
+            </a>
+            <span class="quelle-beschreibung">Digitalisierte Protokolle mit OCR-Volltext und komfortabler Navigation.</span>
+          </li>
+          
+          <li>
+            <a href="https://www.deutsche-digitale-bibliothek.de/search?q=Reichstagsprotokolle" target="_blank" rel="noopener noreferrer">
+              Reichstagprotokolle in der Deutschen Digitalen Bibliothek
+            </a>
+            <span class="quelle-beschreibung">Archivale Einträge zu einzelnen Protokollen und Objekten.</span>
+          </li>
+          
+          <li>
+            <a href="https://reichstagsakten.de/" target="_blank" rel="noopener noreferrer">
+              Deutsche Reichstagsakten (wissenschaftliche Edition)
+            </a>
+            <span class="quelle-beschreibung">Digital aufbereitete Reichstagsakten verschiedener historischer Perioden.</span>
+          </li>
+          
+          <li>
+            <a href="https://www.bundestag.de/en/documents/archives" target="_blank" rel="noopener noreferrer">
+              Deutscher Bundestag Parlamentsarchiv – Dokumente und Archivmaterial
+            </a>
+            <span class="quelle-beschreibung">Parliamentary documentation and research aids for comparative questions.</span>
+          </li>
+        </ul>
+      </div>
+      
+      <!-- Archivquellen zur Kolonialgeschichte -->
+      <div class="quelle-kategorie">
+        <h3><span class="kategorie-icon">🏛️</span> Archivquellen zur Kolonialgeschichte</h3>
+        <ul class="quellen-liste">
+          <li>
+            <a href="https://www.bundesarchiv.de/en/research-our-records/research-by-topic/sources-on-colonial-history" target="_blank" rel="noopener noreferrer">
+              Bundesarchiv – Quellen zur deutschen Kolonialgeschichte
+            </a>
+            <span class="quelle-beschreibung">Digitalisierte koloniale Akten, darunter Bestände des Reichskolonialamts (R 1001).</span>
+          </li>
+          
+          <li>
+            <a href="https://www.bundesarchiv.de/im-archiv-recherchieren/archivgut-recherchieren/digitalisierte-bestaende/" target="_blank" rel="noopener noreferrer">
+              Bundesarchiv – Digitalisierte Bestände (Allgemein)
+            </a>
+            <span class="quelle-beschreibung">Portal zur Recherche digitalisierter Akten, Bilder, Filme und Dokumente.</span>
+          </li>
+          
+          <li>
+            <a href="https://ersterweltkrieg.bundesarchiv.de/digitalisierte-sammlungen.html" target="_blank" rel="noopener noreferrer">
+              Bundesarchiv – Digitalisierte Sammlungen zum Ersten Weltkrieg
+            </a>
+            <span class="quelle-beschreibung">Akten des Reichskolonialamtes zu Kolonialkriegen in Afrika.</span>
+          </li>
+          
+          <li>
+            <a href="https://www.bundesarchiv.de/im-archiv-recherchieren/archivgut-recherchieren/nach-themen/kolonialgeschichte/" target="_blank" rel="noopener noreferrer">
+              Bundesarchiv – Kolonialgeschichte (Archivbestände R 1001)
+            </a>
+            <span class="quelle-beschreibung">Offizielle Verwaltungsakten des Reichskolonialamts mit Korrespondenz und Berichten.</span>
+          </li>
+          
+          <li>
+            <a href="https://www.fh-potsdam.de/index.php/en/news-media/news/web-portal-archive-guide-german-colonial-history-new-offers" target="_blank" rel="noopener noreferrer">
+              Archive Guide to German Colonial History
+            </a>
+            <span class="quelle-beschreibung">Metadatenportal mit internationalen Archiven zur Kolonialgeschichte.</span>
+          </li>
+          
+          <li>
+            <a href="https://ccc.deutsche-digitale-bibliothek.de/en" target="_blank" rel="noopener noreferrer">
+              Deutsche Digitale Bibliothek – Koloniale Sammlungen
+            </a>
+            <span class="quelle-beschreibung">Fotos, Akten, Artefakte zu deutschen Kolonien.</span>
+          </li>
+        </ul>
+      </div>
+      
+      <!-- Zeitgenössische Presse & weitere Archive -->
+      <div class="quelle-kategorie">
+        <h3><span class="kategorie-icon">📰</span> Zeitgenössische Presse & weitere Archive</h3>
+        <ul class="quellen-liste">
+          <li>
+            <a href="https://ccc.deutsche-digitale-bibliothek.de/" target="_blank" rel="noopener noreferrer">
+              Deutsche Digitale Bibliothek – Sammlungen (inkl. Zeitungen)
+            </a>
+            <span class="quelle-beschreibung">Historische Zeitungen wie Berliner Tageblatt, Kreuzzeitung, Vossische Zeitung.</span>
+          </li>
+          
+          <li>
+            <a href="https://www.das-deutsche-reich.de/ewiger-bund/reichskolonialamt/deutsches-kaiserreich/" target="_blank" rel="noopener noreferrer">
+              DokumentArchiv.de – Deutsche Reichsverfassung 1871
+            </a>
+            <span class="quelle-beschreibung">Digitale Fassungen historischer Rechtstexte des Kaiserreichs.</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Telegramme & Korrespondenz -->
+      <div class="quelle-kategorie">
+        <h3><span class="kategorie-icon">📨</span> Telegramme & Korrespondenz</h3>
+        <ul class="quellen-liste">
+          <li>
+            <a href="https://www.firstworldwar.com/source/willynicky.htm" target="_blank" rel="noopener noreferrer">
+              „Willy-Nicky"-Telegramme (1914) – Primärquelle zur Kaiser-Diplomatie
+            </a>
+            <span class="quelle-beschreibung">Sammlung der Telegraphien zwischen Wilhelm II. und Zar Nikolaus II. in der unmittelbaren Vorkriegszeit.</span>
+          </li>
+          
+          <li>
+            <a href="https://www.deutsche-digitale-bibliothek.de/item/RYCPRZ7XLL6YHXUI35MLMDGOGPVHEBC5" target="_blank" rel="noopener noreferrer">
+              Deutsche Digitale Bibliothek – Telegramme (Archivobjekte)
+            </a>
+            <span class="quelle-beschreibung">Digitalisierte Telegramm-Objekte, Korrespondenzen und Akteneinträge unterschiedlicher Provenienz.</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Wissenschaftliche Forschungsliteratur -->
+      <div class="quelle-kategorie">
+        <h3><span class="kategorie-icon">📚</span> Wissenschaftliche Forschungsliteratur</h3>
+        <p class="kategorie-untertitel">Sekundärquellen als analytische Grundlage</p>
+        
+        <ul class="wissenschaft-liste">
+          <h4>Kaiserreich, Militär und politische Kultur</h4>
+          <li><strong>Hans-Ulrich Wehler</strong> – "Das Deutsche Kaiserreich 1871–1918" (Standardwerk)</li>
+          <li><strong>Thomas Nipperdey</strong> – "Deutsche Geschichte 1866–1918" (soziale und politische Analyse)</li>
+          <li><strong>Christopher Clark</strong> – "Preußen. Aufstieg und Niedergang" (politische Kultur)</li>
+          
+          <h4>Kolonialismus und Gewalt</h4>
+          <li><strong>Jürgen Zimmerer</strong> – "Von Windhuk nach Auschwitz?" (Kontinuität kolonialer Gewalt)</li>
+          <li><strong>Isabel V. Hull</strong> – "Absolute Destruction: Military Culture and the Practices of War in Imperial Germany" (Militarismus)</li>
+          <li><strong>Dominik J. Schaller</strong> – Arbeiten zum deutschen Völkermord an Herero und Nama</li>
+          
+          <h4>Weimar, Demokratie, Nationalsozialismus</h4>
+          <li><strong>Detlev Peukert</strong> – "Die Weimarer Republik" (Standardanalyse)</li>
+          <li><strong>George L. Mosse</strong> – "Die völkische Revolution" (völkische Bewegung)</li>
+          <li><strong>Ulrich Herbert</strong> – "Geschichte Deutschlands im 20. Jahrhundert" (Kontinuitäten)</li>
+          <li><strong>Götz Aly</strong> – "Hitlers Volksstaat" (soziale Grundlagen der NS-Diktatur)</li>
+          
+          <h4>Sprache, Propaganda, Dehumanisierung</h4>
+          <li><strong>Victor Klemperer</strong> – "LTI – Notizbuch eines Philologen" (Sprache des Nationalsozialismus)</li>
+          <li><strong>Hannah Arendt</strong> – "Elemente und Ursprünge totaler Herrschaft" (totale Herrschaft)</li>
+        </ul>
+      </div>
+      
+      <!-- Hinweis-Bereich -->
+      <div class="quellen-hinweis">
+        <p><strong>Hinweis zu externen Links:</strong> Diese Website enthält Verlinkungen zu externen Webseiten Dritter. Ich habe keinen Einfluss auf deren Inhalte und übernehme keine Haftung. Sollten Ihnen problematische Inhalte auffallen, bitte ich um einen Hinweis.</p>
+        <p><strong>📍 Nutzungshinweise zu den erweiterten Quellen:</strong> Diese Links führen zu Originalquellen oder digitalisierten Amtspublikationen (z.B. stenographische Berichte), die für historische Belege verwendet werden können. Reichstagsprotokolle sind gesetzliche Amtspublikationen, die regelmäßig online verfügbar gemacht werden. Die „Willy-Nicky"-Telegramme sind ein Beispiel für echte historische Telegramm-Korrespondenz zwischen Staatsoberhäuptern als politische Primärquelle zur Zeitgeschichte.</p>
+      </div>
+    </section>
+  </section>
+</main>
+
+<!-- ================= SOCIAL MEDIA ================= -->
+<section class="social-section">
+  <h3 class="social-title">Folgen Sie den Gedanken</h3>
+  <div class="social-grid">
+    <!-- Snapchat -->
+    <a href="https://snapchat.com/t/8wVZ1Wpu" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Snapchat">
+      <div class="social-icon-wrapper">
+        <svg class="social-icon" viewBox="0 0 24 24">
+          <path d="M5.83 2H18.2c1.14 0 2.07.93 2.07 2.07v15.86c0 1.14-.93 2.07-2.07 2.07H5.83A2.07 2.07 0 0 1 3.76 19.9V4.07C3.76 2.93 4.69 2 5.83 2zm6.44 16.27c1.33 0 2.41-1.08 2.41-2.41 0-.44-.12-.85-.32-1.21.23-.05.47-.08.72-.08 1.33 0 2.41 1.08 2.41 2.41 0 1.33-1.08 2.41-2.41 2.41-1.33 0-2.41-1.08-2.41-2.41 0-.44.12-.85.32-1.21-.23.05-.47.08-.72.08-1.33 0-2.41-1.08-2.41-2.41 0-1.33 1.08-2.41 2.41-2.41.44 0 .85.12 1.21.32.05-.23.08-.47.08-.72 0-1.33-1.08-2.41-2.41-2.41-1.33 0-2.41 1.08-2.41 2.41 0 1.33 1.08 2.41 2.41 2.41.44 0 .85-.12 1.21-.32-.05.23-.08.47-.08.72 0 1.33 1.08 2.41 2.41 2.41z"/>
+        </svg>
+      </div>
+      <span class="social-name">Snapchat</span>
+    </a>
+    
+    <!-- Clapper -->
+    <a href="https://clapperapp.com/M.Silberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Clapper">
+      <div class="social-icon-wrapper">
+        <svg class="social-icon" viewBox="0 0 24 24">
+          <path d="M19.5 3H4.5C3.67 3 3 3.67 3 4.5v15C3 20.33 3.67 21 4.5 21h15c.83 0 1.5-.67 1.5-1.5v-15C21 3.67 20.33 3 19.5 3zM10 17H6v-2h4v2zm0-4H6v-2h4v2zm0-4H6V7h4v2zm8 8h-6v-2h6v2zm0-4h-6v-2h6v2zm0-4h-6V7h6v2z"/>
+        </svg>
+      </div>
+      <span class="social-name">Clapper</span>
+    </a>
+    
+    <!-- TikTok -->
+    <a href="https://www.tiktok.com/@m.silberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="TikTok">
+      <div class="social-icon-wrapper">
+        <svg class="social-icon" viewBox="0 0 24 24">
+          <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+        </svg>
+      </div>
+      <span class="social-name">TikTok</span>
+    </a>
+    
+    <!-- Telegram -->
+    <a href="https://t.me/matthiassilberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Telegram">
+      <div class="social-icon-wrapper">
+        <svg class="social-icon" viewBox="0 0 24 24">
+          <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.697.064-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+        </svg>
+      </div>
+      <span class="social-name">Telegram</span>
+    </a>
+    
+    <!-- Instagram -->
+    <a href="https://www.instagram.com/matthiassilberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+      <div class="social-icon-wrapper">
+        <svg class="social-icon" viewBox="0 0 24 24">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"/>
+        </svg>
+      </div>
+      <span class="social-name">Instagram</span>
+    </a>
+    
+    <!-- Facebook -->
+    <a href="https://www.facebook.com/share/17ZahbpKWN/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">
+      <div class="social-icon-wrapper">
+        <svg class="social-icon" viewBox="0 0 24 24">
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+        </svg>
+      </div>
+      <span class="social-name">Facebook</span>
+    </a>
+    
+    <!-- YouTube -->
+    <a href="https://youtube.com/@matthiassilberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube">
+      <div class="social-icon-wrapper">
+        <svg class="social-icon" viewBox="0 0 24 24">
+          <path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.506 0-9.396.501A3.007 3.007 0 00.528 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/>
+        </svg>
+      </div>
+      <span class="social-name">YouTube</span>
+    </a>
+  </div>
+</section>
+<div class="lichtkante"></div>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+    <div class="footer-links">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+    </div>
+    <p>© <span id="jahr"></span> Matthias Silberhain</p>
+</footer>
+<!-- ================= JAVASCRIPT ================= -->
+<script src="assets/js/global.js"></script>
+<script src="assets/js/menu.js"></script>
+
+</body>
+</html>
