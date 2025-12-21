@@ -1,5 +1,5 @@
 // ============================================================================
-// WERKE.JS - Karussell und Bewertungssystem
+// WERKE.JS - Karussell und einfaches Bewertungssystem
 // ============================================================================
 
 (function() {
@@ -80,12 +80,10 @@
         console.log('✅ Karussell initialisiert');
     }
     
-    // 2. BEWERTUNGSSYSTEM (Client-seitig mit localStorage)
+    // 2. EINFACHES BEWERTUNGSSYSTEM (nur Sterne)
     function initBewertungssystem() {
         const sterneContainer = document.getElementById('bewertungsSterne');
         const bewertungswert = document.querySelector('.bewertungs-wert');
-        const kommentarTextarea = document.getElementById('werkeKommentar');
-        const zeichenCount = document.querySelector('.zeichen-count');
         const sendenBtn = document.getElementById('bewertungAbsenden');
         
         if (!sterneContainer) {
@@ -93,14 +91,13 @@
             return;
         }
         
-        // Bewertung aus localStorage laden
+        // Bewertungen aus localStorage laden oder initialisieren
         let bewertungen = JSON.parse(localStorage.getItem('ms-werke-bewertungen')) || {
             durchschnitt: 4.2,
-            anzahl: 127,
-            kommentare: []
+            anzahl: 0,
+            sterneListe: []
         };
         
-        // Aktuelle Bewertung
         let aktuelleBewertung = 0;
         
         // Sterne aktualisieren
@@ -149,24 +146,6 @@
             });
         });
         
-        // Zeichenzähler für Kommentar
-        if (kommentarTextarea && zeichenCount) {
-            kommentarTextarea.addEventListener('input', () => {
-                const length = kommentarTextarea.value.length;
-                zeichenCount.textContent = `${length}/500 Zeichen`;
-                
-                if (length > 500) {
-                    kommentarTextarea.value = kommentarTextarea.value.substring(0, 500);
-                    zeichenCount.textContent = '500/500 Zeichen';
-                    zeichenCount.style.color = '#ff6b6b';
-                } else if (length > 450) {
-                    zeichenCount.style.color = '#ffa726';
-                } else {
-                    zeichenCount.style.color = '#b0b5bc';
-                }
-            });
-        }
-        
         // Bewertung absenden
         if (sendenBtn) {
             sendenBtn.addEventListener('click', () => {
@@ -179,53 +158,43 @@
                 const selectedBuch = document.querySelector('input[name="bewertetesBuch"]:checked');
                 const buchName = selectedBuch ? selectedBuch.nextElementSibling.textContent : 'Unbekannt';
                 
-                const kommentar = kommentarTextarea ? kommentarTextarea.value.trim() : '';
+                // Neue Bewertung speichern
+                bewertungen.sterneListe.push(aktuelleBewertung);
+                bewertungen.anzahl = bewertungen.sterneListe.length;
                 
-                // Neue Bewertung berechnen
-                bewertungen.anzahl++;
-                bewertungen.durchschnitt = (
-                    (bewertungen.durchschnitt * (bewertungen.anzahl - 1) + aktuelleBewertung) / 
-                    bewertungen.anzahl
-                ).toFixed(1);
-                
-                if (kommentar) {
-                    bewertungen.kommentare.push({
-                        buch: buchName,
-                        text: kommentar,
-                        sterne: aktuelleBewertung,
-                        datum: new Date().toLocaleDateString('de-DE')
-                    });
-                }
+                // Durchschnitt neu berechnen
+                const summe = bewertungen.sterneListe.reduce((a, b) => a + b, 0);
+                bewertungen.durchschnitt = (summe / bewertungen.anzahl).toFixed(1);
                 
                 // In localStorage speichern
                 localStorage.setItem('ms-werke-bewertungen', JSON.stringify(bewertungen));
                 
                 // Erfolgsmeldung
-                alert(`Vielen Dank für Ihre Bewertung!\n\nIhre Bewertung: ${aktuelleBewertung} Sterne\nBewertetes Buch: ${buchName}\n\nIhr Feedback ist wertvoll für die weitere Entwicklung der Werke.`);
+                alert(`Vielen Dank für Ihre Bewertung!\n\nIhre Bewertung: ${aktuelleBewertung} Sterne\nBewertetes Buch: ${buchName}`);
                 
                 // Statistik aktualisieren
-                const statistikZahl = document.querySelector('.statistik-zahl');
-                const durchschnittElement = document.querySelector('.durchschnitt');
-                
-                if (statistikZahl) statistikZahl.textContent = bewertungen.anzahl;
-                if (durchschnittElement) durchschnittElement.textContent = bewertungen.durchschnitt;
+                updateStatistik();
                 
                 // Zurücksetzen
-                if (kommentarTextarea) {
-                    kommentarTextarea.value = '';
-                    zeichenCount.textContent = '0/500 Zeichen';
-                    zeichenCount.style.color = '#b0b5bc';
-                }
-                
                 aktuelleBewertung = 0;
                 updateSterneAnzeige();
-                
-                console.log('✅ Bewertung gespeichert:', bewertungen);
             });
+        }
+        
+        // Statistik aktualisieren
+        function updateStatistik() {
+            const statistikZahl = document.querySelector('.statistik-zahl');
+            const durchschnittElement = document.querySelector('.durchschnitt');
+            const kommentareZahl = document.querySelector('.statistik-item:nth-child(3) .statistik-zahl');
+            
+            if (statistikZahl) statistikZahl.textContent = bewertungen.anzahl;
+            if (durchschnittElement) durchschnittElement.textContent = bewertungen.durchschnitt;
+            if (kommentareZahl) kommentareZahl.textContent = '0'; // Keine Kommentare mehr
         }
         
         // Initiale Anzeige aktualisieren
         updateSterneAnzeige();
+        updateStatistik();
         
         console.log('✅ Bewertungssystem initialisiert');
     }
