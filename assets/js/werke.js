@@ -1,12 +1,14 @@
-// ============================================================================
-// KARUSSELL & BEWERTUNG - OPTIMIERT & KONFLIKTFREI
+============================================================================
+// WERKE.JS - Karussell und einfaches Bewertungssystem
 // ============================================================================
 
 (function() {
     'use strict';
     
-    // 1. KARUSSELL
-    window.initKarussell = function() {
+    console.log('📚 Werke Script geladen');
+    
+    // 1. KARUSSELL FUNKTIONALITÄT
+    function initKarussell() {
         const track = document.querySelector('.karussell-track');
         const items = document.querySelectorAll('.karussell-item');
         const dots = document.querySelectorAll('.dot');
@@ -14,16 +16,15 @@
         const nextBtn = document.querySelector('.karussell-btn.next');
         
         if (!track || items.length === 0) {
-            console.warn('⚠️ Karussell nicht gefunden (nicht auf dieser Seite)');
-            return false;
+            console.log('⚠️ Karussell Elemente nicht gefunden');
+            return;
         }
         
         let currentIndex = 0;
-        let autoRotateInterval = null;
         
-        // UPDATE KARUSSELL
+        // Karussell aktualisieren
         function updateKarussell() {
-            // Track bewegen
+            // Track position verschieben
             track.style.transform = `translateX(-${currentIndex * 100}%)`;
             
             // Items aktivieren/deaktivieren
@@ -35,170 +36,188 @@
             dots.forEach((dot, index) => {
                 dot.classList.toggle('active', index === currentIndex);
             });
+            
+            console.log('🔄 Karussell aktualisiert auf Index:', currentIndex);
         }
         
-        // NÄCHSTES SLIDE
+        // Nächstes Buch
         function nextSlide() {
             currentIndex = (currentIndex + 1) % items.length;
             updateKarussell();
         }
         
-        // VORHERIGES SLIDE
+        // Vorheriges Buch
         function prevSlide() {
             currentIndex = (currentIndex - 1 + items.length) % items.length;
             updateKarussell();
         }
         
-        // AUTO ROTATE
-        function startAutoRotate() {
-            if (autoRotateInterval) clearInterval(autoRotateInterval);
-            autoRotateInterval = setInterval(nextSlide, 8000);
-        }
-        
-        function stopAutoRotate() {
-            if (autoRotateInterval) {
-                clearInterval(autoRotateInterval);
-                autoRotateInterval = null;
-            }
-        }
-        
-        // EVENT LISTENER
+        // Event Listener für Buttons
         if (prevBtn) prevBtn.addEventListener('click', prevSlide);
         if (nextBtn) nextBtn.addEventListener('click', nextSlide);
         
+        // Event Listener für Dots
         dots.forEach((dot, index) => {
             dot.addEventListener('click', () => {
                 currentIndex = index;
                 updateKarussell();
-                startAutoRotate(); // Reset timer bei manueller Navigation
             });
         });
         
-        // HOVER CONTROLS
-        track.addEventListener('mouseenter', stopAutoRotate);
-        track.addEventListener('mouseleave', startAutoRotate);
-        track.addEventListener('touchstart', stopAutoRotate);
-        track.addEventListener('touchend', startAutoRotate);
+        // Auto-Rotate (optional)
+        let autoRotateInterval = setInterval(nextSlide, 8000);
         
-        // INITIALISIERUNG
-        updateKarussell();
-        startAutoRotate();
+        // Auto-Rotate stoppen bei Hover
+        track.addEventListener('mouseenter', () => {
+            clearInterval(autoRotateInterval);
+        });
+        
+        track.addEventListener('mouseleave', () => {
+            clearInterval(autoRotateInterval);
+            autoRotateInterval = setInterval(nextSlide, 8000);
+        });
         
         console.log('✅ Karussell initialisiert');
-        return true;
-    };
+    }
     
-    // 2. BEWERTUNGSSYSTEM
-    window.initBewertungssystem = function() {
+    // 2. EINFACHES BEWERTUNGSSYSTEM (nur Sterne)
+    function initBewertungssystem() {
         const sterneContainer = document.getElementById('bewertungsSterne');
+        const bewertungswert = document.querySelector('.bewertungs-wert');
         const sendenBtn = document.getElementById('bewertungAbsenden');
         
-        if (!sterneContainer || !sendenBtn) {
-            console.warn('⚠️ Bewertungssystem nicht gefunden (nicht auf dieser Seite)');
-            return false;
+        if (!sterneContainer) {
+            console.log('⚠️ Bewertungssystem nicht gefunden');
+            return;
         }
         
-        // LOKALE DATEN
+        // Bewertungen aus localStorage laden oder initialisieren
         let bewertungen = JSON.parse(localStorage.getItem('ms-werke-bewertungen')) || {
-            durchschnitt: 0,
+            durchschnitt: 4.2,
             anzahl: 0,
             sterneListe: []
         };
         
         let aktuelleBewertung = 0;
         
-        // STERNE AKTUALISIEREN
+        // Sterne aktualisieren
         function updateSterneAnzeige() {
             const sterne = sterneContainer.querySelectorAll('.stern');
+            
             sterne.forEach((stern, index) => {
-                stern.classList.toggle('active', index < aktuelleBewertung);
-                stern.classList.toggle('hovered', false);
+                if (index < aktuelleBewertung) {
+                    stern.classList.add('active');
+                    stern.classList.remove('hovered');
+                } else {
+                    stern.classList.remove('active', 'hovered');
+                }
             });
             
-            const bewertungswert = document.querySelector('.bewertungs-wert');
-            if (bewertungswert) bewertungswert.textContent = aktuelleBewertung;
+            if (bewertungswert) {
+                bewertungswert.textContent = aktuelleBewertung;
+            }
         }
         
-        // STERNE EVENT LISTENER
+        // Sterne Event Listener
         const sterne = sterneContainer.querySelectorAll('.stern');
         sterne.forEach(star => {
-            const value = parseInt(star.dataset.value);
-            
-            star.addEventListener('click', () => {
-                aktuelleBewertung = value;
+            star.addEventListener('click', (e) => {
+                aktuelleBewertung = parseInt(e.target.dataset.value);
                 updateSterneAnzeige();
+                console.log('⭐ Bewertung:', aktuelleBewertung, 'Sterne');
             });
             
-            star.addEventListener('mouseover', () => {
-                sterne.forEach((s, index) => {
-                    s.classList.toggle('hovered', index < value);
+            star.addEventListener('mouseover', (e) => {
+                const hoverValue = parseInt(e.target.dataset.value);
+                const tempSterne = sterneContainer.querySelectorAll('.stern');
+                
+                tempSterne.forEach((s, index) => {
+                    if (index < hoverValue) {
+                        s.classList.add('hovered');
+                    } else {
+                        s.classList.remove('hovered');
+                    }
                 });
             });
             
             star.addEventListener('mouseout', () => {
-                sterne.forEach(s => s.classList.remove('hovered'));
+                const tempSterne = sterneContainer.querySelectorAll('.stern');
+                tempSterne.forEach(s => s.classList.remove('hovered'));
             });
         });
         
-        // BEWERTUNG ABSENDEN
-        function absendenBewertung() {
-            if (aktuelleBewertung === 0) {
-                alert('Bitte geben Sie zuerst eine Bewertung ab (1-5 Sterne).');
-                return;
-            }
-            
-            const selectedBuch = document.querySelector('input[name="bewertetesBuch"]:checked');
-            const buchName = selectedBuch ? selectedBuch.nextElementSibling.textContent : 'Unbekannt';
-            
-            // Neue Bewertung speichern
-            bewertungen.sterneListe.push(aktuelleBewertung);
-            bewertungen.anzahl = bewertungen.sterneListe.length;
-            
-            // Durchschnitt berechnen
-            const summe = bewertungen.sterneListe.reduce((a, b) => a + b, 0);
-            bewertungen.durchschnitt = (summe / bewertungen.anzahl).toFixed(1);
-            
-            // In localStorage speichern
-            try {
+        // Bewertung absenden
+        if (sendenBtn) {
+            sendenBtn.addEventListener('click', () => {
+                if (aktuelleBewertung === 0) {
+                    alert('Bitte geben Sie zuerst eine Bewertung ab, indem Sie auf die Sterne klicken.');
+                    return;
+                }
+                
+                // Buchauswahl ermitteln
+                const selectedBuch = document.querySelector('input[name="bewertetesBuch"]:checked');
+                const buchName = selectedBuch ? selectedBuch.nextElementSibling.textContent : 'Unbekannt';
+                
+                // Neue Bewertung speichern
+                bewertungen.sterneListe.push(aktuelleBewertung);
+                bewertungen.anzahl = bewertungen.sterneListe.length;
+                
+                // Durchschnitt neu berechnen
+                const summe = bewertungen.sterneListe.reduce((a, b) => a + b, 0);
+                bewertungen.durchschnitt = (summe / bewertungen.anzahl).toFixed(1);
+                
+                // In localStorage speichern
                 localStorage.setItem('ms-werke-bewertungen', JSON.stringify(bewertungen));
-            } catch (e) {
-                console.warn('⚠️ localStorage nicht verfügbar');
-            }
-            
-            // Statistik aktualisieren
-            updateStatistik();
-            
-            // Erfolgsmeldung
-            alert(`Vielen Dank für Ihre ${aktuelleBewertung}-Sterne-Bewertung!\nBuch: ${buchName}`);
-            
-            // Zurücksetzen
-            aktuelleBewertung = 0;
-            updateSterneAnzeige();
+                
+                // Erfolgsmeldung
+                alert(`Vielen Dank für Ihre Bewertung!\n\nIhre Bewertung: ${aktuelleBewertung} Sterne\nBewertetes Buch: ${buchName}`);
+                
+                // Statistik aktualisieren
+                updateStatistik();
+                
+                // Zurücksetzen
+                aktuelleBewertung = 0;
+                updateSterneAnzeige();
+            });
         }
         
-        // STATISTIK AKTUALISIEREN
+        // Statistik aktualisieren
         function updateStatistik() {
             const statistikZahl = document.querySelector('.statistik-zahl');
             const durchschnittElement = document.querySelector('.durchschnitt');
+            const kommentareZahl = document.querySelector('.statistik-item:nth-child(3) .statistik-zahl');
             
             if (statistikZahl) statistikZahl.textContent = bewertungen.anzahl;
             if (durchschnittElement) durchschnittElement.textContent = bewertungen.durchschnitt;
+            if (kommentareZahl) kommentareZahl.textContent = '0'; // Keine Kommentare mehr
         }
         
-        // EVENT LISTENER FÜR BUTTON
-        sendenBtn.addEventListener('click', absendenBewertung);
-        
-        // ENTER-TASTE AUF BUTTON
-        sendenBtn.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') absendenBewertung();
-        });
-        
-        // INITIALISIERUNG
+        // Initiale Anzeige aktualisieren
         updateSterneAnzeige();
         updateStatistik();
         
         console.log('✅ Bewertungssystem initialisiert');
-        return true;
-    };
+    }
+    
+    // 3. HAUPTFUNKTION
+    function initAll() {
+        console.log('🚀 Starte Werke Initialisierung...');
+        
+        try {
+            initKarussell();
+            initBewertungssystem();
+            
+            console.log('✅ Werke komplett initialisiert');
+        } catch (error) {
+            console.error('❌ Fehler bei Werke Initialisierung:', error);
+        }
+    }
+    
+    // 4. STARTE INITIALISIERUNG
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initAll);
+    } else {
+        setTimeout(initAll, 100);
+    }
     
 })();
