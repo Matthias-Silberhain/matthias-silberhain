@@ -2550,3 +2550,730 @@ body.dark-mode .kommentar-feld textarea {
         font-size: 1.8rem;
     }
 }
+/* ==========================================================================
+   WERKE-SPEZIFISCHE STYLES
+   ========================================================================== */
+
+/* Section Titles */
+.section-title {
+    font-family: "Cinzel", serif;
+    color: #e4e6ea;
+    text-align: center;
+    margin: 60px 0 30px;
+    font-size: 1.8rem;
+    letter-spacing: 0.1em;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(200, 205, 215, 0.6) 50%, 
+        transparent);
+}
+
+/* KARUSSELL STYLES */
+.karussell-section {
+    margin: 50px 0;
+}
+
+.karussell-container {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    overflow: hidden;
+    border: 1px solid rgba(200, 205, 215, 0.2);
+    border-radius: 12px;
+    padding: 20px;
+    background: rgba(15, 15, 15, 0.3);
+}
+
+.karussell-track {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.karussell-item {
+    min-width: 100%;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.karussell-item.active {
+    display: flex;
+}
+
+.buch-cover {
+    position: relative;
+    width: 300px;
+    height: 450px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: all 0.4s ease;
+}
+
+.cover-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.cover-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.8) 100%
+    );
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 30px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.buch-cover:hover .cover-overlay {
+    opacity: 1;
+}
+
+.buch-cover:hover .cover-image {
+    transform: scale(1.05);
+}
+
+.overlay-content {
+    text-align: center;
+    transform: translateY(20px);
+    transition: transform 0.4s ease;
+}
+
+.buch-cover:hover .overlay-content {
+    transform: translateY(0);
+}
+
+.buch-title {
+    font-family: "Cinzel", serif;
+    color: #fff;
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.buch-subtitle {
+    color: #c0c0c0;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    font-style: italic;
+}
+
+.buch-status {
+    color: #a0a0a0;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.buch-info {
+    text-align: center;
+    max-width: 600px;
+}
+
+.buch-info h3 {
+    font-family: "Cinzel", serif;
+    color: #e4e6ea;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.untertitel {
+    color: #b0b5bc;
+    font-style: italic;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+.buch-info p {
+    color: #b0b5bc;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.karussell-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(200, 205, 215, 0.1);
+    border: 1px solid rgba(200, 205, 215, 0.3);
+    color: #e4e6ea;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.karussell-btn:hover {
+    background: rgba(200, 205, 215, 0.2);
+    border-color: rgba(200, 205, 215, 0.6);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.karussell-btn svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+.karussell-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(200, 205, 215, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    background: rgba(200, 205, 215, 0.8);
+    transform: scale(1.2);
+}
+
+.dot:hover {
+    background: rgba(200, 205, 215, 0.6);
+}
+
+/* AKTUELLE ARBEITEN STYLES */
+.aktuelle-arbeiten {
+    margin: 60px 0;
+}
+
+.aktuelles-buch {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+    background: rgba(20, 20, 20, 0.3);
+    border: 1px solid rgba(200, 205, 215, 0.15);
+    border-radius: 10px;
+}
+
+.buch-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(200, 205, 215, 0.2);
+}
+
+.buch-header h3 {
+    font-family: "Cinzel", serif;
+    color: #e4e6ea;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.arbeit-status {
+    color: #c0c0c0;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    margin-top: 10px;
+}
+
+/* FORTSCHRITTSBALKEN */
+.fortschritts-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin: 30px 0;
+}
+
+.fortschritt-item {
+    background: rgba(25, 25, 25, 0.4);
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid rgba(200, 205, 215, 0.1);
+    transition: all 0.3s ease;
+}
+
+.fortschritt-item:hover {
+    border-color: rgba(200, 205, 215, 0.3);
+    background: rgba(30, 30, 30, 0.5);
+}
+
+.fortschritt-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.fortschritt-text {
+    font-family: "Cinzel", serif;
+    color: #e4e6ea;
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+}
+
+.fortschritt-prozent {
+    color: #c0c0c0;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.fortschritt-balken {
+    height: 8px;
+    background: rgba(200, 205, 215, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.fortschritt-fill {
+    height: 100%;
+    background: linear-gradient(90deg, 
+        rgba(160, 160, 160, 0.8) 0%,
+        rgba(200, 200, 200, 0.9) 100%);
+    border-radius: 4px;
+    transition: width 1s ease-out;
+}
+
+.fortschritt-info {
+    color: #b0b5bc;
+    font-size: 0.9rem;
+    font-style: italic;
+    margin: 0;
+}
+
+/* HINWEIS BOX */
+.hinweis-box {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    background: rgba(40, 40, 40, 0.4);
+    border: 1px solid rgba(200, 205, 215, 0.2);
+    border-radius: 8px;
+    margin-top: 30px;
+}
+
+.hinweis-icon {
+    width: 24px;
+    height: 24px;
+    color: #c0c0c0;
+    flex-shrink: 0;
+}
+
+.hinweis-box p {
+    color: #b0b5bc;
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+/* BEWERTUNGSSYSTEM STYLES */
+.bewertungs-section {
+    margin: 60px 0;
+}
+
+.bewertungs-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+    background: rgba(20, 20, 20, 0.3);
+    border: 1px solid rgba(200, 205, 215, 0.15);
+    border-radius: 10px;
+}
+
+.bewertungs-einleitung {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(200, 205, 215, 0.2);
+}
+
+.bewertungs-einleitung p {
+    color: #b0b5bc;
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+.bewertungs-formular {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.bewertungs-optionen h4,
+.sterne-bewertung h4,
+.kommentar-feld h4,
+.bewertungs-statistik h4 {
+    font-family: "Cinzel", serif;
+    color: #e4e6ea;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+/* Buchauswahl */
+.buch-auswahl {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+}
+
+.buch-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 15px;
+    background: rgba(25, 25, 25, 0.5);
+    border: 1px solid rgba(200, 205, 215, 0.1);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.buch-option:hover {
+    background: rgba(200, 205, 215, 0.05);
+    border-color: rgba(200, 205, 215, 0.3);
+}
+
+.buch-option input[type="radio"] {
+    display: none;
+}
+
+.buch-option input[type="radio"]:checked + span {
+    color: #c0c0c0;
+    font-weight: 500;
+}
+
+.buch-option span {
+    color: #b0b5bc;
+    transition: color 0.3s ease;
+}
+
+/* Sterne Bewertung */
+.sterne-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.sterne {
+    font-size: 2.5rem;
+    cursor: pointer;
+    display: flex;
+    gap: 5px;
+}
+
+.stern {
+    color: #666;
+    transition: all 0.2s ease;
+    padding: 0 2px;
+}
+
+.stern:hover,
+.stern.hovered {
+    color: #ffd700;
+    transform: scale(1.2);
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.stern.active {
+    color: #ffd700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.bewertungs-anzeige {
+    text-align: center;
+}
+
+.bewertungs-anzeige p {
+    color: #b0b5bc;
+    margin: 5px 0;
+}
+
+.bewertungs-wert {
+    color: #e4e6ea;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.durchschnitts-bewertung {
+    font-size: 0.9rem;
+    color: #a0a0a0;
+}
+
+.durchschnitt {
+    color: #ffd700;
+    font-weight: 600;
+}
+
+/* Kommentarfeld */
+.kommentar-feld textarea {
+    width: 100%;
+    padding: 15px;
+    background: rgba(30, 30, 30, 0.5);
+    border: 1px solid rgba(200, 205, 215, 0.2);
+    border-radius: 6px;
+    color: #e4e6ea;
+    font-family: "EB Garamond", serif;
+    font-size: 1rem;
+    resize: vertical;
+    transition: border-color 0.3s ease;
+}
+
+.kommentar-feld textarea:focus {
+    outline: none;
+    border-color: rgba(200, 205, 215, 0.5);
+}
+
+.kommentar-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.zeichen-count {
+    color: #b0b5bc;
+    font-size: 0.85rem;
+}
+
+/* Bewertungsstatistik */
+.bewertungs-statistik {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(200, 205, 215, 0.2);
+}
+
+.statistik-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 20px;
+    text-align: center;
+}
+
+.statistik-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    background: rgba(25, 25, 25, 0.4);
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.statistik-item:hover {
+    background: rgba(30, 30, 30, 0.6);
+    transform: translateY(-2px);
+}
+
+.statistik-zahl {
+    font-family: "Cinzel", serif;
+    font-size: 2rem;
+    color: #c0c0c0;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.statistik-label {
+    color: #b0b5bc;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+/* Kleine Buttons für Buch-Links */
+.silber-button.small {
+    padding: 8px 20px;
+    font-size: 0.9rem;
+    margin-top: 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* WERKE CTA */
+.werke-cta {
+    text-align: center;
+    margin: 60px 0 40px;
+    padding: 40px;
+    background: rgba(20, 20, 20, 0.3);
+    border: 1px solid rgba(200, 205, 215, 0.15);
+    border-radius: 10px;
+}
+
+.werke-cta p {
+    color: #e4e6ea;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+/* DARK MODE ANPASSUNGEN */
+body.dark-mode .karussell-container,
+body.dark-mode .aktuelles-buch,
+body.dark-mode .bewertungs-container,
+body.dark-mode .werke-cta {
+    background: rgba(40, 40, 40, 0.3);
+    border-color: rgba(220, 220, 220, 0.2);
+}
+
+body.dark-mode .fortschritt-item {
+    background: rgba(50, 50, 50, 0.4);
+}
+
+body.dark-mode .hinweis-box {
+    background: rgba(60, 60, 60, 0.4);
+}
+
+body.dark-mode .buch-option,
+body.dark-mode .statistik-item {
+    background: rgba(40, 40, 40, 0.3);
+}
+
+body.dark-mode .buch-option {
+    border-color: rgba(220, 220, 220, 0.15);
+}
+
+body.dark-mode .buch-option:hover {
+    background: rgba(220, 220, 220, 0.08);
+    border-color: rgba(220, 220, 220, 0.3);
+}
+
+body.dark-mode .kommentar-feld textarea {
+    background: rgba(50, 50, 50, 0.5);
+    border-color: rgba(220, 220, 220, 0.3);
+}
+
+/* RESPONSIVE DESIGN */
+@media screen and (max-width: 768px) {
+    .karussell-container {
+        padding: 15px;
+    }
+    
+    .buch-cover {
+        width: 250px;
+        height: 375px;
+    }
+    
+    .karussell-btn {
+        width: 35px;
+        height: 35px;
+        display: none;
+    }
+    
+    .aktuelles-buch,
+    .bewertungs-container,
+    .werke-cta {
+        padding: 20px;
+    }
+    
+    .buch-header h3,
+    .buch-info h3 {
+        font-size: 1.5rem;
+    }
+    
+    .fortschritt-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .fortschritt-prozent {
+        align-self: flex-end;
+    }
+    
+    .buch-auswahl {
+        grid-template-columns: 1fr;
+    }
+    
+    .sterne {
+        font-size: 2rem;
+    }
+    
+    .statistik-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .statistik-zahl {
+        font-size: 1.5rem;
+    }
+    
+    .kommentar-footer {
+        flex-direction: column;
+        gap: 15px;
+        align-items: stretch;
+    }
+    
+    .silber-button.small {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .buch-cover {
+        width: 200px;
+        height: 300px;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+        margin: 40px 0 20px;
+    }
+    
+    .fortschritt-item {
+        padding: 15px;
+    }
+    
+    .fortschritt-text {
+        font-size: 1rem;
+    }
+    
+    .statistik-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .sterne {
+        font-size: 1.8rem;
+    }
+    
+    .werke-cta {
+        padding: 25px 15px;
+    }
+    
+    .werke-cta p {
+        font-size: 1.1rem;
+    }
+}
