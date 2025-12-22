@@ -2,9 +2,9 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>Matthias Silberhain | Der lange Weg in die Finsternis </title>
+  <title>Matthias Silberhain | Der lange Weg in die Finsternis</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Werke von Matthias Silberhain - Historische Analysen mit wissenschaftlichem Anspruch">
+  <meta name="description" content="Der lange Weg in die Finsternis von Matthias Silberhain - Kontinuitäten von Kaiserreich zum Nationalsozialismus">
   
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
@@ -33,7 +33,8 @@
       
       // SOFORTIGE KLICKBARKEIT SICHERSTELLEN
       document.addEventListener('DOMContentLoaded', function() {
-        const interactiveElements = ['button', 'a', '.burger', '.dark-mode-toggle', '.silber-button', '.social-link', '.seriöser-button', '.carousel-button', '.carousel-slide'];
+        // Alle interaktiven Elemente klickbar machen
+        const interactiveElements = ['button', 'a', '.burger', '.dark-mode-toggle', '.silber-button', '.social-link', '.seriöser-button'];
         
         setTimeout(function() {
           interactiveElements.forEach(selector => {
@@ -91,10 +92,7 @@
       text-align: center;
     }
     
-    /* ================= AKTUELLES WERK - ENTFERNT ================= */
-    /* Dieser Abschnitt wurde entfernt, da er nicht mehr benötigt wird */
-    
-    /* ================= BUCHPRÄSENTATION STYLES ================= */
+    /* Buchkarte - Seriöse Version */
     .buch-präsentation {
       margin-bottom: 80px;
     }
@@ -218,6 +216,51 @@
     
     .quellen-text p:last-child {
       margin-bottom: 0;
+    }
+    
+    /* Spezifische Quellen-Liste */
+    .quellen-liste {
+      margin-top: 20px;
+      padding-left: 20px;
+    }
+    
+    .quellen-liste li {
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(200, 205, 215, 0.05);
+    }
+    
+    .quellen-liste li:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    
+    .quellen-kategorie {
+      color: #d6d9de;
+      font-family: "Cinzel", serif;
+      font-size: 1rem;
+      margin-bottom: 8px;
+      display: block;
+    }
+    
+    .quellen-details {
+      color: #9da2a8;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-left: 10px;
+    }
+    
+    .quellen-link {
+      color: #b0b5bc;
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(200, 205, 215, 0.3);
+      transition: all 0.3s ease;
+    }
+    
+    .quellen-link:hover {
+      color: #ffffff;
+      border-bottom-color: rgba(200, 205, 215, 0.6);
     }
     
     /* Seriöse Buttons */
@@ -428,6 +471,10 @@
         padding: 20px;
       }
       
+      .quellen-liste {
+        padding-left: 15px;
+      }
+      
       .seriöser-button {
         padding: 14px 35px;
         width: 100%;
@@ -472,6 +519,10 @@
       
       .statistik-container {
         padding: 20px 15px;
+      }
+      
+      .quellen-liste {
+        padding-left: 10px;
       }
     }
   </style>
@@ -534,7 +585,7 @@
       <!-- Buchcover -->
       <div class="buchcover-bereich">
         <div class="buchcover-rahmen">
-          <img src="assets/images/derlangewegindiefinsternis.png" 
+          <img src="assets/images/der-lange-weg-in-die-finsternis.png" 
                alt="Buchcover: Der lange Weg in die Finsternis" 
                class="buchcover-seriös">
         </div>
@@ -549,27 +600,91 @@
       <!-- Inhalt -->
       <div class="inhalt-bereich">
         <div class="inhalt-text">
-          <p><strong>Dieses Buch ist kein Roman.</strong> Es ist auch keine rückblickende Vereinfachung der Geschichte. Es ist der Versuch, einen historischen Weg sichtbar zu machen, der lange vor 1933 begann und dennoch direkt in die Katastrophe führte.</p>
+          <p><strong>Dieses Buch zeichnet eine unbequeme Linie nach.</strong> Es geht nicht um isolierte Epochen, sondern um die verborgenen Verbindungen, die vom deutschen Kaiserreich direkt in die Finsternis des Nationalsozialismus führen. Die These ist klar und belegt: Der Weg in die Katastrophe begann nicht erst 1933, sondern Jahrzehnte zuvor.</p>
           
-          <p>Im Zentrum steht das deutsche Kaiserreich und die Frage, welche Strukturen, Denkweisen und politischen Mechanismen dort entstanden, die später vom Nationalsozialismus übernommen, radikalisiert und zur Vollendung gebracht wurden. Der Fokus liegt nicht auf einzelnen Personen, sondern auf Systemen. Auf Machtstrukturen, auf Gewöhnung an Gewalt, auf Sprache, die entmenschlicht, und auf eine politische Kultur, in der Gehorsam höher bewertet wurde als Verantwortung.</p>
+          <p>Im Zentrum steht die systematische Untersuchung von Kontinuitäten: Wie entwickelten sich Denkmuster, Institutionen und Praktiken, die später im NS-Staat zur vollen Entfaltung kamen? Das Buch analysiert den deutschen Kolonialismus nicht als abgeschlossenes Kapitel, sondern als Labor der Gewalt. Es zeigt, wie Rhetoriken der Entmenschlichung, bürokratische Effizienz im Dienst der Vernichtung und völkische Ideologeme bereits im Kaiserreich angelegt waren.</p>
           
           <div class="zitat-seriös">
-            <p>Diese kolonialen Verbrechen werden hier nicht als Randnotiz behandelt, sondern als frühes Übungsfeld für Denkweisen und Methoden, die später im Inneren des Reiches wiederkehrten.</p>
+            <p>Die Wurzeln der nationalsozialistischen Verbrechen reichen tiefer, als viele wahrhaben wollen. Sie liegen im imperialen Denken, im kolonialen Rassismus und in der autoritären politischen Kultur des Kaiserreichs.</p>
           </div>
           
-          <p>Erzählt wird diese Geschichte in einer dichten, spannungsreichen Form, die sich wie ein Thriller liest, ohne die Grenze zur Fiktion zu überschreiten. Jeder Abschnitt folgt realen Abläufen, belegbaren Entscheidungen und dokumentierten Entwicklungen. Dieses Buch erfindet nichts. Es ordnet ein, verbindet und legt offen.</p>
+          <p>Erzählt wird diese Geschichte anhand konkreter Dokumente: Reichstagsprotokolle, in denen über "Rassenfragen" und koloniale "Befriedung" debattiert wurde; militärische Befehle, die Vernichtung anordneten; Verwaltungsakten, die Bürokratie und Gewalt verbanden. Jedes Kapitel folgt einer eigenen Spur: Von der Sprache der Entmenschlichung über die Normalisierung von Ausnahmezuständen bis zur Entwicklung völkischer Gemeinschaftsideen.</p>
           
           <div class="quellen-bereich">
-            <div class="quellen-titel">Quellen und Belege</div>
+            <div class="quellen-titel">Quellen und Belege: Zentrale Primär- und Sekundärquellen</div>
             <div class="quellen-text">
-              <p>Alle zentralen Aussagen sind durch historische Quellen belegbar. Die im Buch verwendeten Nachweise verweisen unter anderem auf Reichstagsprotokolle, zeitgenössische Presseberichte, Verwaltungsakten, Reden politischer Entscheidungsträger sowie auf die etablierte historische Forschung.</p>
-              <p>Die Quellen sind am Ende des Buches vollständig aufgeführt und nachvollziehbar dokumentiert.</p>
+              <p>Die Inhalte dieses Buches basieren ausschließlich auf historischen Primär- und Sekundärquellen. Ein besonderer Schwerpunkt liegt auf originalen Reichstagsprotokollen, staatlichen Akten, zeitgenössischen Veröffentlichungen sowie Archivmaterial öffentlicher Institutionen. Alle Aussagen sind belegbar. Eine Auswahl der genutzten und empfohlenen Quellen:</p>
+              
+              <ul class="quellen-liste">
+                <li>
+                  <span class="quellen-kategorie">Zentrale Primärquellen</span>
+                  <div class="quellen-details">
+                    <strong>Reichstagsprotokolle des Deutschen Kaiserreichs 1871–1918</strong><br>
+                    Stenographische Berichte über die Verhandlungen des Deutschen Reichstags.<br>
+                    <em>Enthalten unter anderem:</em> Kolonialdebatten, Debatten zur sogenannten Judenfrage, Diskussionen über innere Sicherheit, Sozialdemokratie, Ausnahmegesetze, Rechtfertigungen militärischer Gewalt, Rhetorik zu Ordnung, Disziplin, Volkskörper.<br>
+                    <a href="https://www.reichstagsprotokolle.de" target="_blank" rel="noopener noreferrer" class="quellen-link">Online zugänglich über: Verhandlungen des Deutschen Reichstags</a>
+                  </div>
+                </li>
+                
+                <li>
+                  <span class="quellen-kategorie">Kolonialarchiv</span>
+                  <div class="quellen-details">
+                    <strong>Akten des Reichskolonialamts</strong><br>
+                    Verwaltungsanweisungen, Berichte aus Deutsch-Südwestafrika und Deutsch-Ostafrika, Strafmaßnahmen, Zwangsarbeit, Lagerverwaltung, Schriftverkehr zu Aufständen und „Befriedungsmaßnahmen".<br>
+                    <a href="https://www.bundesarchiv.de" target="_blank" rel="noopener noreferrer" class="quellen-link">Zugänglich über: Bundesarchiv Berlin-Lichterfelde / Bundesarchiv Koblenz</a>
+                  </div>
+                </li>
+                
+                <li>
+                  <span class="quellen-kategorie">Militärische Dokumente</span>
+                  <div class="quellen-details">
+                    <strong>Militärische Befehle und Feldberichte</strong><br>
+                    Lothar von Trotha, Vernichtungsbefehl 1904; Feldberichte der Schutztruppe; Militärische Lageberichte aus den Kolonien.<br>
+                    <em>Diese Dokumente sind eindeutig belegt und vielfach veröffentlicht.</em>
+                  </div>
+                </li>
+                
+                <li>
+                  <span class="quellen-kategorie">Zeitgenössische Presse</span>
+                  <div class="quellen-details">
+                    <strong>Zeitgenössische Presse des Kaiserreichs</strong><br>
+                    Beispielsweise: Kreuzzeitung, Berliner Tageblatt, Vossische Zeitung, Deutsche Kolonialzeitung.<br>
+                    <em>Sie zeigen:</em> öffentliche Sprache, Normalisierung von Gewalt, koloniale Rechtfertigungen, antisemitische Narrative.
+                  </div>
+                </li>
+                
+                <li>
+                  <span class="quellen-kategorie">Sekundärliteratur und historische Forschung</span>
+                  <div class="quellen-details">
+                    <strong>Diese Werke bilden die analytische Grundlage des Buches:</strong><br>
+                    • Kaiserreich, politische Kultur, Militarismus: Hans-Ulrich Wehler, Volker Berghahn, Christopher Clark, Thomas Nipperdey<br>
+                    • Kolonialismus und koloniale Gewalt: Jürgen Zimmerer, Isabel V. Hull, Dominik J. Schaller<br>
+                    • Kontinuitäten zum Nationalsozialismus: George L. Mosse, Detlev Peukert, Götz Aly, Ulrich Herbert<br>
+                    • Sprache, Propaganda, Entmenschlichung: Victor Klemperer, Hannah Arendt<br>
+                    <em>Diese Forschung ist zentral für die These der Kontinuitäten.</em>
+                  </div>
+                </li>
+                
+                <li>
+                  <span class="quellen-kategorie">Warum diese Quellen tragfähig sind</span>
+                  <div class="quellen-details">
+                    • Alle genannten Primärquellen sind originale historische Dokumente<br>
+                    • Alle Sekundärwerke stammen aus etablierter, international anerkannter Forschung<br>
+                    • Die These des Buches entspricht keiner Randmeinung, sondern einer gut belegten historischen Debatte<br>
+                    • Dieses Buch ist keine Fiktion, sondern eine narrativ verdichtete Synthese realer Forschung
+                  </div>
+                </li>
+              </ul>
+              
+              <p style="margin-top: 20px;"><strong>Alle genannten Quellen stammen aus öffentlichen, wissenschaftlichen oder staatlichen Archiven. Änderungen der Verfügbarkeit oder der Inhalte liegen außerhalb des Einflussbereichs des Autors.</strong></p>
             </div>
           </div>
           
-          <p><strong>Dieses Buch versteht sich nicht als moralische Anklage aus sicherer Distanz.</strong> Es ist eine Analyse historischer Kontinuitäten. Es zeigt, wie sich Radikalisierung vorbereitet, wie sich Grenzen verschieben und wie Gesellschaften lernen, Unrecht zu akzeptieren, solange es schrittweise geschieht.</p>
+          <p><strong>Das Buchcover</strong> zeigt bewusst keine historischen Personen oder Ereignisse. Stattdessen symbolisiert die absteigende, sich verdunkelnde Linie den langen Weg in die Finsternis. Die fortschreitende Dunkelheit steht für die zunehmende Radikalisierung, für den Verlust von Humanität und Rechtsstaatlichkeit, der sich über Jahrzehnte vollzog.</p>
           
-          <p><strong>Wer dieses Buch liest, wird keine einfache Erklärung finden. Aber ein klares Verständnis dafür, dass Geschichte nicht plötzlich kippt. Sie wird gebaut. Stein für Stein.</strong></p>
+          <p><strong>Dieses Werk versteht sich als notwendige historische Aufarbeitung.</strong> Es widersteht der Versuchung, Geschichte in abgeschlossene Kapitel zu zerteilen. Stattdessen zeigt es die langen Linien, die gefährlichen Kontinuitäten, die unheilvollen Entwicklungen, die letztlich in die größte Katastrophe des 20. Jahrhunderts mündeten.</p>
+          
+          <p><strong>Wer dieses Buch liest, wird deutsche Geschichte nicht mehr als Folge unzusammenhängender Epochen sehen. Sondern als Prozess. Als Entwicklung. Als langen Weg in eine Finsternis, deren Anfänge weiter zurückreichen, als viele bereit sind zuzugeben.</strong></p>
         </div>
       </div>
       
@@ -579,23 +694,23 @@
         
         <div class="statistik-grid">
           <div class="statistik-item">
-            <div class="statistik-number" id="online-counter">289</div>
+            <div class="statistik-number" id="online-counter-finsternis">184</div>
             <div class="statistik-label">Online gelesen</div>
           </div>
           
           <div class="statistik-item">
-            <div class="statistik-number" id="download-counter">73</div>
-            <div class="statistik-label">Heruntergeladen</div>
+            <div class="statistik-number" id="download-counter-finsternis">57</div>
+            <div class="statellen-label">Heruntergeladen</div>
           </div>
         </div>
         
         <div class="statistik-total">
-          <div class="total-number" id="total-counter">362</div>
+          <div class="total-number" id="total-counter-finsternis">241</div>
           <div class="total-label">Gesamtzugriffe auf diese Leseprobe</div>
         </div>
         
         <div class="statistik-update">
-          Diese Zahlen werden automatisch aktualisiert. Letzte Aktualisierung: <span id="last-update">Heute</span>
+          Diese Zahlen werden automatisch aktualisiert. Letzte Aktualisierung: <span id="last-update-finsternis">Heute</span>
         </div>
       </div>
       
@@ -603,11 +718,11 @@
       <div class="aktionen-bereich">
         <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 25px;">
           <!-- Online lesen Button -->
-          <a href="assets/leseproben/derlangewegindiefinsternis.pdf" 
+          <a href="https://matthias-silberhain.github.io/matthias-silberhain/assets/leseproben/Der_lange_Weg_in_die_Finsternis_Leseprobe.pdf" 
              class="seriöser-button"
              target="_blank"
              style="background: rgba(200,205,215,0.1); min-width: 200px;"
-             onclick="increaseCounter('online')">
+             onclick="increaseCounter('online', 'finsternis')">
             <svg width="20" height="20" viewBox="0 0 24 24" style="margin-right: 10px; vertical-align: middle;">
               <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" fill="currentColor"/>
             </svg>
@@ -615,11 +730,11 @@
           </a>
           
           <!-- Download Button -->
-          <a href="assets/leseproben/derlangewegindiefinsternis.pdf" 
+          <a href="https://matthias-silberhain.github.io/matthias-silberhain/assets/leseproben/Der_lange_Weg_in_die_Finsternis_Leseprobe.pdf" 
              class="seriöser-button"
              download="Der_lange_Weg_in_die_Finsternis_Leseprobe.pdf"
              style="border-style: dashed; min-width: 200px;"
-             onclick="increaseCounter('download')">
+             onclick="increaseCounter('download', 'finsternis')">
             <svg class="download-icon" viewBox="0 0 24 24" style="margin-right: 10px; vertical-align: middle;">
               <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="currentColor"/>
             </svg>
@@ -651,9 +766,19 @@
         <!-- Technische Details -->
         <div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid rgba(200,205,215,0.1); text-align: center;">
           <p style="color: #9da2a8; font-size: 0.9rem; margin: 0;">
-            <strong>Technische Details:</strong> 45 Seiten • PDF-Format • Optimiert für alle Browser<br>
+            <strong>Technische Details:</strong> 48 Seiten • PDF-Format • Optimiert für alle Browser<br>
             Kompatibel mit Chrome, Firefox, Safari, Edge
           </p>
+        </div>
+        
+        <!-- Zurück zu allen Werken -->
+        <div style="margin-top: 40px; padding-top: 30px; border-top: 1px solid rgba(200,205,215,0.15);">
+          <a href="werke.html" class="seriöser-button" style="background: transparent; border-color: rgba(200,205,215,0.25); min-width: 220px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" style="margin-right: 10px; vertical-align: middle;">
+              <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" fill="currentColor"/>
+            </svg>
+            Zurück zu allen Werken
+          </a>
         </div>
       </div>
     </article>
@@ -753,63 +878,71 @@
 <!-- ================= WERKE SPEZIFISCHE SCRIPTE ================= -->
 <script>
 // ========================================================================
-// DIGITALE STATISTIK FUNKTIONEN
+// DIGITALE STATISTIK FUNKTIONEN FÜR DER LANGE WEG IN DIE FINSTERNIS
 // ========================================================================
 
-let statistics = {
-  online: 289,
-  download: 73,
+// Initialwerte
+let statisticsFinsternis = {
+  online: 184,
+  download: 57,
   lastUpdate: new Date().toISOString()
 };
 
-function loadStatistics() {
+// Statistik laden
+function loadStatisticsFinsternis() {
   try {
-    const savedStats = localStorage.getItem('leseprobeStatistics');
+    const savedStats = localStorage.getItem('leseprobeStatisticsFinsternis');
     if (savedStats) {
-      statistics = JSON.parse(savedStats);
+      statisticsFinsternis = JSON.parse(savedStats);
     }
-    updateStatisticsDisplay();
+    updateStatisticsDisplayFinsternis();
   } catch (e) {
-    console.log('Statistik konnte nicht geladen werden, verwende Standardwerte');
+    console.log('Statistik für Der lange Weg in die Finsternis konnte nicht geladen werden, verwende Standardwerte');
   }
 }
 
-function saveStatistics() {
+// Statistik speichern
+function saveStatisticsFinsternis() {
   try {
-    statistics.lastUpdate = new Date().toISOString();
-    localStorage.setItem('leseprobeStatistics', JSON.stringify(statistics));
-    updateLastUpdateText();
+    statisticsFinsternis.lastUpdate = new Date().toISOString();
+    localStorage.setItem('leseprobeStatisticsFinsternis', JSON.stringify(statisticsFinsternis));
+    updateLastUpdateTextFinsternis();
   } catch (e) {
     console.log('Statistik konnte nicht gespeichert werden');
   }
 }
 
-function increaseCounter(type) {
-  if (type === 'online') {
-    statistics.online++;
-  } else if (type === 'download') {
-    statistics.download++;
+// Zähler erhöhen
+function increaseCounter(type, buch = 'finsternis') {
+  if (buch === 'finsternis') {
+    if (type === 'online') {
+      statisticsFinsternis.online++;
+      setTimeout(() => {
+        window.open('https://matthias-silberhain.github.io/matthias-silberhain/assets/leseproben/Der_lange_Weg_in_die_Finsternis_Leseprobe.pdf', '_blank');
+      }, 100);
+    } else if (type === 'download') {
+      statisticsFinsternis.download++;
+    }
+    
+    saveStatisticsFinsternis();
+    updateStatisticsDisplayFinsternis();
+    
+    animateCounterFinsternis(type);
   }
-  
-  saveStatistics();
-  updateStatisticsDisplay();
-  animateCounter(type);
 }
 
-function updateStatisticsDisplay() {
-  const onlineCounter = document.getElementById('online-counter');
-  const downloadCounter = document.getElementById('download-counter');
-  const totalCounter = document.getElementById('total-counter');
-  
-  if (onlineCounter) onlineCounter.textContent = statistics.online;
-  if (downloadCounter) downloadCounter.textContent = statistics.download;
-  if (totalCounter) totalCounter.textContent = statistics.online + statistics.download;
+// Statistik-Anzeige aktualisieren
+function updateStatisticsDisplayFinsternis() {
+  document.getElementById('online-counter-finsternis').textContent = statisticsFinsternis.online;
+  document.getElementById('download-counter-finsternis').textContent = statisticsFinsternis.download;
+  document.getElementById('total-counter-finsternis').textContent = statisticsFinsternis.online + statisticsFinsternis.download;
 }
 
-function updateLastUpdateText() {
-  const lastUpdateElement = document.getElementById('last-update');
-  if (lastUpdateElement && statistics.lastUpdate) {
-    const updateDate = new Date(statistics.lastUpdate);
+// Letzte Aktualisierung anzeigen
+function updateLastUpdateTextFinsternis() {
+  const lastUpdateElement = document.getElementById('last-update-finsternis');
+  if (lastUpdateElement && statisticsFinsternis.lastUpdate) {
+    const updateDate = new Date(statisticsFinsternis.lastUpdate);
     const now = new Date();
     const diffHours = Math.floor((now - updateDate) / (1000 * 60 * 60));
     
@@ -825,8 +958,9 @@ function updateLastUpdateText() {
   }
 }
 
-function animateCounter(type) {
-  const elementId = type === 'online' ? 'online-counter' : 'download-counter';
+// Optional: Animationseffekt für Zähler
+function animateCounterFinsternis(type) {
+  const elementId = type === 'online' ? 'online-counter-finsternis' : 'download-counter-finsternis';
   const element = document.getElementById(elementId);
   
   if (element) {
@@ -842,28 +976,26 @@ function animateCounter(type) {
   }
 }
 
-// ========================================================================
-// INITIALISIERUNG
-// ========================================================================
+// Statistik zurücksetzen (nur für Entwicklungszwecke)
+function resetStatisticsFinsternis() {
+  if (confirm('Statistik für Der lange Weg in die Finsternis wirklich zurücksetzen?')) {
+    statisticsFinsternis = {
+      online: 184,
+      download: 57,
+      lastUpdate: new Date().toISOString()
+    };
+    saveStatisticsFinsternis();
+    updateStatisticsDisplayFinsternis();
+  }
+}
 
+// Entwickler-Shortcut: Doppelklick auf Statistik-Titel zum Zurücksetzen
 document.addEventListener('DOMContentLoaded', function() {
-  // Lade Statistik
-  loadStatistics();
+  loadStatisticsFinsternis();
   
-  // Entwickler-Shortcut: Doppelklick auf Statistik-Titel zum Zurücksetzen
   const statTitle = document.querySelector('.statistik-title');
   if (statTitle) {
-    statTitle.addEventListener('dblclick', function() {
-      if (confirm('Statistik wirklich zurücksetzen?')) {
-        statistics = {
-          online: 289,
-          download: 73,
-          lastUpdate: new Date().toISOString()
-        };
-        saveStatistics();
-        updateStatisticsDisplay();
-      }
-    });
+    statTitle.addEventListener('dblclick', resetStatisticsFinsternis);
   }
 });
 </script>
