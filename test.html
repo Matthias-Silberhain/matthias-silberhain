@@ -338,6 +338,239 @@
       display: inline-block;
     }
     
+    /* ================= AKTUELLES PROJEKT STYLES ================= */
+    .aktuelles-projekt {
+      margin: 80px 0;
+      padding: 50px 40px;
+      background: rgba(10, 10, 10, 0.7);
+      border: 1px solid rgba(200, 205, 215, 0.15);
+      border-radius: 10px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .aktuelles-projekt::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, 
+        rgba(200, 205, 215, 0) 0%, 
+        rgba(200, 205, 215, 0.8) 50%, 
+        rgba(200, 205, 215, 0) 100%);
+    }
+    
+    .projekt-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    
+    .projekt-title {
+      font-family: "Cinzel", serif;
+      color: #e4e6ea;
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+      letter-spacing: 0.06em;
+      text-shadow: 0 0 15px rgba(200, 200, 200, 0.2);
+    }
+    
+    .projekt-subtitle {
+      font-family: "EB Garamond", serif;
+      color: #b0b5bc;
+      font-size: 1.4rem;
+      font-style: italic;
+      margin-bottom: 30px;
+    }
+    
+    .projekt-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+    
+    .projekt-cover-container {
+      flex: 1;
+      min-width: 280px;
+      text-align: center;
+    }
+    
+    .projekt-cover-rahmen {
+      display: inline-block;
+      padding: 15px;
+      background: rgba(20, 20, 20, 0.9);
+      border: 1px solid rgba(200, 205, 215, 0.2);
+      border-radius: 6px;
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5);
+      transition: all 0.3s ease;
+    }
+    
+    .projekt-cover-rahmen:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 45px rgba(0, 0, 0, 0.6);
+    }
+    
+    .projekt-cover {
+      width: 280px;
+      height: auto;
+      display: block;
+      border-radius: 4px;
+      border: 1px solid rgba(200, 205, 215, 0.1);
+    }
+    
+    .projekt-info {
+      flex: 2;
+      min-width: 300px;
+    }
+    
+    .projekt-beschreibung {
+      color: #b0b5bc;
+      font-size: 1.15rem;
+      line-height: 1.8;
+      margin-bottom: 30px;
+    }
+    
+    .projekt-beschreibung p {
+      margin-bottom: 20px;
+      text-indent: 0;
+    }
+    
+    .projekt-beschreibung strong {
+      color: #e4e6ea;
+      font-weight: 600;
+    }
+    
+    .projekt-details {
+      background: rgba(200, 205, 215, 0.05);
+      border: 1px solid rgba(200, 205, 215, 0.1);
+      border-radius: 8px;
+      padding: 25px;
+      margin-top: 30px;
+    }
+    
+    .projekt-details-title {
+      font-family: "Cinzel", serif;
+      color: #e4e6ea;
+      font-size: 1.1rem;
+      margin-bottom: 15px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    
+    .projekt-details-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .projekt-details-list li {
+      margin-bottom: 12px;
+      color: #b0b5bc;
+      font-size: 1rem;
+      display: flex;
+      align-items: flex-start;
+    }
+    
+    .projekt-details-list li::before {
+      content: '→';
+      color: rgba(200, 205, 215, 0.6);
+      margin-right: 10px;
+      font-weight: bold;
+    }
+    
+    .projekt-status {
+      text-align: center;
+      padding: 25px;
+      background: rgba(200, 205, 215, 0.03);
+      border: 1px dashed rgba(200, 205, 215, 0.2);
+      border-radius: 8px;
+      margin-top: 40px;
+    }
+    
+    .status-title {
+      font-family: "Cinzel", serif;
+      color: #e4e6ea;
+      font-size: 1.1rem;
+      margin-bottom: 15px;
+      letter-spacing: 0.05em;
+    }
+    
+    .status-zeitplan {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    
+    .status-zeitplan-item {
+      text-align: center;
+      padding: 15px 25px;
+      background: rgba(200, 205, 215, 0.05);
+      border: 1px solid rgba(200, 205, 215, 0.15);
+      border-radius: 6px;
+      min-width: 150px;
+    }
+    
+    .status-label {
+      color: #9da2a8;
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    .status-value {
+      font-family: "Cinzel", serif;
+      color: #ffffff;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+    
+    .status-fortschritt {
+      margin-top: 20px;
+    }
+    
+    .fortschritt-bar {
+      height: 6px;
+      background: rgba(200, 205, 215, 0.1);
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+    
+    .fortschritt-fill {
+      height: 100%;
+      background: linear-gradient(90deg, rgba(200, 205, 215, 0.5), rgba(200, 205, 215, 0.8));
+      width: 65%;
+      border-radius: 3px;
+      position: relative;
+      animation: fortschrittPulse 2s infinite ease-in-out;
+    }
+    
+    @keyframes fortschrittPulse {
+      0% { opacity: 0.9; }
+      50% { opacity: 1; }
+      100% { opacity: 0.9; }
+    }
+    
+    .fortschritt-text {
+      color: #b0b5bc;
+      font-size: 0.95rem;
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .fortschritt-prozent {
+      color: #ffffff;
+      font-weight: 600;
+    }
+    
     /* ================= BEWERTUNGSSYSTEM STYLES ================= */
     .bewertungssystem {
       margin: 80px 0;
@@ -690,6 +923,31 @@
     }
     
     /* ================= DARK MODE ANPASSUNGEN ================= */
+    body.dark-mode .aktuelles-projekt {
+      background: rgba(30, 30, 30, 0.8);
+      border-color: rgba(220, 225, 235, 0.2);
+    }
+    
+    body.dark-mode .projekt-cover-rahmen {
+      background: rgba(40, 40, 40, 0.9);
+      border-color: rgba(220, 225, 235, 0.25);
+    }
+    
+    body.dark-mode .projekt-details {
+      background: rgba(220, 225, 235, 0.05);
+      border-color: rgba(220, 225, 235, 0.15);
+    }
+    
+    body.dark-mode .status-zeitplan-item {
+      background: rgba(220, 225, 235, 0.05);
+      border-color: rgba(220, 225, 235, 0.2);
+    }
+    
+    body.dark-mode .projekt-status {
+      background: rgba(220, 225, 235, 0.03);
+      border-color: rgba(220, 225, 235, 0.25);
+    }
+    
     body.dark-mode .bewertungssystem {
       background: rgba(30, 30, 30, 0.8);
       border-color: rgba(220, 225, 235, 0.2);
@@ -727,6 +985,37 @@
     
     /* ================= RESPONSIVE ANPASSUNGEN ================= */
     @media screen and (max-width: 768px) {
+      .aktuelles-projekt {
+        padding: 30px 20px;
+        margin: 40px 0;
+      }
+      
+      .projekt-content {
+        flex-direction: column;
+        gap: 30px;
+      }
+      
+      .projekt-title {
+        font-size: 1.8rem;
+      }
+      
+      .projekt-subtitle {
+        font-size: 1.2rem;
+      }
+      
+      .projekt-cover {
+        width: 240px;
+      }
+      
+      .status-zeitplan {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .status-zeitplan-item {
+        min-width: 100%;
+      }
+      
       .bewertungssystem {
         padding: 25px 15px;
         margin: 40px 0;
@@ -773,6 +1062,18 @@
     }
     
     @media screen and (max-width: 480px) {
+      .projekt-title {
+        font-size: 1.6rem;
+      }
+      
+      .projekt-subtitle {
+        font-size: 1.1rem;
+      }
+      
+      .projekt-cover {
+        width: 200px;
+      }
+      
       .star-rating label {
         font-size: 1.8rem;
       }
@@ -902,14 +1203,84 @@
     
     <!-- AKTUELLES WERK - KORRIGIERT & ZENTRIERT -->
     <div class="aktuelles-werk" id="aktuelles-werk">
-      <h2>Bewertungssystem</h2>
-      <p class="aktuelles-subtitle">Teilen Sie Ihre Meinung zu den Werken</p>
+      <h2>Mein aktuelles Projekt</h2>
+      <p class="aktuelles-subtitle">Ein Werk in Arbeit</p>
       
       <div class="hinweis-box">
         <svg width="20" height="20" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 10px; color: #c0c0c0;">
           <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="currentColor"/>
         </svg>
-        <span>Wählen Sie ein Buch aus und geben Sie Ihre Bewertung mit Sternen und Kommentaren ab</span>
+        <span>Das nächste Werk befindet sich in Arbeit - Mehr Informationen unten</span>
+      </div>
+    </div>
+    
+    <!-- AKTUELLES PROJEKT -->
+    <div class="aktuelles-projekt" id="aktuelles-projekt">
+      <div class="projekt-header">
+        <h2 class="projekt-title">Das Schweigen der Macht</h2>
+        <p class="projekt-subtitle">Die dunkle Geburt des Reiches</p>
+      </div>
+      
+      <div class="projekt-content">
+        <div class="projekt-cover-container">
+          <div class="projekt-cover-rahmen">
+            <img src="assets/images/dasschweigendermacht.png" 
+                 alt="Das Schweigen der Macht - Die dunkle Geburt des Reiches" 
+                 class="projekt-cover">
+          </div>
+        </div>
+        
+        <div class="projekt-info">
+          <div class="projekt-beschreibung">
+            <p><strong>Das Schweigen der Macht</strong> ist eine historische Untersuchung, die sich mit einem bisher wenig beleuchteten Aspekt der europäischen Geschichte befasst: Den stillen, ungeschriebenen Regeln der Macht, die Reiche erschaffen und stürzen, lange bevor Schlachten geschlagen oder Verträge unterzeichnet werden.</p>
+            
+            <p>Im Zentrum steht die Frage: <strong>Wie entsteht eigentlich ein Reich?</strong> Nicht auf den Schlachtfeldern oder in den Palästen, sondern in den Räumen dazwischen. In den nicht gesprochenen Vereinbarungen, den ausgelassenen Kapiteln der Geschichtsbücher, den Archivlücken und dem, was Historiker bewusst oder unbewusst überhören.</p>
+            
+            <p>Diese Arbeit folgt den Spuren des Verborgenen vom frühen Mittelalter bis ins 19. Jahrhundert. Sie untersucht, wie Macht sich durch Schweigen konsolidiert, wie Entscheidungen, die niemals protokolliert wurden, den Lauf der Geschichte veränderten, und wie die größten politischen Umwälzungen oft nicht dort begannen, wo wir sie suchen.</p>
+          </div>
+          
+          <div class="projekt-details">
+            <div class="projekt-details-title">Untersuchte Epochen und Themen</div>
+            <ul class="projekt-details-list">
+              <li>Die stille Macht der fränkischen Hausmeier vor der Krönung Karls des Großen</li>
+              <li>Ungeschriebene Allianzen im Heiligen Römischen Reich</li>
+              <li>Das Schweigen der Archive: Was die Dokumente nicht verraten</li>
+              <li>Die Geburt Preußens in diplomatischen Gesprächen ohne Protokoll</li>
+              <li>Wie Macht entsteht, bevor sie sichtbar wird</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="projekt-status">
+        <div class="status-title">Projektstatus</div>
+        
+        <div class="status-zeitplan">
+          <div class="status-zeitplan-item">
+            <div class="status-label">Gestartet</div>
+            <div class="status-value">Oktober 2024</div>
+          </div>
+          
+          <div class="status-zeitplan-item">
+            <div class="status-label">Geplante Fertigstellung</div>
+            <div class="status-value">Februar 2026</div>
+          </div>
+          
+          <div class="status-zeitplan-item">
+            <div class="status-label">Veröffentlichung</div>
+            <div class="status-value">Herbst 2026</div>
+          </div>
+        </div>
+        
+        <div class="status-fortschritt">
+          <div class="fortschritt-bar">
+            <div class="fortschritt-fill"></div>
+          </div>
+          <div class="fortschritt-text">
+            <span>Aktueller Fortschritt</span>
+            <span class="fortschritt-prozent">65%</span>
+          </div>
+        </div>
       </div>
     </div>
     
