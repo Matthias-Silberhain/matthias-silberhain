@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>Matthias Silberhain | Werke</title>
+  <title>Matthias Silberhain | Der laqnge Weg in die Finsternis</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Werke von Matthias Silberhain - Historische Analysen mit wissenschaftlichem Anspruch">
   
@@ -57,91 +57,49 @@
   
   <style>
     /* ==========================================================================
-       WERKE SEITE STYLES
+       WERKE SEITE STYLES - SERIÖSE VERSION
        ========================================================================== */
     
     .werke-container {
-      max-width: 900px;
+      max-width: 850px;
       margin: 0 auto;
       padding: 20px;
     }
     
-    /* ================= AKTUELLES WERK - KORRIGIERT & ZENTRIERT ================= */
-    .aktuelles-werk {
+    .werke-header {
       text-align: center;
-      margin: 80px 0 60px 0;
-      padding: 40px 20px;
-      border-top: 1px solid rgba(200, 205, 215, 0.2);
+      margin-bottom: 60px;
+      padding-bottom: 30px;
       border-bottom: 1px solid rgba(200, 205, 215, 0.2);
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .aktuelles-werk h2 {
-      font-family: "Cinzel", serif;
-      color: #e4e6ea;
-      font-size: 1.8rem;
-      margin-bottom: 10px;
-      letter-spacing: 0.05em;
-      text-align: center;
-      width: 100%;
-    }
-
-    .aktuelles-subtitle {
-      color: #9da2a8;
-      font-size: 1.1rem;
-      margin-bottom: 30px;
-      text-align: center;
-      width: 100%;
-      font-style: italic;
-    }
-
-    .hinweis-box {
-      background: rgba(200, 205, 215, 0.05);
-      border: 1px solid rgba(200, 205, 215, 0.15);
-      border-radius: 6px;
-      padding: 18px 25px;
-      color: #b0b5bc;
-      font-size: 1rem;
-      text-align: center;
-      max-width: 600px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      line-height: 1.5;
-    }
-
-    .hinweis-box svg {
-      flex-shrink: 0;
-    }
-
-    .hinweis-box span {
-      text-align: center;
-      display: inline-block;
     }
     
-    /* Dark Mode für aktuelles Werk */
-    body.dark-mode .aktuelles-werk {
-      border-top-color: rgba(220, 225, 235, 0.15);
-      border-bottom-color: rgba(220, 225, 235, 0.15);
+    .werke-header h1 {
+      margin-bottom: 15px;
+      font-family: "Cinzel", serif;
+      color: #e4e6ea;
+      font-size: 2.5rem;
+      letter-spacing: 0.08em;
+      text-shadow: 0 0 15px rgba(200, 200, 200, 0.2);
     }
-
-    body.dark-mode .hinweis-box {
-      background: rgba(220, 225, 235, 0.06);
-      border-color: rgba(220, 225, 235, 0.2);
-      color: #d6d9de;
+    
+    .werke-subtitle {
+      color: #9da2a8;
+      font-size: 1.1rem;
+      font-style: italic;
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
     }
+    
+    /* ================= AKTUELLES WERK - ENTFERNT ================= */
+    /* Dieser Abschnitt wurde entfernt, da er nicht mehr benötigt wird */
     
     /* ================= BUCHPRÄSENTATION STYLES ================= */
     .buch-präsentation {
       margin-bottom: 80px;
     }
     
+    /* Buchcover Bereich */
     .buchcover-bereich {
       text-align: center;
       margin-bottom: 40px;
@@ -164,6 +122,7 @@
       border-radius: 1px;
     }
     
+    /* Titelbereich */
     .titel-bereich {
       text-align: center;
       margin-bottom: 40px;
@@ -192,6 +151,7 @@
       text-align: center;
     }
     
+    /* Inhaltstext */
     .inhalt-bereich {
       margin-bottom: 50px;
     }
@@ -213,6 +173,7 @@
       margin-bottom: 0;
     }
     
+    /* Seriöse Zitat-Box */
     .zitat-seriös {
       background: rgba(200, 205, 215, 0.03);
       border-left: 4px solid rgba(200, 205, 215, 0.3);
@@ -228,6 +189,7 @@
       margin: 0;
     }
     
+    /* Quellenbereich */
     .quellen-bereich {
       margin: 40px 0;
       padding: 25px;
@@ -258,6 +220,7 @@
       margin-bottom: 0;
     }
     
+    /* Seriöse Buttons */
     .aktionen-bereich {
       text-align: center;
       margin-top: 50px;
@@ -378,7 +341,11 @@
       font-style: italic;
     }
     
-    /* ================= DARK MODE STYLES FÜR WERKE-SEITE ================= */
+    /* DARK MODE STYLES FÜR WERKE-SEITE */
+    body.dark-mode .werke-header {
+      border-bottom-color: rgba(220, 225, 235, 0.15);
+    }
+    
     body.dark-mode .buchcover-rahmen {
       background: rgba(30, 30, 30, 0.9);
       border-color: rgba(220, 225, 235, 0.2);
@@ -418,31 +385,18 @@
       border-top-color: rgba(220, 225, 235, 0.1);
     }
     
-    /* ================= RESPONSIVE ANPASSUNGEN ================= */
+    /* Responsive Anpassungen */
     @media screen and (max-width: 768px) {
       .werke-container {
         padding: 15px;
       }
       
-      /* Aktuelles Werk Responsive */
-      .aktuelles-werk {
-        padding: 30px 15px;
-        margin: 60px 0 40px 0;
+      .werke-header {
+        margin-bottom: 40px;
       }
-
-      .aktuelles-werk h2 {
-        font-size: 1.6rem;
-      }
-
-      .aktuelles-subtitle {
-        font-size: 1rem;
-      }
-
-      .hinweis-box {
-        padding: 15px 20px;
-        font-size: 0.95rem;
-        flex-direction: column;
-        gap: 8px;
+      
+      .werke-header h1 {
+        font-size: 2rem;
       }
       
       .buch-titel-seriös {
@@ -496,14 +450,8 @@
     }
     
     @media screen and (max-width: 480px) {
-      /* Aktuelles Werk Mobile */
-      .aktuelles-werk h2 {
-        font-size: 1.4rem;
-      }
-
-      .hinweis-box {
-        padding: 12px 15px;
-        font-size: 0.9rem;
+      .werke-header h1 {
+        font-size: 1.7rem;
       }
       
       .buch-titel-seriös {
@@ -576,21 +524,12 @@
 <!-- ================= WERKE INHALT ================= -->
 <main class="inhalt">
   <section class="werke-container">
-    
-    <!-- AKTUELLES WERK - KORRIGIERT & ZENTRIERT -->
-    <div class="aktuelles-werk" id="aktuelles-werk">
-      <h2>Der lange Weg in die Finsternis</h2>
-      <p class="aktuelles-subtitle">Wie das Kaiserreich den Nationalsozialismus vorbereitete</p>
-      
-      <div class="hinweis-box">
-        <svg width="20" height="20" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 10px; color: #c0c0c0;">
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="currentColor"/>
-        </svg>
-        <span>Klicken Sie auf eines der Bücher im Karussell, um zur Detailseite zu gelangen</span>
-      </div>
+    <div class="werke-header">
+      <h1>Der lange Weg in die Finsternis</h1>
+      <p class="werke-subtitle">Wie das Kaiserreich den Nationalsozialismus vorbereitete</p>
     </div>
     
-    <!-- Buchpräsentation für "Der lange Weg in die Finsternis" -->
+    <!-- Buchpräsentation -->
     <article class="buch-präsentation">
       <!-- Buchcover -->
       <div class="buchcover-bereich">
