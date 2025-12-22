@@ -389,7 +389,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 40px;
-      align-items: center;
+      align-items: flex-start;
       margin-bottom: 40px;
     }
     
@@ -407,6 +407,8 @@
       border-radius: 6px;
       box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5);
       transition: all 0.3s ease;
+      position: sticky;
+      top: 20px;
     }
     
     .projekt-cover-rahmen:hover {
@@ -431,7 +433,6 @@
       color: #b0b5bc;
       font-size: 1.15rem;
       line-height: 1.8;
-      margin-bottom: 30px;
     }
     
     .projekt-beschreibung p {
@@ -473,6 +474,7 @@
       font-size: 1rem;
       display: flex;
       align-items: flex-start;
+      line-height: 1.5;
     }
     
     .projekt-details-list li::before {
@@ -480,6 +482,8 @@
       color: rgba(200, 205, 215, 0.6);
       margin-right: 10px;
       font-weight: bold;
+      flex-shrink: 0;
+      margin-top: 2px;
     }
     
     .projekt-status {
@@ -1003,6 +1007,10 @@
         font-size: 1.2rem;
       }
       
+      .projekt-cover-rahmen {
+        position: static;
+      }
+      
       .projekt-cover {
         width: 240px;
       }
@@ -1232,22 +1240,138 @@
         
         <div class="projekt-info">
           <div class="projekt-beschreibung">
-            <p><strong>Das Schweigen der Macht</strong> ist eine historische Untersuchung, die sich mit einem bisher wenig beleuchteten Aspekt der europäischen Geschichte befasst: Den stillen, ungeschriebenen Regeln der Macht, die Reiche erschaffen und stürzen, lange bevor Schlachten geschlagen oder Verträge unterzeichnet werden.</p>
+            <p><strong>Das Schweigen der Macht – Die dunkle Geburt des Reiches</strong> erzählt die Geschichte eines stillen Krieges. Nicht mit Waffen, sondern mit Druckerschwärze, Telegrammen und Akten. Zwischen 1850 und der Reichsgründung 1871 verfolgt das Buch, wie die Presse in Preußen und den deutschen Staaten zum Schlachtfeld zwischen Macht und Öffentlichkeit wurde.</p>
             
-            <p>Im Zentrum steht die Frage: <strong>Wie entsteht eigentlich ein Reich?</strong> Nicht auf den Schlachtfeldern oder in den Palästen, sondern in den Räumen dazwischen. In den nicht gesprochenen Vereinbarungen, den ausgelassenen Kapiteln der Geschichtsbücher, den Archivlücken und dem, was Historiker bewusst oder unbewusst überhören.</p>
+            <p>Es ist die Geschichte davon, wie eine scheinbar moderne Ordnung entstand, die Freiheit versprach und zugleich systematisch dafür sorgte, dass kritische Stimmen verstummten.</p>
             
-            <p>Diese Arbeit folgt den Spuren des Verborgenen vom frühen Mittelalter bis ins 19. Jahrhundert. Sie untersucht, wie Macht sich durch Schweigen konsolidiert, wie Entscheidungen, die niemals protokolliert wurden, den Lauf der Geschichte veränderten, und wie die größten politischen Umwälzungen oft nicht dort begannen, wo wir sie suchen.</p>
-          </div>
-          
-          <div class="projekt-details">
-            <div class="projekt-details-title">Untersuchte Epochen und Themen</div>
-            <ul class="projekt-details-list">
-              <li>Die stille Macht der fränkischen Hausmeier vor der Krönung Karls des Großen</li>
-              <li>Ungeschriebene Allianzen im Heiligen Römischen Reich</li>
-              <li>Das Schweigen der Archive: Was die Dokumente nicht verraten</li>
-              <li>Die Geburt Preußens in diplomatischen Gesprächen ohne Protokoll</li>
-              <li>Wie Macht entsteht, bevor sie sichtbar wird</li>
-            </ul>
+            <div class="zitat-seriös" style="margin: 30px 0; background: rgba(200,205,215,0.03);">
+              <p style="font-size: 1.1rem; font-style: italic; color: #d6d9de;">
+                "Die Presse ist dabei nicht nur Thema, sondern Perspektive. Durch Zeitungsartikel, Leitkommentare, verbotene Texte und beschlagnahmte Drucke wird sichtbar, wie sich die Sprache der Öffentlichkeit veränderte."
+              </p>
+            </div>
+            
+            <h3 style="font-family: 'Cinzel', serif; color: #e4e6ea; font-size: 1.3rem; margin: 35px 0 20px 0; letter-spacing: 0.03em;">Der inhaltliche Kern</h3>
+            
+            <p><strong>Im Zentrum steht die Frage:</strong> Wie frei war die Presse wirklich, wenn die Verfassung sie garantierte, der Staat sie aber im Alltag kontrollierte?</p>
+            
+            <div style="background: rgba(200,205,215,0.05); padding: 25px; border-radius: 6px; border-left: 4px solid rgba(200,205,215,0.3); margin: 25px 0;">
+              <p style="margin: 0 0 15px 0; color: #d6d9de; font-weight: 500;">Das Buch zeigt unter anderem:</p>
+              <ul style="margin: 0; padding-left: 20px; color: #b0b5bc;">
+                <li style="margin-bottom: 10px;">wie Artikel 110 der preußischen Verfassung die Pressefreiheit versprach, während Zensur, Druckverbote und Verhaftungen Alltag blieben</li>
+                <li style="margin-bottom: 10px;">wie Redaktionen überwacht, Druckereien geschlossen und Zeitungen wirtschaftlich zermürbt wurden</li>
+                <li style="margin-bottom: 10px;">wie Blätter wie der Preußische Herold zu Symbolen eines gefährlichen Balanceakts zwischen Mut und Anpassung wurden</li>
+                <li style="margin-bottom: 10px;">wie oppositionelle Gruppen den Telegraphen nutzten, um der staatlichen Informationsmacht etwas entgegenzusetzen</li>
+                <li style="margin-bottom: 0;">wie sich bis 1871 eine Presselandschaft formte, die offiziell frei war, faktisch aber gelernt hatte, sich selbst zu zensieren</li>
+              </ul>
+            </div>
+            
+            <h3 style="font-family: 'Cinzel', serif; color: #e4e6ea; font-size: 1.3rem; margin: 35px 0 20px 0; letter-spacing: 0.03em;">Die Analysen</h3>
+            
+            <div style="display: grid; grid-template-columns: 1fr; gap: 20px; margin: 25px 0;">
+              <div style="background: rgba(200,205,215,0.03); padding: 20px; border-radius: 6px; border: 1px solid rgba(200,205,215,0.1);">
+                <p style="margin: 0; color: #b0b5bc;">
+                  <strong style="color: #e4e6ea;">System statt Zensur:</strong> Wie aus offener Vorzensur ein System indirekter Kontrolle wurde. Wie Gesetze, Konzessionen, Kautionen und Strafandrohungen Redaktionen lenkten, ohne ständig eingreifen zu müssen.
+                </p>
+              </div>
+              <div style="background: rgba(200,205,215,0.03); padding: 20px; border-radius: 6px; border: 1px solid rgba(200,205,215,0.1);">
+                <p style="margin: 0; color: #b0b5bc;">
+                  <strong style="color: #e4e6ea;">Wirtschaftlicher Druck:</strong> Wie wirtschaftlicher Druck oft wirksamer war als offene Verbote. Wie Journalisten lernten, zwischen den Zeilen zu schreiben und wie sich aus Angst vor Schließung eine Kultur der Selbstzensur entwickelte.
+                </p>
+              </div>
+              <div style="background: rgba(200,205,215,0.03); padding: 20px; border-radius: 6px; border: 1px solid rgba(200,205,215,0.1);">
+                <p style="margin: 0; color: #b0b5bc;">
+                  <strong style="color: #e4e6ea;">Vom Kritiker zum Teil der Ordnung:</strong> Wie die Presse so von einem Ort der Kritik zu einem Teil der Ordnung wurde. Dabei wird gezeigt, dass nicht der einzelne Zensor entscheidend war, sondern das Zusammenspiel aus Recht, Verwaltung und Routine.
+                </p>
+              </div>
+            </div>
+            
+            <h3 style="font-family: 'Cinzel', serif; color: #e4e6ea; font-size: 1.3rem; margin: 35px 0 20px 0; letter-spacing: 0.03em;">Quellen und Fakten</h3>
+            
+            <div class="projekt-details">
+              <div class="projekt-details-title">Belegbasis und Quellen</div>
+              <ul class="projekt-details-list">
+                <li>Verfassungsartikel und Pressegesetze der Zeit (1850-1871)</li>
+                <li>Polizeiverordnungen und Ministerialerlasse zur Überwachung der Druckmedien</li>
+                <li>Archivierte Telegramme und Verwaltungsabschriften</li>
+                <li>Zeitgenössische Zeitungen, sowohl regierungstreue als auch oppositionelle</li>
+                <li>Dokumentierte Schließungen von Druckereien und Verfahren gegen Redakteure</li>
+                <li>Parlamentsprotokolle und Debatten zur Pressefreiheit</li>
+                <li>Moderne historische Studien und digitalisierte Archive</li>
+              </ul>
+              <p style="color: #9da2a8; font-size: 0.95rem; margin-top: 15px; font-style: italic;">
+                <strong>Alle zentralen Zitate und Vorgänge sind belegbar.</strong> Unsicherheiten werden kenntlich gemacht. Es ist keine literarische Erfindung, sondern eine Rekonstruktion.
+              </p>
+            </div>
+            
+            <h3 style="font-family: 'Cinzel', serif; color: #e4e6ea; font-size: 1.3rem; margin: 35px 0 20px 0; letter-spacing: 0.03em;">Der Zeitraum 1850 bis 1871 als roter Faden</h3>
+            
+            <div style="background: rgba(10, 10, 10, 0.8); border: 1px solid rgba(200,205,215,0.1); border-radius: 8px; padding: 25px; margin: 20px 0;">
+              <div style="display: flex; flex-wrap: wrap; gap: 25px;">
+                <div style="flex: 1; min-width: 250px;">
+                  <div style="background: rgba(200,205,215,0.05); padding: 20px; border-radius: 6px; height: 100%;">
+                    <div style="font-family: 'Cinzel', serif; color: #e4e6ea; margin-bottom: 10px; font-size: 1.1rem;">Nach 1850</div>
+                    <div style="color: #b0b5bc; font-size: 0.95rem; line-height: 1.6;">
+                      Die Verfassung verspricht Freiheit, doch der Staat lernt, die Presse mit Verordnungen, Polizei und Akten zu lenken.
+                    </div>
+                  </div>
+                </div>
+                <div style="flex: 1; min-width: 250px;">
+                  <div style="background: rgba(200,205,215,0.05); padding: 20px; border-radius: 6px; height: 100%;">
+                    <div style="font-family: 'Cinzel', serif; color: #e4e6ea; margin-bottom: 10px; font-size: 1.1rem;">Die 1860er Jahre</div>
+                    <div style="color: #b0b5bc; font-size: 0.95rem; line-height: 1.6;">
+                      Liberalisierung nach außen, aber wachsende indirekte Kontrolle. Redaktionen passen sich an, um zu überleben.
+                    </div>
+                  </div>
+                </div>
+                <div style="flex: 1; min-width: 250px;">
+                  <div style="background: rgba(200,205,215,0.05); padding: 20px; border-radius: 6px; height: 100%;">
+                    <div style="font-family: 'Cinzel', serif; color: #e4e6ea; margin-bottom: 10px; font-size: 1.1rem;">Bis 1871</div>
+                    <div style="color: #b0b5bc; font-size: 0.95rem; line-height: 1.6;">
+                      Mit der Reichsgründung entsteht eine scheinbar freie Presse in einem geeinten Staat, die jedoch bereits tief an Loyalität und Vorsicht gewöhnt ist.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <p style="color: #9da2a8; font-size: 0.95rem; margin-top: 20px; text-align: center; font-style: italic;">
+                So wird deutlich, dass die Reichsgründung nicht nur ein politischer, sondern auch ein medialer Wendepunkt war.
+              </p>
+            </div>
+            
+            <div class="zitat-seriös" style="margin: 40px 0; background: rgba(200,205,215,0.03); border-left: 4px solid rgba(200,205,215,0.5);">
+              <p style="font-size: 1.1rem; font-style: italic; color: #d6d9de; margin: 0;">
+                "Dieses Buch erzählt nicht nur, was geschah, sondern wie es wirkte: wie ein verbotener Artikel ganze Redaktionen einschüchtern konnte, wie ein einziger Aktenvermerk Karrieren beendete, wie Zeitungen zur Bühne eines stillen Machtkampfes wurden."
+              </p>
+            </div>
+            
+            <div style="background: rgba(200,205,215,0.05); padding: 25px; border-radius: 8px; margin: 35px 0; border: 1px solid rgba(200,205,215,0.15);">
+              <h3 style="font-family: 'Cinzel', serif; color: #e4e6ea; font-size: 1.2rem; margin: 0 0 15px 0; letter-spacing: 0.03em; text-align: center;">Warum dieses Buch fesselt</h3>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                <div style="text-align: center; padding: 15px;">
+                  <div style="font-size: 2rem; color: rgba(200,205,215,0.8); margin-bottom: 10px;">⚖️</div>
+                  <div style="color: #e4e6ea; font-weight: 500; margin-bottom: 5px;">Pressefreiheit im Alltag</div>
+                  <div style="color: #9da2a8; font-size: 0.9rem;">Zeigt, dass Pressefreiheit nicht nur im Gesetz existiert, sondern im Alltag verteidigt werden muss</div>
+                </div>
+                <div style="text-align: center; padding: 15px;">
+                  <div style="font-size: 2rem; color: rgba(200,205,215,0.8); margin-bottom: 10px;">🤫</div>
+                  <div style="color: #e4e6ea; font-weight: 500; margin-bottom: 5px;">Leise Macht</div>
+                  <div style="color: #9da2a8; font-size: 0.9rem;">Macht tritt nicht immer laut auf, sondern wird oft leise organisiert</div>
+                </div>
+                <div style="text-align: center; padding: 15px;">
+                  <div style="font-size: 2rem; color: rgba(200,205,215,0.8); margin-bottom: 10px;">📜</div>
+                  <div style="color: #e4e6ea; font-weight: 500; margin-bottom: 5px;">Schrittweise Entwicklung</div>
+                  <div style="color: #9da2a8; font-size: 0.9rem;">Schweigen entsteht nicht plötzlich, sondern wird Schritt für Schritt gelernt</div>
+                </div>
+              </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px; padding-top: 30px; border-top: 1px solid rgba(200,205,215,0.1);">
+              <p style="color: #e4e6ea; font-size: 1.2rem; font-family: 'Cinzel', serif; letter-spacing: 0.03em; margin-bottom: 15px;">
+                Das Schweigen der Macht
+              </p>
+              <p style="color: #b0b5bc; font-size: 1rem; max-width: 700px; margin: 0 auto; line-height: 1.6;">
+                ist die Geschichte eines unsichtbaren Krieges um die Wahrheit. Zwischen 1850 und 1871 zeigt das Buch, wie die Presse im entstehenden deutschen Reich zum Schlachtfeld wurde und wie aus versprochener Freiheit eine Kultur der Anpassung entstand. Anhand von Gesetzen, Akten, Telegrammen und Zeitungsartikeln rekonstruiert es, wie Kontrolle funktionierte, ohne offen als Zensur aufzutreten – und warum dieses Erbe bis heute nachwirkt.
+              </p>
+            </div>
           </div>
         </div>
       </div>
