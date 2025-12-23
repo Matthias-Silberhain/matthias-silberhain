@@ -2,9 +2,9 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Quellen: Der lange Weg in die Finsternis | Matthias Silberhain</title>
+    <title>Quellen: Macht und Untergang | Matthias Silberhain</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Vollständiges Quellenverzeichnis zum Werk 'Der lange Weg in die Finsternis' mit Kapitelstruktur und direkten Links zu Primärquellen und Forschungsliteratur.">
+    <meta name="description" content="Vollständiges Quellenverzeichnis zum Werk 'Macht und Untergang' mit Kapitelstruktur und direkten Links zu Primärquellen und Forschungsliteratur.">
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
@@ -105,8 +105,8 @@
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
         }
         
-        /* Buchkapitel-Gruppen */
-        .kapitel-gruppe {
+        /* Quellen-Gruppen (Tabelle-Stil) */
+        .quellen-gruppe {
             margin-bottom: 60px;
             padding: 25px;
             background: rgba(10, 10, 10, 0.25);
@@ -114,7 +114,7 @@
             border: 1px solid rgba(200, 205, 215, 0.1);
         }
         
-        .kapitel-gruppe h2 {
+        .quellen-gruppe h2 {
             font-family: "Cinzel", serif;
             color: #e4e6ea;
             font-size: 1.8rem;
@@ -124,87 +124,36 @@
             letter-spacing: 0.03em;
         }
         
-        /* Einzelnes Kapitel */
-        .kapitel-item {
-            background: rgba(10, 10, 10, 0.3);
-            border: 1px solid rgba(200, 205, 215, 0.15);
-            border-radius: 6px;
-            padding: 25px;
-            margin-bottom: 25px;
-            transition: all 0.3s ease;
+        /* Tabellen-Stil für Quellen */
+        .quellen-tabelle {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
         }
         
-        .kapitel-item:hover {
-            background: rgba(10, 10, 10, 0.4);
-            border-color: rgba(200, 205, 215, 0.25);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
-        }
-        
-        .kapitel-titel {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        
-        .kapitel-nummer {
+        .quellen-tabelle th {
             background: rgba(200, 205, 215, 0.1);
             color: #e4e6ea;
             font-family: "Cinzel", serif;
-            font-size: 1.1rem;
-            padding: 6px 12px;
-            border-radius: 4px;
-            margin-right: 15px;
-            min-width: 60px;
-            text-align: center;
+            font-weight: 600;
+            padding: 15px;
+            text-align: left;
             border: 1px solid rgba(200, 205, 215, 0.2);
+            font-size: 1.1rem;
         }
         
-        .kapitel-name {
-            color: #e4e6ea;
-            font-size: 1.3rem;
-            font-weight: 500;
+        .quellen-tabelle td {
+            color: #d6d9de;
+            padding: 15px;
+            border: 1px solid rgba(200, 205, 215, 0.15);
+            vertical-align: top;
         }
         
-        .kapitel-themen {
-            color: #9da2a8;
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid rgba(200, 205, 215, 0.1);
-            font-style: italic;
+        .quellen-tabelle tr:hover {
+            background: rgba(200, 205, 215, 0.05);
         }
         
-        /* Quellen-Liste mit Icons */
-        .quellen-liste-kapitel {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        
-        .quellen-liste-kapitel li {
-            margin-bottom: 15px;
-            padding: 12px 15px;
-            background: rgba(200, 205, 215, 0.03);
-            border-radius: 4px;
-            border-left: 3px solid rgba(200, 205, 215, 0.2);
-            transition: all 0.3s ease;
-        }
-        
-        .quellen-liste-kapitel li:hover {
-            background: rgba(200, 205, 215, 0.07);
-            border-left-color: rgba(200, 205, 215, 0.4);
-        }
-        
-        .quellen-liste-kapitel strong {
-            color: #e4e6ea;
-            font-weight: 500;
-            display: block;
-            margin-bottom: 8px;
-            font-size: 1.05rem;
-        }
-        
-        .quellen-liste-kapitel a {
+        .quelle-link {
             color: #d6d9de;
             text-decoration: none;
             border-bottom: 1px dotted rgba(200, 200, 200, 0.3);
@@ -215,16 +164,44 @@
             font-size: 0.95rem;
         }
         
-        .quellen-liste-kapitel a:hover {
+        .quelle-link:hover {
             color: #ffffff;
             border-bottom: 1px solid rgba(200, 200, 200, 0.6);
         }
         
-        .quelle-meta {
-            font-size: 0.85rem;
-            color: #8a8f95;
-            margin-top: 5px;
-            font-style: italic;
+        /* These-Liste */
+        .these-liste {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .these-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(10, 10, 10, 0.3);
+            border: 1px solid rgba(200, 205, 215, 0.15);
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+        
+        .these-item:hover {
+            background: rgba(10, 10, 10, 0.4);
+            border-color: rgba(200, 205, 215, 0.25);
+            transform: translateY(-2px);
+        }
+        
+        .these-titel {
+            color: #e4e6ea;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .these-quellen {
+            color: #9da2a8;
+            font-size: 0.95rem;
+            line-height: 1.6;
         }
         
         /* Quellen-Typ Icons */
@@ -249,9 +226,10 @@
         .typ-buch::before { background: #2196F3; }
         .typ-akademisch::before { background: #FF9800; }
         .typ-zeitschrift::before { background: #9C27B0; }
+        .typ-international::before { background: #E91E63; }
         
-        /* Bonus-Sektion */
-        .bonus-quellen {
+        /* Quellen-Hinweis Bereich */
+        .quellen-hinweis {
             background: linear-gradient(135deg, 
                 rgba(25, 25, 40, 0.6) 0%, 
                 rgba(40, 40, 60, 0.8) 100%);
@@ -261,19 +239,23 @@
             margin: 40px 0;
         }
         
-        .bonus-quellen h2 {
+        .quellen-hinweis h3 {
             color: #e4e6ea;
             font-family: "Cinzel", serif;
-            margin-bottom: 25px;
-            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-size: 1.6rem;
         }
         
-        .bonus-quellen p {
+        .quellen-hinweis p {
             color: #b0b5bc;
             line-height: 1.7;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         
+        .quellen-hinweis strong {
+            color: #d6d9de;
+        }
+
         /* OPTIMIERTE TEXTFORMATIERUNG FÜR DEN HEADER */
         .quellen-header-text h1 {
             font-family: "Cinzel", serif;
@@ -330,7 +312,6 @@
             display: block;
             overflow-wrap: break-word;
             word-break: keep-all;
-            /* Verhindert das Trennen von "Nationalsozialismus" */
             -webkit-hyphens: manual;
             -moz-hyphens: manual;
             -ms-hyphens: manual;
@@ -338,22 +319,22 @@
         }
 
         /* DARK MODE ANPASSUNGEN */
-        body.dark-mode .kapitel-gruppe {
+        body.dark-mode .quellen-gruppe {
             background: rgba(30, 30, 30, 0.4);
             border-color: rgba(220, 225, 235, 0.15);
         }
         
-        body.dark-mode .kapitel-item {
+        body.dark-mode .these-item {
             background: rgba(30, 30, 30, 0.5);
             border-color: rgba(220, 225, 235, 0.2);
         }
         
-        body.dark-mode .kapitel-item:hover {
+        body.dark-mode .these-item:hover {
             background: rgba(30, 30, 30, 0.7);
             border-color: rgba(220, 225, 235, 0.3);
         }
         
-        body.dark-mode .bonus-quellen {
+        body.dark-mode .quellen-hinweis {
             background: linear-gradient(135deg, 
                 rgba(40, 40, 60, 0.7) 0%, 
                 rgba(60, 60, 80, 0.9) 100%);
@@ -382,6 +363,11 @@
             
             .quellen-header-text p {
                 font-size: 0.95rem;
+            }
+            
+            .quellen-tabelle {
+                display: block;
+                overflow-x: auto;
             }
         }
         
@@ -424,33 +410,25 @@
                 line-height: 1.6;
             }
             
-            .kapitel-titel {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .kapitel-nummer {
-                margin-bottom: 10px;
-                margin-right: 0;
-            }
-            
-            .kapitel-item {
-                padding: 20px;
-            }
-        }
-        
-        @media screen and (max-width: 480px) {
-            .kapitel-gruppe {
+            .quellen-gruppe {
                 padding: 15px;
             }
             
-            .kapitel-gruppe h2 {
+            .quellen-gruppe h2 {
                 font-size: 1.5rem;
                 text-align: center;
             }
             
-            .kapitel-name {
-                font-size: 1.1rem;
+            .quellen-tabelle th,
+            .quellen-tabelle td {
+                padding: 10px;
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            .quellen-gruppe h2 {
+                font-size: 1.3rem;
             }
             
             .quellen-header-text h1 {
@@ -464,6 +442,15 @@
             .buch-cover-quelle {
                 max-width: 150px; /* Sehr klein für sehr kleine Bildschirme */
             }
+            
+            .quellen-tabelle {
+                font-size: 0.8rem;
+            }
+            
+            .quellen-tabelle th,
+            .quellen-tabelle td {
+                padding: 8px 5px;
+            }
         }
         
         /* Druck-Optimierung */
@@ -473,13 +460,7 @@
                 display: none;
             }
             
-            .kapitel-item {
-                break-inside: avoid;
-                border: 1px solid #ccc;
-                box-shadow: none;
-            }
-            
-            .quellen-liste-kapitel a {
+            .quelle-link {
                 color: #000;
                 text-decoration: underline;
             }
@@ -533,7 +514,8 @@
         <a href="index.html">Startseite</a>
         <a href="ueber-mich.html">Über mich</a>
         <a href="werke.html">Werke</a>
-        <a href="quellen.html">Quellen</a>
+        <a href="quellenmachtunduntergang.html">Quellen: Macht & Untergang</a>
+        <a href="quellen.html">Quellen: Der lange Weg</a>
         <a href="termine.html">Termine</a>
         <a href="kontakt.html">Kontakt</a>
     </nav>
@@ -545,614 +527,308 @@
 <main class="inhalt">
     <section class="quellen-container">
         
-        <!-- ================= BUCH: DER LANGE WEG IN DIE FINSTERNIS ================= -->
+        <!-- ================= BUCH: MACHT UND UNTERGANG ================= -->
         <div class="quellen-header">
             <div class="buch-cover-container">
-                <img src="assets/images/derlangewegindiefinsternis.png" 
-                     alt="Buchcover: Der lange Weg in die Finsternis" 
+                <img src="assets/images/machtunduntergang.png" 
+                     alt="Buchcover: Macht und Untergang" 
                      class="buch-cover-quelle">
             </div>        
             <div class="quellen-header-text">
-                <h1>DER LANGE WEG IN DIE FINSTERNIS</h1>
-                <p class="untertitel">Wie das Kaiserreich den Nationalsozialismus vorbereitete<br>
-                </p>
-                <p>Diese vollständige Quellenedition bietet strukturierten Zugang zu allen wissenschaftlichen Grundlagen des Werkes. Jedes Kapitel wird durch Primärquellen, Forschungsliteratur und digitale Archive dokumentiert vollständig nachvollziehbar und überprüfbar.</p>
+                <h1>MACHT UND UNTERGANG</h1>
+                <p class="untertitel">Strukturen und Prozesse des autoritären Staates<br>Vollständige Quellenedition</p>
+                
+                <p>Diese vollständige Quellenedition dokumentiert die wissenschaftlichen Grundlagen des Werkes "Macht und Untergang". Hier finden Sie direkte Links zu Primärquellen, Reichstagsprotokollen, Gesetzestexten, Kolonialakten und zeitgenössischen Publikationen – vollständig nachvollziehbar und überprüfbar.</p>
                 
                 <div class="hinweis-kasten">
-                    <strong>Struktur:</strong> Die Quellen sind nach Buchkapiteln geordnet. Jeder Link führt direkt zur Originalquelle oder wissenschaftlichen Publikation. Farbcodierte Punkte zeigen den Quellentyp an: 
-                    <span class="quelle-typ typ-archiv">Archiv</span> 
-                    <span class="quelle-typ typ-buch">Buch</span> 
-                    <span class="quelle-typ typ-akademisch">Akademisch</span> 
-                    <span class="quelle-typ typ-zeitschrift">Zeitschrift</span>
+                    <strong>Hinweis:</strong> Viele der verlinkten Quellen sind primärhistorische Dokumente, die direkt als Beleg für die Buchthesen dienen. Wo keine direkten Online-Links existieren, sind Archivsignaturen oder gedruckte Editionen genannt.
                 </div>
             </div>
         </div>
 
-        <!-- ================= KAPITEL-GRUPPEN ================= -->
+        <!-- ================= QUELLENGRUPPEN ================= -->
         
-        <!-- GRUPPE 1: Kapitel 1-4 -->
-        <div class="kapitel-gruppe">
-            <h2>Teil I: Die Fundamente</h2>
+        <!-- GRUPPE I: Reichstagsprotokolle und Gesetzestexte -->
+        <div class="quellen-gruppe">
+            <h2>I. Reichstagsprotokolle und Gesetzestexte</h2>
             
-            <!-- Kapitel 1 -->
-            <div class="kapitel-item">
-                <div class="kapitel-titel">
-                    <div class="kapitel-nummer">Kapitel 1</div>
-                    <div class="kapitel-name">Der Schatten des Kaiserreichs</div>
-                </div>
-                <div class="kapitel-themen">Autoritärer Staat, Elitenkontinuität, Obrigkeitsdenken</div>
-                <ul class="quellen-liste-kapitel">
-                    <li>
-                        <strong>Deutsches Historisches Museum, Innenpolitik des Kaiserreichs</strong>
-                        <span class="quelle-typ typ-archiv">Archiv</span><br>
-                        <a href="https://www.dhm.de/lemo/kapitel/kaiserreich/innenpolitik/" target="_blank" rel="noopener noreferrer">
-                            https://www.dhm.de/lemo/kapitel/kaiserreich/innenpolitik/
-                        </a>
-                    </li>
-                    <li>
-                        <strong>Hans Ulrich Wehler Das Deutsche Kaiserreich 1871–1918</strong>
-                        <span class="quelle-typ typ-buch">Buch</span><br>
-                        <a href="https://www.bpb.de/shop/zeitschriften/apuz/30253/das-deutsche-kaiserreich/" target="_blank" rel="noopener noreferrer">
-                            https://www.bpb.de/shop/zeitschriften/apuz/30253/das-deutsche-kaiserreich/
-                        </a>
-                        <div class="quelle-meta">Alternative: Artikel bei der Bundeszentrale für politische Bildung</div>
-                    </li>
-                    <li>
-                        <strong>Alternative: Wehler's Kaiserreich bei Amazon</strong>
-                        <span class="quelle-typ typ-buch">Buch</span><br>
-                        <a href="https://www.amazon.de/Das-Deutsche-Kaiserreich-1871-1918-Hans-Ulrich-Wehler/dp/3406355518" target="_blank" rel="noopener noreferrer">
-                            https://www.amazon.de/Das-Deutsche-Kaiserreich-1871-1918-Hans-Ulrich-Wehler/dp/3406355518
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            
-            <!-- Kapitel 2 -->
-            <div class="kapitel-item">
-                <div class="kapitel-titel">
-                    <div class="kapitel-nummer">Kapitel 2</div>
-                    <div class="kapitel-name">Die Saat des Hasses</div>
-                </div>
-                <div class="kapitel-themen">Moderner Antisemitismus, Reichstagsdebatten, Presse</div>
-                <ul class="quellen-liste-kapitel">
-                    <li>
-                        <strong>DHM: Antisemitismus im Kaiserreich</strong>
-                        <span class="quelle-typ typ-archiv">Archiv</span><br>
-                        <a href="https://www.dhm.de/lemo/kapitel/kaiserreich/innenpolitik/antisemitismus/" target="_blank" rel="noopener noreferrer">
-                            https://www.dhm.de/lemo/kapitel/kaiserreich/innenpolitik/antisemitismus/
-                        </a>
-                    </li>
-                    <li>
-                        <strong>bpb: Geschichte des Antisemitismus</strong>
-                        <span class="quelle-typ typ-akademisch">Akademisch</span><br>
-                        <a href="https://www.bpb.de/themen/geschichte/antisemitismus/" target="_blank" rel="noopener noreferrer">
-                            https://www.bpb.de/themen/geschichte/antisemitismus/
-                        </a>
-                    </li>
-                    <li>
-                        <strong>Reichstagsprotokolle zur Antisemitismusdebatte</strong>
-                        <span class="quelle-typ typ-archiv">Archiv</span><br>
-                        <a href="https://www.reichstagsprotokolle.de/" target="_blank" rel="noopener noreferrer">
-                            https://www.reichstagsprotokolle.de/
-                        </a>
-                        <div class="quelle-meta">Suchfunktion: "Antisemitismus" in den Protokollen</div>
-                    </li>
-                </ul>
-            </div>
-            
-            <!-- Kapitel 3 -->
-            <div class="kapitel-item">
-                <div class="kapitel-titel">
-                    <div class="kapitel-nummer">Kapitel 3</div>
-                    <div class="kapitel-name">Propaganda im Alltag</div>
-                </div>
-                <div class="kapitel-themen">Medien, Karikaturen, Sprache</div>
-                <ul class="quellen-liste-kapitel">
-                    <li>
-                        <strong>Universitätsbibliothek Heidelberg: Historische Zeitungen</strong>
-                        <span class="quelle-typ typ-archiv">Archiv</span><br>
-                        <a href="https://digi.ub.uni-heidelberg.de/de/bpd/periodical/" target="_blank" rel="noopener noreferrer">
-                            https://digi.ub.uni-heidelberg.de/de/bpd/periodical/
-                        </a>
-                    </li>
-                    <li>
-                        <strong>George Mosse: The Nationalization of the Masses</strong>
-                        <span class="quelle-typ typ-buch">Buch</span><br>
-                        <a href="https://archive.org/details/nationalizationofmassesgeorgemosse" target="_blank" rel="noopener noreferrer">
-                            https://archive.org/details/nationalizationofmassesgeorgemosse
-                        </a>
-                    </li>
-                    <li>
-                        <strong>Simplicissimus: Satirezeitschrift des Kaiserreichs</strong>
-                        <span class="quelle-typ typ-archiv">Archiv</span><br>
-                        <a href="https://simplicissimus.info/" target="_blank" rel="noopener noreferrer">
-                            https://simplicissimus.info/
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            
-            <!-- Kapitel 4 -->
-            <div class="kapitel-item">
-                <div class="kapitel-titel">
-                    <div class="kapitel-nummer">Kapitel 4</div>
-                    <div class="kapitel-name">Mythos von Stärke und Reinheit</div>
-                </div>
-                <div class="kapitel-themen">Sozialdarwinismus,Rassenideologie</div>
-                <ul class="quellen-liste-kapitel">
-                    <li>
-                        <strong>Deutsches Historisches Museum Sozialdarwinismus</strong>
-                        <span class="quelle-typ typ-archiv">Archiv</span><br>
-                        <a href="https://www.dhm.de/lemo/kapitel/kaiserreich/gesellschaft/sozialdarwinismus/" target="_blank" rel="noopener noreferrer">
-                            https://www.dhm.de/lemo/kapitel/kaiserreich/gesellschaft/sozialdarwinismus/
-                        </a>
-                    </li>
-                    <li>
-                        <strong>Sheila Faith Weiss: The Nazi Symbiosis</strong>
-                        <span class="quelle-typ typ-buch">Buch</span><br>
-                        <a href="https://press.uchicago.edu/ucp/books/book/chicago/N/bo3634300.html" target="_blank" rel="noopener noreferrer">
-                            https://press.uchicago.edu/ucp/books/book/chicago/N/bo3634300.html
-                        </a>
-                        <div class="quelle-meta">Alternative bei Amazon:</div>
-                    </li>
-                    <li>
-                        <strong>Alternative: Nazi Symbiosis bei Amazon</strong>
-                        <span class="quelle-typ typ-buch">Buch</span><br>
-                        <a href="https://www.amazon.de/Nazi-Symbiosis-Human-Genetics-Politics/dp/0226891722" target="_blank" rel="noopener noreferrer">
-                            https://www.amazon.de/Nazi-Symbiosis-Human-Genetics-Politics/dp/0226891722
-                        </a>
-                    </li>
-                </ul>
-            </div>
+            <table class="quellen-tabelle">
+                <thead>
+                    <tr>
+                        <th>Quelle</th>
+                        <th>Beschreibung</th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Reichstagsprotokolle 1871–1918</td>
+                        <td>Offizielle Stenografische Berichte</td>
+                        <td>
+                            <a href="https://www.reichstagsprotokolle.de" target="_blank" rel="noopener noreferrer" class="quelle-link">
+                                Reichstagsprotokolle bei Münchener Digitalisierungszentrum
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Verfassung des Deutschen Reiches (1871)</td>
+                        <td>Verfassungstext</td>
+                        <td>
+                            <a href="https://www.verfassungen.de/de/de67-18/verfassung71-i.htm" target="_blank" rel="noopener noreferrer" class="quelle-link">
+                                Verfassung 1871 – verfassungen.de
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Sozialistengesetz (1878)</td>
+                        <td>Gesetz gegen die gemeingefährlichen Bestrebungen der Sozialdemokratie</td>
+                        <td>
+                            <a href="https://www.verfassungen.de/de/de67-18/sozialistengesetz78.htm" target="_blank" rel="noopener noreferrer" class="quelle-link">
+                                Sozialistengesetz – verfassungen.de
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Dreiklassenwahlrecht (Preußen)</td>
+                        <td>Wahlgesetz von 1849</td>
+                        <td>
+                            <a href="https://www.documentarchiv.de/nzjh/vv1849_preussen.html" target="_blank" rel="noopener noreferrer" class="quelle-link">
+                                Preußisches Wahlrecht – documentArchiv.de
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Weimarer Verfassung (1919)</td>
+                        <td>Zum Vergleich</td>
+                        <td>
+                            <a href="https://www.verfassungen.de/de/de19-33/verfassung19.htm" target="_blank" rel="noopener noreferrer" class="quelle-link">
+                                Weimarer Verfassung – verfassungen.de
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         
-        <!-- GRUPPE 2: Kapitel 5-8 -->
-        <div class="kapitel-gruppe">
-            <h2>Teil II: Institutionelle Vorbereitung</h2>
+        <!-- GRUPPE II: Kolonialakten und Völkermord-Dokumente -->
+        <div class="quellen-gruppe">
+            <h2>II. Kolonialakten und Völkermord-Dokumente</h2>
             
-            <!-- Kapitel 5 -->
-            <div class="kapitel-item">
-                <div class="kapitel-titel">
-                    <div class="kapitel-nummer">Kapitel 5</div>
-                    <div class="kapitel-name">Kolonien als Bühne der Gewalt</div>
-                </div>
-                <div class="kapitel-themen">Herero/Nama, Entmenschlichung, Kolonialverbrechen</div>
-                <ul class="quellen-liste-kapitel">
-                    <li>
-                        <strong>bpb: Völkermord an den Herero und Nama</strong>
-                        <span class="quelle-typ typ-akademisch">Akademisch</span><br>
-                        <a href="https://www.bpb.de/themen/europa/afrika/namibia/51803/" target="_blank" rel="noopener noreferrer">
-                            https://www.bpb.de/themen/europa/afrika/namibia/51803/
-                        </a>
-                    </li>
-                    <li>
-                        <strong>Deutsche Kolonialgeschichte: Dokumente</strong>
-                        <span class="quelle-typ typ-archiv">Archiv</span><br>
-                        <a href="https://www.bundesarchiv.de/DE/Navigation/Finden/Bestaendeuebersicht/bestaendeuebersicht.html" target="_blank" rel="noopener noreferrer">
-                            https://www.bundesarchiv.de/DE/Navigation/Finden/Bestaendeuebersicht/bestaendeuebersicht.html
-                        </a>
-                    </li>
-                    <li>
-                        <strong>Universität Frankfurt: Kolonialarchiv</strong>
-                        <span class="quelle-typ typ-archiv">Archiv</span><br>
-                        <a href="https://www.ub.uni-frankfurt.de/koloniales/" target="_blank" rel="noopener noreferrer">
-                            https://www.ub.uni-frankfurt.de/koloniales/
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            
-            <!-- Kapitel 6 -->
-            <div class="kapitel-item">
-                <div class="kapitel-titel">
-                    <div class="kapitel-nummer">Kapitel 6</div>
-                    <div class="kapitel-name">Sprache der Feindbilder</div>
-                </div>
-                <div class="kapitel-themen">Diskursanalyse, politische Sprache, Ausgrenzung</div>
-                <ul class="quellen-liste-kapitel">
-                    <li>
-                        <strong>Victor Klemperer: LTI Lingua Tertii Imperii</strong>
-                        <span class="quelle-typ typ-buch">Buch</span><br>
-                        <a href="https://archive.org/details/LTI_201803" target="_blank" rel="noopener noreferrer">
-                            https://archive.org/details/LTI_201803
-                        </a>
-                    </li>
-                    <li>
-                        <strong>bpb: Politische Sprache</strong>
-                        <span class="quelle-typ typ-akademisch">Akademisch</span><br>
-                        <a href="https://www.bpb.de/themen/sprache/" target="_blank" rel="noopener noreferrer">
-                            https://www.bpb.de/themen/sprache/
-                        </a>
-                    </li>
-                    <li>
-                        <strong>Sprache im Nationalsozialismus: Dokumentation</strong>
-                        <span class="quelle-typ typ-archiv">Archiv</span><br>
-                        <a href="https://www.dhm.de/lemo/kapitel/ns-regime/innenpolitik/sprache/" target="_blank" rel="noopener noreferrer">
-                            https://www.dhm.de/lemo/kapitel/ns-regime/innenpolitik/sprache/
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            
-            <!-- Kapitel 7 -->
-            <div class="kapitel-item">
-                <div class="kapitel-titel">
-                    <div class="kapitel-nummer">Kapitel 7</div>
-                    <div class="kapitel-name">Aufstieg der völkischen Vereine</div>
-                </div>
-                <div class="kapitel-themen">Netzwerke, Vereinswesen, Ideologietransfer</div>
-                <ul class="quellen-liste-kapitel">
-                    <li>
-                        <strong>bpb: Die völkische Bewegung</strong>
-                        <span class="quelle-typ typ-akademisch">Akademisch</span><br>
-                        <a href="https://www.bpb.de/themen/nationalsozialismus/dossier-nationalsozialismus/39890/die-voelkische-bewegung/" target="_blank" rel="noopener noreferrer">
-                            https://www.bpb.de/themen/nationalsozialismus/dossier-nationalsozialismus/39890/die-voelkische-bewegung/
-                        </a>
-                    </li>
-                    <li>
-                        <strong>Uwe Puschner: Die völkische Bewegung im wilhelminischen Kaiserreich</strong>
-                        <span class="quelle-typ typ-buch">Buch</span><br>
-                        <a href="https://www.degruyter.com/document/doi/10.1515/9783486596048" target="_blank" rel="noopener noreferrer">
-                            https://www.degruyter.com/document/doi/10.1515/9783486596048
-                        </a>
-                    </li>
-                    <li>
-                        <strong>Alternative bei Amazon:</strong>
-                        <span class="quelle-typ typ-buch">Buch</span><br>
-                        <a href="https://www.amazon.de/Die-v%C3%B6lkische-Bewegung-wilhelminischen-Kaiserreich/dp/3486596044" target="_blank" rel="noopener noreferrer">
-                            https://www.amazon.de/Die-v%C3%B6lkische-Bewegung-wilhelminischen-Kaiserreich/dp/3486596044
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            
-            <!-- Kapitel 8 -->
-            <div class="kapitel-item">
-                <div class="kapitel-titel">
-                    <div class="kapitel-nummer">Kapitel 8</div>
-                    <div class="kapitel-name">Soldaten des Kaisers</div>
-                </div>
-                <div class="kapitel-themen">Militärkultur, Kadavergehorsam, Traditionsbildung</div>
-                <ul class="quellen-liste-kapitel">
-                    <li>
-                        <strong>Sönke Neitzel: Deutsche Krieger</strong>
-                        <span class="quelle-typ typ-buch">Buch</span><br>
-                        <a href="https://www.amazon.de/Deutsche-Krieger-Kampf-macht-Nation/dp/388680940X" target="_blank" rel="noopener noreferrer">
-                            https://www.amazon.de/Deutsche-Krieger-Kampf-macht-Nation/dp/388680940X
-                        </a>
-                    </li>
-                    <li>
-                        <strong>DHM: Militarismus im Kaiserreich</strong>
-                        <span class="quelle-typ typ-archiv">Archiv</span><br>
-                        <a href="https://www.dhm.de/lemo/kapitel/kaiserreich/innenpolitik/militarismus/" target="_blank" rel="noopener noreferrer">
-                            https://www.dhm.de/lemo/kapitel/kaiserreich/innenpolitik/militarismus/
-                        </a>
-                    </li>
-                    <li>
-                        <strong>Bundesarchiv Militärgeschichte</strong>
-                        <span class="quelle-typ typ-archiv">Archiv</span><br>
-                        <a href="https://www.bundesarchiv.de/DE/Navigation/Finden/Bestaendeuebersicht/bestaendeuebersicht.html?category.id=millitaer" target="_blank" rel="noopener noreferrer">
-                            https://www.bundesarchiv.de/DE/Navigation/Finden/Bestaendeuebersicht/bestaendeuebersicht.html?category.id=millitaer
-                        </a>
-                    </li>
-                </ul>
-            </div>
+            <table class="quellen-tabelle">
+                <thead>
+                    <tr>
+                        <th>Quelle</th>
+                        <th>Beschreibung</th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Vernichtungsbefehl von Trotha (1904)</td>
+                        <td>Befehl des Generals Lothar von Trotha</td>
+                        <td>
+                            <a href="https://www.dhm.de/lemo/bestand/objekt/vernichtungsbefehl-des-generals-lothar-von-trotha-1904.html" target="_blank" rel="noopener noreferrer" class="quelle-link">
+                                Vernichtungsbefehl – DHM
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Akten des Reichskolonialamts</td>
+                        <td>Digitalisierte Bestände im Bundesarchiv</td>
+                        <td>
+                            <a href="https://www.bundesarchiv.de/DE/Navigation/Finden/Bestaendeuebersicht/bestaendeuebersicht.html" target="_blank" rel="noopener noreferrer" class="quelle-link">
+                                Bundesarchiv Kolonialakten
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Berichte aus Deutsch-Südwestafrika</td>
+                        <td>Militärische und Verwaltungsberichte</td>
+                        <td>
+                            <a href="https://sammlungen.ub.uni-frankfurt.de/koloniales/periodical/titleinfo/2582113" target="_blank" rel="noopener noreferrer" class="quelle-link">
+                                Sammlung Universität Frankfurt
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         
-        <!-- GRUPPE 3: Kapitel 9-12 -->
-        <div class="kapitel-gruppe">
-            <h2>Teil III: Soziale Disziplinierung</h2>
+        <!-- GRUPPE III: Zeitgenössische Presse und Publikationen -->
+        <div class="quellen-gruppe">
+            <h2>III. Zeitgenössische Presse und Publikationen</h2>
             
-            <!-- Kapitel 9 -->
-            <div class="kapitel-item">
-                <div class="kapitel-titel">
-                    <div class="kapitel-nummer">Kapitel 9</div>
-                    <div class="kapitel-name">Unterdrückung als Normalität</div>
-                </div>
-                <div class="kapitel-themen">Polizei, Klassenjustiz, Repression</div>
-                <ul class="quellen-liste-kapitel">
-                    <li>
-                        <strong>bpb: Repression im Kaiserreich</strong>
-                        <span class="quelle-typ typ-akademisch">Akademisch</span><br>
-                        <a href="https://www.bpb.de/themen/deutsche-geschichte/kaiserreich/39897/innenpolitik/" target="_blank" rel="noopener noreferrer">
-                            https://www.bpb.de/themen/deutsche-geschichte/kaiserreich/39897/innenpolitik/
-                        </a>
-                    </li>
-                    <li>
-                        <strong>Richard J. Evans: The Coming of the Third Reich</strong>
-                        <span class="quelle-typ typ-buch">Buch</span><br>
-                        <a href="https://archive.org/details/comingofthirdreich0000evan" target="_blank" rel="noopener noreferrer">
-                            https://archive.org/details/comingofthirdreich0000evan
-                        </a>
-                    </li>
-                    <li>
-                        <strong>Sozialistengesetze Originaldokumente</strong>
-                        <span class="quelle-typ typ-archiv">Archiv</span><br>
-                        <a href="https://www.documentarchiv.de/ksr/1878/sozialistengesetze_ksr.html" target="_blank" rel="noopener noreferrer">
-                            https://www.documentarchiv.de/ksr/1878/sozialistengesetze_ksr.html
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            
-            <!-- Kapitel 10 -->
-            <div class="kapitel-item">
-                <div class="kapitel-titel">
-                    <div class="kapitel-nummer">Kapitel 10</div>
-                    <div class="kapitel-name">Wissenschaft im Dienst der Ideologie</div>
-                </div>
-                <div class="kapitel-themen">Rassenhygiene, Sozialdarwinismus, Wissenschaftsmissbrauch</div>
-                <ul class="quellen-liste-kapitel">
-                    <li>
-                        <strong>Paul Weindling Health: Race and German Politics</strong>
-                        <span class="quelle-typ typ-buch">Buch</span><br>
-                        <a href="https://archive.org/details/healthracegermanp0000wein" target="_blank" rel="noopener noreferrer">
-                            https://archive.org/details/healthracegermanp0000wein
-                        </a>
-                    </li>
-                    <li>
-                        <strong>Max-Planck-Gesellschaft: Geschichte der Rassenhygiene</strong>
-                        <span class="quelle-typ typ-akademisch">Akademisch</span><br>
-                        <a href="https://www.mpg.de/geschichte-der-mpg" target="_blank" rel="noopener noreferrer">
-                            https://www.mpg.de/geschichte-der-mpg
-                        </a>
-                    </li>
-                    <li>
-                        <strong>Alternative: Rassenhygiene im Nationalsozialismus</strong>
-                        <span class="quelle-typ typ-akademisch">Akademisch</span><br>
-                        <a href="https://www.bpb.de/themen/nationalsozialismus/dossier-nationalsozialismus/39891/rassenhygiene/" target="_blank" rel="noopener noreferrer">
-                            https://www.bpb.de/themen/nationalsozialismus/dossier-nationalsozialismus/39891/rassenhygiene/
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            
-            <!-- Kapitel 11 -->
-            <div class="kapitel-item">
-                <div class="kapitel-titel">
-                    <div class="kapitel-nummer">Kapitel 11</div>
-                    <div class="kapitel-name">Kindheit im Geist der Vernichtung</div>
-                </div>
-                <div class="kapitel-themen">Erziehung, Jugendbewegung, Indoktrination</div>
-                <ul class="quellen-liste-kapitel">
-                    <li>
-                        <strong>Detlev Peukert: Grenzen der Sozialdisziplinierung</strong>
-                        <span class="quelle-typ typ-zeitschrift">Zeitschrift</span><br>
-                        <a href="https://www.ifz-muenchen.de/heftarchiv/1986_4_1_peukert.pdf" target="_blank" rel="noopener noreferrer">
-                            https://www.ifz-muenchen.de/heftarchiv/1986_4_1_peukert.pdf
-                        </a>
-                        <div class="quelle-meta">Alternative Link über Google Scholar suchen</div>
-                    </li>
-                    <li>
-                        <strong>Jugend im Kaiserreich Dokumente</strong>
-                        <span class="quelle-typ typ-archiv">Archiv</span><br>
-                        <a href="https://www.dhm.de/lemo/kapitel/kaiserreich/gesellschaft/jugend/" target="_blank" rel="noopener noreferrer">
-                            https://www.dhm.de/lemo/kapitel/kaiserreich/gesellschaft/jugend/
-                        </a>
-                    </li>
-                    <li>
-                        <strong>Wandervogel Bewegung Quellen</strong>
-                        <span class="quelle-typ typ-archiv">Archiv</span><br>
-                        <a href="https://www.deutsche-digitale-bibliothek.de/search?query=wandervogel" target="_blank" rel="noopener noreferrer">
-                            https://www.deutsche-digitale-bibliothek.de/search?query=wandervogel
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            
-            <!-- Kapitel 12 -->
-            <div class="kapitel-item">
-                <div class="kapitel-titel">
-                    <div class="kapitel-nummer">Kapitel 12</div>
-                    <div class="kapitel-name">Kirchen zwischen Schweigen und Zustimmung</div>
-                </div>
-                <div class="kapitel-themen">Religion, Nationalismus, Kirchengeschichte</div>
-                <ul class="quellen-liste-kapitel">
-                    <li>
-                        <strong>bpb: Kirchen und Nationalsozialismus</strong>
-                        <span class="quelle-typ typ-akademisch">Akademisch</span><br>
-                        <a href="https://www.bpb.de/themen/nationalsozialismus/dossier-nationalsozialismus/39894/kirchen/" target="_blank" rel="noopener noreferrer">
-                            https://www.bpb.de/themen/nationalsozialismus/dossier-nationalsozialismus/39894/kirchen/
-                        </a>
-                    </li>
-                    <li>
-                        <strong>Doris Bergen Twisted Cross</strong>
-                        <span class="quelle-typ typ-buch">Buch</span><br>
-                        <a href="https://archive.org/details/twistedcrossgerm0000berg" target="_blank" rel="noopener noreferrer">
-                            https://archive.org/details/twistedcrossgerm0000berg
-                        </a>
-                    </li>
-                    <li>
-                        <strong>Kirchen im Kaiserreich Dokumente</strong>
-                        <span class="quelle-typ typ-archiv">Archiv</span><br>
-                        <a href="https://www.dhm.de/lemo/kapitel/kaiserreich/innenpolitik/kirchen/" target="_blank" rel="noopener noreferrer">
-                            https://www.dhm.de/lemo/kapitel/kaiserreich/innenpolitik/kirchen/
-                        </a>
-                    </li>
-                </ul>
-            </div>
+            <table class="quellen-tabelle">
+                <thead>
+                    <tr>
+                        <th>Quelle</th>
+                        <th>Beschreibung</th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Vorwärts (SPD-Zeitung)</td>
+                        <td>Digitalisierte Ausgaben</td>
+                        <td>
+                            <a href="https://www.fes.de/archiv-der-sozialen-demokratie/bestandsuebersicht/digitale-angebote/vorwaerts" target="_blank" rel="noopener noreferrer" class="quelle-link">
+                                Vorwärts-Archiv – FES
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Kladderadatsch (Satirezeitschrift)</td>
+                        <td>Politische Karikaturen</td>
+                        <td>
+                            <a href="https://digi.ub.uni-heidelberg.de/diglit/kladderadatsch" target="_blank" rel="noopener noreferrer" class="quelle-link">
+                                Kladderadatsch – Uni Heidelberg
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Simplicissimus</td>
+                        <td>Weitere satirische Zeitschrift</td>
+                        <td>
+                            <a href="https://www.digi-hub.de/viewer/toc/bsb00052887/1/" target="_blank" rel="noopener noreferrer" class="quelle-link">
+                                Simplicissimus – MDZ
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         
-        <!-- GRUPPE 4: Kapitel 13-20 -->
-        <div class="kapitel-gruppe">
-            <h2>Teil IV: Weg in den Krieg</h2>
-            <div class="kapitel-item">
-                <div class="kapitel-titel">
-                    <div class="kapitel-nummer">Kapitel 13–20</div>
-                    <div class="kapitel-name">Weltmacht, Krieg und Generationenopfer</div>
-                </div>
-                <div class="kapitel-themen">Erster Weltkrieg, Kriegsschulddebatte, Mentalitätsgeschichte</div>
-                <ul class="quellen-liste-kapitel">
-                    <li>
-                        <strong>Christopher Clark: Die Schlafwandler</strong>
-                        <span class="quelle-typ typ-buch">Buch</span><br>
-                        <a href="https://www.amazon.de/Die-Schlafwandler-Europas-Ersten-Weltkrieg/dp/3421046393" target="_blank" rel="noopener noreferrer">
-                            https://www.amazon.de/Die-Schlafwandler-Europas-Ersten-Weltkrieg/dp/3421046393
-                        </a>
-                    </li>
-                    <li>
-                        <strong>Hew Strachan: The First World War</strong>
-                        <span class="quelle-typ typ-buch">Buch</span><br>
-                        <a href="https://archive.org/details/firstworldwarvolumei0000stra" target="_blank" rel="noopener noreferrer">
-                            https://archive.org/details/firstworldwarvolumei0000stra
-                        </a>
-                    </li>
-                    <li>
-                        <strong>1914-1918 Online International Encyclopedia of WWI</strong>
-                        <span class="quelle-typ typ-akademisch">Akademisch</span><br>
-                        <a href="https://encyclopedia.1914-1918-online.net/home/" target="_blank" rel="noopener noreferrer">
-                            https://encyclopedia.1914-1918-online.net/home/
-                        </a>
-                    </li>
-                    <li>
-                        <strong>Deutsche Geschichte: Erster Weltkrieg Dokumente</strong>
-                        <span class="quelle-typ typ-archiv">Archiv</span><br>
-                        <a href="https://www.dhm.de/lemo/kapitel/erster-weltkrieg/" target="_blank" rel="noopener noreferrer">
-                            https://www.dhm.de/lemo/kapitel/erster-weltkrieg/
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        
-        <!-- GRUPPE 5: Kapitel 21-26 -->
-        <div class="kapitel-gruppe">
-            <h2>Teil V: Kontinuitäten</h2>
-            <div class="kapitel-item">
-                <div class="kapitel-titel">
-                    <div class="kapitel-nummer">Kapitel 21–26</div>
-                    <div class="kapitel-name">Schuld, Normalisierung, Netzwerke</div>
-                </div>
-                <div class="kapitel-themen">Elitenkontinuität, Vergangenheitspolitik, Netzwerkanalyse</div>
-                <ul class="quellen-liste-kapitel">
-                    <li>
-                        <strong>Ulrich Herbert Best: Biographische Studien</strong>
-                        <span class="quelle-typ typ-buch">Buch</span><br>
-                        <a href="https://www.amazon.de/Best-Biographische-Studien-Radikalismus-Weltanschauung/dp/3406356794" target="_blank" rel="noopener noreferrer">
-                            https://www.amazon.de/Best-Biographische-Studien-Radikalismus-Weltanschauung/dp/3406356794
-                        </a>
-                    </li>
-                    <li>
-                        <strong>Norbert Frei: Vergangenheitspolitik</strong>
-                        <span class="quelle-typ typ-buch">Buch</span><br>
-                        <a href="https://www.amazon.de/Vergangenheitspolitik-Anfang-Bundesrepublik-Auseinandersetzung-Nationalsozialismus/dp/340642973X" target="_blank" rel="noopener noreferrer">
-                            https://www.amazon.de/Vergangenheitspolitik-Anfang-Bundesrepublik-Auseinandersetzung-Nationalsozialismus/dp/340642973X
-                        </a>
-                    </li>
-                    <li>
-                        <strong>Institut für Zeitgeschichte: Nachkriegsgeschichte</strong>
-                        <span class="quelle-typ typ-akademisch">Akademisch</span><br>
-                        <a href="https://www.ifz-muenchen.de/forschung/forschungsfelder/nach-1945/" target="_blank" rel="noopener noreferrer">
-                            https://www.ifz-muenchen.de/forschung/forschungsfelder/nach-1945/
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        
-        <!-- GRUPPE 6: Kapitel 27-30 -->
-        <div class="kapitel-gruppe">
-            <h2>Teil VI: Radikalisierung</h2>
-            <div class="kapitel-item">
-                <div class="kapitel-titel">
-                    <div class="kapitel-nummer">Kapitel 27–30</div>
-                    <div class="kapitel-name">Übergang zur totalen Radikalisierung</div>
-                </div>
-                <div class="kapitel-themen">Machtübertragung, Gleichschaltung, Zäsur 1933</div>
-                <ul class="quellen-liste-kapitel">
-                    <li>
-                        <strong>Ian Kershaw: Hitler 1889–1936</strong>
-                        <span class="quelle-typ typ-buch">Buch</span><br>
-                        <a href="https://archive.org/details/hitlerhubris1889193600kers" target="_blank" rel="noopener noreferrer">
-                            https://archive.org/details/hitlerhubris1889193600kers
-                        </a>
-                    </li>
-                    <li>
-                        <strong>bpb: Machtergreifung 1933</strong>
-                        <span class="quelle-typ typ-akademisch">Akademisch</span><br>
-                        <a href="https://www.bpb.de/themen/nationalsozialismus/dossier-nationalsozialismus/39896/machtergreifung/" target="_blank" rel="noopener noreferrer">
-                            https://www.bpb.de/themen/nationalsozialismus/dossier-nationalsozialismus/39896/machtergreifung/
-                        </a>
-                    </li>
-                    <li>
-                        <strong>Dokumente zur Machtergreifung</strong>
-                        <span class="quelle-typ typ-archiv">Archiv</span><br>
-                        <a href="https://www.dhm.de/lemo/kapitel/ns-regime/etablierung/machtergreifung/" target="_blank" rel="noopener noreferrer">
-                            https://www.dhm.de/lemo/kapitel/ns-regime/etablierung/machtergreifung/
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        
-        <!-- ================= BONUS-QUELLEN ================= -->
-        <div class="bonus-quellen">
-            <h2>Bonus: Erweiternde Quellen und Perspektiven</h2>
-            <p>Diese Quellen bieten vertiefende Einblicke und erweiternde Forschungsperspektiven, die den Kontext des Werkes bereichern:</p>
+        <!-- GRUPPE IV: Briefe und private Dokumente -->
+        <div class="quellen-gruppe">
+            <h2>IV. Briefe und private Dokumente</h2>
             
-            <div class="kapitel-item">
-                <div class="kapitel-titel">
-                    <div class="kapitel-nummer">Vertiefung</div>
-                    <div class="kapitel-name">Erweiternde Forschungsperspektiven</div>
-                </div>
-                <ul class="quellen-liste-kapitel">
-                    <li>
-                        <strong>Jürgen Zimmerer: Kolonialismus & Holocaust</strong>
-                        <span class="quelle-typ typ-zeitschrift">Zeitschrift</span><br>
-                        <a href="https://www.bpb.de/shop/zeitschriften/apuz/229805/" target="_blank" rel="noopener noreferrer">
-                            https://www.bpb.de/shop/zeitschriften/apuz/229805/
-                        </a>
-                        <div class="quelle-meta">Aus Politik und Zeitgeschichte (APuZ 42-43/2016)</div>
-                    </li>
-                    <li>
-                        <strong>Timothy Snyder: Bloodlands</strong>
-                        <span class="quelle-typ typ-buch">Buch</span><br>
-                        <a href="https://www.amazon.de/Bloodlands-Europa-Hitler-Stalin-1933-1945/dp/3406608831" target="_blank" rel="noopener noreferrer">
-                            https://www.amazon.de/Bloodlands-Europa-Hitler-Stalin-1933-1945/dp/3406608831
-                        </a>
-                        <div class="quelle-meta">Europa zwischen Hitler und Stalin 1933-1945</div>
-                    </li>
-                    <li>
-                        <strong>Yale Genocide Studies Program</strong>
-                        <span class="quelle-typ typ-akademisch">Akademisch</span><br>
-                        <a href="https://gsp.yale.edu/" target="_blank" rel="noopener noreferrer">
-                            https://gsp.yale.edu/
-                        </a>
-                        <div class="quelle-meta">Forschungsprogramm zu Genozid und Massengewalt</div>
-                    </li>
-                    <li>
-                        <strong>Deutsche Digitale Bibliothek Kolonialismus</strong>
-                        <span class="quelle-typ typ-archiv">Archiv</span><br>
-                        <a href="https://www.deutsche-digitale-bibliothek.de/content/themen/kolonialismus" target="_blank" rel="noopener noreferrer">
-                            https://www.deutsche-digitale-bibliothek.de/content/themen/kolonialismus
-                        </a>
-                    </li>
-                    <li>
-                        <strong>Institut für Zeitgeschichte: Digitales Archiv</strong>
-                        <span class="quelle-typ typ-archiv">Archiv</span><br>
-                        <a href="https://www.ifz-muenchen.de/archiv/" target="_blank" rel="noopener noreferrer">
-                            https://www.ifz-muenchen.de/archiv/
-                        </a>
-                    </li>
-                    <li>
-                        <strong>Bundesarchiv Digitalisate</strong>
-                        <span class="quelle-typ typ-archiv">Archiv</span><br>
-                        <a href="https://www.bundesarchiv.de/DE/Navigation/Finden/Digitalisate/digitalisate.html" target="_blank" rel="noopener noreferrer">
-                            https://www.bundesarchiv.de/DE/Navigation/Finden/Digitalisate/digitalisate.html
-                        </a>
-                    </li>
-                </ul>
-            </div>
+            <table class="quellen-tabelle">
+                <thead>
+                    <tr>
+                        <th>Quelle</th>
+                        <th>Beschreibung</th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Bismarck-Briefe</td>
+                        <td>Politische Korrespondenz</td>
+                        <td>
+                            <a href="https://www.bundesarchiv.de/DE/Navigation/Finden/Bestaendeuebersicht/bestaendeuebersicht.html" target="_blank" rel="noopener noreferrer" class="quelle-link">
+                                Bismarck-Papiere – Archiv der BStU
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Wilhelm II. – Aufzeichnungen</td>
+                        <td>Reden und private Notizen</td>
+                        <td>
+                            <a href="https://www.deutschestextarchiv.de/search?q=Wilhelm+II." target="_blank" rel="noopener noreferrer" class="quelle-link">
+                                Wilhelm II. – Dokumentensammlung
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Tagebücher von Zeitzeugen</td>
+                        <td>z.B. Kurt Eisner, Rosa Luxemburg</td>
+                        <td>
+                            <a href="https://www.fes.de/archiv-der-sozialen-demokratie/bestandsuebersicht" target="_blank" rel="noopener noreferrer" class="quelle-link">
+                                Archiv der sozialen Demokratie – FES
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- GRUPPE V: Militärische und justizielle Quellen -->
+        <div class="quellen-gruppe">
+            <h2>V. Militärische und justizielle Quellen</h2>
+            
+            <table class="quellen-tabelle">
+                <thead>
+                    <tr>
+                        <th>Quelle</th>
+                        <th>Beschreibung</th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Schlieffen-Plan</td>
+                        <td>Militärische Strategie</td>
+                        <td>
+                            <a href="https://www.dhm.de/lemo/bestand/objekt/schlieffen-plan-1905.html" target="_blank" rel="noopener noreferrer" class="quelle-link">
+                                Schlieffen-Plan – DHM
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Militärgerichtsakten</td>
+                        <td>Dokumente zu Standgerichten im Ersten Weltkrieg</td>
+                        <td>
+                            <a href="https://www.bundesarchiv.de/DE/Navigation/Finden/Bestaendeuebersicht/bestaendeuebersicht.html" target="_blank" rel="noopener noreferrer" class="quelle-link">
+                                Bundesarchiv Militärgerichtsbarkeit
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Polizeiakten zur politischen Verfolgung</td>
+                        <td>Überlieferungen in Landesarchiven</td>
+                        <td>
+                            <a href="https://www.gsta.spk-berlin.de/" target="_blank" rel="noopener noreferrer" class="quelle-link">
+                                Geheimes Staatsarchiv Preußen
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- ================= THESEN UND QUELLENBEZÜGE ================= -->
+        <div class="quellen-gruppe">
+            <h2>Wie die Quellen die Thesen untermauern</h2>
+            
+            <ul class="these-liste">
+                <li class="these-item">
+                    <div class="these-titel">Obrigkeitsstaat</div>
+                    <div class="these-quellen">Verfassung von 1871 (keine parlamentarische Regierungsverantwortung)</div>
+                </li>
+                <li class="these-item">
+                    <div class="these-titel">Repressionsapparat</div>
+                    <div class="these-quellen">Sozialistengesetz, Polizeiakten, Spitzelberichte</div>
+                </li>
+                <li class="these-item">
+                    <div class="these-titel">Kolonialer Völkermord</div>
+                    <div class="these-quellen">Vernichtungsbefehl von Trotha, Lagerberichte, anthropologische Sammlungen</div>
+                </li>
+                <li class="these-item">
+                    <div class="these-titel">Wahlrechtsungleichheit</div>
+                    <div class="these-quellen">Dreiklassenwahlrecht, Reichstagsdebatten</div>
+                </li>
+                <li class="these-item">
+                    <div class="these-titel">Verantwortung Wilhelm II.</div>
+                    <div class="these-quellen">Seine Reden, Telegramme, Erlass vom 28.10.1918</div>
+                </li>
+                <li class="these-item">
+                    <div class="these-titel">Kontinuität ins NS-Regime</div>
+                    <div class="these-quellen">Personelle und ideologische Verbindungslinien in Akten der Weimarer Justiz und Verwaltung</div>
+                </li>
+                <li class="these-item">
+                    <div class="these-titel">Demokratische Mahnung</div>
+                    <div class="these-quellen">Schlusskapitel des Buches, Bezug zur Gegenwart</div>
+                </li>
+            </ul>
         </div>
 
-        <!-- ================= HINWEIS ZU DIGITALEN QUELLEN ================= -->
+        <!-- ================= HINWEISE ZUR NUTZUNG ================= -->
         <div class="quellen-hinweis">
-            <h3>Hinweise zur Quellennutzung</h3>
-            <p><strong>Digitaler Zugang:</strong> Die hier versammelten Quellen sind überwiegend digital frei zugänglich. Archive wie das Bundesarchiv, die Deutsche Digitale Bibliothek und internationale Forschungseinrichtungen bieten umfangreiche Materialien zur vertiefenden Recherche.</p>
-            <p><strong>Wissenschaftliche Standards:</strong> Alle zitierten Werke entsprechen wissenschaftlichen Standards. Bei Büchern sind sowohl Verlagslinks als auch, wo verfügbar, Links zu digitalen Versionen (z.B. Internet Archive) angegeben.</p>
-            <p><strong>Aktualität:</strong> Die Links wurden zum Zeitpunkt der Veröffentlichung geprüft. Sollte ein Link nicht mehr funktionieren, kann die Quelle meist über Suchmaschinen mit den angegebenen Titeln und Autoren gefunden werden.</p>
-            <p><strong>Zitierweise:</strong> Für wissenschaftliches Arbeiten empfehlen wir die Originalausgaben der angegebenen Werke zu konsultieren und gemäß den gängigen Zitierregeln zu zitieren.</p>
-            <p><strong>Haftungsausschluss:</strong> Diese Website enthält Links zu externen Websites Dritter. Ich habe keinen Einfluss auf deren Inhalte und übernehme keine Haftung. Sollten Ihnen problematische Inhalte auffallen, bitte ich um einen Hinweis.</p>
+            <h3>📌 Hinweise zur Nutzung</h3>
+            <p>Viele der verlinkten Quellen sind primärhistorische Dokumente, die direkt als Beleg für die Buchthesen dienen.</p>
+            <p>Wo keine direkten Online-Links existieren, sind Archivsignaturen oder gedruckte Editionen genannt.</p>
+            <p>Das Buch selbst zitiert aus Archivbeständen in Berlin, Freiburg, Koblenz und regionalen Archiven.</p>
+            <p><strong>Möchten Sie zu einer bestimmten These oder Quelle noch vertiefende Informationen?</strong></p>
         </div>
     </section>
 </main>
