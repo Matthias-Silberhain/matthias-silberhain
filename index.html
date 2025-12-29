@@ -255,15 +255,31 @@
     <div class="lichtkante social-lichtkante"></div>
 </section>
 
-<!-- ================= FOOTER ================= -->
+<!-- Footer - GEÄNDERT: Keine Startseite, nur Impressum und Datenschutz -->
 <footer class="footer">
-    <div class="footer-links">
-        <a href="impressum.html">Impressum</a>
-        <a href="datenschutz.html">Datenschutz</a>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo-wrapper">
+                    <img src="assets/images/logo.png" alt="Logo" class="footer-logo-image">
+                </div>
+                <div class="footer-brand-text">
+                    <h3 class="footer-author-name">MATTHIAS</h3>
+                    <h4 class="footer-author-surname">SILBERHAIN</h4>
+                </div>
+            </div>
+            <div class="footer-info">
+                <p class="copyright">&copy; <span id="currentYear">2025</span> Matthias Silberhain. Alle Rechte vorbehalten.</p>
+                <div class="footer-links">
+                    <!-- GEÄNDERT: Startseite entfernt, nur Impressum und Datenschutz -->
+                    <a href="impressum.html" class="footer-link">Impressum</a>
+                    <span class="footer-separator">|</span>
+                    <a href="datenschutz.html" class="footer-link">Datenschutz</a>
+                </div>
+            </div>
+        </div>
     </div>
-    <p>© <span id="jahr"></span> Matthias Silberhain</p>
 </footer>
-
 <!-- ================= JAVASCRIPT ================= -->
 <script src="assets/js/global.js"></script>
 <script src="assets/js/menu.js"></script>
