@@ -1567,3 +1567,197 @@ body.menu-open {
         z-index: 1000;
     }
 }
+/* ==========================================================================
+   ULTIMATIVE FIXES - MOBILE MENÜ & DARK MODE POSITION
+   ========================================================================== */
+
+/* BURGER MENÜ BASIS */
+.burger {
+    display: none;
+    position: absolute;
+    top: 35px;
+    right: 20px;
+    width: 32px;
+    height: 32px;
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    z-index: 1001;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+}
+
+.burger span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: #cfd2d6;
+    transition: all 0.3s ease;
+    border-radius: 1px;
+}
+
+.burger.aktiv span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+    background-color: #e4e6ea;
+}
+
+.burger.aktiv span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-10px);
+}
+
+.burger.aktiv span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+    background-color: #e4e6ea;
+}
+
+/* DARK MODE TOGGLE POSITION - DESKTOP */
+.dark-mode-toggle {
+    position: absolute;
+    top: 35px;
+    right: 20px;
+    background: transparent;
+    border: 1px solid rgba(200, 205, 215, 0.3);
+    color: #d6d9de;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+/* MENÜ OVERLAY */
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 998;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+}
+
+.menu-overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+/* MOBILE BREAKPOINT */
+@media screen and (max-width: 768px) {
+    /* HEADER LAYOUT MOBILE */
+    .header {
+        padding: 25px 15px 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        min-height: 100px;
+    }
+    
+    /* BURGER SICHTBAR AUF MOBILE */
+    .burger {
+        display: flex !important;
+        top: 30px;
+        right: 20px;
+        z-index: 1002;
+        background: rgba(0, 0, 0, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 4px;
+        padding: 8px;
+    }
+    
+    /* DARK MODE TOGGLE LINKS AUF MOBILE */
+    .dark-mode-toggle {
+        position: absolute;
+        top: 30px;
+        left: 20px;
+        right: auto !important;
+        z-index: 1001;
+    }
+    
+    /* NAVIGATION MOBILE */
+    .hauptnavigation {
+        display: none !important;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: #000000 !important;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding-top: 120px;
+        z-index: 1000;
+        opacity: 0;
+        transform: translateX(-100%);
+        transition: all 0.4s ease;
+        overflow-y: auto;
+    }
+    
+    .hauptnavigation.aktiv {
+        display: flex !important;
+        opacity: 1;
+        transform: translateX(0);
+    }
+    
+    /* MENÜ-LINKS MOBILE */
+    .hauptnavigation a {
+        display: block !important;
+        width: 90%;
+        max-width: 300px;
+        padding: 18px 30px;
+        margin: 10px 0;
+        background: rgba(255, 255, 255, 0.1);
+        color: white !important;
+        text-align: center;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 4px;
+        text-decoration: none;
+        font-size: 1.2rem;
+    }
+    
+    /* LOGO POSITION */
+    .logo {
+        margin: 0 auto;
+        order: 1;
+    }
+    
+    /* BODY SCROLL SPERRE */
+    body.menu-open {
+        overflow: hidden !important;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+/* DESKTOP */
+@media screen and (min-width: 769px) {
+    /* BURGER AUSBLENDEN AUF DESKTOP */
+    .burger {
+        display: none !important;
+    }
+    
+    /* NAVIGATION SICHTBAR AUF DESKTOP */
+    .hauptnavigation {
+        display: flex !important;
+    }
+    
+    /* DARK MODE TOGGLE RECHTS AUF DESKTOP */
+    .dark-mode-toggle {
+        right: 20px !important;
+        left: auto !important;
+    }
+}
