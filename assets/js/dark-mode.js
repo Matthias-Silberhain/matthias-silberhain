@@ -6,22 +6,32 @@ document.addEventListener('DOMContentLoaded', function() {
     const body = document.body;
     
     if (!themeToggle) {
-        console.error('Theme Toggle nicht gefunden');
+        console.error('Theme Toggle Button nicht gefunden!');
         return;
     }
     
-    // Theme initialisieren
+    // Initialisiere Theme
     function initTheme() {
-        // Prüfe Local Storage
+        console.log('Initialisiere Theme');
+        
+        // 1. Prüfe Local Storage
         const savedTheme = localStorage.getItem('silberhain-theme');
+        console.log('Gespeichertes Theme:', savedTheme);
         
-        // Prüfe System-Präferenz
+        // 2. Prüfe System-Präferenz
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        console.log('System-Präferenz:', prefersDark ? 'dark' : 'light');
         
-        // Entscheidungslogik
-        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        // 3. Entscheidung
+        if (savedTheme === 'dark') {
+            enableDarkMode();
+        } else if (savedTheme === 'light') {
+            disableDarkMode();
+        } else if (prefersDark) {
+            // Keine gespeicherte Einstellung, aber System ist dark
             enableDarkMode();
         } else {
+            // Standard: Light Mode
             disableDarkMode();
         }
     }
@@ -30,31 +40,31 @@ document.addEventListener('DOMContentLoaded', function() {
     function enableDarkMode() {
         console.log('Aktiviere Dark Mode');
         body.classList.add('dark-mode');
-        body.classList.remove('light-mode');
         localStorage.setItem('silberhain-theme', 'dark');
         updateToggleIcon(true);
     }
     
-    // Dark Mode deaktivieren
+    // Light Mode aktivieren
     function disableDarkMode() {
         console.log('Aktiviere Light Mode');
         body.classList.remove('dark-mode');
-        body.classList.add('light-mode');
         localStorage.setItem('silberhain-theme', 'light');
         updateToggleIcon(false);
     }
     
-    // Icon aktualisieren
+    // Toggle Icon aktualisieren
     function updateToggleIcon(isDark) {
         const moonIcon = themeToggle.querySelector('.moon-icon');
         const sunIcon = themeToggle.querySelector('.sun-icon');
         
         if (moonIcon && sunIcon) {
             if (isDark) {
+                // Dark Mode aktiv -> Sonne zeigen
                 moonIcon.style.display = 'none';
                 sunIcon.style.display = 'block';
                 themeToggle.setAttribute('aria-label', 'Zum Hellmodus wechseln');
             } else {
+                // Light Mode aktiv -> Mond zeigen
                 moonIcon.style.display = 'block';
                 sunIcon.style.display = 'none';
                 themeToggle.setAttribute('aria-label', 'Zum Dunkelmodus wechseln');
@@ -64,6 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Theme umschalten
     function toggleTheme() {
+        console.log('Toggle Theme geklickt');
         if (body.classList.contains('dark-mode')) {
             disableDarkMode();
         } else {
@@ -74,9 +85,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Event Listener
     themeToggle.addEventListener('click', toggleTheme);
     
-    // System-Themeänderungen überwachen
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-        // Nur ändern wenn kein manueller Theme gespeichert ist
+    // System-Präferenzänderung überwachen
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    mediaQuery.addEventListener('change', (e) => {
+        console.log('System-Theme geändert:', e.matches ? 'dark' : 'light');
+        
+        // Nur ändern wenn noch keine manuelle Einstellung
         if (!localStorage.getItem('silberhain-theme')) {
             if (e.matches) {
                 enableDarkMode();
