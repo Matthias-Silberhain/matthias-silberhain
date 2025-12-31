@@ -1582,3 +1582,123 @@ body.menu-open {
         transition: opacity 0.3s ease, transform 0.3s ease !important;
     }
 }
+/* ==========================================================================
+   KRITISCHE FIXES FÜR MOBILE-MENÜ SICHTBARKEIT
+   ========================================================================== */
+
+/* MENÜ OVERLAY - WICHTIG! */
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 998;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: auto;
+    backdrop-filter: blur(3px);
+}
+
+.menu-overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+/* HAUPTNAVIGATION FIX - WICHTIGSTE KORREKTUR */
+.hauptnavigation {
+    z-index: 999 !important; /* ÜBER dem Overlay */
+}
+
+@media screen and (max-width: 768px) {
+    .hauptnavigation {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100vh !important;
+        background-color: rgba(0, 0, 0, 0.95) !important;
+        backdrop-filter: blur(10px) !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+        align-items: center !important;
+        gap: 0 !important;
+        padding-top: 120px !important;
+        padding-bottom: 40px !important;
+        overflow-y: auto !important;
+        opacity: 0 !important;
+        transform: translateX(-100%) !important;
+        transition: opacity 0.4s ease, transform 0.4s ease !important;
+        z-index: 999 !important;
+        pointer-events: auto !important;
+    }
+    
+    .hauptnavigation.aktiv {
+        opacity: 1 !important;
+        transform: translateX(0) !important;
+        display: flex !important;
+    }
+    
+    /* MENÜ-LINKS SICHTBARKEIT */
+    .hauptnavigation a {
+        font-size: 1.2rem !important;
+        padding: 18px 30px !important;
+        width: 90% !important;
+        max-width: 300px !important;
+        text-align: center !important;
+        border: 1px solid rgba(200, 205, 215, 0.3) !important;
+        border-radius: 4px !important;
+        transition: all 0.3s ease !important;
+        pointer-events: auto !important;
+        margin-bottom: 15px !important;
+        background: rgba(20, 20, 20, 0.8) !important;
+        color: #ffffff !important;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.5) !important;
+        font-weight: 500 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        z-index: 1000 !important;
+        position: relative !important;
+        display: block !important;
+    }
+    
+    .hauptnavigation a:hover {
+        background-color: rgba(200, 205, 215, 0.15) !important;
+        border-color: rgba(200, 205, 215, 0.6) !important;
+        transform: translateY(-3px) !important;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3) !important;
+    }
+    
+    /* BURGER BUTTON FIX */
+    .burger {
+        z-index: 1001 !important; /* ÜBER allem */
+        background: rgba(0, 0, 0, 0.7) !important;
+        border-radius: 4px !important;
+        padding: 8px !important;
+        border: 1px solid rgba(200, 205, 215, 0.3) !important;
+    }
+    
+    /* DARK MODE TOGGLE FIX */
+    .dark-mode-toggle {
+        z-index: 1000 !important;
+    }
+    
+    /* BODY SCROLL SPERREN */
+    body.menu-open,
+    body:has(.hauptnavigation.aktiv) {
+        overflow: hidden !important;
+        position: fixed !important;
+        width: 100% !important;
+        height: 100% !important;
+    }
+}
+
+/* FALLBACK FÜR ÄLTERE BROWSER */
+@supports not (backdrop-filter: blur(10px)) {
+    .hauptnavigation {
+        background-color: rgba(0, 0, 0, 0.98) !important;
+    }
+}
