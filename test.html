@@ -1,1660 +1,259 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <title>Matthias Silberhain | Werke</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Werke von Matthias Silberhain - Historische Analysen mit wissenschaftlichem Anspruch">
-  
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
-  
-  <!-- CSS -->
-  <link rel="stylesheet" href="assets/css/style.css">
-  
-  <!-- Favicon -->
-  <link rel="icon" href="assets/images/logo.png" type="image/png">
-  
-  <!-- Font Awesome for Stars -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- Dark Mode Preload -->
-  <script>
-    (function() {
-      // SOFORTIGE DARK MODE ANWENDUNG
-      try {
-        const savedTheme = localStorage.getItem('ms-theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        
-        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-          document.documentElement.classList.add('dark-mode');
-          document.body.classList.add('dark-mode');
-        }
-      } catch(e) {
-        // Ignoriere Fehler
-      }
-      
-      // SOFORTIGE KLICKBARKEIT SICHERSTELLEN
-      document.addEventListener('DOMContentLoaded', function() {
-        const interactiveElements = ['button', 'a', '.burger', '.dark-mode-toggle', '.silber-button', '.social-link', '.seriöser-button', '.carousel-button', '.carousel-slide', '.star-rating', '.comment-tag', '.bewertung-submit'];
-        
-        setTimeout(function() {
-          interactiveElements.forEach(selector => {
-            document.querySelectorAll(selector).forEach(el => {
-              el.style.pointerEvents = 'auto';
-              el.style.cursor = 'pointer';
+    <meta charset="UTF-8">
+    <title>Matthias Silberhain | Startseite</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Matthias Silberhain - Autor zu Macht, Verantwortung und gesellschaftlichen Mechanismen">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/logo.png" type="image/png">
+    
+    <!-- Dark Mode Preload - KORRIGIERT -->
+    <script>
+        (function() {
+            // SOFORTIGE DARK MODE ANWENDUNG
+            try {
+                const savedTheme = localStorage.getItem('ms-theme');
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                
+                if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                    document.documentElement.classList.add('dark-mode');
+                    document.body.classList.add('dark-mode');
+                }
+            } catch(e) {
+                // Ignoriere Fehler
+            }
+            
+            // SOFORTIGE KLICKBARKEIT SICHERSTELLEN
+            document.addEventListener('DOMContentLoaded', function() {
+                // Alle interaktiven Elemente klickbar machen
+                const interactiveElements = ['button', 'a', '.burger', '.dark-mode-toggle', '.silber-button', '.social-link'];
+                
+                setTimeout(function() {
+                    interactiveElements.forEach(selector => {
+                        document.querySelectorAll(selector).forEach(el => {
+                            el.style.pointerEvents = 'auto';
+                            el.style.cursor = 'pointer';
+                        });
+                    });
+                    
+                    // Preloader nicht blockierend
+                    const preloader = document.getElementById('preloader');
+                    if (preloader) {
+                        preloader.style.pointerEvents = 'none';
+                        preloader.style.zIndex = '9990';
+                    }
+                    
+                    console.log('✅ Website ist jetzt voll klickbar!');
+                }, 100);
             });
-          });
-          
-          // Copyright Jahr sofort setzen
-          const yearElement = document.getElementById('jahr');
-          if (yearElement && !yearElement.textContent) {
-            yearElement.textContent = new Date().getFullYear();
-          }
-          
-          console.log('✅ Website ist jetzt voll klickbar!');
-        }, 100);
-      });
-    })();
-  </script>
-  
-  <style>
-    /* ==========================================================================
-       WERKE SEITE STYLES - MIT BILDKARUSSELL UND BEWERTUNGSSYSTEM
-       ========================================================================== */
-    
-    .werke-container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-    
-    .werke-header {
-      text-align: center;
-      margin-bottom: 40px;
-      padding-bottom: 30px;
-      border-bottom: 1px solid rgba(200, 205, 215, 0.2);
-    }
-    
-    .werke-header h1 {
-      margin-bottom: 15px;
-      font-family: "Cinzel", serif;
-      color: #e4e6ea;
-      font-size: 2.5rem;
-      letter-spacing: 0.08em;
-      text-shadow: 0 0 15px rgba(200, 200, 200, 0.2);
-    }
-    
-    .werke-subtitle {
-      color: #9da2a8;
-      font-size: 1.1rem;
-      font-style: italic;
-      max-width: 600px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    
-    /* ================= BILDKARUSSELL STYLES ================= */
-    .karussell-section {
-      margin: 40px 0 80px 0;
-      text-align: center;
-    }
-    
-    .karussell-title {
-      font-family: "Cinzel", serif;
-      color: #e4e6ea;
-      font-size: 1.6rem;
-      margin-bottom: 40px;
-      letter-spacing: 0.05em;
-      text-shadow: 0 0 10px rgba(200, 200, 200, 0.2);
-      position: relative;
-      padding-bottom: 15px;
-    }
-    
-    .karussell-title::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100px;
-      height: 1px;
-      background: linear-gradient(90deg, 
-        transparent, 
-        rgba(200, 200, 200, 0.5) 50%, 
-        transparent);
-    }
-    
-    .karussell-container {
-      position: relative;
-      max-width: 800px;
-      margin: 0 auto;
-      overflow: hidden;
-      border-radius: 8px;
-      padding: 10px;
-    }
-    
-    .karussell-track {
-      display: flex;
-      transition: transform 0.5s ease-in-out;
-      gap: 20px;
-    }
-    
-    .karussell-slide {
-      flex: 0 0 280px;
-      height: 380px;
-      position: relative;
-      transition: all 0.3s ease;
-      opacity: 0.9;
-      border-radius: 4px;
-      overflow: hidden;
-    }
-    
-    .karussell-slide:hover {
-      transform: translateY(-10px);
-      opacity: 1;
-      box-shadow: 
-        0 15px 35px rgba(0, 0, 0, 0.5),
-        0 0 25px rgba(200, 200, 200, 0.2);
-    }
-    
-    .karussell-link {
-      display: block;
-      width: 100%;
-      height: 100%;
-      text-decoration: none;
-      position: relative;
-    }
-    
-    .karussell-image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 4px;
-      border: 1px solid rgba(200, 200, 200, 0.1);
-      transition: all 0.3s ease;
-    }
-    
-    .karussell-link:hover .karussell-image {
-      border-color: rgba(200, 200, 200, 0.4);
-      filter: brightness(1.05);
-    }
-    
-    .karussell-overlay {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: linear-gradient(to top, 
-        rgba(0, 0, 0, 0.9) 0%, 
-        rgba(0, 0, 0, 0.7) 50%, 
-        transparent 100%);
-      padding: 25px 20px 20px;
-      text-align: center;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.3s ease;
-    }
-    
-    .karussell-slide:hover .karussell-overlay {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    
-    .karussell-buchtitel {
-      font-family: "Cinzel", serif;
-      color: #ffffff;
-      font-size: 1.1rem;
-      margin-bottom: 5px;
-      letter-spacing: 0.03em;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.8);
-    }
-    
-    .karussell-beschreibung {
-      color: #b0b5bc;
-      font-size: 0.9rem;
-      line-height: 1.4;
-      margin: 0;
-      font-style: italic;
-    }
-    
-    .karussell-button {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0, 0, 0, 0.7);
-      border: 1px solid rgba(200, 200, 200, 0.3);
-      color: #ffffff;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      transition: all 0.3s ease;
-      z-index: 10;
-      backdrop-filter: blur(5px);
-    }
-    
-    .karussell-button:hover {
-      background: rgba(200, 200, 200, 0.2);
-      border-color: rgba(200, 200, 200, 0.6);
-      transform: translateY(-50%) scale(1.1);
-    }
-    
-    .karussell-button.prev {
-      left: 10px;
-    }
-    
-    .karussell-button.next {
-      right: 10px;
-    }
-    
-    .karussell-indicators {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 30px;
-    }
-    
-    .karussell-indicator {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: rgba(200, 200, 200, 0.2);
-      border: 1px solid rgba(200, 200, 200, 0.3);
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    
-    .karussell-indicator.active {
-      background: rgba(200, 200, 200, 0.8);
-      border-color: rgba(200, 200, 200, 1);
-      transform: scale(1.2);
-    }
-    
-    .karussell-indicator:hover {
-      background: rgba(200, 200, 200, 0.5);
-    }
-    
-    /* ================= AKTUELLES WERK - KORRIGIERT & ZENTRIERT ================= */
-    .aktuelles-werk {
-      text-align: center;
-      margin: 80px 0 60px 0;
-      padding: 40px 20px;
-      border-top: 1px solid rgba(200, 205, 215, 0.2);
-      border-bottom: 1px solid rgba(200, 205, 215, 0.2);
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .aktuelles-werk h2 {
-      font-family: "Cinzel", serif;
-      color: #e4e6ea;
-      font-size: 1.8rem;
-      margin-bottom: 10px;
-      letter-spacing: 0.05em;
-      text-align: center;
-      width: 100%;
-    }
-
-    .aktuelles-subtitle {
-      color: #9da2a8;
-      font-size: 1.1rem;
-      margin-bottom: 30px;
-      text-align: center;
-      width: 100%;
-      font-style: italic;
-    }
-
-    .hinweis-box {
-      background: rgba(200, 205, 215, 0.05);
-      border: 1px solid rgba(200, 205, 215, 0.15);
-      border-radius: 6px;
-      padding: 18px 25px;
-      color: #b0b5bc;
-      font-size: 1rem;
-      text-align: center;
-      max-width: 600px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      line-height: 1.5;
-    }
-
-    .hinweis-box svg {
-      flex-shrink: 0;
-    }
-
-    .hinweis-box span {
-      text-align: center;
-      display: inline-block;
-    }
-    
-    /* ================= AKTUELLES PROJEKT STYLES ================= */
-    .aktuelles-projekt {
-      margin: 80px 0;
-      padding: 50px 40px;
-      background: rgba(10, 10, 10, 0.7);
-      border: 1px solid rgba(200, 205, 215, 0.15);
-      border-radius: 10px;
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .aktuelles-projekt::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, 
-        rgba(200, 205, 215, 0) 0%, 
-        rgba(200, 205, 215, 0.8) 50%, 
-        rgba(200, 205, 215, 0) 100%);
-    }
-    
-    .projekt-header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-    
-    .projekt-title {
-      font-family: "Cinzel", serif;
-      color: #e4e6ea;
-      font-size: 2.2rem;
-      margin-bottom: 10px;
-      letter-spacing: 0.06em;
-      text-shadow: 0 0 15px rgba(200, 200, 200, 0.2);
-    }
-    
-    .projekt-subtitle {
-      font-family: "EB Garamond", serif;
-      color: #b0b5bc;
-      font-size: 1.4rem;
-      font-style: italic;
-      margin-bottom: 30px;
-    }
-    
-    .projekt-content {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 40px;
-      align-items: flex-start;
-      margin-bottom: 40px;
-    }
-    
-    .projekt-cover-container {
-      flex: 1;
-      min-width: 280px;
-      text-align: center;
-    }
-    
-    .projekt-cover-rahmen {
-      display: inline-block;
-      padding: 15px;
-      background: rgba(20, 20, 20, 0.9);
-      border: 1px solid rgba(200, 205, 215, 0.2);
-      border-radius: 6px;
-      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5);
-      transition: all 0.3s ease;
-      position: sticky;
-      top: 20px;
-    }
-    
-    .projekt-cover-rahmen:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 45px rgba(0, 0, 0, 0.6);
-    }
-    
-    .projekt-cover {
-      width: 280px;
-      height: auto;
-      display: block;
-      border-radius: 4px;
-      border: 1px solid rgba(200, 205, 215, 0.1);
-    }
-    
-    .projekt-info {
-      flex: 2;
-      min-width: 300px;
-    }
-    
-    .projekt-beschreibung {
-      color: #b0b5bc;
-      font-size: 1.15rem;
-      line-height: 1.8;
-    }
-    
-    .projekt-beschreibung p {
-      margin-bottom: 20px;
-      text-indent: 0;
-    }
-    
-    .projekt-beschreibung strong {
-      color: #e4e6ea;
-      font-weight: 600;
-    }
-    
-    .projekt-details {
-      background: rgba(200, 205, 215, 0.05);
-      border: 1px solid rgba(200, 205, 215, 0.1);
-      border-radius: 8px;
-      padding: 25px;
-      margin-top: 30px;
-    }
-    
-    .projekt-details-title {
-      font-family: "Cinzel", serif;
-      color: #e4e6ea;
-      font-size: 1.1rem;
-      margin-bottom: 15px;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-    
-    .projekt-details-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    
-    .projekt-details-list li {
-      margin-bottom: 12px;
-      color: #b0b5bc;
-      font-size: 1rem;
-      display: flex;
-      align-items: flex-start;
-      line-height: 1.5;
-    }
-    
-    .projekt-details-list li::before {
-      content: '→';
-      color: rgba(200, 205, 215, 0.6);
-      margin-right: 10px;
-      font-weight: bold;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-    
-    .projekt-status {
-      text-align: center;
-      padding: 25px;
-      background: rgba(200, 205, 215, 0.03);
-      border: 1px dashed rgba(200, 205, 215, 0.2);
-      border-radius: 8px;
-      margin-top: 40px;
-    }
-    
-    .status-title {
-      font-family: "Cinzel", serif;
-      color: #e4e6ea;
-      font-size: 1.1rem;
-      margin-bottom: 15px;
-      letter-spacing: 0.05em;
-    }
-    
-    .status-zeitplan {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 20px;
-      flex-wrap: wrap;
-      margin-bottom: 20px;
-    }
-    
-    .status-zeitplan-item {
-      text-align: center;
-      padding: 15px 25px;
-      background: rgba(200, 205, 215, 0.05);
-      border: 1px solid rgba(200, 205, 215, 0.15);
-      border-radius: 6px;
-      min-width: 150px;
-    }
-    
-    .status-label {
-      color: #9da2a8;
-      font-size: 0.9rem;
-      margin-bottom: 8px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    
-    .status-value {
-      font-family: "Cinzel", serif;
-      color: #ffffff;
-      font-size: 1.5rem;
-      font-weight: 600;
-    }
-    
-    .status-fortschritt {
-      margin-top: 20px;
-    }
-    
-    .fortschritt-bar {
-      height: 6px;
-      background: rgba(200, 205, 215, 0.1);
-      border-radius: 3px;
-      overflow: hidden;
-      margin-bottom: 10px;
-    }
-    
-    .fortschritt-fill {
-      height: 100%;
-      background: linear-gradient(90deg, rgba(200, 205, 215, 0.5), rgba(200, 205, 215, 0.8));
-      width: 65%;
-      border-radius: 3px;
-      position: relative;
-      animation: fortschrittPulse 2s infinite ease-in-out;
-    }
-    
-    @keyframes fortschrittPulse {
-      0% { opacity: 0.9; }
-      50% { opacity: 1; }
-      100% { opacity: 0.9; }
-    }
-    
-    .fortschritt-text {
-      color: #b0b5bc;
-      font-size: 0.95rem;
-      display: flex;
-      justify-content: space-between;
-    }
-    
-    .fortschritt-prozent {
-      color: #ffffff;
-      font-weight: 600;
-    }
-    
-    /* ================= BEWERTUNGSSYSTEM STYLES ================= */
-    .bewertungssystem {
-      margin: 80px 0;
-      padding: 40px;
-      background: rgba(10, 10, 10, 0.7);
-      border: 1px solid rgba(200, 205, 215, 0.15);
-      border-radius: 8px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    }
-    
-    .bewertung-title {
-      font-family: "Cinzel", serif;
-      color: #e4e6ea;
-      font-size: 2rem;
-      text-align: center;
-      margin-bottom: 40px;
-      letter-spacing: 0.05em;
-      position: relative;
-      padding-bottom: 15px;
-    }
-    
-    .bewertung-title::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 150px;
-      height: 2px;
-      background: linear-gradient(90deg, 
-        transparent, 
-        rgba(200, 200, 200, 0.5) 50%, 
-        transparent);
-    }
-    
-    .buchauswahl-container {
-      margin-bottom: 40px;
-      text-align: center;
-    }
-    
-    .buchauswahl-title {
-      font-family: "EB Garamond", serif;
-      color: #d6d9de;
-      font-size: 1.3rem;
-      margin-bottom: 20px;
-      font-weight: 500;
-    }
-    
-    .buchauswahl-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-      margin-bottom: 30px;
-    }
-    
-    .buchauswahl-item {
-      padding: 20px;
-      background: rgba(200, 205, 215, 0.05);
-      border: 1px solid rgba(200, 205, 215, 0.2);
-      border-radius: 6px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-align: center;
-    }
-    
-    .buchauswahl-item:hover {
-      background: rgba(200, 205, 215, 0.1);
-      border-color: rgba(200, 205, 215, 0.4);
-      transform: translateY(-5px);
-    }
-    
-    .buchauswahl-item.selected {
-      background: rgba(200, 205, 215, 0.15);
-      border-color: rgba(200, 205, 215, 0.6);
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
-    }
-    
-    .buchauswahl-cover {
-      width: 80px;
-      height: 110px;
-      object-fit: cover;
-      border-radius: 4px;
-      margin-bottom: 15px;
-      border: 1px solid rgba(200, 205, 215, 0.2);
-    }
-    
-    .buchauswahl-name {
-      font-family: "Cinzel", serif;
-      color: #e4e6ea;
-      font-size: 1rem;
-      margin-bottom: 5px;
-    }
-    
-    /* Sternebewertung */
-    .sternebewertung-container {
-      margin-bottom: 40px;
-      text-align: center;
-      padding: 30px;
-      background: rgba(200, 205, 215, 0.03);
-      border-radius: 8px;
-    }
-    
-    .sternebewertung-title {
-      font-family: "EB Garamond", serif;
-      color: #d6d9de;
-      font-size: 1.3rem;
-      margin-bottom: 25px;
-      font-weight: 500;
-    }
-    
-    .star-rating {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 20px;
-      direction: rtl; /* Für bessere UX: von rechts nach links */
-    }
-    
-    .star-rating input {
-      display: none;
-    }
-    
-    .star-rating label {
-      font-size: 2.5rem;
-      color: rgba(200, 200, 200, 0.3);
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    
-    .star-rating label:hover,
-    .star-rating label:hover ~ label,
-    .star-rating input:checked ~ label {
-      color: #ffc107;
-    }
-    
-    .sterne-text {
-      color: #b0b5bc;
-      font-size: 1.1rem;
-      margin-top: 15px;
-      min-height: 25px;
-    }
-    
-    /* Kommentarauswahl */
-    .kommentarauswahl-container {
-      margin-bottom: 40px;
-    }
-    
-    .kommentarauswahl-title {
-      font-family: "EB Garamond", serif;
-      color: #d6d9de;
-      font-size: 1.3rem;
-      margin-bottom: 20px;
-      font-weight: 500;
-      text-align: center;
-    }
-    
-    .kommentar-tags {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-      margin-bottom: 30px;
-    }
-    
-    .comment-tag {
-      padding: 12px 24px;
-      background: rgba(200, 205, 215, 0.05);
-      border: 1px solid rgba(200, 205, 215, 0.2);
-      color: #b0b5bc;
-      border-radius: 30px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-size: 0.95rem;
-    }
-    
-    .comment-tag:hover {
-      background: rgba(200, 205, 215, 0.1);
-      border-color: rgba(200, 205, 215, 0.4);
-    }
-    
-    .comment-tag.selected {
-      background: rgba(200, 205, 215, 0.15);
-      border-color: rgba(200, 205, 215, 0.6);
-      color: #ffffff;
-    }
-    
-    /* Eigener Kommentar */
-    .eigener-kommentar-container {
-      margin-bottom: 40px;
-    }
-    
-    .eigener-kommentar-title {
-      font-family: "EB Garamond", serif;
-      color: #d6d9de;
-      font-size: 1.3rem;
-      margin-bottom: 15px;
-      font-weight: 500;
-    }
-    
-    .eigener-kommentar-input {
-      width: 100%;
-      padding: 15px;
-      background: rgba(200, 205, 215, 0.05);
-      border: 1px solid rgba(200, 205, 215, 0.2);
-      border-radius: 6px;
-      color: #e4e6ea;
-      font-family: "EB Garamond", serif;
-      font-size: 1.1rem;
-      resize: vertical;
-      min-height: 120px;
-    }
-    
-    .eigener-kommentar-input:focus {
-      outline: none;
-      border-color: rgba(200, 205, 215, 0.6);
-      background: rgba(200, 205, 215, 0.08);
-    }
-    
-    /* Absenden Button */
-    .bewertung-submit-container {
-      text-align: center;
-      margin-top: 40px;
-    }
-    
-    .bewertung-submit {
-      padding: 16px 50px;
-      background: rgba(200, 205, 215, 0.1);
-      border: 1px solid rgba(200, 205, 215, 0.3);
-      color: #e4e6ea;
-      border-radius: 4px;
-      font-family: "Cinzel", serif;
-      letter-spacing: 0.08em;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    
-    .bewertung-submit:hover {
-      background: rgba(200, 205, 215, 0.2);
-      border-color: rgba(200, 205, 215, 0.6);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-    }
-    
-    .bewertung-submit:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-      transform: none;
-    }
-    
-    /* Gesamtbewertungen */
-    .gesamtbewertungen-container {
-      margin-top: 80px;
-      padding-top: 40px;
-      border-top: 1px solid rgba(200, 205, 215, 0.2);
-    }
-    
-    .gesamtbewertungen-title {
-      font-family: "Cinzel", serif;
-      color: #e4e6ea;
-      font-size: 1.8rem;
-      text-align: center;
-      margin-bottom: 40px;
-      letter-spacing: 0.05em;
-    }
-    
-    .gesamtbewertungen-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 25px;
-    }
-    
-    .gesamtbewertung-item {
-      padding: 25px;
-      background: rgba(200, 205, 215, 0.05);
-      border: 1px solid rgba(200, 205, 215, 0.15);
-      border-radius: 8px;
-      text-align: center;
-    }
-    
-    .gesamtbewertung-cover {
-      width: 70px;
-      height: 95px;
-      object-fit: cover;
-      border-radius: 4px;
-      margin-bottom: 20px;
-      border: 1px solid rgba(200, 205, 215, 0.2);
-    }
-    
-    .gesamtbewertung-name {
-      font-family: "Cinzel", serif;
-      color: #e4e6ea;
-      font-size: 1.1rem;
-      margin-bottom: 15px;
-    }
-    
-    .gesamtbewertung-stars {
-      font-size: 1.5rem;
-      color: #ffc107;
-      margin-bottom: 10px;
-      letter-spacing: 3px;
-    }
-    
-    .gesamtbewertung-rating {
-      font-size: 1.8rem;
-      color: #ffffff;
-      font-weight: 600;
-      margin-bottom: 5px;
-    }
-    
-    .gesamtbewertung-count {
-      color: #9da2a8;
-      font-size: 0.9rem;
-      margin-bottom: 15px;
-    }
-    
-    .gesamtbewertung-kommentare {
-      margin-top: 20px;
-      text-align: left;
-    }
-    
-    .gesamtbewertung-kommentare-title {
-      font-family: "EB Garamond", serif;
-      color: #d6d9de;
-      font-size: 1rem;
-      margin-bottom: 10px;
-      font-weight: 500;
-    }
-    
-    .gesamtbewertung-kommentar {
-      background: rgba(200, 205, 215, 0.05);
-      padding: 10px 15px;
-      border-radius: 6px;
-      margin-bottom: 10px;
-      color: #b0b5bc;
-      font-size: 0.95rem;
-      line-height: 1.5;
-    }
-    
-    /* Erfolgsmeldung */
-    .erfolgsmeldung {
-      background: rgba(100, 200, 100, 0.1);
-      border: 1px solid rgba(100, 200, 100, 0.3);
-      color: #a0e0a0;
-      padding: 20px;
-      border-radius: 6px;
-      margin-bottom: 30px;
-      text-align: center;
-      display: none;
-    }
-    
-    /* ================= DARK MODE ANPASSUNGEN ================= */
-    body.dark-mode .aktuelles-projekt {
-      background: rgba(30, 30, 30, 0.8);
-      border-color: rgba(220, 225, 235, 0.2);
-    }
-    
-    body.dark-mode .projekt-cover-rahmen {
-      background: rgba(40, 40, 40, 0.9);
-      border-color: rgba(220, 225, 235, 0.25);
-    }
-    
-    body.dark-mode .projekt-details {
-      background: rgba(220, 225, 235, 0.05);
-      border-color: rgba(220, 225, 235, 0.15);
-    }
-    
-    body.dark-mode .status-zeitplan-item {
-      background: rgba(220, 225, 235, 0.05);
-      border-color: rgba(220, 225, 235, 0.2);
-    }
-    
-    body.dark-mode .projekt-status {
-      background: rgba(220, 225, 235, 0.03);
-      border-color: rgba(220, 225, 235, 0.25);
-    }
-    
-    body.dark-mode .bewertungssystem {
-      background: rgba(30, 30, 30, 0.8);
-      border-color: rgba(220, 225, 235, 0.2);
-    }
-    
-    body.dark-mode .buchauswahl-item {
-      background: rgba(220, 225, 235, 0.05);
-      border-color: rgba(220, 225, 235, 0.2);
-    }
-    
-    body.dark-mode .buchauswahl-item.selected {
-      background: rgba(220, 225, 235, 0.15);
-      border-color: rgba(220, 225, 235, 0.6);
-    }
-    
-    body.dark-mode .comment-tag {
-      background: rgba(220, 225, 235, 0.05);
-      border-color: rgba(220, 225, 235, 0.2);
-    }
-    
-    body.dark-mode .comment-tag.selected {
-      background: rgba(220, 225, 235, 0.15);
-      border-color: rgba(220, 225, 235, 0.6);
-    }
-    
-    body.dark-mode .eigener-kommentar-input {
-      background: rgba(220, 225, 235, 0.05);
-      border-color: rgba(220, 225, 235, 0.2);
-    }
-    
-    body.dark-mode .gesamtbewertung-item {
-      background: rgba(220, 225, 235, 0.05);
-      border-color: rgba(220, 225, 235, 0.15);
-    }
-    
-    /* ================= RESPONSIVE ANPASSUNGEN ================= */
-    @media screen and (max-width: 768px) {
-      .aktuelles-projekt {
-        padding: 30px 20px;
-        margin: 40px 0;
-      }
-      
-      .projekt-content {
-        flex-direction: column;
-        gap: 30px;
-      }
-      
-      .projekt-title {
-        font-size: 1.8rem;
-      }
-      
-      .projekt-subtitle {
-        font-size: 1.2rem;
-      }
-      
-      .projekt-cover-rahmen {
-        position: static;
-      }
-      
-      .projekt-cover {
-        width: 240px;
-      }
-      
-      .status-zeitplan {
-        flex-direction: column;
-        gap: 15px;
-      }
-      
-      .status-zeitplan-item {
-        min-width: 100%;
-      }
-      
-      .bewertungssystem {
-        padding: 25px 15px;
-        margin: 40px 0;
-      }
-      
-      .bewertung-title {
-        font-size: 1.7rem;
-      }
-      
-      .buchauswahl-grid {
-        grid-template-columns: 1fr;
-        gap: 15px;
-      }
-      
-      .star-rating label {
-        font-size: 2rem;
-      }
-      
-      .kommentar-tags {
-        flex-direction: column;
-        align-items: center;
-      }
-      
-      .comment-tag {
-        width: 100%;
-        max-width: 300px;
-        text-align: center;
-      }
-      
-      .gesamtbewertungen-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
-      
-      .karussell-slide {
-        flex: 0 0 250px;
-        height: 340px;
-      }
-      
-      .aktuelles-werk {
-        padding: 30px 15px;
-        margin: 60px 0 40px 0;
-      }
-    }
-    
-    @media screen and (max-width: 480px) {
-      .projekt-title {
-        font-size: 1.6rem;
-      }
-      
-      .projekt-subtitle {
-        font-size: 1.1rem;
-      }
-      
-      .projekt-cover {
-        width: 200px;
-      }
-      
-      .star-rating label {
-        font-size: 1.8rem;
-      }
-      
-      .bewertung-title {
-        font-size: 1.5rem;
-      }
-      
-      .karussell-slide {
-        flex: 0 0 220px;
-        height: 300px;
-      }
-    }
-  </style>
+        })();
+    </script>
 </head>
 
 <body>
+
+<!-- Preloader -->
+<div id="preloader">
+    <div class="preloader-inner">
+        <img src="assets/images/logo.png" alt="Logo" class="preloader-logo">
+        <div class="text-container">
+            <h1 class="preloader-text">
+                <span id="type-text"></span>
+                <span class="cursor"></span>
+            </h1>
+        </div>
+    </div>
+</div>
 
 <!-- Mobile Menu Overlay -->
 <div class="menu-overlay" id="menuOverlay"></div>
 
 <!-- ================= HEADER ================= -->
 <header class="header">
-  <img src="assets/images/logo.png" alt="Matthias Silberhain Logo" class="logo">
-  
-  <!-- Dark Mode Toggle Button -->
-  <button id="darkModeToggle" class="dark-mode-toggle" aria-label="Dark Mode umschalten" title="Dark Mode umschalten">
-    <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-    </svg>
-    <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="12" cy="12" r="5"></circle>
-      <line x1="12" y1="1" x2="12" y2="3"></line>
-      <line x1="12" y1="21" x2="12" y2="23"></line>
-      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-      <line x1="1" y1="12" x2="3" y2="12"></line>
-      <line x1="21" y1="12" x2="23" y2="12"></line>
-      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-    </svg>
-  </button>
+    <img src="assets/images/logo.png" alt="Matthias Silberhain Logo" class="logo">
+    
+    <!-- Dark Mode Toggle Button -->
+    <button id="darkModeToggle" class="dark-mode-toggle" aria-label="Dark Mode umschalten" title="Dark Mode umschalten">
+        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+    </button>
 
-  <div class="burger" id="burger" title="Menü öffnen/schließen">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
+    <div class="burger" id="burger" title="Menü öffnen/schließen">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
 
-  <nav class="hauptnavigation" id="navigation">
-    <a href="index.html">Startseite</a>
-    <a href="ueber-mich.html">Über mich</a>
-    <a href="werke.html" class="active">Werke</a>
-    <a href="termine.html">Termine</a>
-    <a href="kontakt.html">Kontakt</a>
-  </nav>
+    <nav class="hauptnavigation" id="navigation">
+        <a href="index.html" class="active">Startseite</a>
+        <a href="ueber-mich.html">Über mich</a>
+        <a href="werke.html">Werke</a>
+        <a href="termine.html">Termine</a>
+        <a href="kontakt.html">Kontakt</a>
+    </nav>
 </header>
 
 <div class="lichtkante"></div>
 
-<!-- ================= WERKE INHALT ================= -->
+<!-- ================= HAUPTINHALT ================= -->
 <main class="inhalt">
-  <section class="werke-container">
-    <!-- Überschrift -->
-    <div class="werke-header">
-      <h1>Werke</h1>
-      <p class="werke-subtitle">Historische Analysen mit wissenschaftlichem Anspruch</p>
-    </div>
-    
-    <!-- BILDKARUSSELL FÜR ALLE BÜCHER -->
-    <div class="karussell-section">
-      <h2 class="karussell-title">Alle Werke im Überblick</h2>
-      <div class="karussell-container" id="buchKarussell">
-        <button class="karussell-button prev" aria-label="Vorheriges Buch">‹</button>
+    <section class="startseite">
+        <!-- HAUPTTITEL -->
+        <div class="credo-container">
+  <div class="credo-quote-wrapper">
+    <div class="credo-quote">
+      <p class="quote-text kalligrafie-text">Wenn Wahrheit unbequem wird, braucht sie eine Stimme.</p>
+    </div> 
         
-        <div class="karussell-track" id="karussellTrack">
-          <!-- Slide 1: Der lange Weg in die Finsternis -->
-          <div class="karussell-slide">
-            <a href="derlangewegindiefinsternis.html" class="karussell-link">
-              <img src="assets/images/derlangewegindiefinsternis.png" 
-                   alt="Der lange Weg in die Finsternis" 
-                   class="karussell-image">
-              <div class="karussell-overlay">
-                <h3 class="karussell-buchtitel">Der lange Weg in die Finsternis</h3>
-                <p class="karussell-beschreibung">Wie das Kaiserreich den Nationalsozialismus vorbereitete</p>
-              </div>
+        <!-- EINLEITUNGSTEXT -->
+        <div class="einleitung">
+            <p class="lead-text">
+<br>Diese Seite ist kein Ort für einfache Antworten oder beruhigende Geschichten.<br>            
+            </p>
+            
+            <p class="sub-lead-text">
+                Hier geht es um Macht, Verantwortung und die Fragen, die selten laut gestellt werden.<br>
+                Um historische Spuren, gesellschaftliche Strukturen und Entscheidungen, deren Folgen bis heute nachwirken.
+            </p>
+        </div>
+        
+        <!-- KERNINHALT -->
+        <div class="kerninhalt">
+            <p>
+                Ich schreibe über das, was unter der Oberfläche liegt. Über Mechanismen, die oft unsichtbar bleiben, aber unser Zusammenleben prägen. Meine Bücher sind das Ergebnis intensiver Recherche und kritischer Analyse – keine Unterhaltung, sondern Auseinandersetzung.
+            </p>
+            
+            <p class="highlight">
+                Literatur mit Haltung, Tiefe und Substanz. Für Leser, die bereit sind, genauer hinzusehen.
+            </p>
+            
+            <p>
+                In einer Zeit, in der Komplexität oft vereinfacht wird, halte ich es für notwendig, genau hinzuschauen. Meine Texte sollen nicht nur informieren, sondern zum Denken anregen. Sie stellen Fragen, wo andere Antworten vorgeben. Sie zeigen Zusammenhänge, wo andere isolieren.
+            </p>
+            
+            <p class="zitat">
+                "Ich schreibe, weil die Wahrheit eine Stimme braucht."<br>
+                <span class="zitat-autor">– Matthias Silberhain</span>
+            </p>
+            
+            <p>
+                Auf diesen Seiten finden Sie Einblicke in meine Arbeit, Informationen zu aktuellen Projekten und die Möglichkeit, mit mir in Kontakt zu treten. Willkommen bei Matthias Silberhain.
+            </p>
+        </div>
+        
+        <!-- CTA Buttons -->
+        <div class="cta-container">
+            <a href="werke.html" class="silber-button">
+                <span>Meine Werke entdecken</span>
+                <svg class="button-arrow" viewBox="0 0 24 24">
+                    <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+                </svg>
             </a>
-          </div>
-          
-          <!-- Slide 2: Macht und Untergang -->
-          <div class="karussell-slide">
-            <a href="machtunduntergang.html" class="karussell-link">
-              <img src="assets/images/machtunduntergang.png" 
-                   alt="Macht und Untergang" 
-                   class="karussell-image">
-              <div class="karussell-overlay">
-                <h3 class="karussell-buchtitel">Macht und Untergang</h3>
-                <p class="karussell-beschreibung">Die endgültige Geschichte des Dritten Reiches</p>
-              </div>
+            <a href="ueber-mich.html" class="silber-button secondary">
+                <span>Über den Autor</span>
             </a>
-          </div>
-          
-          <!-- Slide 3: Blut und Krone -->
-          <div class="karussell-slide">
-            <a href="blutundkrone.html" class="karussell-link">
-              <img src="assets/images/blutundkrone.png" 
-                   alt="Blut und Krone" 
-                   class="karussell-image">
-              <div class="karussell-overlay">
-                <h3 class="karussell-buchtitel">Blut und Krone</h3>
-                <p class="karussell-beschreibung">Die verborgenen Kriege der europäischen Monarchien</p>
-              </div>
-            </a>
-          </div>
         </div>
-        
-        <button class="karussell-button next" aria-label="Nächstes Buch">›</button>
-        
-        <!-- Indikatoren -->
-        <div class="karussell-indicators">
-          <span class="karussell-indicator active" data-slide="0"></span>
-          <span class="karussell-indicator" data-slide="1"></span>
-          <span class="karussell-indicator" data-slide="2"></span>
-        </div>
-      </div>
-    </div>
-    
-    <!-- AKTUELLES WERK - KORRIGIERT & ZENTRIERT -->
-    <div class="aktuelles-werk" id="aktuelles-werk">
-      <h2>Mein aktuelles Projekt</h2>
-      <p class="aktuelles-subtitle">Ein Werk in Arbeit</p>
-      
-      <div class="hinweis-box">
-        <svg width="20" height="20" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 10px; color: #c0c0c0;">
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="currentColor"/>
-        </svg>
-        <span>Das nächste Werk befindet sich in Arbeit - Mehr Informationen unten</span>
-      </div>
-    </div>
-    
-    <!-- AKTUELLES PROJEKT -->
-    <div class="aktuelles-projekt" id="aktuelles-projekt">
-      <div class="projekt-header">
-        <h2 class="projekt-title">Das Schweigen der Macht</h2>
-        <p class="projekt-subtitle">Die dunkle Geburt des Reiches</p>
-      </div>
-      
-      <div class="projekt-content">
-        <div class="projekt-cover-container">
-          <div class="projekt-cover-rahmen">
-            <img src="assets/images/dasschweigendermacht.png" 
-                 alt="Das Schweigen der Macht - Die dunkle Geburt des Reiches" 
-                 class="projekt-cover">
-          </div>
-        </div>
-        
-        <div class="projekt-info">
-          <div class="projekt-beschreibung">
-            <p><strong>Das Schweigen der Macht – Die dunkle Geburt des Reiches</strong> erzählt die Geschichte eines stillen Krieges. Nicht mit Waffen, sondern mit Druckerschwärze, Telegrammen und Akten. Zwischen 1850 und der Reichsgründung 1871 verfolgt das Buch, wie die Presse in Preußen und den deutschen Staaten zum Schlachtfeld zwischen Macht und Öffentlichkeit wurde.</p>
-            
-            <p>Es ist die Geschichte davon, wie eine scheinbar moderne Ordnung entstand, die Freiheit versprach und zugleich systematisch dafür sorgte, dass kritische Stimmen verstummten.</p>
-            
-            <div class="zitat-seriös" style="margin: 30px 0; background: rgba(200,205,215,0.03);">
-              <p style="font-size: 1.1rem; font-style: italic; color: #d6d9de;">
-                "Die Presse ist dabei nicht nur Thema, sondern Perspektive. Durch Zeitungsartikel, Leitkommentare, verbotene Texte und beschlagnahmte Drucke wird sichtbar, wie sich die Sprache der Öffentlichkeit veränderte."
-              </p>
-            </div>
-            
-            <h3 style="font-family: 'Cinzel', serif; color: #e4e6ea; font-size: 1.3rem; margin: 35px 0 20px 0; letter-spacing: 0.03em;">Der inhaltliche Kern</h3>
-            
-            <p><strong>Im Zentrum steht die Frage:</strong> Wie frei war die Presse wirklich, wenn die Verfassung sie garantierte, der Staat sie aber im Alltag kontrollierte?</p>
-            
-            <div style="background: rgba(200,205,215,0.05); padding: 25px; border-radius: 6px; border-left: 4px solid rgba(200,205,215,0.3); margin: 25px 0;">
-              <p style="margin: 0 0 15px 0; color: #d6d9de; font-weight: 500;">Das Buch zeigt unter anderem:</p>
-              <ul style="margin: 0; padding-left: 20px; color: #b0b5bc;">
-                <li style="margin-bottom: 10px;">wie Artikel 110 der preußischen Verfassung die Pressefreiheit versprach, während Zensur, Druckverbote und Verhaftungen Alltag blieben</li>
-                <li style="margin-bottom: 10px;">wie Redaktionen überwacht, Druckereien geschlossen und Zeitungen wirtschaftlich zermürbt wurden</li>
-                <li style="margin-bottom: 10px;">wie Blätter wie der Preußische Herold zu Symbolen eines gefährlichen Balanceakts zwischen Mut und Anpassung wurden</li>
-                <li style="margin-bottom: 10px;">wie oppositionelle Gruppen den Telegraphen nutzten, um der staatlichen Informationsmacht etwas entgegenzusetzen</li>
-                <li style="margin-bottom: 0;">wie sich bis 1871 eine Presselandschaft formte, die offiziell frei war, faktisch aber gelernt hatte, sich selbst zu zensieren</li>
-              </ul>
-            </div>
-            
-            <h3 style="font-family: 'Cinzel', serif; color: #e4e6ea; font-size: 1.3rem; margin: 35px 0 20px 0; letter-spacing: 0.03em;">Die Analysen</h3>
-            
-            <div style="display: grid; grid-template-columns: 1fr; gap: 20px; margin: 25px 0;">
-              <div style="background: rgba(200,205,215,0.03); padding: 20px; border-radius: 6px; border: 1px solid rgba(200,205,215,0.1);">
-                <p style="margin: 0; color: #b0b5bc;">
-                  <strong style="color: #e4e6ea;">System statt Zensur:</strong> Wie aus offener Vorzensur ein System indirekter Kontrolle wurde. Wie Gesetze, Konzessionen, Kautionen und Strafandrohungen Redaktionen lenkten, ohne ständig eingreifen zu müssen.
-                </p>
-              </div>
-              <div style="background: rgba(200,205,215,0.03); padding: 20px; border-radius: 6px; border: 1px solid rgba(200,205,215,0.1);">
-                <p style="margin: 0; color: #b0b5bc;">
-                  <strong style="color: #e4e6ea;">Wirtschaftlicher Druck:</strong> Wie wirtschaftlicher Druck oft wirksamer war als offene Verbote. Wie Journalisten lernten, zwischen den Zeilen zu schreiben und wie sich aus Angst vor Schließung eine Kultur der Selbstzensur entwickelte.
-                </p>
-              </div>
-              <div style="background: rgba(200,205,215,0.03); padding: 20px; border-radius: 6px; border: 1px solid rgba(200,205,215,0.1);">
-                <p style="margin: 0; color: #b0b5bc;">
-                  <strong style="color: #e4e6ea;">Vom Kritiker zum Teil der Ordnung:</strong> Wie die Presse so von einem Ort der Kritik zu einem Teil der Ordnung wurde. Dabei wird gezeigt, dass nicht der einzelne Zensor entscheidend war, sondern das Zusammenspiel aus Recht, Verwaltung und Routine.
-                </p>
-              </div>
-            </div>
-            
-            <h3 style="font-family: 'Cinzel', serif; color: #e4e6ea; font-size: 1.3rem; margin: 35px 0 20px 0; letter-spacing: 0.03em;">Quellen und Fakten</h3>
-            
-            <div class="projekt-details">
-              <div class="projekt-details-title">Belegbasis und Quellen</div>
-              <ul class="projekt-details-list">
-                <li>Verfassungsartikel und Pressegesetze der Zeit (1850-1871)</li>
-                <li>Polizeiverordnungen und Ministerialerlasse zur Überwachung der Druckmedien</li>
-                <li>Archivierte Telegramme und Verwaltungsabschriften</li>
-                <li>Zeitgenössische Zeitungen, sowohl regierungstreue als auch oppositionelle</li>
-                <li>Dokumentierte Schließungen von Druckereien und Verfahren gegen Redakteure</li>
-                <li>Parlamentsprotokolle und Debatten zur Pressefreiheit</li>
-                <li>Moderne historische Studien und digitalisierte Archive</li>
-              </ul>
-              <p style="color: #9da2a8; font-size: 0.95rem; margin-top: 15px; font-style: italic;">
-                <strong>Alle zentralen Zitate und Vorgänge sind belegbar.</strong> Unsicherheiten werden kenntlich gemacht. Es ist keine literarische Erfindung, sondern eine Rekonstruktion.
-              </p>
-            </div>
-            
-            <h3 style="font-family: 'Cinzel', serif; color: #e4e6ea; font-size: 1.3rem; margin: 35px 0 20px 0; letter-spacing: 0.03em;">Der Zeitraum 1850 bis 1871 als roter Faden</h3>
-            
-            <div style="background: rgba(10, 10, 10, 0.8); border: 1px solid rgba(200,205,215,0.1); border-radius: 8px; padding: 25px; margin: 20px 0;">
-              <div style="display: flex; flex-wrap: wrap; gap: 25px;">
-                <div style="flex: 1; min-width: 250px;">
-                  <div style="background: rgba(200,205,215,0.05); padding: 20px; border-radius: 6px; height: 100%;">
-                    <div style="font-family: 'Cinzel', serif; color: #e4e6ea; margin-bottom: 10px; font-size: 1.1rem;">Nach 1850</div>
-                    <div style="color: #b0b5bc; font-size: 0.95rem; line-height: 1.6;">
-                      Die Verfassung verspricht Freiheit, doch der Staat lernt, die Presse mit Verordnungen, Polizei und Akten zu lenken.
-                    </div>
-                  </div>
-                </div>
-                <div style="flex: 1; min-width: 250px;">
-                  <div style="background: rgba(200,205,215,0.05); padding: 20px; border-radius: 6px; height: 100%;">
-                    <div style="font-family: 'Cinzel', serif; color: #e4e6ea; margin-bottom: 10px; font-size: 1.1rem;">Die 1860er Jahre</div>
-                    <div style="color: #b0b5bc; font-size: 0.95rem; line-height: 1.6;">
-                      Liberalisierung nach außen, aber wachsende indirekte Kontrolle. Redaktionen passen sich an, um zu überleben.
-                    </div>
-                  </div>
-                </div>
-                <div style="flex: 1; min-width: 250px;">
-                  <div style="background: rgba(200,205,215,0.05); padding: 20px; border-radius: 6px; height: 100%;">
-                    <div style="font-family: 'Cinzel', serif; color: #e4e6ea; margin-bottom: 10px; font-size: 1.1rem;">Bis 1871</div>
-                    <div style="color: #b0b5bc; font-size: 0.95rem; line-height: 1.6;">
-                      Mit der Reichsgründung entsteht eine scheinbar freie Presse in einem geeinten Staat, die jedoch bereits tief an Loyalität und Vorsicht gewöhnt ist.
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <p style="color: #9da2a8; font-size: 0.95rem; margin-top: 20px; text-align: center; font-style: italic;">
-                So wird deutlich, dass die Reichsgründung nicht nur ein politischer, sondern auch ein medialer Wendepunkt war.
-              </p>
-            </div>
-            
-            <div class="zitat-seriös" style="margin: 40px 0; background: rgba(200,205,215,0.03); border-left: 4px solid rgba(200,205,215,0.5);">
-              <p style="font-size: 1.1rem; font-style: italic; color: #d6d9de; margin: 0;">
-                "Dieses Buch erzählt nicht nur, was geschah, sondern wie es wirkte: wie ein verbotener Artikel ganze Redaktionen einschüchtern konnte, wie ein einziger Aktenvermerk Karrieren beendete, wie Zeitungen zur Bühne eines stillen Machtkampfes wurden."
-              </p>
-            </div>
-            
-            <div style="background: rgba(200,205,215,0.05); padding: 25px; border-radius: 8px; margin: 35px 0; border: 1px solid rgba(200,205,215,0.15);">
-              <h3 style="font-family: 'Cinzel', serif; color: #e4e6ea; font-size: 1.2rem; margin: 0 0 15px 0; letter-spacing: 0.03em; text-align: center;">Warum dieses Buch fesselt</h3>
-              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-                <div style="text-align: center; padding: 15px;">
-                  <div style="font-size: 2rem; color: rgba(200,205,215,0.8); margin-bottom: 10px;">⚖️</div>
-                  <div style="color: #e4e6ea; font-weight: 500; margin-bottom: 5px;">Pressefreiheit im Alltag</div>
-                  <div style="color: #9da2a8; font-size: 0.9rem;">Zeigt, dass Pressefreiheit nicht nur im Gesetz existiert, sondern im Alltag verteidigt werden muss</div>
-                </div>
-                <div style="text-align: center; padding: 15px;">
-                  <div style="font-size: 2rem; color: rgba(200,205,215,0.8); margin-bottom: 10px;">🤫</div>
-                  <div style="color: #e4e6ea; font-weight: 500; margin-bottom: 5px;">Leise Macht</div>
-                  <div style="color: #9da2a8; font-size: 0.9rem;">Macht tritt nicht immer laut auf, sondern wird oft leise organisiert</div>
-                </div>
-                <div style="text-align: center; padding: 15px;">
-                  <div style="font-size: 2rem; color: rgba(200,205,215,0.8); margin-bottom: 10px;">📜</div>
-                  <div style="color: #e4e6ea; font-weight: 500; margin-bottom: 5px;">Schrittweise Entwicklung</div>
-                  <div style="color: #9da2a8; font-size: 0.9rem;">Schweigen entsteht nicht plötzlich, sondern wird Schritt für Schritt gelernt</div>
-                </div>
-              </div>
-            </div>
-            
-            <div style="text-align: center; margin-top: 40px; padding-top: 30px; border-top: 1px solid rgba(200,205,215,0.1);">
-              <p style="color: #e4e6ea; font-size: 1.2rem; font-family: 'Cinzel', serif; letter-spacing: 0.03em; margin-bottom: 15px;">
-                Das Schweigen der Macht
-              </p>
-              <p style="color: #b0b5bc; font-size: 1rem; max-width: 700px; margin: 0 auto; line-height: 1.6;">
-                ist die Geschichte eines unsichtbaren Krieges um die Wahrheit. Zwischen 1850 und 1871 zeigt das Buch, wie die Presse im entstehenden deutschen Reich zum Schlachtfeld wurde und wie aus versprochener Freiheit eine Kultur der Anpassung entstand. Anhand von Gesetzen, Akten, Telegrammen und Zeitungsartikeln rekonstruiert es, wie Kontrolle funktionierte, ohne offen als Zensur aufzutreten – und warum dieses Erbe bis heute nachwirkt.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="projekt-status">
-        <div class="status-title">Projektstatus</div>
-        
-        <div class="status-zeitplan">
-          <div class="status-zeitplan-item">
-            <div class="status-label">Gestartet</div>
-            <div class="status-value">Oktober 2024</div>
-          </div>
-          
-          <div class="status-zeitplan-item">
-            <div class="status-label">Geplante Fertigstellung</div>
-            <div class="status-value">Februar 2026</div>
-          </div>
-          
-          <div class="status-zeitplan-item">
-            <div class="status-label">Veröffentlichung</div>
-            <div class="status-value">Herbst 2026</div>
-          </div>
-        </div>
-        
-        <div class="status-fortschritt">
-          <div class="fortschritt-bar">
-            <div class="fortschritt-fill"></div>
-          </div>
-          <div class="fortschritt-text">
-            <span>Aktueller Fortschritt</span>
-            <span class="fortschritt-prozent">65%</span>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- BEWERTUNGSSYSTEM -->
-    <div class="bewertungssystem" id="bewertungssystem">
-      <h2 class="bewertung-title">Bücher bewerten</h2>
-      
-      <!-- Erfolgsmeldung -->
-      <div class="erfolgsmeldung" id="erfolgsmeldung">
-        <svg width="24" height="24" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 10px;">
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"/>
-        </svg>
-        Vielen Dank für Ihre Bewertung! Ihre Meinung wurde gespeichert.
-      </div>
-      
-      <!-- Buchauswahl -->
-      <div class="buchauswahl-container">
-        <h3 class="buchauswahl-title">Wählen Sie ein Buch zum Bewerten</h3>
-        <div class="buchauswahl-grid" id="buchauswahlGrid">
-          <div class="buchauswahl-item" data-buch="derlangewegindiefinsternis">
-            <img src="assets/images/derlangewegindiefinsternis.png" alt="Der lange Weg in die Finsternis" class="buchauswahl-cover">
-            <div class="buchauswahl-name">Der lange Weg in die Finsternis</div>
-          </div>
-          
-          <div class="buchauswahl-item" data-buch="machtunduntergang">
-            <img src="assets/images/machtunduntergang.png" alt="Macht und Untergang" class="buchauswahl-cover">
-            <div class="buchauswahl-name">Macht und Untergang</div>
-          </div>
-          
-          <div class="buchauswahl-item" data-buch="blutundkrone">
-            <img src="assets/images/blutundkrone.png" alt="Blut und Krone" class="buchauswahl-cover">
-            <div class="buchauswahl-name">Blut und Krone</div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Sternebewertung -->
-      <div class="sternebewertung-container" id="sternebewertungContainer">
-        <h3 class="sternebewertung-title">Wie viele Sterne vergeben Sie?</h3>
-        
-        <div class="star-rating">
-          <input type="radio" id="star5" name="rating" value="5">
-          <label for="star5" title="5 Sterne">★</label>
-          <input type="radio" id="star4" name="rating" value="4">
-          <label for="star4" title="4 Sterne">★</label>
-          <input type="radio" id="star3" name="rating" value="3">
-          <label for="star3" title="3 Sterne">★</label>
-          <input type="radio" id="star2" name="rating" value="2">
-          <label for="star2" title="2 Sterne">★</label>
-          <input type="radio" id="star1" name="rating" value="1">
-          <label for="star1" title="1 Stern">★</label>
-        </div>
-        
-        <div class="sterne-text" id="sterneText">
-          Bitte wählen Sie eine Sternebewertung
-        </div>
-      </div>
-      
-      <!-- Kommentarauswahl -->
-      <div class="kommentarauswahl-container">
-        <h3 class="kommentarauswahl-title">Wählen Sie passende Kommentare (optional)</h3>
-        
-        <div class="kommentar-tags" id="kommentarTags">
-          <div class="comment-tag" data-kommentar="Ausgezeichnet recherchiert">
-            Ausgezeichnet recherchiert
-          </div>
-          <div class="comment-tag" data-kommentar="Spannend geschrieben">
-            Spannend geschrieben
-          </div>
-          <div class="comment-tag" data-kommentar="Historisch wertvoll">
-            Historisch wertvoll
-          </div>
-          <div class="comment-tag" data-kommentar="Tiefgründige Analyse">
-            Tiefgründige Analyse
-          </div>
-          <div class="comment-tag" data-kommentar="Sehr informativ">
-            Sehr informativ
-          </div>
-          <div class="comment-tag" data-kommentar="Fesselnde Lektüre">
-            Fesselnde Lektüre
-          </div>
-        </div>
-      </div>
-      
-      <!-- Eigener Kommentar -->
-      <div class="eigener-kommentar-container">
-        <h3 class="eigener-kommentar-title">Eigener Kommentar (optional)</h3>
-        <textarea class="eigener-kommentar-input" id="eigenerKommentar" 
-                  placeholder="Teilen Sie hier Ihre persönliche Meinung zum Buch..."></textarea>
-      </div>
-      
-      <!-- Absenden Button -->
-      <div class="bewertung-submit-container">
-        <button class="bewertung-submit" id="bewertungSubmit" disabled>
-          Bewertung absenden
-        </button>
-      </div>
-    </div>
-    
-    <!-- GESAMTBEWERTUNGEN -->
-    <div class="gesamtbewertungen-container" id="gesamtbewertungen">
-      <h2 class="gesamtbewertungen-title">Gesamtbewertungen</h2>
-      
-      <div class="gesamtbewertungen-grid">
-        <!-- Der lange Weg in die Finsternis -->
-        <div class="gesamtbewertung-item" id="gesamtBewertung1">
-          <img src="assets/images/derlangewegindiefinsternis.png" alt="Der lange Weg in die Finsternis" class="gesamtbewertung-cover">
-          <div class="gesamtbewertung-name">Der lange Weg in die Finsternis</div>
-          <div class="gesamtbewertung-stars">★★★★☆</div>
-          <div class="gesamtbewertung-rating">4.2</div>
-          <div class="gesamtbewertung-count">(23 Bewertungen)</div>
-          
-          <div class="gesamtbewertung-kommentare">
-            <div class="gesamtbewertung-kommentare-title">Häufige Kommentare:</div>
-            <div class="gesamtbewertung-kommentar">
-              "Ausgezeichnet recherchiert - 12x"
-            </div>
-            <div class="gesamtbewertung-kommentar">
-              "Historisch wertvoll - 9x"
-            </div>
-            <div class="gesamtbewertung-kommentar">
-              "Sehr informativ - 7x"
-            </div>
-          </div>
-        </div>
-        
-        <!-- Macht und Untergang -->
-        <div class="gesamtbewertung-item" id="gesamtBewertung2">
-          <img src="assets/images/machtunduntergang.png" alt="Macht und Untergang" class="gesamtbewertung-cover">
-          <div class="gesamtbewertung-name">Macht und Untergang</div>
-          <div class="gesamtbewertung-stars">★★★★★</div>
-          <div class="gesamtbewertung-rating">4.8</div>
-          <div class="gesamtbewertung-count">(18 Bewertungen)</div>
-          
-          <div class="gesamtbewertung-kommentare">
-            <div class="gesamtbewertung-kommentare-title">Häufige Kommentare:</div>
-            <div class="gesamtbewertung-kommentar">
-              "Spannend geschrieben - 15x"
-            </div>
-            <div class="gesamtbewertung-kommentar">
-              "Fesselnde Lektüre - 11x"
-            </div>
-            <div class="gesamtbewertung-kommentar">
-              "Ausgezeichnet recherchiert - 8x"
-            </div>
-          </div>
-        </div>
-        
-        <!-- Blut und Krone -->
-        <div class="gesamtbewertung-item" id="gesamtBewertung3">
-          <img src="assets/images/blutundkrone.png" alt="Blut und Krone" class="gesamtbewertung-cover">
-          <div class="gesamtbewertung-name">Blut und Krone</div>
-          <div class="gesamtbewertung-stars">★★★☆☆</div>
-          <div class="gesamtbewertung-rating">3.5</div>
-          <div class="gesamtbewertung-count">(12 Bewertungen)</div>
-          
-          <div class="gesamtbewertung-kommentare">
-            <div class="gesamtbewertung-kommentare-title">Häufige Kommentare:</div>
-            <div class="gesamtbewertung-kommentar">
-              "Tiefgründige Analyse - 9x"
-            </div>
-            <div class="gesamtbewertung-kommentar">
-              "Historisch wertvoll - 7x"
-            </div>
-            <div class="gesamtbewertung-kommentar">
-              "Sehr informativ - 5x"
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 </main>
 
 <!-- ================= SOCIAL MEDIA ================= -->
 <section class="social-section">
-  <h3 class="social-title">Folgen Sie den Gedanken</h3>
-  <div class="social-grid">
-    <!-- Snapchat -->
-    <a href="https://snapchat.com/t/8wVZ1Wpu" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Snapchat">
-      <div class="social-icon-wrapper">
-        <svg class="social-icon" viewBox="0 0 24 24">
-          <path d="M5.83 2H18.2c1.14 0 2.07.93 2.07 2.07v15.86c0 1.14-.93 2.07-2.07 2.07H5.83A2.07 2.07 0 0 1 3.76 19.9V4.07C3.76 2.93 4.69 2 5.83 2zm6.44 16.27c1.33 0 2.41-1.08 2.41-2.41 0-.44-.12-.85-.32-1.21.23-.05.47-.08.72-.08 1.33 0 2.41 1.08 2.41 2.41 0 1.33-1.08 2.41-2.41 2.41-1.33 0-2.41-1.08-2.41-2.41 0-.44.12-.85.32-1.21-.23.05-.47.08-.72.08-1.33 0-2.41-1.08-2.41-2.41 0-1.33 1.08-2.41 2.41-2.41.44 0 .85.12 1.21.32.05-.23.08-.47.08-.72 0-1.33-1.08-2.41-2.41-2.41-1.33 0-2.41 1.08-2.41 2.41 0 1.33 1.08 2.41 2.41 2.41.44 0 .85-.12 1.21-.32-.05.23-.08.47-.08.72 0 1.33 1.08 2.41 2.41 2.41z"/>
-        </svg>
-      </div>
-      <span class="social-name">Snapchat</span>
-    </a>
+    <h3 class="social-title">Folgen Sie den Gedanken</h3>
+    <div class="social-grid">
+        <!-- Snapchat -->
+        <a href="https://snapchat.com/t/8wVZ1Wpu" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Snapchat">
+            <div class="social-icon-wrapper">
+                <svg class="social-icon" viewBox="0 0 24 24">
+                    <path d="M5.83 2H18.2c1.14 0 2.07.93 2.07 2.07v15.86c0 1.14-.93 2.07-2.07 2.07H5.83A2.07 2.07 0 0 1 3.76 19.9V4.07C3.76 2.93 4.69 2 5.83 2zm6.44 16.27c1.33 0 2.41-1.08 2.41-2.41 0-.44-.12-.85-.32-1.21.23-.05.47-.08.72-.08 1.33 0 2.41 1.08 2.41 2.41 0 1.33-1.08 2.41-2.41 2.41-1.33 0-2.41-1.08-2.41-2.41 0-.44.12-.85.32-1.21-.23.05-.47.08-.72.08-1.33 0-2.41-1.08-2.41-2.41 0-1.33 1.08-2.41 2.41-2.41.44 0 .85.12 1.21.32.05-.23.08-.47.08-.72 0-1.33-1.08-2.41-2.41-2.41-1.33 0-2.41 1.08-2.41 2.41 0 1.33 1.08 2.41 2.41 2.41.44 0 .85-.12 1.21-.32-.05.23-.08.47-.08.72 0 1.33 1.08 2.41 2.41 2.41z"/>
+                </svg>
+            </div>
+            <span class="social-name">Snapchat</span>
+        </a>
+        
+        <!-- Clapper -->
+        <a href="https://clapperapp.com/M.Silberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Clapper">
+            <div class="social-icon-wrapper">
+                <svg class="social-icon" viewBox="0 0 24 24">
+                    <path d="M19.5 3H4.5C3.67 3 3 3.67 3 4.5v15C3 20.33 3.67 21 4.5 21h15c.83 0 1.5-.67 1.5-1.5v-15C21 3.67 20.33 3 19.5 3zM10 17H6v-2h4v2zm0-4H6v-2h4v2zm0-4H6V7h4v2zm8 8h-6v-2h6v2zm0-4h-6v-2h6v2zm0-4h-6V7h6v2z"/>
+                </svg>
+            </div>
+            <span class="social-name">Clapper</span>
+        </a>
+        
+        <!-- TikTok -->
+        <a href="https://www.tiktok.com/@m.silberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="TikTok">
+            <div class="social-icon-wrapper">
+                <svg class="social-icon" viewBox="0 0 24 24">
+                    <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.10-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                </svg>
+            </div>
+            <span class="social-name">TikTok</span>
+        </a>
+        
+        <!-- Telegram -->
+        <a href="https://t.me/matthiassilberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Telegram">
+            <div class="social-icon-wrapper">
+                <svg class="social-icon" viewBox="0 0 24 24">
+                    <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.697.064-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                </svg>
+            </div>
+            <span class="social-name">Telegram</span>
+        </a>
+        
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/matthiassilberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+            <div class="social-icon-wrapper">
+                <svg class="social-icon" viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"/>
+                </svg>
+            </div>
+            <span class="social-name">Instagram</span>
+        </a>
+        
+        <!-- Facebook -->
+        <a href="https://www.facebook.com/share/17ZahbpKWN/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">
+            <div class="social-icon-wrapper">
+                <svg class="social-icon" viewBox="0 0 24 24">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+            </div>
+            <span class="social-name">Facebook</span>
+        </a>
+        
+        <!-- YouTube -->
+        <a href="https://youtube.com/@matthiassilberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube">
+            <div class="social-icon-wrapper">
+                <svg class="social-icon" viewBox="0 0 24 24">
+                    <path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.506 0-9.396.501A3.007 3.007 0 00.528 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/>
+                </svg>
+            </div>
+            <span class="social-name">YouTube</span>
+        </a>
+    </div>
     
-    <!-- Clapper -->
-    <a href="https://clapperapp.com/M.Silberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Clapper">
-      <div class="social-icon-wrapper">
-        <svg class="social-icon" viewBox="0 0 24 24">
-          <path d="M19.5 3H4.5C3.67 3 3 3.67 3 4.5v15C3 20.33 3.67 21 4.5 21h15c.83 0 1.5-.67 1.5-1.5v-15C21 3.67 20.33 3 19.5 3zM10 17H6v-2h4v2zm0-4H6v-2h4v2zm0-4H6V7h4v2zm8 8h-6v-2h6v2zm0-4h-6v-2h6v2zm0-4h-6V7h6v2z"/>
-        </svg>
-      </div>
-      <span class="social-name">Clapper</span>
-    </a>
-    
-    <!-- TikTok -->
-    <a href="https://www.tiktok.com/@m.silberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="TikTok">
-      <div class="social-icon-wrapper">
-        <svg class="social-icon" viewBox="0 0 24 24">
-          <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.10-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
-        </svg>
-      </div>
-      <span class="social-name">TikTok</span>
-    </a>
-    
-    <!-- Telegram -->
-    <a href="https://t.me/matthiassilberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Telegram">
-      <div class="social-icon-wrapper">
-        <svg class="social-icon" viewBox="0 0 24 24">
-          <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.697.064-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.81.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
-        </svg>
-      </div>
-      <span class="social-name">Telegram</span>
-    </a>
-    
-    <!-- Instagram -->
-    <a href="https://www.instagram.com/matthiassilberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
-      <div class="social-icon-wrapper">
-        <svg class="social-icon" viewBox="0 0 24 24">
-          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"/>
-        </svg>
-      </div>
-      <span class="social-name">Instagram</span>
-    </a>
-    
-    <!-- Facebook -->
-    <a href="https://www.facebook.com/share/17ZahbpKWN/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">
-      <div class="social-icon-wrapper">
-        <svg class="social-icon" viewBox="0 0 24 24">
-          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-        </svg>
-      </div>
-      <span class="social-name">Facebook</span>
-    </a>
-    
-    <!-- YouTube -->
-    <a href="https://youtube.com/@matthiassilberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube">
-      <div class="social-icon-wrapper">
-        <svg class="social-icon" viewBox="0 0 24 24">
-          <path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.506 0-9.396.501A3.007 3.007 0 00.528 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/>
-        </svg>
-      </div>
-      <span class="social-name">YouTube</span>
-    </a>
-  </div>
+    <!-- SILBERNER LICHTBALKEN -->
+    <div class="lichtkante social-lichtkante"></div>
 </section>
-<div class="lichtkante"></div>
 
 <!-- ================= FOOTER ================= -->
 <footer class="footer">
@@ -1664,431 +263,9 @@
     </div>
     <p>© <span id="jahr"></span> Matthias Silberhain</p>
 </footer>
-
 <!-- ================= JAVASCRIPT ================= -->
 <script src="assets/js/global.js"></script>
 <script src="assets/js/menu.js"></script>
-
-<!-- ================= WERKE SPEZIFISCHE SCRIPTE ================= -->
-<script>
-// ========================================================================
-// BILDKARUSSELL FUNKTIONEN (UNVERÄNDERT)
-// ========================================================================
-
-function initKarussell() {
-  const track = document.getElementById('karussellTrack');
-  const slides = document.querySelectorAll('.karussell-slide');
-  const prevButton = document.querySelector('.karussell-button.prev');
-  const nextButton = document.querySelector('.karussell-button.next');
-  const indicators = document.querySelectorAll('.karussell-indicator');
-  
-  if (!track || slides.length === 0) return;
-  
-  const slideWidth = slides[0].offsetWidth + 20; // + gap
-  let currentIndex = 0;
-  let autoSlideInterval;
-  
-  // Funktion zum Aktualisieren der Position
-  function updateSlidePosition() {
-    track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-    
-    // Aktiviere/Deaktiviere Buttons basierend auf Position
-    prevButton.style.opacity = currentIndex === 0 ? '0.5' : '1';
-    prevButton.style.pointerEvents = currentIndex === 0 ? 'none' : 'auto';
-    
-    nextButton.style.opacity = currentIndex === slides.length - 1 ? '0.5' : '1';
-    nextButton.style.pointerEvents = currentIndex === slides.length - 1 ? 'none' : 'auto';
-    
-    // Aktualisiere Indikatoren
-    indicators.forEach((indicator, index) => {
-      if (index === currentIndex) {
-        indicator.classList.add('active');
-      } else {
-        indicator.classList.remove('active');
-      }
-    });
-  }
-  
-  // Nächste Slide
-  function nextSlide() {
-    if (currentIndex < slides.length - 1) {
-      currentIndex++;
-      updateSlidePosition();
-    }
-  }
-  
-  // Vorherige Slide
-  function prevSlide() {
-    if (currentIndex > 0) {
-      currentIndex--;
-      updateSlidePosition();
-    }
-  }
-  
-  // Zur bestimmten Slide gehen
-  function goToSlide(index) {
-    if (index >= 0 && index < slides.length) {
-      currentIndex = index;
-      updateSlidePosition();
-    }
-  }
-  
-  // Event Listener für Buttons
-  prevButton.addEventListener('click', prevSlide);
-  nextButton.addEventListener('click', nextSlide);
-  
-  // Event Listener für Indikatoren
-  indicators.forEach((indicator, index) => {
-    indicator.addEventListener('click', () => goToSlide(index));
-  });
-  
-  // Touch-Gesten für Mobile
-  let startX = 0;
-  let endX = 0;
-  
-  track.addEventListener('touchstart', (e) => {
-    startX = e.touches[0].clientX;
-  });
-  
-  track.addEventListener('touchmove', (e) => {
-    endX = e.touches[0].clientX;
-  });
-  
-  track.addEventListener('touchend', () => {
-    const diff = startX - endX;
-    
-    if (Math.abs(diff) > 50) { // Mindest-Swipe-Distanz
-      if (diff > 0) {
-        nextSlide(); // Swipe nach links = nächste Slide
-      } else {
-        prevSlide(); // Swipe nach rechts = vorherige Slide
-      }
-    }
-  });
-  
-  // Initialisiere Position
-  updateSlidePosition();
-}
-
-// ========================================================================
-// BEWERTUNGSSYSTEM FUNKTIONEN
-// ========================================================================
-
-let currentBuch = null;
-let currentRating = 0;
-let selectedComments = [];
-let allReviews = {
-  derlangewegindiefinsternis: {
-    ratings: [5, 4, 5, 3, 5, 4, 5, 4, 3, 5, 4, 4, 5, 4, 3, 5, 4, 4, 5, 3, 4, 5, 4],
-    comments: {
-      "Ausgezeichnet recherchiert": 12,
-      "Historisch wertvoll": 9,
-      "Sehr informativ": 7,
-      "Spannend geschrieben": 5,
-      "Tiefgründige Analyse": 4
-    },
-    customComments: [
-      "Eine beeindruckende Darstellung der historischen Kontinuitäten.",
-      "Besonders die Analyse der kolonialen Verbrechen als Vorläufer ist aufschlussreich."
-    ]
-  },
-  machtunduntergang: {
-    ratings: [5, 5, 4, 5, 5, 4, 5, 5, 4, 5, 5, 5, 4, 5, 5, 4, 5, 5],
-    comments: {
-      "Spannend geschrieben": 15,
-      "Fesselnde Lektüre": 11,
-      "Ausgezeichnet recherchiert": 8,
-      "Historisch wertvoll": 6,
-      "Tiefgründige Analyse": 5
-    },
-    customComments: [
-      "Die umfassendste Darstellung des Dritten Reiches, die ich je gelesen habe.",
-      "Besonders beeindruckend ist die Detailtiefe der Recherche."
-    ]
-  },
-  blutundkrone: {
-    ratings: [3, 4, 3, 2, 4, 3, 4, 3, 4, 2, 4, 3],
-    comments: {
-      "Tiefgründige Analyse": 9,
-      "Historisch wertvoll": 7,
-      "Sehr informativ": 5,
-      "Ausgezeichnet recherchiert": 4,
-      "Spannend geschrieben": 3
-    },
-    customComments: [
-      "Ein interessanter Blick auf die oft übersehenen dynastischen Konflikte.",
-      "Die Verbindung von persönlichen Schicksalen und politischer Geschichte gelingt hervorragend."
-    ]
-  }
-};
-
-function initBewertungssystem() {
-  // Buchauswahl Event Listener
-  const buchItems = document.querySelectorAll('.buchauswahl-item');
-  const ratingStars = document.querySelectorAll('.star-rating input');
-  const commentTags = document.querySelectorAll('.comment-tag');
-  const submitButton = document.getElementById('bewertungSubmit');
-  const erfolgsmeldung = document.getElementById('erfolgsmeldung');
-  const sterneText = document.getElementById('sterneText');
-  
-  // Standardmäßig erstes Buch auswählen
-  if (buchItems.length > 0) {
-    buchItems[0].classList.add('selected');
-    currentBuch = buchItems[0].dataset.buch;
-  }
-  
-  // Buchauswahl
-  buchItems.forEach(item => {
-    item.addEventListener('click', () => {
-      buchItems.forEach(i => i.classList.remove('selected'));
-      item.classList.add('selected');
-      currentBuch = item.dataset.buch;
-      updateSubmitButton();
-    });
-  });
-  
-  // Sternebewertung
-  ratingStars.forEach(star => {
-    star.addEventListener('change', (e) => {
-      currentRating = parseInt(e.target.value);
-      
-      // Update Sternetext
-      const ratingTexts = [
-        "Bitte wählen Sie eine Sternebewertung",
-        "1 Stern - Nicht zu empfehlen",
-        "2 Sterne - Durchschnittlich",
-        "3 Sterne - Gut",
-        "4 Sterne - Sehr gut",
-        "5 Sterne - Ausgezeichnet"
-      ];
-      sterneText.textContent = ratingTexts[currentRating];
-      
-      updateSubmitButton();
-    });
-  });
-  
-  // Kommentar-Tags
-  commentTags.forEach(tag => {
-    tag.addEventListener('click', () => {
-      const comment = tag.dataset.kommentar;
-      const index = selectedComments.indexOf(comment);
-      
-      if (index === -1) {
-        selectedComments.push(comment);
-        tag.classList.add('selected');
-      } else {
-        selectedComments.splice(index, 1);
-        tag.classList.remove('selected');
-      }
-    });
-  });
-  
-  // Submit Button
-  submitButton.addEventListener('click', () => {
-    if (!currentBuch || currentRating === 0) return;
-    
-    // Eigener Kommentar hinzufügen
-    const eigenerKommentar = document.getElementById('eigenerKommentar').value.trim();
-    
-    // Bewertung speichern (im echten System hier an Server senden)
-    saveReview(currentBuch, currentRating, selectedComments, eigenerKommentar);
-    
-    // Erfolgsmeldung anzeigen
-    erfolgsmeldung.style.display = 'block';
-    
-    // Formular zurücksetzen
-    setTimeout(() => {
-      resetBewertungsformular();
-      updateGesamtbewertungen();
-    }, 3000);
-  });
-  
-  // Update Submit Button Status
-  function updateSubmitButton() {
-    if (currentBuch && currentRating > 0) {
-      submitButton.disabled = false;
-      submitButton.innerHTML = `Bewertung für "${getBuchName(currentBuch)}" absenden`;
-    } else {
-      submitButton.disabled = true;
-      submitButton.textContent = 'Bewertung absenden';
-    }
-  }
-  
-  // Formular zurücksetzen
-  function resetBewertungsformular() {
-    // Sterne zurücksetzen
-    ratingStars.forEach(star => star.checked = false);
-    currentRating = 0;
-    sterneText.textContent = "Bitte wählen Sie eine Sternebewertung";
-    
-    // Kommentare zurücksetzen
-    commentTags.forEach(tag => tag.classList.remove('selected'));
-    selectedComments = [];
-    
-    // Eigener Kommentar zurücksetzen
-    document.getElementById('eigenerKommentar').value = '';
-    
-    // Erfolgsmeldung ausblenden
-    erfolgsmeldung.style.display = 'none';
-    
-    updateSubmitButton();
-  }
-  
-  // Initialisiere Submit Button
-  updateSubmitButton();
-}
-
-// Bewertung speichern (simuliert)
-function saveReview(buchId, rating, comments, customComment) {
-  // In einem echten System würde dies an einen Server gesendet werden
-  console.log('Bewertung gespeichert:', {
-    buch: buchId,
-    rating: rating,
-    comments: comments,
-    customComment: customComment,
-    timestamp: new Date().toISOString()
-  });
-  
-  // Lokal speichern für Demo-Zwecke
-  if (!allReviews[buchId]) {
-    allReviews[buchId] = {
-      ratings: [],
-      comments: {},
-      customComments: []
-    };
-  }
-  
-  // Rating hinzufügen
-  allReviews[buchId].ratings.push(rating);
-  
-  // Kommentare hinzufügen
-  comments.forEach(comment => {
-    if (!allReviews[buchId].comments[comment]) {
-      allReviews[buchId].comments[comment] = 0;
-    }
-    allReviews[buchId].comments[comment]++;
-  });
-  
-  // Eigenen Kommentar hinzufügen
-  if (customComment) {
-    allReviews[buchId].customComments.push(customComment);
-  }
-  
-  // In localStorage speichern für Persistenz
-  try {
-    localStorage.setItem('buchbewertungen', JSON.stringify(allReviews));
-  } catch (e) {
-    console.log('Konnte Bewertungen nicht speichern:', e);
-  }
-}
-
-// Gesamtbewertungen aktualisieren
-function updateGesamtbewertungen() {
-  // Daten aus localStorage laden, falls vorhanden
-  try {
-    const savedReviews = localStorage.getItem('buchbewertungen');
-    if (savedReviews) {
-      allReviews = JSON.parse(savedReviews);
-    }
-  } catch (e) {
-    console.log('Konnte Bewertungen nicht laden:', e);
-  }
-  
-  // Für jedes Buch die Bewertung berechnen und anzeigen
-  const buchIds = ['derlangewegindiefinsternis', 'machtunduntergang', 'blutundkrone'];
-  
-  buchIds.forEach((buchId, index) => {
-    const buchData = allReviews[buchId];
-    if (!buchData || !buchData.ratings || buchData.ratings.length === 0) return;
-    
-    const ratings = buchData.ratings;
-    const average = ratings.reduce((a, b) => a + b, 0) / ratings.length;
-    const roundedAverage = Math.round(average * 10) / 10;
-    
-    // Sternedarstellung generieren
-    const fullStars = Math.floor(roundedAverage);
-    const hasHalfStar = (roundedAverage % 1) >= 0.5;
-    let starsHtml = '';
-    
-    for (let i = 0; i < fullStars; i++) starsHtml += '★';
-    if (hasHalfStar) starsHtml += '☆';
-    for (let i = starsHtml.length; i < 5; i++) starsHtml += '☆';
-    
-    // Bewertungselement finden
-    const bewertungElement = document.getElementById(`gesamtBewertung${index + 1}`);
-    if (bewertungElement) {
-      // Sterne und Rating aktualisieren
-      const starsElement = bewertungElement.querySelector('.gesamtbewertung-stars');
-      const ratingElement = bewertungElement.querySelector('.gesamtbewertung-rating');
-      const countElement = bewertungElement.querySelector('.gesamtbewertung-count');
-      
-      if (starsElement) starsElement.textContent = starsHtml;
-      if (ratingElement) ratingElement.textContent = roundedAverage.toFixed(1);
-      if (countElement) countElement.textContent = `(${ratings.length} Bewertungen)`;
-      
-      // Kommentare aktualisieren (Top 3)
-      const commentsElement = bewertungElement.querySelector('.gesamtbewertung-kommentare');
-      if (commentsElement && buchData.comments) {
-        // Top Kommentare finden
-        const topComments = Object.entries(buchData.comments)
-          .sort((a, b) => b[1] - a[1])
-          .slice(0, 3);
-        
-        // Kommentare aktualisieren
-        const commentElements = commentsElement.querySelectorAll('.gesamtbewertung-kommentar');
-        topComments.forEach((comment, i) => {
-          if (commentElements[i]) {
-            commentElements[i].textContent = `"${comment[0]}" - ${comment[1]}x`;
-          }
-        });
-      }
-    }
-  });
-}
-
-// Hilfsfunktion: Buchname aus ID
-function getBuchName(buchId) {
-  const namen = {
-    derlangewegindiefinsternis: "Der lange Weg in die Finsternis",
-    machtunduntergang: "Macht und Untergang",
-    blutundkrone: "Blut und Krone"
-  };
-  return namen[buchId] || buchId;
-}
-
-// ========================================================================
-// INITIALISIERUNG
-// ========================================================================
-
-document.addEventListener('DOMContentLoaded', function() {
-  // Initialisiere Karussell
-  setTimeout(initKarussell, 100);
-  
-  // Initialisiere Bewertungssystem
-  setTimeout(initBewertungssystem, 200);
-  
-  // Gesamtbewertungen aktualisieren
-  setTimeout(updateGesamtbewertungen, 300);
-  
-  // Entwickler-Shortcut: Doppelklick auf Bewertungstitel zum Zurücksetzen
-  const bewertungTitle = document.querySelector('.bewertung-title');
-  if (bewertungTitle) {
-    bewertungTitle.addEventListener('dblclick', function() {
-      if (confirm('Alle Bewertungen wirklich zurücksetzen?')) {
-        localStorage.removeItem('buchbewertungen');
-        location.reload();
-      }
-    });
-  }
-});
-
-// Responsive: Karussell neu initialisieren bei Fenstergrößenänderung
-let resizeTimeout;
-window.addEventListener('resize', function() {
-  clearTimeout(resizeTimeout);
-  resizeTimeout = setTimeout(initKarussell, 250);
-});
-</script>
 
 </body>
 </html>
