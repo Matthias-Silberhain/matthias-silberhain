@@ -1529,4 +1529,64 @@ button, a, .burger, .hauptnavigation a, .silber-button, .social-link {
     color: #333 !important;
     text-align: justify;
   }
+
+/* ==========================================================================
+   MOBILE MENÜ FIXES
+   ========================================================================== */
+
+@media screen and (max-width: 768px) {
+    .hauptnavigation {
+        display: none !important; /* WICHTIG: Standardmäßig versteckt */
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100vh !important;
+        background-color: rgba(0, 0, 0, 0.98) !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+        align-items: center !important;
+        gap: 0 !important;
+        z-index: 999 !important;
+        padding-top: 120px !important;
+        padding-bottom: 40px !important;
+        overflow-y: auto !important;
+        opacity: 0 !important;
+        transform: translateX(-100%) !important;
+        transition: all 0.4s ease !important;
+    }
+    
+    .hauptnavigation.aktiv {
+        display: flex !important;
+        opacity: 1 !important;
+        transform: translateX(0) !important;
+    }
+    
+    .burger {
+        display: flex !important;
+        position: absolute !important;
+        top: 30px !important;
+        right: 20px !important;
+        z-index: 1002 !important;
+    }
+    
+    /* Overlay für Mobile Menu */
+    .menu-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 998;
+        display: none;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    .menu-overlay.active {
+        display: block;
+        opacity: 1;
+    }
+}   
 }
