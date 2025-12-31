@@ -1531,69 +1531,88 @@ button, a, .burger, .hauptnavigation a, .silber-button, .social-link {
   }
 
 /* ==========================================================================
-   DATENSCHUTZERKLÄRUNG - LINKE & STYLES
+   FIX FÜR BLAUE LINKS - ABSOLUTE PRIORITÄT
    ========================================================================== */
 
-/* Alle Links in Datenschutz- und Impressum-Seiten */
+/* 1. ALLE Links in Datenschutz/Impressum silber machen */
 .datenschutz-content a,
-.impressum-content a,
-.text-quellen a,
-.quellen-liste a {
-    color: #c0c0c0 !important; /* Silber statt Blau */
-    text-decoration: none;
-    border-bottom: 1px solid rgba(200, 200, 200, 0.3);
-    transition: all 0.3s ease;
-    padding-bottom: 1px;
+.impressum-content a {
+    color: #c0c0c0 !important;
+    -webkit-text-fill-color: #c0c0c0 !important;
+    text-decoration: none !important;
+    border-bottom: 1px solid rgba(200, 200, 200, 0.4) !important;
+    transition: all 0.3s ease !important;
 }
 
-/* Hover-Effekt für Links */
+/* Hover Zustand */
 .datenschutz-content a:hover,
-.impressum-content a:hover,
-.text-quellen a:hover,
-.quellen-liste a:hover {
+.impressum-content a:hover {
     color: #ffffff !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.7);
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    -webkit-text-fill-color: #ffffff !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.8) !important;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3) !important;
 }
 
-/* Besuche Links (bereits geklickte) */
-.datenschutz-content a:visited,
-.impressum-content a:visited {
-    color: #a0a0a0 !important;
-}
-
-/* E-Mail Links speziell */
-a[href^="mailto:"] {
+/* 2. ALLGEMEINE Link-Überschreibung für den gesamten Inhalt */
+.inhalt a:not(.silber-button):not(.social-link):not(.hauptnavigation a) {
     color: #c0c0c0 !important;
-    font-style: italic;
+    -webkit-text-fill-color: #c0c0c0 !important;
+    text-decoration: none !important;
+    border-bottom: 1px solid rgba(200, 200, 200, 0.3) !important;
+    padding-bottom: 1px !important;
 }
 
-a[href^="mailto:"]:hover {
+.inhalt a:not(.silber-button):not(.social-link):not(.hauptnavigation a):hover {
     color: #ffffff !important;
-    text-decoration: underline;
+    -webkit-text-fill-color: #ffffff !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.6) !important;
 }
 
-/* Telefon Links */
-a[href^="tel:"] {
+/* 3. ABSOLUTE ÜBERSCHREIBUNG für alle Links */
+a {
     color: #c0c0c0 !important;
+    -webkit-text-fill-color: #c0c0c0 !important;
 }
 
-/* Externe Links mit Icon (optional) */
-a[href^="http"]:not([href*="deinedomain.com"]):after {
-    content: " ↗";
-    font-size: 0.8em;
-    opacity: 0.7;
-}
-
-/* Für alle Links generell - als Backup */
-.inhalt a:not(.silber-button):not(.social-link):not(.hauptnavigation a):not(.footer-links a) {
-    color: #c0c0c0 !important;
-    text-decoration: none;
-    border-bottom: 1px dotted rgba(200, 200, 200, 0.4);
-}
-
-.inhalt a:not(.silber-button):not(.social-link):not(.hauptnavigation a):not(.footer-links a):hover {
+a:hover {
     color: #ffffff !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.7);
-}   
+    -webkit-text-fill-color: #ffffff !important;
+}
+
+/* 4. SPEZIFISCHE Ausnahmen für bereits gestylte Links */
+.silber-button,
+.social-link,
+.hauptnavigation a,
+.footer-links a,
+.dark-mode-toggle,
+.burger {
+    /* Diese behalten ihre eigenen Styles */
+    color: inherit !important;
+    -webkit-text-fill-color: inherit !important;
+    border-bottom: none !important;
+}
+
+/* 5. Dark Mode Anpassung */
+body.dark-mode .datenschutz-content a,
+body.dark-mode .impressum-content a,
+body.dark-mode .inhalt a:not(.silber-button):not(.social-link):not(.hauptnavigation a) {
+    color: #d0d0d0 !important;
+    -webkit-text-fill-color: #d0d0d0 !important;
+    border-bottom: 1px solid rgba(220, 220, 220, 0.4) !important;
+}
+
+body.dark-mode .datenschutz-content a:hover,
+body.dark-mode .impressum-content a:hover,
+body.dark-mode .inhalt a:not(.silber-button):not(.social-link):not(.hauptnavigation a):hover {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.8) !important;
+}
+
+/* 6. TEST-MODUS: Falls noch blau, aktiviere dies */
+body.link-fix-test a {
+    background-color: yellow !important;
+    color: red !important;
+    border: 2px solid red !important;
+}
 }
