@@ -1,103 +1,132 @@
 // assets/js/menu.js
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Menu JS Version 2 geladen');
+    console.log('Mobile Menü JS startet');
     
-    const burger = document.getElementById('burger');
-    const navigation = document.getElementById('navigation');
-    const menuOverlay = document.getElementById('menuOverlay');
+    const burger = document.querySelector('.burger');
+    const hauptnavigation = document.querySelector('.hauptnavigation');
+    const menuOverlay = document.querySelector('.menu-overlay');
     
-    if (!burger || !navigation) {
-        console.error('Menü-Elemente nicht gefunden!');
+    if (!burger || !hauptnavigation) {
+        console.error('Menü-Elemente nicht gefunden');
         return;
     }
     
-    console.log('Burger:', burger);
-    console.log('Navigation:', navigation);
-    console.log('Overlay:', menuOverlay);
+    // ARIA-Attribute setzen
+    burger.setAttribute('aria-label', 'Hauptmenü öffnen oder schließen');
+    burger.setAttribute('aria-expanded', 'false');
+    burger.setAttribute('aria-controls', 'hauptnavigation');
     
-    // Einfache Toggle-Funktion
-    function toggleMenu() {
-        console.log('Toggle Menu aufgerufen');
+    // Menü öffnen
+    function openMenu() {
+        console.log('Menü öffnen');
+        burger.classList.add('aktiv');
+        hauptnavigation.classList.add('aktiv');
         
-        const isActive = navigation.classList.contains('aktiv');
-        console.log('Aktueller Status:', isActive ? 'geöffnet' : 'geschlossen');
+        // Mobile: Display auf flex setzen
+        if (window.innerWidth <= 768) {
+            hauptnavigation.style.display = 'flex';
+        }
         
-        if (isActive) {
-            // Menü schließen
-            burger.classList.remove('aktiv');
-            navigation.classList.remove('aktiv');
-            if (menuOverlay) menuOverlay.classList.remove('active');
-            document.body.style.overflow = 'auto';
-            document.body.classList.remove('menu-open');
-            burger.setAttribute('aria-expanded', 'false');
-            console.log('Menü geschlossen');
-        } else {
-            // Menü öffnen
-            burger.classList.add('aktiv');
-            navigation.classList.add('aktiv');
-            if (menuOverlay) menuOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-            document.body.classList.add('menu-open');
-            burger.setAttribute('aria-expanded', 'true');
-            console.log('Menü geöffnet');
+        // Overlay aktivieren
+        if (menuOverlay) {
+            menuOverlay.classList.add('active');
+        }
+        
+        // Body scrollen sperren
+        document.body.style.overflow = 'hidden';
+        document.body.style.position = 'fixed';
+        document.body.style.width = '100%';
+        document.body.style.height = '100%';
+    }
+    
+    // Menü schließen
+    function closeMenu() {
+        console.log('Menü schließen');
+        burger.classList.remove('aktiv');
+        hauptnavigation.classList.remove('aktiv');
+        
+        // Overlay deaktivieren
+        if (menuOverlay) {
+            menuOverlay.classList.remove('active');
+        }
+        
+        // Body scrollen erlauben
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.width = '';
+        document.body.style.height = '';
+        
+        // Auf Mobile nach Animation ausblenden
+        if (window.innerWidth <= 768) {
+            setTimeout(() => {
+                if (!hauptnavigation.classList.contains('aktiv')) {
+                    hauptnavigation.style.display = 'none';
+                }
+            }, 300);
         }
     }
     
-    // Menü schließen Funktion
-    function closeMenu() {
-        console.log('Close Menu aufgerufen');
-        burger.classList.remove('aktiv');
-        navigation.classList.remove('aktiv');
-        if (menuOverlay) menuOverlay.classList.remove('active');
-        document.body.style.overflow = 'auto';
-        document.body.classList.remove('menu-open');
-        burger.setAttribute('aria-expanded', 'false');
+    // Menü umschalten
+    function toggleMenu(event) {
+        if (event) event.stopPropagation();
+        
+        if (hauptnavigation.classList.contains('aktiv')) {
+            closeMenu();
+        } else {
+            openMenu();
+        }
     }
     
     // Event Listener
-    burger.addEventListener('click', function(e) {
-        e.stopPropagation();
-        e.preventDefault();
-        toggleMenu();
-    });
+    burger.addEventListener('click', toggleMenu);
     
     // Overlay schließt Menü
     if (menuOverlay) {
         menuOverlay.addEventListener('click', closeMenu);
     }
     
-    // Menü-Links schließen Menü
-    const navLinks = navigation.querySelectorAll('a');
+    // Menü-Links schließen Menü auf Mobile
+    const navLinks = hauptnavigation.querySelectorAll('a');
     navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            console.log('Link geklickt:', this.href);
+        link.addEventListener('click', function() {
             if (window.innerWidth <= 768) {
-                setTimeout(closeMenu, 300);
+                setTimeout(closeMenu, 100);
             }
         });
     });
     
-    // ESC zum Schließen
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && navigation.classList.contains('aktiv')) {
+    // ESC-Taste schließt Menü
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && hauptnavigation.classList.contains('aktiv')) {
             closeMenu();
         }
     });
     
-    // Bei Resize: Menü zurücksetzen auf Desktop
+    // Bei Resize: Menü zurücksetzen wenn auf Desktop
     window.addEventListener('resize', function() {
-        if (window.innerWidth > 768 && navigation.classList.contains('aktiv')) {
+        if (window.innerWidth > 768) {
+            // Auf Desktop: Menü immer sichtbar
             closeMenu();
+            hauptnavigation.style.display = 'flex';
+        } else {
+            // Auf Mobile: Wenn Menü nicht aktiv ist, ausblenden
+            if (!hauptnavigation.classList.contains('aktiv')) {
+                hauptnavigation.style.display = 'none';
+            }
         }
     });
     
-    // ARIA-Attribute setzen
-    burger.setAttribute('aria-label', 'Hauptmenü öffnen oder schließen');
-    burger.setAttribute('aria-expanded', 'false');
-    burger.setAttribute('aria-controls', 'navigation');
+    // Initialisiere Menü-Status basierend auf Bildschirmgröße
+    function initMenuState() {
+        if (window.innerWidth <= 768) {
+            hauptnavigation.style.display = 'none';
+        } else {
+            hauptnavigation.style.display = 'flex';
+        }
+    }
     
-    // Touch-Optimierung
-    burger.style.cursor = 'pointer';
+    // Initialisierung
+    initMenuState();
     
-    console.log('Menu JS erfolgreich initialisiert');
+    console.log('Mobile Menü JS erfolgreich geladen');
 });
