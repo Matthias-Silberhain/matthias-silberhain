@@ -2258,5 +2258,73 @@ body.dark-mode .quellen-liste li:hover {
     
     .footer-links a:hover {
         background: rgba(200, 205, 215, 0.05);
+    } 
+   /* ==========================================================================
+   HINTERGRUND MIT LINEAREM VERLAUF - NEU
+   ========================================================================== */
+
+/* Standard (Light Mode) Hintergrund */
+body {
+    background: linear-gradient(90deg, #000000 0%, #ffffff 100%) !important;
+    background-attachment: fixed !important;
+    background-size: cover !important;
+    min-height: 100vh !important;
+}
+
+/* Dark Mode Hintergrund */
+body.dark-mode {
+    background: linear-gradient(90deg, #000000 0%, #737373 100%) !important;
+    background-attachment: fixed !important;
+    background-size: cover !important;
+    min-height: 100vh !important;
+}
+
+/* Sicherstellen, dass alle Container transparent sind */
+.header,
+.inhalt,
+.footer,
+.social-section,
+.credo-quote-wrapper,
+.text-abschnitt,
+.kernaussage-box,
+.zielgruppe-warnung,
+.impressum-content,
+.datenschutz-content {
+    background-color: transparent !important;
+}
+
+/* Anpassung für Preloader */
+#preloader {
+    background: transparent !important;
+}
+
+/* Anpassung für den Übergang zwischen den Modi */
+body {
+    transition: background 0.5s ease, color 0.3s ease !important;
+}
+
+/* Anpassung für Mobile Navigation im Dark Mode */
+@media screen and (max-width: 768px) {
+    body.dark-mode .hauptnavigation {
+        background-color: rgba(0, 0, 0, 0.95) !important;
+        backdrop-filter: blur(10px);
     }
+    
+    .hauptnavigation {
+        background-color: rgba(0, 0, 0, 0.95) !important;
+        backdrop-filter: blur(10px);
+    }
+}
+
+/* Optional: Feinabstimmung für bessere Lesbarkeit */
+body.dark-mode .inhalt,
+body.dark-mode .footer,
+body.dark-mode .social-section {
+    background-color: transparent !important;
+}
+
+body .inhalt,
+body .footer,
+body .social-section {
+    background-color: transparent !important;
 }
