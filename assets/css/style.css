@@ -1666,3 +1666,8 @@ body.dark-mode .cursor {
     min-height: 44px !important;
   }
 }
+/* ====== SOFORT BURGER FIX ====== */
+.burger {
+    z-index: 999999 !important;
+    pointer-events: auto !important;
+}
