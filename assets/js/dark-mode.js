@@ -1,10 +1,11 @@
 /**
- * DARK MODE TOGGLE - FÜR ALLE SEITEN
- * Korrigierte Version die auf allen Seiten funktioniert
+ * DARK MODE TOGGLE - Matthias Silberhain Website
+ * Theme-Switching für alle Seiten
+ * Version 2.1 - Universal
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🌙 Dark Mode JS - Für alle Seiten');
+    console.log('🌙 Dark Mode JS geladen');
     
     const themeToggle = document.getElementById('themeToggle');
     const body = document.body;
@@ -14,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
         body.classList.add('dark-mode');
         localStorage.setItem('silberhain-theme', 'dark');
         updateToggleIcon(true);
+        console.log('Dark Mode aktiviert');
     }
     
     // Funktion um Light Mode zu aktivieren
@@ -21,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
         body.classList.remove('dark-mode');
         localStorage.setItem('silberhain-theme', 'light');
         updateToggleIcon(false);
+        console.log('Light Mode aktiviert');
     }
     
     // Icon aktualisieren
@@ -50,6 +53,14 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             enableDarkMode();
         }
+        
+        // Visuelles Feedback
+        if (themeToggle) {
+            themeToggle.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                themeToggle.style.transform = '';
+            }, 150);
+        }
     }
     
     // Event Listener für Toggle Button
@@ -70,6 +81,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const savedTheme = localStorage.getItem('silberhain-theme');
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         
+        console.log('Gespeichertes Theme:', savedTheme);
+        console.log('System-Präferenz:', prefersDark ? 'dark' : 'light');
+        
         if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
             enableDarkMode();
         } else {
@@ -82,6 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
     mediaQuery.addEventListener('change', (e) => {
         // Nur ändern wenn keine manuelle Einstellung
         if (!localStorage.getItem('silberhain-theme')) {
+            console.log('System-Theme geändert:', e.matches ? 'dark' : 'light');
             if (e.matches) {
                 enableDarkMode();
             } else {
