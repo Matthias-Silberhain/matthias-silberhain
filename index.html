@@ -20,7 +20,7 @@
         (function() {
             // SOFORTIGE DARK MODE ANWENDUNG
             try {
-                const savedTheme = localStorage.getItem('ms-theme');
+                const savedTheme = localStorage.getItem('silberhain-theme');  // ÄNDERUNG: 'silberhain-theme'
                 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
                 
                 if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
@@ -65,10 +65,9 @@
     <div class="preloader-inner">
         <img src="assets/images/logo.png" alt="Logo" class="preloader-logo">
         <div class="text-container">
-            <h1 class="preloader-text">
-                <span id="type-text"></span>
-                <span class="cursor"></span>
-            </h1>
+            <!-- ÄNDERUNG: Kein <h1>, nur span -->
+            <span class="preloader-text"></span>
+            <span class="cursor"></span>
         </div>
     </div>
 </div>
@@ -275,7 +274,7 @@
 </footer>
 
 <!-- ================= JAVASCRIPT ================= -->
-<script src="assets/js/global.js"></script>
+<!-- NUR EINE Datei einbinden! -->
 <script src="assets/js/menu.js"></script>
 
 </body>
