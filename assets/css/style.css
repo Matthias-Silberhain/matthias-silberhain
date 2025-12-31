@@ -2260,3 +2260,57 @@ body.dark-mode .quellen-liste li:hover {
         background: rgba(200, 205, 215, 0.05);
     }
 }
+/* ==========================================================================
+   PRELOADER FIX - ABSOLUTE PRIORITÄT
+   ========================================================================== */
+
+/* Sicherstellen, dass der Preloader Text sichtbar ist */
+.preloader-text {
+    color: #e0e0e0 !important;
+    text-shadow: 0 0 15px rgba(200, 200, 200, 0.5) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Cursor sichtbar machen */
+.cursor {
+    background-color: #e0e0e0 !important;
+    opacity: 1 !important;
+    animation: blink 1s infinite !important;
+}
+
+/* Preloader Container */
+#preloader {
+    background-color: #000000 !important;
+}
+
+body.dark-mode #preloader {
+    background-color: #1a1a1a !important;
+}
+
+/* Typing Animation für den Text */
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: #e0e0e0 }
+}
+
+/* Alternative: Einfaches Erscheinen */
+.preloader-text.final {
+    animation: textAppear 0.5s ease-out forwards;
+}
+
+@keyframes textAppear {
+    0% { 
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100% { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
