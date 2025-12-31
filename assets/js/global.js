@@ -4,17 +4,25 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     
+    console.log('✅ global.js gestartet');
+    
     // ========== 1. COPYRIGHT JAHR AUTOMATISCH ==========
     const yearElement = document.getElementById('jahr');
     if (yearElement) {
         yearElement.textContent = new Date().getFullYear();
+        console.log('✅ Copyright Jahr gesetzt:', yearElement.textContent);
     }
     
     // ========== 2. EXTERNE LINKS MIT TARGET="_BLANK" ==========
-    document.querySelectorAll('a[href^="http"]:not([href*="' + window.location.host + '"])').forEach(link => {
+    const externalLinks = document.querySelectorAll('a[href^="http"]:not([href*="' + window.location.host + '"])');
+    externalLinks.forEach(link => {
         link.setAttribute('target', '_blank');
         link.setAttribute('rel', 'noopener noreferrer');
     });
+    
+    if (externalLinks.length > 0) {
+        console.log('✅ Externe Links gesichert:', externalLinks.length);
+    }
     
     // ========== 3. SMOOTH SCROLL FÜR ANKER-LINKS ==========
     document.querySelectorAll('a[href^="#"]:not([href="#"])').forEach(anchor => {
@@ -28,57 +36,20 @@ document.addEventListener('DOMContentLoaded', function() {
                     top: targetElement.offsetTop - 80,
                     behavior: 'smooth'
                 });
+                console.log('✅ Smooth Scroll zu:', targetId);
             }
         });
     });
     
-    // ========== 4. FORM VALIDATION (falls Kontaktformular) ==========
-    const forms = document.querySelectorAll('form');
-    forms.forEach(form => {
-        form.addEventListener('submit', function(e) {
-            const requiredFields = this.querySelectorAll('[required]');
-            let isValid = true;
-            
-            requiredFields.forEach(field => {
-                if (!field.value.trim()) {
-                    isValid = false;
-                    field.style.borderColor = '#ff6b6b';
-                } else {
-                    field.style.borderColor = '';
-                }
-            });
-            
-            if (!isValid) {
-                e.preventDefault();
-                alert('Bitte füllen Sie alle erforderlichen Felder aus.');
-            }
-        });
-    });
-    
-    // ========== 5. LAZY LOADING FÜR BILDER ==========
-    const lazyImages = document.querySelectorAll('img[data-src]');
-    if ('IntersectionObserver' in window) {
-        const imageObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.dataset.src;
-                    img.classList.add('loaded');
-                    imageObserver.unobserve(img);
-                }
-            });
-        });
-        
-        lazyImages.forEach(img => imageObserver.observe(img));
-    } else {
-        // Fallback für ältere Browser
-        lazyImages.forEach(img => {
-            img.src = img.dataset.src;
-        });
+    // ========== 4. PRELOADER TEXT SETZEN ==========
+    const preloaderText = document.querySelector('.preloader-text');
+    if (preloaderText) {
+        preloaderText.textContent = 'MATTHIAS SILBERHAIN';
+        console.log('✅ Preloader Text gesetzt');
     }
     
-    // ========== 6. PERFORMANCE OPTIMIERUNGEN ==========
-    // Verhindert Layout Shifts
+    // ========== 5. PERFORMANCE OPTIMIERUNGEN ==========
+    // Verhindert Layout Shifts für Bilder
     const images = document.querySelectorAll('img');
     images.forEach(img => {
         if (!img.complete) {
@@ -93,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('✅ global.js erfolgreich geladen');
 });
 
-// ========== 7. HELPER FUNCTIONS ==========
+// ========== 6. HELPER FUNCTIONS ==========
 window.WebsiteHelpers = {
     // Formatieren von Datum
     formatDate: function(dateString) {
@@ -101,14 +72,13 @@ window.WebsiteHelpers = {
         return new Date(dateString).toLocaleDateString('de-DE', options);
     },
     
-    // Text auf bestimmte Länge kürzen
-    truncateText: function(text, maxLength) {
-        if (text.length <= maxLength) return text;
-        return text.substr(0, maxLength) + '...';
+    // Aktuelle Seite zurückgeben
+    getCurrentPage: function() {
+        return window.location.pathname.split('/').pop() || 'index.html';
     },
     
-    // Aktuelle URL zurückgeben
-    getCurrentPage: function() {
-        return window.location.pathname.split('/').pop();
+    // Dark Mode Status
+    isDarkMode: function() {
+        return document.body.classList.contains('dark-mode');
     }
 };
