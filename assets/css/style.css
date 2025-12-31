@@ -2404,3 +2404,202 @@ body.dark-mode #preloader {
 .no-js #preloader {
     display: none !important;
 }
+/* ==========================================================================
+   PRELOADER & TYPOGRAPHY FINAL FIX
+   ========================================================================== */
+
+/* ====== PRELOADER TYPOGRAPHY FIX ====== */
+.preloader-text {
+    font-family: "Cinzel", serif !important;
+    font-size: 1.8rem !important; /* VIEL kleiner für Mobile */
+    letter-spacing: 0.2em !important;
+    color: #e0e0e0 !important;
+    text-shadow: 0 0 10px rgba(200, 200, 200, 0.3) !important;
+    white-space: nowrap !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: inline-block !important;
+    min-height: auto !important;
+    line-height: 1 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Cursor */
+.cursor {
+    display: inline-block !important;
+    width: 2px !important;
+    height: 1em !important;
+    background-color: #e0e0e0 !important;
+    margin-left: 5px !important;
+    vertical-align: middle !important;
+    animation: blink 1s infinite !important;
+    opacity: 1 !important;
+}
+
+/* Blink Animation */
+@keyframes blink {
+    0%, 50% { opacity: 1 !important; }
+    51%, 100% { opacity: 0 !important; }
+}
+
+/* Preloader Container */
+#preloader {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: #000000 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    z-index: 9999 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transition: opacity 0.6s ease, visibility 0.6s ease !important;
+}
+
+/* Versteckter Preloader */
+#preloader.hidden {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+/* Preloader Logo */
+.preloader-logo {
+    width: 120px !important; /* Kleiner für Mobile */
+    height: auto !important;
+    margin-bottom: 20px !important;
+    display: block !important;
+    filter: brightness(1.1) !important;
+}
+
+/* ====== KALLIGRAFIE TEXT FIX ====== */
+.kalligrafie-text {
+    font-family: 'Great Vibes', 'Dancing Script', cursive !important;
+    font-size: 2.2rem !important; /* Kleinere Basisgröße */
+    font-weight: 400 !important;
+    line-height: 1.2 !important;
+    color: #ffffff !important;
+    text-align: center !important;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8) !important;
+    margin: 0 auto !important;
+    padding: 0 1rem !important;
+    max-width: 100% !important;
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* ====== MOBILE OPTIMIERUNGEN ====== */
+@media screen and (max-width: 768px) {
+    /* Preloader auf Mobile */
+    .preloader-text {
+        font-size: 1.2rem !important; /* NOCH kleiner auf Mobile */
+        letter-spacing: 0.15em !important;
+    }
+    
+    .preloader-logo {
+        width: 90px !important;
+        margin-bottom: 15px !important;
+    }
+    
+    /* Kalligrafie Text auf Mobile */
+    .kalligrafie-text {
+        font-size: 1.8rem !important; /* Viel kleiner auf Mobile */
+        line-height: 1.1 !important;
+        padding: 0 0.5rem !important;
+    }
+    
+    .cursor {
+        height: 0.9em !important;
+        width: 1.5px !important;
+    }
+}
+
+@media screen and (min-width: 769px) {
+    /* Desktop: Größere Schrift */
+    .preloader-text {
+        font-size: 2.2rem !important;
+    }
+    
+    .preloader-logo {
+        width: 150px !important;
+    }
+    
+    .kalligrafie-text {
+        font-size: 3rem !important; /* Größer auf Desktop */
+    }
+}
+
+/* ====== SIGNATURE FIX ====== */
+.kalligrafie-signature {
+    font-family: 'Dancing Script', 'Great Vibes', cursive !important;
+    font-size: 1.4rem !important;
+    color: #c0c0c0 !important;
+    letter-spacing: 1px !important;
+    text-transform: none !important;
+    opacity: 0.9 !important;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.2) !important;
+}
+
+/* Mobile Signature */
+@media screen and (max-width: 768px) {
+    .kalligrafie-signature {
+        font-size: 1.1rem !important;
+    }
+}
+
+/* ====== TEXT CONTAINER FIX ====== */
+.text-container {
+    text-align: center !important;
+    width: 100% !important;
+    padding: 0 15px !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+}
+
+/* ====== CREDO SUBTITLE FIX ====== */
+.credo-subtitle {
+    font-family: 'EB Garamond', serif !important;
+    font-size: 1.1rem !important;
+    line-height: 1.6 !important;
+    color: #b0b5bc !important;
+    text-align: center !important;
+    max-width: 700px !important;
+    margin: 2rem auto 0 !important;
+    padding: 1rem !important;
+}
+
+@media screen and (max-width: 768px) {
+    .credo-subtitle {
+        font-size: 1rem !important;
+        padding: 0.8rem !important;
+    }
+}
+
+/* ====== EMERGENCY FIX FÜR WRAP PROBLEME ====== */
+.preloader-inner {
+    max-width: 100% !important;
+    padding: 0 20px !important;
+    box-sizing: border-box !important;
+    text-align: center !important;
+}
+
+/* Force text to stay on one line on mobile */
+@media screen and (max-width: 480px) {
+    .preloader-text {
+        font-size: 1rem !important;
+        letter-spacing: 0.1em !important;
+        white-space: normal !important; /* Erlaubt Umbruch wenn nötig */
+        word-break: break-word !important;
+        max-width: 100% !important;
+    }
+    
+    .kalligrafie-text {
+        font-size: 1.6rem !important;
+        line-height: 1.1 !important;
+    }
+}
