@@ -2259,7 +2259,7 @@ body.dark-mode .quellen-liste li:hover {
     .footer-links a:hover {
         background: rgba(200, 205, 215, 0.05);
     } 
-   /* ==========================================================================
+  /* ==========================================================================
    HINTERGRUND MIT LINEAREM VERLAUF - NEU
    ========================================================================== */
 
@@ -2327,4 +2327,5 @@ body .inhalt,
 body .footer,
 body .social-section {
     background-color: transparent !important;
+}
 }
