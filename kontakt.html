@@ -14,340 +14,36 @@
   
   <!-- Favicon -->
   <link rel="icon" href="assets/images/logo.png" type="image/png">
-  
-  <!-- Dark Mode Preload - KORRIGIERT -->
-  <script>
-    (function() {
-      // SOFORTIGE DARK MODE ANWENDUNG
-      try {
-        const savedTheme = localStorage.getItem('ms-theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        
-        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-          document.documentElement.classList.add('dark-mode');
-          document.body.classList.add('dark-mode');
-        }
-      } catch(e) {
-        // Ignoriere Fehler
-      }
-      
-      // SOFORTIGE KLICKBARKEIT SICHERSTELLEN
-      document.addEventListener('DOMContentLoaded', function() {
-        // Alle interaktiven Elemente klickbar machen
-        const interactiveElements = ['button', 'a', '.burger', '.dark-mode-toggle', '.silber-button', '.social-link'];
-        
-        setTimeout(function() {
-          interactiveElements.forEach(selector => {
-            document.querySelectorAll(selector).forEach(el => {
-              el.style.pointerEvents = 'auto';
-              el.style.cursor = 'pointer';
-            });
-          });
-          
-          // Copyright Jahr sofort setzen
-          const yearElement = document.getElementById('jahr');
-          if (yearElement && !yearElement.textContent) {
-            yearElement.textContent = new Date().getFullYear();
-          }
-          
-          console.log('✅ Website ist jetzt voll klickbar!');
-        }, 100);
-      });
-    })();
-  </script>
-  
-  <style>
-    /* ==========================================================================
-       KONTAKT SEITE STYLES
-       ========================================================================== */
-    
-    .kontakt-container {
-      max-width: 750px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-    
-    .kontakt-header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-    
-    .kontakt-header h1 {
-      margin-bottom: 25px;
-      font-family: "Cinzel", serif;
-      color: #e4e6ea;
-      font-size: 2.3rem;
-      letter-spacing: 0.05em;
-      text-shadow: 0 0 15px rgba(200, 200, 200, 0.2);
-    }
-    
-    /* Professioneller Einleitungstext */
-    .kontakt-einleitung {
-      background: rgba(200, 205, 215, 0.05);
-      border-left: 3px solid rgba(200, 205, 215, 0.3);
-      padding: 30px 35px;
-      margin: 30px 0 50px;
-      border-radius: 0 4px 4px 0;
-      font-size: 1.1rem;
-      line-height: 1.75;
-      color: #b0b5bc;
-    }
-    
-    .kontakt-einleitung p {
-      margin-bottom: 20px;
-      text-align: left;
-    }
-    
-    .kontakt-einleitung p:last-child {
-      margin-bottom: 0;
-    }
-    
-    .einleitung-highlight {
-      color: #d6d9de;
-      font-weight: 500;
-    }
-    
-    /* Haupt-Kontakt Box */
-    .kontakt-box {
-      margin: 40px 0;
-      padding: 35px;
-      background: rgba(10, 10, 10, 0.3);
-      border: 1px solid rgba(200, 205, 215, 0.2);
-      border-radius: 4px;
-      text-align: center;
-      transition: all 0.3s ease;
-    }
-    
-    .kontakt-box:hover {
-      background: rgba(10, 10, 10, 0.4);
-      border-color: rgba(200, 205, 215, 0.4);
-      transform: translateY(-5px);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    }
-    
-    .kontakt-box h2 {
-      font-family: "Cinzel", serif;
-      color: #e4e6ea;
-      margin-bottom: 25px;
-      letter-spacing: 0.05em;
-      font-size: 1.5rem;
-    }
-    
-    .email-container {
-      margin: 30px 0;
-      padding: 25px;
-      background: rgba(200, 205, 215, 0.05);
-      border-radius: 4px;
-    }
-    
-    .email-link {
-      color: #d6d9de;
-      text-decoration: none;
-      font-size: 1.4rem;
-      transition: all 0.3s ease;
-      padding: 12px 25px;
-      border: 2px solid rgba(200, 205, 215, 0.4);
-      border-radius: 4px;
-      display: inline-block;
-      background: rgba(10, 10, 10, 0.5);
-      letter-spacing: 0.05em;
-    }
-    
-    .email-link:hover {
-      color: #ffffff;
-      text-shadow: 0 0 15px rgba(200, 200, 200, 0.5);
-      border-color: rgba(200, 205, 215, 0.7);
-      background: rgba(10, 10, 10, 0.7);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-    }
-    
-    .kontakt-box p {
-      margin: 15px 0;
-      color: #b0b5bc;
-      line-height: 1.6;
-    }
-    
-    .kontakt-tipps {
-      margin-top: 30px;
-      padding-top: 25px;
-      border-top: 1px solid rgba(200, 205, 215, 0.2);
-    }
-    
-    .kontakt-tipps h3 {
-      font-family: "Cinzel", serif;
-      color: #e4e6ea;
-      margin-bottom: 15px;
-      letter-spacing: 0.05em;
-      font-size: 1.2rem;
-    }
-    
-    .tipp-liste {
-      text-align: left;
-      max-width: 500px;
-      margin: 0 auto;
-      color: #b0b5bc;
-    }
-    
-    .tipp-liste li {
-      margin-bottom: 12px;
-      padding-left: 25px;
-      position: relative;
-    }
-    
-    .tipp-liste li:before {
-      content: "→";
-      position: absolute;
-      left: 0;
-      color: #d6d9de;
-    }
-    
-    /* Aktionsbuttons */
-    .kontakt-aktionen {
-      margin: 50px 0 30px;
-      text-align: center;
-    }
-    
-    .kontakt-aktionen h3 {
-      font-family: "Cinzel", serif;
-      color: #e4e6ea;
-      margin-bottom: 25px;
-      letter-spacing: 0.05em;
-      font-size: 1.3rem;
-    }
-    
-    .aktions-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-      margin-top: 30px;
-    }
-    
-    /* Dark Mode Anpassungen */
-    body.dark-mode .kontakt-einleitung {
-      background: rgba(220, 225, 235, 0.07);
-      border-left-color: rgba(220, 225, 235, 0.4);
-      color: #b0b5bc;
-    }
-    
-    body.dark-mode .kontakt-box {
-      background: rgba(30, 30, 30, 0.5);
-      border-color: rgba(220, 225, 235, 0.25);
-    }
-    
-    body.dark-mode .kontakt-box:hover {
-      background: rgba(30, 30, 30, 0.7);
-      border-color: rgba(220, 225, 235, 0.4);
-    }
-    
-    body.dark-mode .email-container {
-      background: rgba(220, 225, 235, 0.05);
-    }
-    
-    body.dark-mode .email-link {
-      border-color: rgba(220, 225, 235, 0.4);
-      background: rgba(30, 30, 30, 0.6);
-    }
-    
-    body.dark-mode .email-link:hover {
-      border-color: rgba(220, 225, 235, 0.7);
-      background: rgba(30, 30, 30, 0.8);
-    }
-    
-    /* Responsive Anpassungen */
-    @media screen and (max-width: 768px) {
-      .kontakt-container {
-        padding: 15px;
-      }
-      
-      .kontakt-header h1 {
-        font-size: 1.8rem;
-      }
-      
-      .kontakt-einleitung {
-        padding: 20px;
-        font-size: 1.05rem;
-      }
-      
-      .kontakt-box {
-        padding: 25px 20px;
-      }
-      
-      .email-link {
-        font-size: 1.2rem;
-        padding: 10px 20px;
-      }
-      
-      .aktions-buttons {
-        flex-direction: column;
-        align-items: center;
-      }
-      
-      .aktions-buttons a {
-        width: 100%;
-        max-width: 300px;
-        text-align: center;
-      }
-    }
-    
-    @media screen and (max-width: 480px) {
-      .kontakt-header h1 {
-        font-size: 1.6rem;
-      }
-      
-      .kontakt-einleitung {
-        padding: 15px;
-        font-size: 1rem;
-      }
-      
-      .email-link {
-        font-size: 1.1rem;
-        padding: 10px 15px;
-      }
-      
-      .tipp-liste li {
-        padding-left: 20px;
-        font-size: 0.95rem;
-      }
-    }
-  </style>
 </head>
 
 <body>
 
-<!-- Mobile Menu Overlay -->
-<div class="menu-overlay" id="menuOverlay"></div>
+<!-- Menu Overlay -->
+<div class="menu-overlay"></div>
 
 <!-- ================= HEADER ================= -->
 <header class="header">
   <img src="assets/images/logo.png" alt="Matthias Silberhain Logo" class="logo">
   
   <!-- Dark Mode Toggle Button -->
-  <button id="darkModeToggle" class="dark-mode-toggle" aria-label="Dark Mode umschalten" title="Dark Mode umschalten">
-    <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+  <button class="dark-mode-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+    <svg class="moon-icon" viewBox="0 0 24 24">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3z"/>
     </svg>
-    <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="12" cy="12" r="5"></circle>
-      <line x1="12" y1="1" x2="12" y2="3"></line>
-      <line x1="12" y1="21" x2="12" y2="23"></line>
-      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-      <line x1="1" y1="12" x2="3" y2="12"></line>
-      <line x1="21" y1="12" x2="23" y2="12"></line>
-      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    <svg class="sun-icon" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="5"/>
     </svg>
   </button>
 
-  <div class="burger" id="burger" title="Menü öffnen/schließen">
+  <!-- Burger Menu Button -->
+  <button class="burger" id="burgerButton">
     <span></span>
     <span></span>
     <span></span>
-  </div>
+  </button>
 
-  <nav class="hauptnavigation" id="navigation">
+  <!-- Hauptnavigation -->
+  <nav class="hauptnavigation" id="mainNav">
     <a href="index.html">Startseite</a>
     <a href="ueber-mich.html">Über mich</a>
     <a href="werke.html">Werke</a>
@@ -507,11 +203,12 @@
         <a href="impressum.html">Impressum</a>
         <a href="datenschutz.html">Datenschutz</a>
     </div>
-    <p>© <span id="jahr"></span> Matthias Silberhain</p>
+    <p>© <span id="currentYear"></span> Matthias Silberhain</p>
 </footer>
 
 <!-- ================= JAVASCRIPT ================= -->
 <script src="assets/js/global.js"></script>
+<script src="assets/js/dark-mode.js"></script>
 <script src="assets/js/menu.js"></script>
 
 </body>
