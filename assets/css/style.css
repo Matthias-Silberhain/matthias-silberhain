@@ -2404,3 +2404,97 @@ body.dark-mode #preloader {
 .no-js #preloader {
     display: none !important;
 }
+/* ==========================================================================
+   KRITISCHE FIXES - AM ENDE HINZUFÜGEN
+   ========================================================================== */
+
+/* Kalligrafie Text - Sichtbar in beiden Modi */
+.kalligrafie-text {
+    font-family: 'Great Vibes', 'Dancing Script', cursive !important;
+    font-size: 3.2rem !important;
+    color: #ffffff !important;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Dark Mode für Kalligrafie */
+body.dark-mode .kalligrafie-text {
+    color: #ffffff !important;
+    text-shadow: 0 3px 8px rgba(0, 0, 0, 1) !important;
+}
+
+/* Preloader Text - SICHTBAR */
+.preloader-text {
+    color: #e0e0e0 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    font-size: 34px !important;
+    font-family: "Cinzel", serif !important;
+    letter-spacing: 0.2em !important;
+    white-space: nowrap !important;
+}
+
+/* Preloader Cursor */
+.cursor {
+    background-color: #e0e0e0 !important;
+    opacity: 1 !important;
+    animation: blink 1s infinite !important;
+}
+
+/* Preloader Container */
+#preloader {
+    z-index: 9999 !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: #000000 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+/* Blink Animation */
+@keyframes blink {
+    0%, 50% { opacity: 1 !important; }
+    51%, 100% { opacity: 0 !important; }
+}
+
+/* Dark Mode Preloader */
+body.dark-mode #preloader {
+    background: #1a1a1a !important;
+}
+
+/* Versteckter Preloader */
+#preloader.hidden {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+/* Signature */
+.kalligrafie-signature {
+    font-family: 'Dancing Script', 'Great Vibes', cursive !important;
+    color: #c0c0c0 !important;
+    font-size: 1.8rem !important;
+}
+
+/* Dark Mode Signature */
+body.dark-mode .kalligrafie-signature {
+    color: #d0d0d0 !important;
+}
+
+/* Credo Subtitle */
+.credo-subtitle {
+    font-family: 'EB Garamond', serif !important;
+    color: #b0b5bc !important;
+    font-size: 1.4rem !important;
+    line-height: 1.7 !important;
+}
+
+/* Dark Mode Credo Subtitle */
+body.dark-mode .credo-subtitle {
+    color: #d0d0d0 !important;
+}
