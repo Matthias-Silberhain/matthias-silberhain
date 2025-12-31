@@ -24,7 +24,7 @@ body {
 }
 
 /* ==========================================================================
-   PRELOADER - KORRIGIERT & FUNKTIONIERT
+   PRELOADER
    ========================================================================== */
 #preloader {
   position: fixed;
@@ -36,10 +36,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9990; /* KORRIGIERT: Nicht blockierend */
+  z-index: 9990;
   opacity: 1;
   visibility: visible;
-  pointer-events: none; /* WICHTIG: Blockiert keine Klicks! */
+  pointer-events: none;
   transition: opacity 0.6s ease, visibility 0.6s ease;
 }
 
@@ -67,7 +67,7 @@ body {
   margin-bottom: 30px;
   display: block;
   filter: brightness(1.1);
-  animation: logoAppear 1s ease-out forwards;
+  animation: logoAppear 1s ease-out forwards, logoFloat 6s ease-in-out 1s infinite;
 }
 
 .text-container {
@@ -110,6 +110,21 @@ body {
   }
 }
 
+@keyframes logoFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-4px) rotate(0.2deg);
+  }
+  50% {
+    transform: translateY(0) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-2px) rotate(-0.2deg);
+  }
+}
+
 /* ==========================================================================
    HEADER
    ========================================================================== */
@@ -128,10 +143,26 @@ body {
   margin: 0 auto 25px;
   display: block;
   filter: brightness(1.1);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+}
+
+.logo:hover {
+  animation: logoFloatHover 2s ease-in-out infinite;
+  filter: brightness(1.15) drop-shadow(0 0 20px rgba(200, 200, 200, 0.25));
+}
+
+@keyframes logoFloatHover {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-3px) scale(1.02);
+  }
 }
 
 /* ==========================================================================
-   DARK MODE TOGGLE - KORRIGIERT & FUNKTIONIERT
+   DARK MODE TOGGLE
    ========================================================================== */
 .dark-mode-toggle {
   position: absolute;
@@ -174,7 +205,6 @@ body {
   display: none;
 }
 
-/* Dark Mode aktiv - Sonne zeigen */
 body.dark-mode .dark-mode-toggle .moon-icon {
   display: none;
 }
@@ -230,7 +260,7 @@ body.dark-mode .dark-mode-toggle .sun-icon {
 }
 
 /* ==========================================================================
-   BURGER MENÜ (MOBIL) - NEU KORRIGIERT
+   BURGER MENÜ (MOBIL)
    ========================================================================== */
 .burger {
   display: none;
@@ -260,7 +290,6 @@ body.dark-mode .dark-mode-toggle .sun-icon {
   transform-origin: center;
 }
 
-/* Burger bei aktivem Menü (X) - KORRIGIERT */
 .burger.aktiv span:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
   background-color: #e4e6ea;
@@ -341,7 +370,7 @@ strong {
 }
 
 /* ==========================================================================
-   FOOTER - KORRIGIERT MIT ZENTRIERTEM TEXT
+   FOOTER
    ========================================================================== */
 .footer {
   text-align: center;
@@ -367,7 +396,7 @@ strong {
 }
 
 /* ==========================================================================
-   RESPONSIVE DESIGN
+   RESPONSIVE DESIGN - STANDARD
    ========================================================================== */
 @media screen and (max-width: 1024px) {
   .preloader-logo {
@@ -396,7 +425,7 @@ strong {
 }
 
 /* ==========================================================================
-   MOBILE NAVIGATION - KOMPLETT KORRIGIERT
+   MOBILE NAVIGATION
    ========================================================================== */
 @media screen and (max-width: 768px) {
   .header {
@@ -422,7 +451,6 @@ strong {
     order: 1;
   }
   
-  /* Burger Button Position - KORRIGIERT */
   .burger {
     display: flex;
     position: absolute;
@@ -432,7 +460,6 @@ strong {
     order: 3;
   }
   
-  /* Dark Mode Toggle Position - KORRIGIERT */
   .dark-mode-toggle {
     position: absolute;
     top: 30px;
@@ -442,7 +469,6 @@ strong {
     order: 2;
   }
   
-  /* Hauptnavigation für Mobile - KORRIGIERT */
   .hauptnavigation {
     display: none;
     position: fixed;
@@ -462,11 +488,6 @@ strong {
     opacity: 0;
     transform: translateX(-100%);
     transition: all 0.4s ease;
-  }
-  
-  /* Dark Mode für Mobile Menü - KORRIGIERT */
-  body.dark-mode .hauptnavigation {
-    background-color: rgba(26, 26, 26, 0.98);
   }
   
   .hauptnavigation.aktiv {
@@ -489,20 +510,10 @@ strong {
     background: rgba(10, 10, 10, 0.7);
   }
   
-  body.dark-mode .hauptnavigation a {
-    background: rgba(30, 30, 30, 0.8);
-    border-color: rgba(220, 225, 235, 0.2);
-  }
-  
   .hauptnavigation a:hover {
     background-color: rgba(200, 205, 215, 0.1);
     border-color: rgba(200, 205, 215, 0.5);
     transform: translateY(-2px);
-  }
-  
-  body.dark-mode .hauptnavigation a:hover {
-    background-color: rgba(220, 225, 235, 0.15);
-    border-color: rgba(220, 225, 235, 0.5);
   }
   
   .inhalt {
@@ -524,7 +535,6 @@ strong {
     margin: 20px 0;
   }
   
-  /* Footer für Mobile zentriert halten */
   .footer {
     text-align: center;
     padding: 20px 15px;
@@ -535,9 +545,6 @@ strong {
   }
 }
 
-/* ==========================================================================
-   KLEINE MOBILS (max-width: 480px)
-   ========================================================================== */
 @media screen and (max-width: 480px) {
   .preloader-logo {
     width: 120px;
@@ -557,7 +564,6 @@ strong {
     width: min(60vw, 220px);
   }
   
-  /* Kleinere Anpassungen für sehr kleine Geräte */
   .hauptnavigation {
     padding-top: 100px;
   }
@@ -600,10 +606,6 @@ strong {
     padding: 20px 12px;
     font-size: 0.85rem;
   }
-  
-  .footer p {
-    text-align: center;
-  }
 }
 
 /* ==========================================================================
@@ -627,68 +629,6 @@ strong {
   display: block;
   opacity: 1;
   pointer-events: auto;
-}
-
-/* ==========================================================================
-   DARK MODE STYLES - FUNKTIONIERT
-   ========================================================================== */
-body.dark-mode {
-  background-color: #1a1a1a !important;
-  color: #b0b5bc !important;
-}
-
-body.dark-mode .header {
-  background-color: #1a1a1a !important;
-}
-
-body.dark-mode .inhalt {
-  background-color: #1a1a1a !important;
-}
-
-body.dark-mode .social-section {
-  background-color: #1a1a1a !important;
-}
-
-body.dark-mode .footer {
-  background-color: #1a1a1a !important;
-}
-
-body.dark-mode #preloader {
-  background-color: #1a1a1a !important;
-}
-
-body.dark-mode h1,
-body.dark-mode h2,
-body.dark-mode h3,
-body.dark-mode .credo-headline,
-body.dark-mode .social-title,
-body.dark-mode .lead-text {
-  color: #e4e6ea !important;
-}
-
-body.dark-mode p,
-body.dark-mode span {
-  color: #b0b5bc !important;
-}
-
-body.dark-mode .hauptnavigation a {
-  color: #d6d9de !important;
-}
-
-body.dark-mode .hauptnavigation a:hover {
-  color: #ffffff !important;
-}
-
-body.dark-mode .lichtkante,
-body.dark-mode .footer-lichtkante,
-body.dark-mode .social-lichtkante {
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(220, 225, 235, 0.7),
-    transparent
-  ) !important;
-  box-shadow: 0 0 15px rgba(220, 225, 235, 0.2) !important;
 }
 
 /* ==========================================================================
@@ -936,8 +876,10 @@ body.dark-mode .social-lichtkante {
 }
 
 /* ==========================================================================
-   SILBERHAIN ZITAT DESIGN - NUR SILBER!
+   KALLIGRAFIE ZITAT DESIGN
    ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Playfair+Display:ital@0;1&family=Great+Vibes&display=swap');
+
 .credo-container {
   margin: 4rem auto 5rem;
   max-width: 900px;
@@ -946,265 +888,73 @@ body.dark-mode .social-lichtkante {
 
 .credo-quote-wrapper {
   position: relative;
-  padding: 3rem 2rem;
+  padding: 2rem 1rem;
   margin-bottom: 2.5rem;
-  background: linear-gradient(135deg, 
-    rgba(200, 205, 215, 0.05) 0%, 
-    rgba(200, 205, 215, 0.02) 100%);
-  border: 1px solid rgba(200, 205, 215, 0.15);
-  border-radius: 1px;
-  overflow: hidden;
-  transition: all 0.3s ease;
-}
-
-.credo-quote-wrapper::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, 
-    transparent, 
-    rgba(200, 205, 215, 0.5) 20%, 
-    rgba(200, 205, 215, 0.8) 50%, 
-    rgba(200, 205, 215, 0.5) 80%, 
-    transparent);
-  transition: all 0.3s ease;
-}
-
-.credo-quote-wrapper::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, 
-    transparent, 
-    rgba(200, 205, 215, 0.5) 20%, 
-    rgba(200, 205, 215, 0.8) 50%, 
-    rgba(200, 205, 215, 0.5) 80%, 
-    transparent);
-  transition: all 0.3s ease;
+  background: transparent;
+  border: none;
+  box-shadow: none;
 }
 
 .credo-quote {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 3rem;
+  display: block;
   position: relative;
   z-index: 2;
-}
-
-.quote-ornament {
-  flex-shrink: 0;
-  width: 80px;
-  height: 20px;
-  color: #c0c0c0; /* SILBER */
-  opacity: 0.7;
-  transition: all 0.3s ease;
-}
-
-.quote-ornament-left {
-  transform: rotate(180deg);
-}
-
-.quote-ornament-right {
-  transform: rotate(0);
-}
-
-.quote-text {
-  font-family: 'EB Garamond', serif;
-  font-size: 2.4rem;
-  font-weight: 500;
-  line-height: 1.3;
-  color: #2c2c2c;
   text-align: center;
-  margin: 0;
-  flex-grow: 1;
-  letter-spacing: 0.2px;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.kalligrafie-text {
+  font-family: 'Great Vibes', 'Dancing Script', cursive;
+  font-size: 3.2rem;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #ffffff;
+  text-align: center;
+  margin: 0 auto 1.5rem;
+  letter-spacing: 1.5px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
   position: relative;
-  transition: color 0.3s ease;
+  padding: 0 2rem;
+  max-width: 800px;
+  transition: all 0.3s ease;
 }
 
 .credo-signature {
   display: flex;
-  align-items: center;
   justify-content: center;
-  gap: 1.5rem;
-  margin-top: 2rem;
-  padding-top: 1.5rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
   position: relative;
 }
 
-.credo-signature::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 25%;
-  right: 25%;
-  height: 1px;
-  background: linear-gradient(90deg, 
-    transparent, 
-    rgba(200, 205, 215, 0.3) 50%, 
-    transparent);
-  transition: all 0.3s ease;
-}
-
-.signature-line {
-  width: 40px;
-  height: 1px;
-  background: #c0c0c0; /* SILBER */
-  opacity: 0.6;
-  transition: all 0.3s ease;
-}
-
-.signature-text {
-  font-family: 'Cinzel', serif;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #c0c0c0; /* SILBER */
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
+.kalligrafie-signature {
+  font-family: 'Dancing Script', 'Great Vibes', cursive;
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #c0c0c0;
+  letter-spacing: 1px;
+  text-transform: none;
   opacity: 0.9;
   transition: all 0.3s ease;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  position: relative;
 }
 
 .credo-subtitle {
   font-family: 'EB Garamond', serif;
   font-size: 1.4rem;
   line-height: 1.7;
-  color: #555;
+  color: #b0b5bc;
   text-align: center;
   max-width: 700px;
-  margin: 2rem auto 0;
+  margin: 3rem auto 0;
   padding: 1.5rem;
-  border-top: 1px solid rgba(200, 205, 215, 0.2);
-  border-bottom: 1px solid rgba(200, 205, 215, 0.2);
-  background: rgba(250, 250, 250, 0.5);
+  background: transparent;
+  border: none;
   transition: all 0.3s ease;
 }
 
-/* ================= SILBER DARK MODE - NOCH MEHR SILBER! ================= */
-body.dark-mode .credo-quote-wrapper {
-  background: linear-gradient(135deg, 
-    rgba(192, 192, 192, 0.15) 0%, 
-    rgba(150, 150, 150, 0.08) 100%);
-  border-color: rgba(200, 200, 200, 0.4);
-  box-shadow: 
-    0 0 25px rgba(200, 200, 200, 0.2),
-    inset 0 0 40px rgba(200, 200, 200, 0.1);
-}
-
-body.dark-mode .credo-quote-wrapper::before,
-body.dark-mode .credo-quote-wrapper::after {
-  background: linear-gradient(90deg, 
-    transparent, 
-    rgba(220, 220, 220, 0.6) 20%, 
-    rgba(255, 255, 255, 0.8) 50%, 
-    rgba(220, 220, 220, 0.6) 80%, 
-    transparent);
-}
-
-body.dark-mode .quote-text {
-  color: #f0f0f0;
-  text-shadow: 
-    0 1px 3px rgba(0,0,0,0.3),
-    0 0 15px rgba(200, 200, 200, 0.15);
-}
-
-body.dark-mode .quote-ornament {
-  color: #d0d0d0;
-  opacity: 0.9;
-  filter: drop-shadow(0 0 5px rgba(200, 200, 200, 0.4));
-}
-
-body.dark-mode .credo-signature::before {
-  background: linear-gradient(90deg, 
-    transparent, 
-    rgba(200, 200, 200, 0.6) 50%, 
-    transparent);
-}
-
-body.dark-mode .signature-line {
-  background: #c0c0c0;
-  opacity: 0.8;
-  box-shadow: 0 0 8px rgba(200, 200, 200, 0.4);
-}
-
-body.dark-mode .signature-text {
-  color: #c0c0c0;
-  text-shadow: 0 0 8px rgba(200, 200, 200, 0.4);
-  opacity: 1;
-}
-
-body.dark-mode .credo-subtitle {
-  color: #ddd;
-  border-top-color: rgba(200, 200, 200, 0.4);
-  border-bottom-color: rgba(200, 200, 200, 0.4);
-  background: rgba(30, 30, 30, 0.7);
-  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
-}
-
-/* ================= RESPONSIVE ZITAT ================= */
-@media screen and (max-width: 768px) {
-  .credo-quote {
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-  
-  .quote-ornament {
-    width: 100px;
-    height: 15px;
-  }
-  
-  .quote-text {
-    font-size: 2rem;
-    padding: 0 1rem;
-  }
-  
-  .credo-quote-wrapper {
-    padding: 2.5rem 1.5rem;
-  }
-  
-  .credo-signature {
-    gap: 1rem;
-  }
-  
-  .signature-line {
-    width: 30px;
-  }
-  
-  .credo-subtitle {
-    font-size: 1.2rem;
-    padding: 1rem;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .quote-text {
-    font-size: 1.8rem;
-  }
-  
-  .credo-quote-wrapper {
-    padding: 2rem 1rem;
-  }
-  
-  .credo-container {
-    margin: 3rem auto 4rem;
-  }
-  
-  .credo-subtitle {
-    font-size: 1.1rem;
-    line-height: 1.6;
-  }
-}
-
 /* ==========================================================================
-   ÜBER-MICH SPEZIFISCHE STYLES - NUR SILBER!
+   ÜBER-MICH SPEZIFISCHE STYLES
    ========================================================================== */
 .ueber-mich-content {
   margin-top: 3rem;
@@ -1235,7 +985,6 @@ body.dark-mode .credo-subtitle {
   color: #e4e6ea;
   margin: 1.5rem 0 3rem;
   font-weight: 500;
-  text-shadow: 0 0 10px rgba(200, 200, 200, 0.3);
 }
 
 .attention-line {
@@ -1245,8 +994,8 @@ body.dark-mode .credo-subtitle {
   margin: 2.5rem 0;
   font-style: italic;
   padding: 1.5rem;
-  border-left: 2px solid rgba(200, 205, 215, 0.3); /* SILBER */
-  border-right: 2px solid rgba(200, 205, 215, 0.3); /* SILBER */
+  border-left: 2px solid rgba(200, 205, 215, 0.3);
+  border-right: 2px solid rgba(200, 205, 215, 0.3);
 }
 
 .abschnitt-schluss {
@@ -1265,22 +1014,483 @@ body.dark-mode .credo-subtitle {
   border-radius: 2px;
 }
 
-/* Dark Mode für Über-mich spezifische Styles */
+/* ==========================================================================
+   BUCH TEXT STYLES
+   ========================================================================== */
+.text-einleitung {
+  margin-bottom: 30px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid rgba(200, 200, 200, 0.2);
+}
+
+.text-einleitung p {
+  font-family: "EB Garamond", serif;
+  font-size: 1.25rem;
+  line-height: 1.8;
+  color: #e4e6ea;
+  margin-bottom: 20px;
+}
+
+.text-hauptteil {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin: 30px 0;
+}
+
+.text-abschnitt {
+  padding: 20px;
+  background: rgba(20, 20, 20, 0.3);
+  border-radius: 6px;
+  border: 1px solid rgba(200, 200, 200, 0.1);
+  transition: all 0.3s ease;
+}
+
+.text-abschnitt:hover {
+  border-color: rgba(200, 200, 200, 0.3);
+  background: rgba(25, 25, 25, 0.4);
+  transform: translateX(5px);
+}
+
+.text-abschnitt.highlight {
+  border-left: 4px solid rgba(200, 200, 200, 0.5);
+  background: rgba(30, 30, 30, 0.4);
+}
+
+.text-abschnitt.highlight h4 {
+  font-family: "Cinzel", serif;
+  font-size: 1.3rem;
+  color: #e4e6ea;
+  margin-bottom: 15px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.text-kernaussage {
+  margin: 35px 0;
+}
+
+.kernaussage-box {
+  padding: 25px;
+  background: linear-gradient(135deg, 
+    rgba(25, 25, 25, 0.6) 0%, 
+    rgba(35, 35, 35, 0.7) 100%);
+  border: 1px solid rgba(200, 200, 200, 0.2);
+  border-radius: 8px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.kernaussage-text {
+  font-family: "EB Garamond", serif;
+  font-size: 1.3rem;
+  line-height: 1.7;
+  color: #f0f0f0;
+  margin: 0;
+  flex: 1;
+}
+
+.text-zielgruppe {
+  margin: 30px 0;
+  padding: 25px;
+  background: rgba(20, 20, 20, 0.3);
+  border-radius: 6px;
+  border: 1px solid rgba(200, 200, 200, 0.15);
+}
+
+.zielgruppe-warnung {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  background: rgba(40, 20, 20, 0.3);
+  border: 1px solid rgba(200, 100, 100, 0.3);
+  border-radius: 6px;
+  margin-top: 20px;
+}
+
+.text-quellen {
+  margin: 30px 0;
+}
+
+.quellen-liste {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  counter-reset: quellen-counter;
+}
+
+.quellen-liste li {
+  counter-increment: quellen-counter;
+  font-family: "EB Garamond", serif;
+  font-size: 1.05rem;
+  color: #b0b5bc;
+  padding: 12px 15px 12px 40px;
+  background: rgba(20, 20, 20, 0.4);
+  border: 1px solid rgba(200, 200, 200, 0.1);
+  border-radius: 4px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* ==========================================================================
+   FOOTER-LINKS & IMPRESSUM
+   ========================================================================== */
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  font-family: "Cinzel", serif;
+  color: #9da2a8;
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  padding: 5px 10px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.footer-links a:hover {
+  color: #ffffff;
+}
+
+.footer-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 1px;
+  background: rgba(200, 205, 215, 0.6);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.footer-links a:hover::after {
+  width: 80%;
+}
+
+/* ==========================================================================
+   EDLER HINTERGRUND - NEU & EINHEITLICH
+   ========================================================================== */
+body {
+  background-color: #000000 !important;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Schimmernder Hintergrund-Effekt */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(
+      circle at 20% 30%,
+      rgba(60, 60, 60, 0.2) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 70%,
+      rgba(40, 40, 40, 0.15) 0%,
+      transparent 50%
+    );
+  z-index: -2;
+  pointer-events: none;
+}
+
+/* Feine Textur */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 1px,
+      rgba(30, 30, 30, 0.03) 1px,
+      rgba(30, 30, 30, 0.03) 2px
+    );
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* ================= DARK MODE HINTERGRUND ================= */
+body.dark-mode {
+  background-color: #1a1a1a !important;
+}
+
+body.dark-mode::before {
+  background: 
+    radial-gradient(
+      circle at 30% 40%,
+      rgba(90, 90, 90, 0.25) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at 70% 60%,
+      rgba(70, 70, 70, 0.2) 0%,
+      transparent 55%
+    );
+}
+
+/* ================= CONTAINER MIT TRANSPARENTEN HINTERGRÜNDEN ================= */
+.header {
+  background-color: rgba(0, 0, 0, 0.7) !important;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .header {
+  background-color: rgba(26, 26, 26, 0.7) !important;
+}
+
+.inhalt {
+  background-color: rgba(15, 15, 15, 0.8) !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+}
+
+body.dark-mode .inhalt {
+  background-color: rgba(30, 30, 30, 0.8) !important;
+}
+
+.footer {
+  background-color: rgba(0, 0, 0, 0.7) !important;
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .footer {
+  background-color: rgba(26, 26, 26, 0.7) !important;
+}
+
+.social-section {
+  background-color: rgba(15, 15, 15, 0.8) !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+}
+
+body.dark-mode .social-section {
+  background-color: rgba(30, 30, 30, 0.8) !important;
+}
+
+/* Text Container */
+.text-einleitung,
+.text-hauptteil,
+.text-kernaussage,
+.text-zielgruppe,
+.text-quellen,
+.ueber-mich-content,
+.impressum-content,
+.datenschutz-content,
+.credo-container {
+  background-color: rgba(20, 20, 20, 0.6) !important;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+}
+
+body.dark-mode .text-einleitung,
+body.dark-mode .text-hauptteil,
+body.dark-mode .text-kernaussage,
+body.dark-mode .text-zielgruppe,
+body.dark-mode .text-quellen,
+body.dark-mode .ueber-mich-content,
+body.dark-mode .impressum-content,
+body.dark-mode .datenschutz-content,
+body.dark-mode .credo-container {
+  background-color: rgba(40, 40, 40, 0.6) !important;
+}
+
+/* ================= FIX FÜR KALLIGRAFIE-TEXTE ================= */
+.kalligrafie-text {
+  color: #FFFFFF !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9) !important;
+}
+
+body.dark-mode .kalligrafie-text {
+  color: #FFFFFF !important;
+  text-shadow: 0 3px 6px rgba(0, 0, 0, 1) !important;
+}
+
+.credo-headline,
+.lead-text,
+.highlight-paragraph,
+.highlight,
+.zitat,
+.ueber-mich-intro,
+.break-line,
+.attention-line,
+.schluss-zitat {
+  color: #FFFFFF !important;
+}
+
+body.dark-mode .credo-headline,
+body.dark-mode .lead-text,
+body.dark-mode .highlight-paragraph,
+body.dark-mode .highlight,
+body.dark-mode .zitat,
 body.dark-mode .ueber-mich-intro,
 body.dark-mode .break-line,
-body.dark-mode .highlight-paragraph,
 body.dark-mode .attention-line,
 body.dark-mode .schluss-zitat {
-  color: #f0f0f0;
+  color: #FFFFFF !important;
 }
 
-body.dark-mode .attention-line {
-  border-left-color: rgba(200, 200, 200, 0.4);
-  border-right-color: rgba(200, 200, 200, 0.4);
+/* ================= RESPONSIVE HINTERGRUND-ANPASSUNGEN ================= */
+@media screen and (max-width: 768px) {
+  /* Weniger intensiver Hintergrund auf Mobile */
+  body::before {
+    background: 
+      radial-gradient(
+        circle at 20% 30%,
+        rgba(60, 60, 60, 0.15) 0%,
+        transparent 40%
+      ),
+      radial-gradient(
+        circle at 80% 70%,
+        rgba(40, 40, 40, 0.1) 0%,
+        transparent 40%
+      );
+  }
+  
+  body.dark-mode::before {
+    background: 
+      radial-gradient(
+        circle at 30% 40%,
+        rgba(90, 90, 90, 0.2) 0%,
+        transparent 45%
+      ),
+      radial-gradient(
+        circle at 70% 60%,
+        rgba(70, 70, 70, 0.15) 0%,
+        transparent 45%
+      );
+  }
+  
+  /* Weniger Blur auf Mobile für Performance */
+  .inhalt,
+  .social-section,
+  .header,
+  .footer {
+    backdrop-filter: blur(5px);
+  }
+  
+  .kalligrafie-text {
+    font-size: 2.5rem !important;
+  }
 }
 
-body.dark-mode .schluss-zitat {
-  background: rgba(40, 40, 40, 0.5);
+@media screen and (min-width: 769px) {
+  /* Stärkerer Hintergrund auf Desktop */
+  body::before {
+    background: 
+      radial-gradient(
+        circle at 20% 30%,
+        rgba(60, 60, 60, 0.25) 0%,
+        transparent 55%
+      ),
+      radial-gradient(
+        circle at 80% 70%,
+        rgba(40, 40, 40, 0.2) 0%,
+        transparent 55%
+      );
+  }
+  
+  body.dark-mode::before {
+    background: 
+      radial-gradient(
+        circle at 30% 40%,
+        rgba(90, 90, 90, 0.3) 0%,
+        transparent 60%
+      ),
+      radial-gradient(
+        circle at 70% 60%,
+        rgba(70, 70, 70, 0.25) 0%,
+        transparent 60%
+      );
+  }
+  
+  .kalligrafie-text {
+    font-size: 3.5rem !important;
+  }
+}
+
+/* ================= FALLBACK FÜR BROWSER OHNE BACKDROP-FILTER ================= */
+@supports not (backdrop-filter: blur(10px)) {
+  .header {
+    background-color: rgba(0, 0, 0, 0.9) !important;
+  }
+  
+  .inhalt {
+    background-color: rgba(20, 20, 20, 0.95) !important;
+  }
+  
+  .footer {
+    background-color: rgba(0, 0, 0, 0.9) !important;
+  }
+  
+  body.dark-mode .header {
+    background-color: rgba(26, 26, 26, 0.9) !important;
+  }
+  
+  body.dark-mode .inhalt {
+    background-color: rgba(40, 40, 40, 0.95) !important;
+  }
+}
+
+/* ==========================================================================
+   KRITISCHE FIXES & Z-INDEX
+   ========================================================================== */
+body {
+  pointer-events: auto !important;
+}
+
+button, a, .burger, .hauptnavigation a, .silber-button, .social-link {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+#preloader {
+  z-index: 9990;
+}
+
+.menu-overlay {
+  z-index: 998;
+}
+
+.hauptnavigation {
+  z-index: 999;
+}
+
+.burger {
+  z-index: 1001;
+}
+
+.dark-mode-toggle {
+  z-index: 1000;
 }
 
 /* ==========================================================================
@@ -1319,1710 +1529,4 @@ body.dark-mode .schluss-zitat {
     color: #333 !important;
     text-align: justify;
   }
-}
-
-/* ==========================================================================
-   KRITISCHE FIXES
-   ========================================================================== */
-/* Sicherstellen, dass alles klickbar ist */
-body {
-  pointer-events: auto !important;
-}
-
-button, a, .burger, .hauptnavigation a, .silber-button, .social-link {
-  pointer-events: auto !important;
-  cursor: pointer !important;
-}
-
-/* Z-Index Hierarchie fixen */
-#preloader {
-  z-index: 9990;
-}
-
-.menu-overlay {
-  z-index: 998;
-}
-
-.hauptnavigation {
-  z-index: 999;
-}
-
-.burger {
-  z-index: 1001;
-}
-
-.dark-mode-toggle {
-  z-index: 1000;
-}
-/* ==========================================================================
-   KALLIGRAFIE ZITAT - OHNE HINTERGRUND
-   ========================================================================== */
-
-/* Google Font für Kalligrafie importieren */
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Playfair+Display:ital@0;1&family=Great+Vibes&display=swap');
-
-.credo-container {
-  margin: 4rem auto 5rem;
-  max-width: 900px;
-  position: relative;
-}
-
-/* Entferne alles aus dem Wrapper außer Inhalt */
-.credo-quote-wrapper {
-  position: relative;
-  padding: 2rem 1rem;
-  margin-bottom: 2.5rem;
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-}
-
-/* Entferne Ornamente und zusätzliche Elemente */
-.credo-quote-wrapper::before,
-.credo-quote-wrapper::after {
-  display: none !important;
-}
-
-.credo-quote {
-  display: block;
-  position: relative;
-  z-index: 2;
-  text-align: center;
-}
-
-/* Kalligrafie Schrift für das Zitat */
-.kalligrafie-text {
-  font-family: 'Great Vibes', 'Dancing Script', cursive;
-  font-size: 3.2rem;
-  font-weight: 400;
-  line-height: 1.2;
-  color: #2c2c2c;
-  text-align: center;
-  margin: 0 auto 1.5rem;
-  letter-spacing: 1.5px;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  position: relative;
-  padding: 0 2rem;
-  max-width: 800px;
-  transition: all 0.3s ease;
-}
-
-/* Zarte Linie unter dem Zitat */
-.kalligrafie-text::after {
-  content: '';
-  position: absolute;
-  bottom: -1.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 120px;
-  height: 1px;
-  background: linear-gradient(90deg, 
-    transparent, 
-    rgba(200, 200, 200, 0.6) 50%, 
-    transparent);
-}
-
-.credo-signature {
-  display: flex;
-  justify-content: center;
-  margin-top: 3rem;
-  padding-top: 2rem;
-  position: relative;
-}
-
-/* Entferne die Signatur-Linien */
-.credo-signature::before,
-.signature-line {
-  display: none !important;
-}
-
-/* Kalligrafie für die Signatur */
-.kalligrafie-signature {
-  font-family: 'Dancing Script', 'Great Vibes', cursive;
-  font-size: 1.8rem;
-  font-weight: 500;
-  color: #c0c0c0;
-  letter-spacing: 1px;
-  text-transform: none;
-  opacity: 0.9;
-  transition: all 0.3s ease;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.2);
-  position: relative;
-}
-
-/* Dekorativer Punkt unter der Signatur */
-.kalligrafie-signature::after {
-  content: '•';
-  position: absolute;
-  bottom: -1rem;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 1.2rem;
-  color: rgba(200, 200, 200, 0.5);
-}
-
-.credo-subtitle {
-  font-family: 'EB Garamond', serif;
-  font-size: 1.4rem;
-  line-height: 1.7;
-  color: #555;
-  text-align: center;
-  max-width: 700px;
-  margin: 3rem auto 0;
-  padding: 1.5rem;
-  background: transparent;
-  border: none;
-  transition: all 0.3s ease;
-}
-
-/* ================= DARK MODE KALLIGRAFIE ================= */
-body.dark-mode .kalligrafie-text {
-  color: #f0f0f0;
-  text-shadow: 
-    0 2px 4px rgba(0,0,0,0.3),
-    0 0 20px rgba(200, 200, 200, 0.1);
-}
-
-body.dark-mode .kalligrafie-text::after {
-  background: linear-gradient(90deg, 
-    transparent, 
-    rgba(200, 200, 200, 0.4) 50%, 
-    transparent);
-}
-
-body.dark-mode .kalligrafie-signature {
-  color: #d0d0d0;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
-}
-
-body.dark-mode .kalligrafie-signature::after {
-  color: rgba(200, 200, 200, 0.7);
-}
-
-body.dark-mode .credo-subtitle {
-  color: #ccc;
-  background: transparent;
-  border: none;
-}
-
-/* ================= RESPONSIVE KALLIGRAFIE ================= */
-@media screen and (max-width: 768px) {
-  .kalligrafie-text {
-    font-size: 2.5rem;
-    padding: 0 1rem;
-  }
-  
-  .credo-quote-wrapper {
-    padding: 1.5rem 0.5rem;
-  }
-  
-  .credo-signature {
-    margin-top: 2.5rem;
-    padding-top: 1.5rem;
-  }
-  
-  .kalligrafie-signature {
-    font-size: 1.5rem;
-  }
-  
-  .credo-subtitle {
-    font-size: 1.2rem;
-    padding: 1rem;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .kalligrafie-text {
-    font-size: 2.2rem;
-    letter-spacing: 1px;
-  }
-  
-  .kalligrafie-text::after {
-    width: 80px;
-  }
-  
-  .credo-container {
-    margin: 3rem auto 4rem;
-  }
-  
-  .credo-subtitle {
-    font-size: 1.1rem;
-    line-height: 1.6;
-  }
-}
-/* ==========================================================================
-   LOGO ANIMATIONEN - SILBERNER SCHIMMER
-   ========================================================================== */
-
-/* Logo im Preloader mit Schimmer-Effekt */
-.preloader-logo {
-  width: 180px;
-  height: auto;
-  margin-bottom: 30px;
-  display: block;
-  filter: brightness(1.1);
-  animation: logoAppear 1s ease-out forwards, 
-             logoShimmer 4s ease-in-out 1s infinite;
-  position: relative;
-  overflow: hidden;
-}
-
-.preloader-logo::before {
-  content: '';
-  position: absolute;
-  top: -100%;
-  left: -100%;
-  width: 50%;
-  height: 200%;
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgba(255, 255, 255, 0.1),
-    rgba(255, 255, 255, 0.2),
-    rgba(255, 255, 255, 0.1),
-    transparent
-  );
-  transform: rotate(25deg);
-  animation: shimmerMove 3s ease-in-out 2s infinite;
-}
-
-/* ==========================================================================
-   LOGO ANIMATIONEN - SCHWEBENDE BEWEGUNG
-   ========================================================================== */
-
-/* Logo im Preloader - Schwebende Animation */
-.preloader-logo {
-  width: 180px;
-  height: auto;
-  margin-bottom: 30px;
-  display: block;
-  filter: brightness(1.1) drop-shadow(0 0 15px rgba(200, 200, 200, 0.2));
-  animation: logoAppear 1s ease-out forwards, 
-             logoFloat 6s ease-in-out 1s infinite;
-}
-
-/* Logo im Header - Subtile Hover-Animation */
-.logo {
-  width: min(75vw, 420px);
-  max-width: 380px;
-  height: auto;
-  margin: 0 auto 25px;
-  display: block;
-  filter: brightness(1.1);
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  transform-origin: center;
-}
-
-/* Hover: Leichtes Schweben und Rotieren */
-.logo:hover {
-  animation: logoFloatHover 2s ease-in-out infinite;
-  filter: brightness(1.15) drop-shadow(0 0 20px rgba(200, 200, 200, 0.25));
-}
-
-/* Animationen */
-@keyframes logoFloat {
-  0%, 100% {
-    transform: translateY(0) rotate(0deg);
-  }
-  25% {
-    transform: translateY(-4px) rotate(0.2deg);
-  }
-  50% {
-    transform: translateY(0) rotate(0deg);
-  }
-  75% {
-    transform: translateY(-2px) rotate(-0.2deg);
-  }
-}
-
-@keyframes logoFloatHover {
-  0%, 100% {
-    transform: translateY(0) scale(1);
-  }
-  50% {
-    transform: translateY(-3px) scale(1.02);
-  }
-}
-
-/* Dark Mode Adjustments */
-body.dark-mode .preloader-logo {
-  filter: brightness(1.1) drop-shadow(0 0 20px rgba(220, 220, 220, 0.3));
-  animation: logoAppear 1s ease-out forwards, 
-             logoFloatDark 6s ease-in-out 1s infinite;
-}
-
-body.dark-mode .logo:hover {
-  filter: brightness(1.2) drop-shadow(0 0 25px rgba(220, 220, 220, 0.4));
-}
-
-@keyframes logoFloatDark {
-  0%, 100% {
-    transform: translateY(0) rotate(0deg);
-    filter: brightness(1.1) drop-shadow(0 0 20px rgba(220, 220, 220, 0.3));
-  }
-  25% {
-    transform: translateY(-5px) rotate(0.3deg);
-    filter: brightness(1.15) drop-shadow(0 0 25px rgba(220, 220, 220, 0.4));
-  }
-  50% {
-    transform: translateY(0) rotate(0deg);
-    filter: brightness(1.1) drop-shadow(0 0 20px rgba(220, 220, 220, 0.3));
-  }
-  75% {
-    transform: translateY(-3px) rotate(-0.3deg);
-    filter: brightness(1.12) drop-shadow(0 0 22px rgba(220, 220, 220, 0.35));
-  }
-}
-/* ==========================================================================
-   BUCH TEXT STYLES - MACHT UND UNTERGANG
-   ========================================================================== */
-
-/* Einleitung */
-.text-einleitung {
-  margin-bottom: 30px;
-  padding-bottom: 25px;
-  border-bottom: 1px solid rgba(200, 200, 200, 0.2);
-}
-
-.text-einleitung p {
-  font-family: "EB Garamond", serif;
-  font-size: 1.25rem;
-  line-height: 1.8;
-  color: #e4e6ea;
-  margin-bottom: 20px;
-}
-
-.text-einleitung p:first-child {
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: #f0f0f0;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
-  position: relative;
-  padding-left: 20px;
-}
-
-.text-einleitung p:first-child::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 10px;
-  bottom: 10px;
-  width: 3px;
-  background: linear-gradient(to bottom, #c0c0c0, transparent);
-}
-
-/* Hauptteil */
-.text-hauptteil {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  margin: 30px 0;
-}
-
-.text-abschnitt {
-  padding: 20px;
-  background: rgba(20, 20, 20, 0.3);
-  border-radius: 6px;
-  border: 1px solid rgba(200, 200, 200, 0.1);
-  transition: all 0.3s ease;
-}
-
-.text-abschnitt:hover {
-  border-color: rgba(200, 200, 200, 0.3);
-  background: rgba(25, 25, 25, 0.4);
-  transform: translateX(5px);
-}
-
-.text-abschnitt p {
-  font-family: "EB Garamond", serif;
-  font-size: 1.15rem;
-  line-height: 1.8;
-  color: #b0b5bc;
-  margin: 0;
-}
-
-.text-abschnitt.highlight {
-  border-left: 4px solid rgba(200, 200, 200, 0.5);
-  background: rgba(30, 30, 30, 0.4);
-}
-
-.text-abschnitt.highlight h4 {
-  font-family: "Cinzel", serif;
-  font-size: 1.3rem;
-  color: #e4e6ea;
-  margin-bottom: 15px;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  position: relative;
-  padding-bottom: 10px;
-}
-
-.text-abschnitt.highlight h4::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 60px;
-  height: 1px;
-  background: linear-gradient(90deg, 
-    rgba(200, 200, 200, 0.6) 0%, 
-    transparent 100%);
-}
-
-/* Kernaussage */
-.text-kernaussage {
-  margin: 35px 0;
-}
-
-.kernaussage-box {
-  padding: 25px;
-  background: linear-gradient(135deg, 
-    rgba(25, 25, 25, 0.6) 0%, 
-    rgba(35, 35, 35, 0.7) 100%);
-  border: 1px solid rgba(200, 200, 200, 0.2);
-  border-radius: 8px;
-  display: flex;
-  align-items: flex-start;
-  gap: 20px;
-  position: relative;
-  overflow: hidden;
-}
-
-.kernaussage-box::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, 
-    transparent, 
-    rgba(200, 200, 200, 0.4) 50%, 
-    transparent);
-}
-
-.kernaussage-icon {
-  width: 40px;
-  height: 40px;
-  color: #c0c0c0;
-  flex-shrink: 0;
-  margin-top: 5px;
-  stroke-width: 1.5;
-}
-
-.kernaussage-text {
-  font-family: "EB Garamond", serif;
-  font-size: 1.3rem;
-  line-height: 1.7;
-  color: #f0f0f0;
-  margin: 0;
-  flex: 1;
-}
-
-.kernaussage-text strong {
-  color: #ffffff;
-  font-weight: 600;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
-}
-
-/* Zielgruppe */
-.text-zielgruppe {
-  margin: 30px 0;
-  padding: 25px;
-  background: rgba(20, 20, 20, 0.3);
-  border-radius: 6px;
-  border: 1px solid rgba(200, 200, 200, 0.15);
-}
-
-.text-zielgruppe h4 {
-  font-family: "Cinzel", serif;
-  font-size: 1.4rem;
-  color: #e4e6ea;
-  margin-bottom: 20px;
-  letter-spacing: 0.05em;
-  text-align: center;
-}
-
-.text-zielgruppe > p {
-  font-family: "EB Garamond", serif;
-  font-size: 1.15rem;
-  line-height: 1.8;
-  color: #b0b5bc;
-  text-align: center;
-  margin-bottom: 25px;
-  padding: 0 20px;
-}
-
-.zielgruppe-warnung {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  padding: 20px;
-  background: rgba(40, 20, 20, 0.3);
-  border: 1px solid rgba(200, 100, 100, 0.3);
-  border-radius: 6px;
-  margin-top: 20px;
-}
-
-.warnung-icon {
-  width: 40px;
-  height: 40px;
-  color: rgba(220, 120, 120, 0.8);
-  flex-shrink: 0;
-  stroke-width: 2;
-}
-
-.warnung-text {
-  font-family: "EB Garamond", serif;
-  font-size: 1.2rem;
-  line-height: 1.6;
-  color: #f0c0c0;
-  margin: 0;
-  flex: 1;
-}
-
-.warnung-text strong {
-  color: #ffa0a0;
-  font-weight: 600;
-}
-
-.warnung-text em {
-  font-style: italic;
-  color: #e0d0d0;
-}
-
-/* Quellen */
-.text-quellen {
-  margin: 30px 0;
-}
-
-.text-quellen h4 {
-  font-family: "Cinzel", serif;
-  font-size: 1.3rem;
-  color: #e4e6ea;
-  margin-bottom: 20px;
-  letter-spacing: 0.05em;
-  text-align: center;
-}
-
-.quellen-liste {
-  list-style: none;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 12px;
-  counter-reset: quellen-counter;
-}
-
-.quellen-liste li {
-  counter-increment: quellen-counter;
-  font-family: "EB Garamond", serif;
-  font-size: 1.05rem;
-  color: #b0b5bc;
-  padding: 12px 15px 12px 40px;
-  background: rgba(20, 20, 20, 0.4);
-  border: 1px solid rgba(200, 200, 200, 0.1);
-  border-radius: 4px;
-  position: relative;
-  transition: all 0.3s ease;
-}
-
-.quellen-liste li::before {
-  content: counter(quellen-counter);
-  position: absolute;
-  left: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-family: "Cinzel", serif;
-  font-size: 0.9rem;
-  color: #c0c0c0;
-  font-weight: 600;
-  width: 20px;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(30, 30, 30, 0.6);
-  border-radius: 50%;
-}
-
-.quellen-liste li:hover {
-  border-color: rgba(200, 200, 200, 0.3);
-  background: rgba(30, 30, 30, 0.5);
-  transform: translateY(-2px);
-}
-
-/* ================= DARK MODE ANPASSUNGEN ================= */
-body.dark-mode .text-abschnitt {
-  background: rgba(40, 40, 40, 0.3);
-  border-color: rgba(220, 220, 220, 0.15);
-}
-
-body.dark-mode .text-abschnitt:hover {
-  background: rgba(50, 50, 50, 0.4);
-  border-color: rgba(220, 220, 220, 0.3);
-}
-
-body.dark-mode .text-abschnitt.highlight {
-  background: rgba(45, 45, 45, 0.4);
-  border-color: rgba(220, 220, 220, 0.6);
-}
-
-body.dark-mode .kernaussage-box {
-  background: linear-gradient(135deg, 
-    rgba(40, 40, 40, 0.7) 0%, 
-    rgba(50, 50, 50, 0.8) 100%);
-  border-color: rgba(220, 220, 220, 0.25);
-}
-
-body.dark-mode .text-zielgruppe {
-  background: rgba(40, 40, 40, 0.3);
-  border-color: rgba(220, 220, 220, 0.2);
-}
-
-body.dark-mode .zielgruppe-warnung {
-  background: rgba(60, 30, 30, 0.4);
-  border-color: rgba(220, 120, 120, 0.4);
-}
-
-body.dark-mode .quellen-liste li {
-  background: rgba(40, 40, 40, 0.4);
-  border-color: rgba(220, 220, 220, 0.15);
-}
-
-body.dark-mode .quellen-liste li:hover {
-  background: rgba(50, 50, 50, 0.5);
-  border-color: rgba(220, 220, 220, 0.3);
-}
-
-/* ================= RESPONSIVE DESIGN ================= */
-@media screen and (max-width: 768px) {
-  .text-einleitung p {
-    font-size: 1.15rem;
-  }
-  
-  .text-einleitung p:first-child {
-    font-size: 1.25rem;
-  }
-  
-  .text-abschnitt p {
-    font-size: 1.1rem;
-  }
-  
-  .kernaussage-text {
-    font-size: 1.2rem;
-  }
-  
-  .warnung-text {
-    font-size: 1.1rem;
-  }
-  
-  .quellen-liste {
-    grid-template-columns: 1fr;
-  }
-  
-  .zielgruppe-warnung {
-    flex-direction: column;
-    text-align: center;
-    gap: 15px;
-  }
-  
-  .warnung-icon {
-    margin: 0 auto;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .text-abschnitt {
-    padding: 15px;
-  }
-  
-  .text-abschnitt.highlight h4 {
-    font-size: 1.2rem;
-  }
-  
-  .kernaussage-box {
-    flex-direction: column;
-    gap: 15px;
-    padding: 20px;
-    text-align: center;
-  }
-  
-  .kernaussage-icon {
-    margin: 0 auto;
-  }
-  
-  .text-zielgruppe {
-    padding: 20px 15px;
-  }
-}
-/* ==========================================================================
-   ZUSÄTZLICHE ICONS FÜR DIGITALE LESEPROBE
-   ========================================================================== */
-
-/* Buch-Icon für digitale Leseprobe */
-.button-icon {
-  width: 20px;
-  height: 20px;
-  transition: transform 0.3s ease;
-}
-
-.silber-button:hover .button-icon {
-  transform: scale(1.15);
-}
-
-/* Spezifische Icon-Farben */
-.silber-button .button-icon {
-  color: #c0c0c0;
-}
-
-.silber-button.secondary .button-icon {
-  color: #c0c0c0;
-}
-
-.silber-button.tertiary .button-icon {
-  color: #a0a0a0;
-}
-
-/* Responsive Anpassungen */
-@media (max-width: 768px) {
-  .buch-actions {
-    flex-direction: column;
-  }
-  
-  .button-group {
-    width: 100%;
-    justify-content: center;
-  }
-  
-  .button-group .silber-button {
-    flex: 1;
-    min-width: 120px;
-  }
-}
-
-@media (max-width: 480px) {
-  .button-group {
-    flex-direction: column;
-  }
-  
-  .button-group .silber-button {
-    width: 100%;
-  }
-}
-/* ==========================================================================
-   FOOTER-LINKS STYLES
-   ========================================================================== */
-
-.footer-links {
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    margin-bottom: 15px;
-    flex-wrap: wrap;
-}
-
-.footer-links a {
-    font-family: "Cinzel", serif;
-    color: #9da2a8;
-    text-decoration: none;
-    font-size: 0.85rem;
-    letter-spacing: 0.1em;
-    padding: 5px 10px;
-    transition: all 0.3s ease;
-    position: relative;
-}
-
-.footer-links a:hover {
-    color: #ffffff;
-}
-
-.footer-links a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 0;
-    height: 1px;
-    background: rgba(200, 205, 215, 0.6);
-    transition: all 0.3s ease;
-    transform: translateX(-50%);
-}
-
-.footer-links a:hover::after {
-    width: 80%;
-}
-
-/* ==========================================================================
-   IMPRESSUM & DATENSCHUTZ CONTENT STYLES
-   ========================================================================== */
-
-.impressum-content,
-.datenschutz-content {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.impressum-section,
-.datenschutz-section {
-    margin-bottom: 40px;
-    padding-bottom: 30px;
-    border-bottom: 1px solid rgba(200, 205, 215, 0.15);
-}
-
-.impressum-section:last-child,
-.datenschutz-section:last-child {
-    border-bottom: none;
-}
-
-.impressum-section h2,
-.datenschutz-section h2 {
-    font-family: "Cinzel", serif;
-    color: #e4e6ea;
-    margin-bottom: 20px;
-    font-size: 1.5rem;
-    letter-spacing: 0.05em;
-}
-
-.impressum-section h3,
-.datenschutz-section h3 {
-    font-family: "Cinzel", serif;
-    color: #d6d9de;
-    margin: 25px 0 15px;
-    font-size: 1.2rem;
-    letter-spacing: 0.03em;
-}
-
-.impressum-section p,
-.datenschutz-section p {
-    margin-bottom: 15px;
-    line-height: 1.7;
-    color: #b0b5bc;
-}
-
-.impressum-section a,
-.datenschutz-section a {
-    color: #c0c0c0;
-    text-decoration: none;
-    border-bottom: 1px dotted rgba(200, 200, 200, 0.3);
-    transition: all 0.3s ease;
-}
-
-.impressum-section a:hover,
-.datenschutz-section a:hover {
-    color: #ffffff;
-    border-bottom: 1px solid rgba(200, 200, 200, 0.6);
-}
-
-/* ==========================================================================
-   RESPONSIVE FOOTER-LINKS
-   ========================================================================== */
-
-@media screen and (max-width: 768px) {
-    .footer-links {
-        gap: 15px;
-        margin-bottom: 20px;
-    }
-    
-    .footer-links a {
-        font-size: 0.8rem;
-        padding: 4px 8px;
-    }
-    
-    .impressum-section h2,
-    .datenschutz-section h2 {
-        font-size: 1.3rem;
-    }
-    
-    .impressum-section h3,
-    .datenschutz-section h3 {
-        font-size: 1.1rem;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .footer-links {
-        flex-direction: column;
-        gap: 10px;
-        align-items: center;
-    }
-    
-    .footer-links a {
-        font-size: 0.85rem;
-        padding: 8px 15px;
-        border: 1px solid rgba(200, 205, 215, 0.1);
-        border-radius: 4px;
-        width: 200px;
-        text-align: center;
-    }
-    
-    .footer-links a:hover {
-        background: rgba(200, 205, 215, 0.05);
-    } 
-/* ==========================================================================
-   EDLER HINTERGRUND - OHNE BACKDROP-FILTER (FÜR ALLE SYSTEME)
-   ========================================================================== */
-
-/* RESET aller alten Hintergründe */
-body,
-body.dark-mode,
-.header,
-.footer,
-.hauptnavigation,
-.social-section,
-.inhalt,
-#preloader,
-.menu-overlay,
-.credo-quote-wrapper,
-.text-abschnitt,
-.kernaussage-box,
-.zielgruppe-warnung,
-.text-einleitung,
-.text-hauptteil,
-.text-kernaussage,
-.text-zielgruppe,
-.text-quellen,
-.ueber-mich-content,
-.impressum-content,
-.datenschutz-content {
-    background: transparent !important;
-}
-
-/* ================= BASIS HINTERGRUND ================= */
-body {
-    background-color: #000000 !important;
-    min-height: 100vh !important;
-    overflow-x: hidden !important;
-    position: relative !important;
-}
-
-/* SCHIMMER-EFFEKT als Overlay */
-body::before {
-    content: '';
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    background-image: 
-        /* Großer zentraler Lichtpunkt */
-        radial-gradient(
-            circle at 50% 50%,
-            rgba(80, 80, 80, 0.25) 0%,
-            transparent 70%
-        ),
-        /* Obere Lichtquelle */
-        radial-gradient(
-            circle at 20% 20%,
-            rgba(100, 100, 100, 0.2) 0%,
-            transparent 40%
-        ),
-        /* Untere Lichtquelle */
-        radial-gradient(
-            circle at 80% 80%,
-            rgba(70, 70, 70, 0.15) 0%,
-            transparent 40%
-        ),
-        /* Sehr feines Muster */
-        repeating-linear-gradient(
-            0deg,
-            transparent,
-            transparent 1px,
-            rgba(40, 40, 40, 0.05) 1px,
-            rgba(40, 40, 40, 0.05) 2px
-        ) !important;
-    z-index: -2 !important;
-    pointer-events: none !important;
-}
-
-/* Bewegungseffekt für Schimmer */
-body::after {
-    content: '';
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    background: 
-        linear-gradient(
-            135deg,
-            rgba(255, 255, 255, 0.03) 0%,
-            transparent 20%,
-            rgba(255, 255, 255, 0.02) 40%,
-            transparent 60%,
-            rgba(255, 255, 255, 0.03) 80%,
-            transparent 100%
-        ) !important;
-    z-index: -1 !important;
-    pointer-events: none !important;
-    animation: schimmerBewegung 25s linear infinite !important;
-}
-
-@keyframes schimmerBewegung {
-    0% {
-        transform: translateX(-100%) translateY(-100%);
-    }
-    100% {
-        transform: translateX(100%) translateY(100%);
-    }
-}
-
-/* ================= DARK MODE HINTERGRUND ================= */
-body.dark-mode {
-    background-color: #1a1a1a !important;
-}
-
-body.dark-mode::before {
-    background-image: 
-        radial-gradient(
-            circle at 50% 50%,
-            rgba(120, 120, 120, 0.3) 0%,
-            transparent 70%
-        ),
-        radial-gradient(
-            circle at 30% 30%,
-            rgba(140, 140, 140, 0.2) 0%,
-            transparent 45%
-        ),
-        radial-gradient(
-            circle at 70% 70%,
-            rgba(110, 110, 110, 0.15) 0%,
-            transparent 45%
-        ),
-        repeating-linear-gradient(
-            90deg,
-            transparent,
-            transparent 1px,
-            rgba(60, 60, 60, 0.07) 1px,
-            rgba(60, 60, 60, 0.07) 2px
-        ) !important;
-}
-
-body.dark-mode::after {
-    background: 
-        linear-gradient(
-            135deg,
-            rgba(220, 220, 220, 0.04) 0%,
-            transparent 25%,
-            rgba(220, 220, 220, 0.03) 50%,
-            transparent 75%,
-            rgba(220, 220, 220, 0.04) 100%
-        ) !important;
-}
-
-/* ================= ALLE CONTAINER ================= */
-/* Header */
-.header {
-    background-color: rgba(15, 15, 15, 0.95) !important;
-    border-bottom: 1px solid rgba(200, 200, 200, 0.15) !important;
-    box-shadow: 
-        0 5px 20px rgba(0, 0, 0, 0.5),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
-    position: relative !important;
-    z-index: 1000 !important;
-    padding: 30px 20px 20px !important;
-}
-
-body.dark-mode .header {
-    background-color: rgba(35, 35, 35, 0.95) !important;
-    border-bottom: 1px solid rgba(220, 220, 220, 0.2) !important;
-}
-
-/* Navigation */
-.hauptnavigation {
-    background-color: rgba(20, 20, 20, 0.9) !important;
-    border: 1px solid rgba(200, 200, 200, 0.12) !important;
-    border-radius: 10px !important;
-    padding: 12px 0 !important;
-    margin: 0 20px !important;
-    box-shadow: 
-        0 8px 32px rgba(0, 0, 0, 0.4),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.03) !important;
-}
-
-body.dark-mode .hauptnavigation {
-    background-color: rgba(45, 45, 45, 0.9) !important;
-    border: 1px solid rgba(220, 220, 220, 0.18) !important;
-}
-
-/* Mobile Navigation */
-@media screen and (max-width: 768px) {
-    .hauptnavigation {
-        background-color: rgba(10, 10, 10, 0.98) !important;
-        border: 1px solid rgba(200, 200, 200, 0.2) !important;
-        margin: 0 !important;
-        border-radius: 0 !important;
-        padding-top: 100px !important;
-        box-shadow: 
-            0 0 50px rgba(0, 0, 0, 0.8),
-            inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
-    }
-    
-    body.dark-mode .hauptnavigation {
-        background-color: rgba(25, 25, 25, 0.98) !important;
-        border: 1px solid rgba(220, 220, 220, 0.25) !important;
-    }
-}
-
-/* Hauptinhalt */
-.inhalt {
-    background-color: rgba(18, 18, 18, 0.92) !important;
-    border: 1px solid rgba(200, 200, 200, 0.18) !important;
-    border-radius: 16px !important;
-    padding: 50px 40px !important;
-    margin: 40px auto !important;
-    max-width: 800px !important;
-    box-shadow: 
-        0 25px 70px rgba(0, 0, 0, 0.7),
-        0 0 0 1px rgba(255, 255, 255, 0.07) inset,
-        0 0 30px rgba(0, 0, 0, 0.4) inset !important;
-    position: relative !important;
-    z-index: 1 !important;
-}
-
-body.dark-mode .inhalt {
-    background-color: rgba(40, 40, 40, 0.92) !important;
-    border: 1px solid rgba(220, 220, 220, 0.22) !important;
-    box-shadow: 
-        0 25px 70px rgba(0, 0, 0, 0.8),
-        0 0 0 1px rgba(255, 255, 255, 0.1) inset,
-        0 0 30px rgba(0, 0, 0, 0.5) inset !important;
-}
-
-/* Text Container */
-.text-einleitung,
-.text-hauptteil,
-.text-kernaussage,
-.text-zielgruppe,
-.text-quellen,
-.ueber-mich-content,
-.impressum-content,
-.datenschutz-content,
-.credo-container {
-    background-color: rgba(22, 22, 22, 0.88) !important;
-    border: 1px solid rgba(200, 200, 200, 0.15) !important;
-    border-radius: 12px !important;
-    padding: 35px 30px !important;
-    margin-bottom: 35px !important;
-    box-shadow: 
-        0 15px 50px rgba(0, 0, 0, 0.5),
-        0 0 0 1px rgba(255, 255, 255, 0.05) inset,
-        0 0 20px rgba(0, 0, 0, 0.3) inset !important;
-}
-
-body.dark-mode .text-einleitung,
-body.dark-mode .text-hauptteil,
-body.dark-mode .text-kernaussage,
-body.dark-mode .text-zielgruppe,
-body.dark-mode .text-quellen,
-body.dark-mode .ueber-mich-content,
-body.dark-mode .impressum-content,
-body.dark-mode .datenschutz-content,
-body.dark-mode .credo-container {
-    background-color: rgba(50, 50, 50, 0.88) !important;
-    border: 1px solid rgba(220, 220, 220, 0.2) !important;
-    box-shadow: 
-        0 15px 50px rgba(0, 0, 0, 0.6),
-        0 0 0 1px rgba(255, 255, 255, 0.08) inset,
-        0 0 20px rgba(0, 0, 0, 0.4) inset !important;
-}
-
-/* Footer */
-.footer {
-    background-color: rgba(15, 15, 15, 0.95) !important;
-    border-top: 1px solid rgba(200, 200, 200, 0.15) !important;
-    margin-top: 70px !important;
-    padding: 35px 20px !important;
-    box-shadow: 
-        0 -5px 20px rgba(0, 0, 0, 0.5),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
-    position: relative !important;
-    z-index: 1000 !important;
-}
-
-body.dark-mode .footer {
-    background-color: rgba(35, 35, 35, 0.95) !important;
-    border-top: 1px solid rgba(220, 220, 220, 0.2) !important;
-}
-
-/* Social Section */
-.social-section {
-    background-color: rgba(20, 20, 20, 0.92) !important;
-    border: 1px solid rgba(200, 200, 200, 0.18) !important;
-    border-radius: 16px !important;
-    padding: 45px 35px !important;
-    margin: 60px auto !important;
-    max-width: 800px !important;
-    box-shadow: 
-        0 25px 70px rgba(0, 0, 0, 0.7),
-        0 0 0 1px rgba(255, 255, 255, 0.07) inset,
-        0 0 30px rgba(0, 0, 0, 0.4) inset !important;
-}
-
-body.dark-mode .social-section {
-    background-color: rgba(45, 45, 45, 0.92) !important;
-    border: 1px solid rgba(220, 220, 220, 0.22) !important;
-    box-shadow: 
-        0 25px 70px rgba(0, 0, 0, 0.8),
-        0 0 0 1px rgba(255, 255, 255, 0.1) inset,
-        0 0 30px rgba(0, 0, 0, 0.5) inset !important;
-}
-
-/* Preloader */
-#preloader {
-    background-color: #000000 !important;
-    background-image: 
-        radial-gradient(
-            circle at 50% 50%,
-            rgba(100, 100, 100, 0.4) 0%,
-            transparent 70%
-        ) !important;
-}
-
-body.dark-mode #preloader {
-    background-color: #1a1a1a !important;
-    background-image: 
-        radial-gradient(
-            circle at 50% 50%,
-            rgba(150, 150, 150, 0.4) 0%,
-            transparent 70%
-        ) !important;
-}
-
-/* Menu Overlay */
-.menu-overlay {
-    background-color: rgba(5, 5, 5, 0.92) !important;
-}
-
-body.dark-mode .menu-overlay {
-    background-color: rgba(20, 20, 20, 0.92) !important;
-}
-
-/* ================= TEST-MODUS ================= */
-/* Falls du den Hintergrund testen willst, füge diese Klasse zum body hinzu: */
-body.hintergrund-test::before {
-    background-image: 
-        radial-gradient(
-            circle at 50% 50%,
-            rgba(150, 150, 150, 0.6) 0%,
-            transparent 70%
-        ),
-        radial-gradient(
-            circle at 20% 20%,
-            rgba(180, 180, 180, 0.4) 0%,
-            transparent 40%
-        ),
-        radial-gradient(
-            circle at 80% 80%,
-            rgba(130, 130, 130, 0.3) 0%,
-            transparent 40%
-        ) !important;
-}
-
-/* ================= MOBILE OPTIMIERUNG ================= */
-@media screen and (max-width: 768px) {
-    .inhalt {
-        padding: 35px 25px !important;
-        margin: 25px 15px !important;
-    }
-    
-    .social-section {
-        padding: 35px 25px !important;
-        margin: 40px 15px !important;
-    }
-    
-    /* Weniger Bewegung auf Mobile für Performance */
-    body::after {
-        animation: schimmerBewegungMobile 20s linear infinite !important;
-    }
-    
-    @keyframes schimmerBewegungMobile {
-        0% {
-            transform: translateX(-50%) translateY(-50%);
-        }
-        100% {
-            transform: translateX(50%) translateY(50%);
-        }
-    }
-}
-
-/* ================= EXTRA: FALLS IMMER NOCH NICHT SICHTBAR ================= */
-/* Füge diesen Code HINTEN an, als letztes in deiner CSS-Datei: */
-body::before {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-}
-
-
-/* ==========================================================================
-   SPEZIAL-TEXTE FIX - ROBUSTE VERSION FÜR ALLE GERÄTE
-   ========================================================================== */
-
-/* ========== ANSATZ 1: ERZWUNGENE FARBEN ========== */
-/* Zuerst: ALLE relevanten Elemente identifizieren */
-.startseite .credo-headline,
-.startseite .lead-text,
-.startseite .highlight,
-.startseite .kalligrafie-text,
-.startseite .credo-subtitle,
-.ueber-mich-content .highlight-paragraph,
-.ueber-mich-content .attention-line,
-.ueber-mich-content .schluss-zitat,
-.ueber-mich-content .break-line,
-.kalligrafie-signature,
-.credo-signature .signature-text,
-.text-kernaussage .kernaussage-text {
-    /* ERZWUNGENE Farbe für alle Modi */
-    color: rgb(255, 255, 255) !important; /* RGB statt hex für Browser-Kompatibilität */
-    -webkit-text-fill-color: rgb(255, 255, 255) !important; /* Für Safari/iOS */
-    text-shadow: 
-        0 1px 0 rgba(0, 0, 0, 0.5),
-        0 2px 4px rgba(0, 0, 0, 0.7),
-        0 0 10px rgba(255, 255, 255, 0.1) !important;
-    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.6)) !important;
-}
-
-/* ========== ANSATZ 2: SPEZIFISCHE DARK-MODE ÜBERSCHREIBUNG ========== */
-/* Noch explizitere Regeln für Dark Mode */
-body.dark-mode .startseite .credo-headline,
-body.dark-mode .startseite .lead-text,
-body.dark-mode .startseite .highlight,
-body.dark-mode .startseite .kalligrafie-text,
-body[class*="dark"] .startseite .credo-headline, /* Alternative Selektor */
-body[class~="dark-mode"] .startseite .credo-headline /* Noch eine Alternative */ {
-    color: rgb(255, 255, 255) !important;
-    -webkit-text-fill-color: rgb(255, 255, 255) !important;
-    text-shadow: 
-        0 1px 0 #000,
-        0 2px 6px rgba(0, 0, 0, 0.9),
-        0 0 15px rgba(255, 255, 255, 0.15) !important;
-    filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.8)) 
-            brightness(1.1) !important; /* Etwas heller */
-}
-
-/* ========== ANSATZ 3: INLINE-STYLE OVERRIDE-SIMULATION ========== */
-/* Erstellt "künstliche" Inline-Style Priorität */
-.startseite .credo-headline {
-    color: white !important;
-}
-
-body .startseite .credo-headline {
-    color: white !important;
-}
-
-html body .startseite .credo-headline {
-    color: white !important;
-}
-
-/* ========== ANSATZ 4: ATTRIBUT-SELEKTOR FALLBACK ========== */
-/* Falls die dark-mode Klasse anders geschrieben wird */
-body[class*="dark"] .kalligrafie-text,
-body[class*="dark-mode"] .kalligrafie-text,
-body[data-theme="dark"] .kalligrafie-text,
-body[data-mode="dark"] .kalligrafie-text {
-    color: #ffffff !important;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 1) !important;
-}
-
-/* ========== ANSATZ 5: HINTERGRUND-CONTAINER AUFHELLEN ========== */
-/* Damit der Kontrast besser wird */
-.credo-container,
-.credo-quote-wrapper,
-.kernaussage-box,
-.text-kernaussage {
-    background-color: rgba(30, 30, 30, 0.9) !important;
-    background-image: linear-gradient(
-        to bottom,
-        rgba(40, 40, 40, 0.9),
-        rgba(25, 25, 25, 0.9)
-    ) !important;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    box-shadow: 
-        0 0 0 1px rgba(255, 255, 255, 0.1) inset,
-        0 20px 50px rgba(0, 0, 0, 0.8) !important;
-}
-
-body.dark-mode .credo-container,
-body.dark-mode .credo-quote-wrapper,
-body.dark-mode .kernaussage-box,
-body.dark-mode .text-kernaussage {
-    background-color: rgba(50, 50, 50, 0.9) !important;
-    background-image: linear-gradient(
-        to bottom,
-        rgba(60, 60, 60, 0.9),
-        rgba(40, 40, 40, 0.9)
-    ) !important;
-    border: 1px solid rgba(255, 255, 255, 0.3) !important;
-}
-
-/* ========== ANSATZ 6: JAVASCRIPT-FALLBACK SIMULATION ========== */
-/* CSS-Variablen für maximale Kontrolle */
-:root {
-    --highlight-color: #ffffff;
-    --highlight-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
-}
-
-body.dark-mode {
-    --highlight-color: #ffffff;
-    --highlight-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
-}
-
-/* Auf CSS-Variablen umstellen */
-.startseite .credo-headline,
-.startseite .lead-text {
-    color: var(--highlight-color) !important;
-    text-shadow: var(--highlight-shadow) !important;
-}
-
-/* ========== ANSATZ 7: MAXIMUM PRIORITY ========== */
-/* Absolute Priorität - sollte auf jedem Browser/PC funktionieren */
-html > body > .inhalt .startseite .credo-headline,
-html > body > .inhalt .startseite .lead-text,
-html > body.dark-mode > .inhalt .startseite .credo-headline,
-html > body.dark-mode > .inhalt .startseite .lead-text {
-    color: rgb(255, 255, 255) !important;
-    -webkit-text-fill-color: rgb(255, 255, 255) !important;
-    text-shadow: 
-        0 1px 1px #000000,
-        0 2px 3px #000000,
-        0 3px 6px rgba(0, 0, 0, 0.8) !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    display: block !important;
-}
-
-/* ========== DIREKTE ELEMENT-SELEKTION ========== */
-/* Falls du die HTML-Struktur kennst, noch spezifischer */
-.inhalt > .startseite > .credo-container > .credo-quote-wrapper > .credo-quote > .kalligrafie-text,
-.inhalt > .ueber-mich-content > .highlight-paragraph {
-    color: #ffffff !important;
-    font-weight: bold !important;
-    letter-spacing: 0.5px !important;
-}
-
-/* ========== MOBILE/PC UNTERSCHIEDE ========== */
-@media screen and (min-width: 769px) {
-    /* EXTRA Regeln nur für Desktop */
-    .startseite .credo-headline,
-    .startseite .kalligrafie-text {
-        color: #ffffff !important;
-        text-shadow: 
-            0 2px 10px rgba(0, 0, 0, 0.9),
-            0 0 30px rgba(255, 255, 255, 0.2) !important;
-        filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.8)) 
-                brightness(1.15) 
-                contrast(1.1) !important;
-    }
-    
-    /* Font-Smoothing für bessere Lesbarkeit auf Desktop */
-    .kalligrafie-text,
-    .credo-headline {
-        -webkit-font-smoothing: antialiased !important;
-        -moz-osx-font-smoothing: grayscale !important;
-        text-rendering: optimizeLegibility !important;
-    }
-}
-
-/* ========== TEST KLASSE ========== */
-/* Zum Debuggen: Füge diese Klasse zum Body hinzu */
-body.text-test .credo-headline,
-body.text-test .kalligrafie-text {
-    background-color: yellow !important;
-    color: red !important;
-    border: 2px solid red !important;
-}
-
-   /* ==========================================================================
-   DRINGENDER FIX FÜR PC - SPEZIFISCHE TEXTE
-   ========================================================================== */
-
-/* ====== 1. ABSOLUTE PRIORITÄT FÜR ZITAT-TEXTE ====== */
-.kalligrafie-text {
-    color: #FFFFFF !important;
-    -webkit-text-fill-color: #FFFFFF !important;
-    text-shadow: 
-        0 1px 0 #000000,
-        0 2px 8px #000000,
-        0 0 25px rgba(255, 255, 255, 0.3) !important;
-    filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.9)) 
-            brightness(1.2) 
-            contrast(1.3) !important;
-    font-weight: 500 !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-}
-
-/* Dark Mode Version */
-body.dark-mode .kalligrafie-text,
-html.dark-mode .kalligrafie-text,
-body[class*="dark"] .kalligrafie-text {
-    color: #FFFFFF !important;
-    -webkit-text-fill-color: #FFFFFF !important;
-    text-shadow: 
-        0 1px 0 #000000,
-        0 3px 10px #000000,
-        0 0 30px rgba(255, 255, 255, 0.4) !important;
-    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 1)) 
-            brightness(1.3) 
-            contrast(1.4) !important;
-}
-
-/* ====== 2. CREDO-HEADLINE FIX ====== */
-.credo-headline {
-    color: #FFFFFF !important;
-    text-shadow: 
-        0 1px 2px rgba(0, 0, 0, 0.8),
-        0 2px 10px rgba(0, 0, 0, 0.9) !important;
-    font-weight: 600 !important;
-}
-
-body.dark-mode .credo-headline {
-    color: #FFFFFF !important;
-    text-shadow: 
-        0 1px 3px rgba(0, 0, 0, 1),
-        0 3px 12px rgba(0, 0, 0, 1) !important;
-}
-
-/* ====== 3. HINTERGRUND-CONTAINER FIX ====== */
-.credo-container,
-.credo-quote-wrapper {
-    background-color: rgba(25, 25, 25, 0.9) !important;
-    border: 1px solid rgba(255, 255, 255, 0.25) !important;
-    box-shadow: 
-        0 0 50px rgba(0, 0, 0, 0.9),
-        inset 0 0 40px rgba(255, 255, 255, 0.1) !important;
-    position: relative !important;
-    z-index: 100 !important;
-}
-
-body.dark-mode .credo-container,
-body.dark-mode .credo-quote-wrapper {
-    background-color: rgba(45, 45, 45, 0.9) !important;
-    border: 1px solid rgba(255, 255, 255, 0.35) !important;
-    box-shadow: 
-        0 0 60px rgba(0, 0, 0, 1),
-        inset 0 0 50px rgba(255, 255, 255, 0.15) !important;
-}
-
-/* ====== 4. ALLGEMEINER HINTERGRUND FIX FÜR PC ====== */
-/* Reset aller alten Hintergründe */
-body {
-    background-color: #000000 !important;
-    background-image: 
-        radial-gradient(
-            circle at 20% 30%,
-            rgba(60, 60, 60, 0.4) 0%,
-            transparent 50%
-        ),
-        radial-gradient(
-            circle at 80% 70%,
-            rgba(40, 40, 40, 0.3) 0%,
-            transparent 50%
-        ) !important;
-    background-attachment: fixed !important;
-    position: relative !important;
-}
-
-body.dark-mode {
-    background-color: #1a1a1a !important;
-    background-image: 
-        radial-gradient(
-            circle at 30% 40%,
-            rgba(90, 90, 90, 0.5) 0%,
-            transparent 55%
-        ),
-        radial-gradient(
-            circle at 70% 60%,
-            rgba(70, 70, 70, 0.4) 0%,
-            transparent 55%
-        ) !important;
-    background-attachment: fixed !important;
-}
-
-/* ====== 5. INHALT-CONTAINER FIX ====== */
-.inhalt,
-.ueber-mich-content {
-    background-color: rgba(20, 20, 20, 0.95) !important;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    box-shadow: 
-        0 25px 70px rgba(0, 0, 0, 0.8),
-        inset 0 0 30px rgba(255, 255, 255, 0.05) !important;
-}
-
-body.dark-mode .inhalt,
-body.dark-mode .ueber-mich-content {
-    background-color: rgba(35, 35, 35, 0.95) !important;
-    border: 1px solid rgba(255, 255, 255, 0.25) !important;
-}
-
-/* ====== 6. NOTFALL: INLINE-STYLE SIMULATION ====== */
-/* Diese Regeln haben maximale Priorität */
-html body .kalligrafie-text,
-html body.dark-mode .kalligrafie-text,
-body .startseite .kalligrafie-text,
-body.dark-mode .startseite .kalligrafie-text {
-    color: rgb(255, 255, 255) !important;
-    -webkit-text-fill-color: rgb(255, 255, 255) !important;
-    text-shadow: 0 2px 10px rgb(0, 0, 0) !important;
-}
-
-/* ====== 7. DESKTOP-SPEZIFISCHE FIXES ====== */
-@media screen and (min-width: 769px) {
-    /* EXTRA Kontrast für Desktop */
-    .kalligrafie-text {
-        -webkit-font-smoothing: antialiased !important;
-        -moz-osx-font-smoothing: grayscale !important;
-        text-rendering: optimizeLegibility !important;
-        filter: 
-            drop-shadow(0 4px 8px rgba(0, 0, 0, 1))
-            brightness(1.25)
-            contrast(1.4) !important;
-    }
-    
-    /* Desktop Hintergrund intensiver */
-    body::before {
-        content: '';
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: 
-            radial-gradient(
-                circle at 20% 20%,
-                rgba(80, 80, 80, 0.5) 0%,
-                transparent 60%
-            ),
-            radial-gradient(
-                circle at 80% 80%,
-                rgba(60, 60, 60, 0.4) 0%,
-                transparent 60%
-            ) !important;
-        z-index: -1;
-        pointer-events: none;
-    }
-    
-    body.dark-mode::before {
-        background: 
-            radial-gradient(
-                circle at 30% 30%,
-                rgba(110, 110, 110, 0.6) 0%,
-                transparent 65%
-            ),
-            radial-gradient(
-                circle at 70% 70%,
-                rgba(90, 90, 90, 0.5) 0%,
-                transparent 65%
-            ) !important;
-    }
-}
-
-/* ====== 8. TEST-MODUS ====== */
-/* Entferne diesen Block nach dem Testen! */
-body.pc-test .kalligrafie-text {
-    border: 3px solid red !important;
-    background-color: yellow !important;
-    color: blue !important;
-    font-size: 200% !important;
 }
