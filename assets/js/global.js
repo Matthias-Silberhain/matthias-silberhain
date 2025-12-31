@@ -1,149 +1,166 @@
 /**
- * global.js - Hauptskript für Mathias Silberhain Website
- * @version 1.0.0
- * @description Mobile Navigation, Funktionalität, Fehlerbehandlung
+ * GLOBAL FUNKTIONEN - Matthias Silberhain Website
+ * Zentrale Funktionen für alle Seiten
+ * Version 2.0 - Konsolidiert und optimiert
  */
 
-(function() {
-    'use strict';
-
-    // ===== DOM ELEMENTE =====
-    const hamburger = document.getElementById('hamburger');
-    const nav = document.getElementById('nav');
-    const navOverlay = document.getElementById('navOverlay');
-    const body = document.body;
-    const navLinks = document.querySelectorAll('.nav-link');
-    const currentPage = window.location.pathname;
-
-    // ===== MOBILE NAVIGATION =====
-    function initNavigation() {
-        if (!hamburger || !nav || !navOverlay) {
-            console.warn('Navigation-Elemente nicht gefunden.');
-            return;
-        }
-
-        // Menü umschalten
-        function toggleMenu() {
-            const isActive = nav.classList.contains('active');
-            
-            hamburger.classList.toggle('active');
-            nav.classList.toggle('active');
-            navOverlay.classList.toggle('active');
-            body.classList.toggle('no-scroll');
-            
-            // ARIA-Attribute
-            hamburger.setAttribute('aria-expanded', !isActive);
-            nav.setAttribute('aria-hidden', isActive);
-            
-            // Fokus ins Menü setzen, wenn geöffnet
-            if (!isActive) {
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('🌐 Global.js geladen - Matthias Silberhain');
+    
+    // ================= PRELOADER =================
+    const preloader = document.getElementById('preloader');
+    const typeTextElement = document.getElementById('type-text');
+    
+    if (typeTextElement) {
+        const text = "Matthias Silberhain";
+        let index = 0;
+        const typingSpeed = 100;
+        const delayBeforeRemove = 3000;
+        
+        function typeWriter() {
+            if (index < text.length) {
+                typeTextElement.innerHTML += text.charAt(index);
+                index++;
+                setTimeout(typeWriter, typingSpeed);
+            } else {
                 setTimeout(() => {
-                    const firstLink = nav.querySelector('.nav-link');
-                    if (firstLink) firstLink.focus();
-                }, 300);
+                    if (preloader) {
+                        preloader.classList.add('loaded');
+                        setTimeout(() => {
+                            preloader.style.display = 'none';
+                        }, 600);
+                    }
+                }, delayBeforeRemove);
             }
         }
-
-        // Menü schließen
-        function closeMenu() {
-            hamburger.classList.remove('active');
-            nav.classList.remove('active');
-            navOverlay.classList.remove('active');
-            body.classList.remove('no-scroll');
-            hamburger.setAttribute('aria-expanded', 'false');
-            nav.setAttribute('aria-hidden', 'true');
-        }
-
-        // Event Listeners
-        hamburger.addEventListener('click', toggleMenu);
-        navOverlay.addEventListener('click', closeMenu);
-
-        // Menü schließen bei Link-Klick (Mobile)
+        
+        setTimeout(typeWriter, 500);
+    } else if (preloader) {
+        setTimeout(() => {
+            preloader.classList.add('loaded');
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 600);
+        }, 2500);
+    }
+    
+    // ================= CURRENT YEAR IN FOOTER =================
+    const currentYearElement = document.getElementById('currentYear');
+    if (currentYearElement) {
+        currentYearElement.textContent = new Date().getFullYear();
+    }
+    
+    // ================= SMOOTH SCROLLING =================
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            
+            if (href !== '#' && href.startsWith('#')) {
+                e.preventDefault();
+                
+                const targetId = href.substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    // Schließe Mobile Menu wenn offen
+                    const burger = document.getElementById('burgerButton');
+                    const nav = document.getElementById('mainNav');
+                    const overlay = document.querySelector('.menu-overlay');
+                    
+                    if (burger && nav && burger.classList.contains('aktiv')) {
+                        burger.classList.remove('aktiv');
+                        nav.classList.remove('aktiv');
+                        if (overlay) overlay.classList.remove('active');
+                        document.body.classList.remove('menu-open');
+                    }
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
+    });
+    
+    // ================= ACTIVE NAV LINK HIGHLIGHT =================
+    function highlightActiveNavLink() {
+        const navLinks = document.querySelectorAll('.hauptnavigation a');
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        const currentHash = window.location.hash;
+        
         navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                if (window.innerWidth < 768) {
-                    closeMenu();
+            link.classList.remove('active');
+            const linkHref = link.getAttribute('href');
+            
+            if (linkHref === currentPage || 
+                (currentHash && linkHref === currentHash) ||
+                (currentPage === 'index.html' && linkHref === '#home')) {
+                link.classList.add('active');
+            }
+        });
+    }
+    
+    highlightActiveNavLink();
+    window.addEventListener('hashchange', highlightActiveNavLink);
+    
+    // ================= LAZY LOADING =================
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    if (img.dataset.src) {
+                        img.src = img.dataset.src;
+                        img.removeAttribute('data-src');
+                    }
+                    imageObserver.unobserve(img);
                 }
             });
         });
-
-        // ESC zum Schließen
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && nav.classList.contains('active')) {
-                closeMenu();
-            }
-        });
-
-        // Aktive Seite markieren
-        navLinks.forEach(link => {
-            const linkPath = link.getAttribute('href');
-            if (currentPage.endsWith(linkPath) || 
-                (linkPath === 'index.html' && currentPage.endsWith('/'))) {
-                link.classList.add('active');
-                link.setAttribute('aria-current', 'page');
-            }
+        
+        document.querySelectorAll('img[data-src]').forEach(img => {
+            imageObserver.observe(img);
         });
     }
-
-    // ===== RESPONSIVE HANDLING =====
-    function handleResize() {
-        if (window.innerWidth >= 768) {
-            // Auf Desktop: Menü immer zurücksetzen
-            hamburger?.classList.remove('active');
-            nav?.classList.remove('active');
-            navOverlay?.classList.remove('active');
-            body.classList.remove('no-scroll');
-            hamburger?.setAttribute('aria-expanded', 'false');
-            nav?.setAttribute('aria-hidden', 'false');
-        }
+    
+    // ================= ERROR HANDLING =================
+    window.addEventListener('error', function(e) {
+        console.error('JavaScript Fehler:', e.error);
+    });
+    
+    // ================= TOUCH DEVICE DETECTION =================
+    function isTouchDevice() {
+        return 'ontouchstart' in window || 
+               navigator.maxTouchPoints > 0 || 
+               navigator.msMaxTouchPoints > 0;
     }
-
-    // ===== FEHLERBEHANDLUNG =====
-    function handleErrors() {
-        // Bilder ohne alt-Attribut warnen
-        document.querySelectorAll('img:not([alt])').forEach(img => {
-            console.warn('Bild ohne alt-Attribut:', img.src);
-        });
-
-        // Broken Links abfangen
-        document.addEventListener('click', (e) => {
-            const link = e.target.closest('a');
-            if (link && link.getAttribute('href') === '#') {
-                e.preventDefault();
-                console.warn('Link mit # href wurde blockiert.');
-            }
-        });
-
-        // Global error handler
-        window.addEventListener('error', (e) => {
-            console.error('Globaler Fehler:', e.error);
-        });
-    }
-
-    // ===== INITIALISIERUNG =====
-    function init() {
-        console.log('🚀 Website initialisiert – Mathias Silberhain');
-        
-        // Navigation
-        initNavigation();
-        
-        // Fehlerbehandlung
-        handleErrors();
-        
-        // Resize Listener
-        window.addEventListener('resize', handleResize);
-        
-        // Load Event
-        window.addEventListener('load', () => {
-            document.body.classList.add('loaded');
-        });
-    }
-
-    // DOM Ready
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', init);
+    
+    if (isTouchDevice()) {
+        document.body.classList.add('touch-device');
     } else {
-        init();
+        document.body.classList.add('no-touch-device');
     }
-
-})();
+    
+    // ================= WINDOW RESIZE HANDLER =================
+    let resizeTimeout;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(function() {
+            if (window.innerWidth > 768) {
+                const burger = document.getElementById('burgerButton');
+                const nav = document.getElementById('mainNav');
+                const overlay = document.querySelector('.menu-overlay');
+                
+                if (burger && nav && burger.classList.contains('aktiv')) {
+                    burger.classList.remove('aktiv');
+                    nav.classList.remove('aktiv');
+                    if (overlay) overlay.classList.remove('active');
+                    document.body.classList.remove('menu-open');
+                }
+            }
+        }, 250);
+    });
+    
+    console.log('✅ Global.js initialisiert');
+});
