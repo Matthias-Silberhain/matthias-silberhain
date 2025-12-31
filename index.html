@@ -1,179 +1,100 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <title>Matthias Silberhain | Startseite</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Matthias Silberhain - Autor zu Macht, Verantwortung und gesellschaftlichen Mechanismen">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
-    
-    <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
-    
-    <!-- Favicon -->
-    <link rel="icon" href="assets/images/logo.png" type="image/png">
-    
-    <!-- Dark Mode Preload - KORRIGIERT -->
-    <script>
-        (function() {
-            // SOFORTIGE DARK MODE ANWENDUNG
-            try {
-                const savedTheme = localStorage.getItem('ms-theme');
-                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                
-                if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-                    document.documentElement.classList.add('dark-mode');
-                    document.body.classList.add('dark-mode');
-                }
-            } catch(e) {
-                // Ignoriere Fehler
-            }
-            
-            // SOFORTIGE KLICKBARKEIT SICHERSTELLEN
-            document.addEventListener('DOMContentLoaded', function() {
-                // Alle interaktiven Elemente klickbar machen
-                const interactiveElements = ['button', 'a', '.burger', '.dark-mode-toggle', '.silber-button', '.social-link'];
-                
-                setTimeout(function() {
-                    interactiveElements.forEach(selector => {
-                        document.querySelectorAll(selector).forEach(el => {
-                            el.style.pointerEvents = 'auto';
-                            el.style.cursor = 'pointer';
-                        });
-                    });
-                    
-                    // Preloader nicht blockierend
-                    const preloader = document.getElementById('preloader');
-                    if (preloader) {
-                        preloader.style.pointerEvents = 'none';
-                        preloader.style.zIndex = '9990';
-                    }
-                    
-                    console.log('✅ Website ist jetzt voll klickbar!');
-                }, 100);
-            });
-        })();
-    </script>
+<meta charset="UTF-8">
+<title>Matthias Silberhain | Startseite</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Matthias Silberhain - Autor zu Macht, Verantwortung und gesellschaftlichen Mechanismen">
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="assets/images/logo.png" type="image/png">
+
+<script>
+try {
+  if (localStorage.getItem('silberhain-theme') === 'dark') {
+    document.documentElement.classList.add('dark-mode');
+  }
+} catch(e){}
+</script>
 </head>
 
 <body>
 
-<!-- Preloader -->
+<!-- PRELOADER -->
 <div id="preloader">
-    <div class="preloader-inner">
-        <img src="assets/images/logo.png" alt="Logo" class="preloader-logo">
-        <div class="text-container">
-            <h1 class="preloader-text">
-                <span id="type-text"></span>
-                <span class="cursor"></span>
-            </h1>
-        </div>
-    </div>
+  <div class="preloader-inner">
+    <img src="assets/images/logo.png" class="preloader-logo" alt="Logo">
+    <h1 class="preloader-text">
+      <span id="type-text"></span><span class="cursor"></span>
+    </h1>
+  </div>
 </div>
 
-<!-- Mobile Menu Overlay -->
 <div class="menu-overlay" id="menuOverlay"></div>
 
-<!-- ================= HEADER ================= -->
 <header class="header">
-    <img src="assets/images/logo.png" alt="Matthias Silberhain Logo" class="logo">
-    
-    <!-- Dark Mode Toggle Button -->
-    <button id="darkModeToggle" class="dark-mode-toggle" aria-label="Dark Mode umschalten" title="Dark Mode umschalten">
-        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-        </svg>
-        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="5"></circle>
-            <line x1="12" y1="1" x2="12" y2="3"></line>
-            <line x1="12" y1="21" x2="12" y2="23"></line>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-            <line x1="1" y1="12" x2="3" y2="12"></line>
-            <line x1="21" y1="12" x2="23" y2="12"></line>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-        </svg>
-    </button>
+  <img src="assets/images/logo.png" class="logo" alt="Matthias Silberhain Logo">
 
-    <div class="burger" id="burger" title="Menü öffnen/schließen">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
+  <button id="darkModeToggle" class="dark-mode-toggle" aria-label="Dark Mode">
+    <svg class="moon-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3z"/></svg>
+    <svg class="sun-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/></svg>
+  </button>
 
-    <nav class="hauptnavigation" id="navigation">
-        <a href="index.html" class="active">Startseite</a>
-        <a href="ueber-mich.html">Über mich</a>
-        <a href="werke.html">Werke</a>
-        <a href="termine.html">Termine</a>
-        <a href="kontakt.html">Kontakt</a>
-    </nav>
+  <div class="burger" id="burger"><span></span><span></span><span></span></div>
+
+  <nav class="hauptnavigation" id="navigation">
+    <a href="index.html" class="active">Startseite</a>
+    <a href="ueber-mich.html">Über mich</a>
+    <a href="werke.html">Werke</a>
+    <a href="termine.html">Termine</a>
+    <a href="kontakt.html">Kontakt</a>
+  </nav>
 </header>
 
 <div class="lichtkante"></div>
 
-<!-- ================= HAUPTINHALT ================= -->
 <main class="inhalt">
-    <section class="startseite">
-        <!-- HAUPTTITEL -->
-        <div class="credo-container">
+<section class="startseite">
+
+<div class="credo-container">
   <div class="credo-quote-wrapper">
-    <div class="credo-quote">
-      <p class="quote-text kalligrafie-text">Wenn Wahrheit unbequem wird, braucht sie eine Stimme.</p>
-    </div> 
-        
-        <!-- EINLEITUNGSTEXT -->
-        <div class="einleitung">
-            <p class="lead-text">
-<br>Diese Seite ist kein Ort für einfache Antworten oder beruhigende Geschichten.<br>            
-            </p>
-            
-            <p class="sub-lead-text">
-                Hier geht es um Macht, Verantwortung und die Fragen, die selten laut gestellt werden.<br>
-                Um historische Spuren, gesellschaftliche Strukturen und Entscheidungen, deren Folgen bis heute nachwirken.
-            </p>
-        </div>
-        
-        <!-- KERNINHALT -->
-        <div class="kerninhalt">
-            <p>
-                Ich schreibe über das, was unter der Oberfläche liegt. Über Mechanismen, die oft unsichtbar bleiben, aber unser Zusammenleben prägen. Meine Bücher sind das Ergebnis intensiver Recherche und kritischer Analyse – keine Unterhaltung, sondern Auseinandersetzung.
-            </p>
-            
-            <p class="highlight">
-                Literatur mit Haltung, Tiefe und Substanz. Für Leser, die bereit sind, genauer hinzusehen.
-            </p>
-            
-            <p>
-                In einer Zeit, in der Komplexität oft vereinfacht wird, halte ich es für notwendig, genau hinzuschauen. Meine Texte sollen nicht nur informieren, sondern zum Denken anregen. Sie stellen Fragen, wo andere Antworten vorgeben. Sie zeigen Zusammenhänge, wo andere isolieren.
-            </p>
-            
-            <p class="zitat">
-                "Ich schreibe, weil die Wahrheit eine Stimme braucht."<br>
-                <span class="zitat-autor">– Matthias Silberhain</span>
-            </p>
-            
-            <p>
-                Auf diesen Seiten finden Sie Einblicke in meine Arbeit, Informationen zu aktuellen Projekten und die Möglichkeit, mit mir in Kontakt zu treten. Willkommen bei Matthias Silberhain.
-            </p>
-        </div>
-        
-        <!-- CTA Buttons -->
-        <div class="cta-container">
-            <a href="werke.html" class="silber-button">
-                <span>Meine Werke entdecken</span>
-                <svg class="button-arrow" viewBox="0 0 24 24">
-                    <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
-                </svg>
-            </a>
-            <a href="ueber-mich.html" class="silber-button secondary">
-                <span>Über den Autor</span>
-            </a>
-        </div>
-    </section>
+    <p class="quote-text kalligrafie-text">
+      Wenn Wahrheit unbequem wird, braucht sie eine Stimme.
+    </p>
+  </div>
+</div>
+
+<div class="einleitung">
+  <p class="lead-text">
+    Diese Seite ist kein Ort für einfache Antworten oder beruhigende Geschichten.
+  </p>
+  <p class="sub-lead-text">
+    Es geht um Macht, Verantwortung und die Spuren von Entscheidungen.
+  </p>
+</div>
+
+<div class="kerninhalt">
+  <p>
+    Ich schreibe über das, was unter der Oberfläche liegt. Keine Unterhaltung, sondern Auseinandersetzung.
+  </p>
+
+  <p class="highlight">
+    Literatur mit Haltung, Tiefe und Substanz.
+  </p>
+
+  <p class="zitat">
+    „Ich schreibe, weil die Wahrheit eine Stimme braucht.“
+    <span class="zitat-autor">– Matthias Silberhain</span>
+  </p>
+</div>
+
+<div class="cta-container">
+  <a href="werke.html" class="silber-button">Meine Werke entdecken</a>
+  <a href="ueber-mich.html" class="silber-button secondary">Über den Autor</a>
+</div>
+
+</section>
 </main>
 
 <!-- ================= SOCIAL MEDIA ================= -->
@@ -257,15 +178,14 @@
 
 <!-- ================= FOOTER ================= -->
 <footer class="footer">
-    <div class="footer-links">
-        <a href="impressum.html">Impressum</a>
-        <a href="datenschutz.html">Datenschutz</a>
-    </div>
-    <p>© <span id="jahr"></span> Matthias Silberhain</p>
+  <div class="footer-links">
+    <a href="impressum.html">Impressum</a>
+    <a href="datenschutz.html">Datenschutz</a>
+  </div>
+  <p>© <span id="jahr"></span> Matthias Silberhain</p>
 </footer>
-<!-- ================= JAVASCRIPT ================= -->
+
 <script src="assets/js/global.js"></script>
 <script src="assets/js/menu.js"></script>
-
 </body>
 </html>
