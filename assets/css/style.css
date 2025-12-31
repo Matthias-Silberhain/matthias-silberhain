@@ -428,7 +428,7 @@ strong {
 }
 
 /* ==========================================================================
-   MOBILE NAVIGATION
+   MOBILE NAVIGATION - KORRIGIERT
    ========================================================================== */
 @media screen and (max-width: 768px) {
   .header {
@@ -458,13 +458,52 @@ strong {
     order: 1;
   }
   
+  /* BURGER BUTTON - KORRIGIERT */
   .burger {
-    display: flex;
-    position: absolute;
-    top: 30px;
-    right: 20px;
-    z-index: 1002;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: absolute !important;
+    top: 30px !important;
+    right: 20px !important;
+    z-index: 1001 !important;
+    width: 32px !important;
+    height: 32px !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 6px !important;
     order: 3;
+  }
+  
+  .burger span {
+    display: block !important;
+    width: 100% !important;
+    height: 2px !important;
+    background-color: #cfd2d6 !important;
+    transition: all 0.3s ease !important;
+    border-radius: 1px !important;
+    transform-origin: center !important;
+  }
+  
+  .burger.aktiv span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px) !important;
+    background-color: #e4e6ea !important;
+  }
+  
+  .burger.aktiv span:nth-child(2) {
+    opacity: 0 !important;
+    transform: translateX(-10px) !important;
+  }
+  
+  .burger.aktiv span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px) !important;
+    background-color: #e4e6ea !important;
   }
   
   .dark-mode-toggle {
@@ -472,55 +511,91 @@ strong {
     top: 30px;
     left: 20px;
     right: auto;
-    z-index: 1001;
+    z-index: 1000;
     order: 2;
   }
   
+  /* NAVIGATION - KORRIGIERT */
   .hauptnavigation {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.98);
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 0;
-    z-index: 999;
-    padding-top: 120px;
-    padding-bottom: 40px;
-    overflow-y: auto;
-    opacity: 0;
-    transform: translateX(-100%);
-    transition: all 0.4s ease;
+    display: none !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100vh !important;
+    background-color: rgba(0, 0, 0, 0.98) !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    gap: 0 !important;
+    z-index: 999 !important;
+    padding-top: 120px !important;
+    padding-bottom: 40px !important;
+    overflow-y: auto !important;
+    opacity: 0 !important;
+    transform: translateX(-100%) !important;
+    transition: all 0.4s ease !important;
+    pointer-events: none !important;
   }
   
   .hauptnavigation.aktiv {
     display: flex !important;
-    opacity: 1;
-    transform: translateX(0);
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+    pointer-events: auto !important;
   }
   
   .hauptnavigation a {
-    font-size: 1.2rem;
-    padding: 18px 30px;
-    width: 90%;
-    max-width: 300px;
-    text-align: center;
-    border: 1px solid rgba(200, 205, 215, 0.2);
-    border-radius: 4px;
-    transition: all 0.3s ease;
-    pointer-events: auto;
-    margin-bottom: 15px;
-    background: rgba(10, 10, 10, 0.7);
+    font-size: 1.2rem !important;
+    padding: 18px 30px !important;
+    width: 90% !important;
+    max-width: 300px !important;
+    text-align: center !important;
+    border: 1px solid rgba(200, 205, 215, 0.2) !important;
+    border-radius: 4px !important;
+    transition: all 0.3s ease !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    margin-bottom: 15px !important;
+    background: rgba(10, 10, 10, 0.7) !important;
+    color: #d6d9de !important;
+    text-decoration: none !important;
   }
   
   .hauptnavigation a:hover {
-    background-color: rgba(200, 205, 215, 0.1);
-    border-color: rgba(200, 205, 215, 0.5);
-    transform: translateY(-2px);
+    background-color: rgba(200, 205, 215, 0.1) !important;
+    border-color: rgba(200, 205, 215, 0.5) !important;
+    transform: translateY(-2px) !important;
+    color: #ffffff !important;
+  }
+  
+  /* OVERLAY - HINZUGEFÜGT */
+  .menu-overlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: rgba(0, 0, 0, 0.7) !important;
+    z-index: 998 !important;
+    display: none !important;
+    opacity: 0 !important;
+    transition: opacity 0.3s ease !important;
+    pointer-events: none !important;
+  }
+  
+  .menu-overlay.active {
+    display: block !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+  
+  /* BODY SCROLL SPERREN WENN MENU OFFEN */
+  body.menu-open {
+    overflow: hidden !important;
+    position: fixed !important;
+    width: 100% !important;
+    height: 100% !important;
   }
   
   .inhalt {
@@ -573,20 +648,20 @@ strong {
   }
   
   .hauptnavigation {
-    padding-top: 100px;
+    padding-top: 100px !important;
   }
   
   .hauptnavigation a {
-    font-size: 1.1rem;
-    padding: 16px 25px;
-    margin-bottom: 12px;
+    font-size: 1.1rem !important;
+    padding: 16px 25px !important;
+    margin-bottom: 12px !important;
   }
   
   .burger {
-    top: 25px;
-    right: 15px;
-    width: 28px;
-    height: 28px;
+    top: 25px !important;
+    right: 15px !important;
+    width: 28px !important;
+    height: 28px !important;
   }
   
   .dark-mode-toggle {
