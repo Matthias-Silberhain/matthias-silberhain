@@ -1,7 +1,7 @@
 /**
  * MOBILE MENU - Matthias Silberhain Website
  * Burger Menu für mobile Navigation
- * Version 2.0 - Mit korrekten IDs
+ * Version 2.1 - Defensiv mit Prüfung auf Existenz
  */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -10,13 +10,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const burgerButton = document.getElementById('burgerButton');
     const mainNav = document.getElementById('mainNav');
     const menuOverlay = document.querySelector('.menu-overlay');
-    const navLinks = mainNav ? mainNav.querySelectorAll('a') : [];
     
-    // Überprüfe ob Elemente existieren
+    // Überprüfe ob Burger und Navigation existieren
     if (!burgerButton || !mainNav) {
-        console.warn('Menu.js: Burger Button oder Navigation nicht gefunden');
+        console.warn('Menu.js: Burger Button oder Navigation nicht gefunden. Überprüfen Sie die IDs auf dieser Seite.');
         return;
     }
+    
+    const navLinks = mainNav.querySelectorAll('a');
     
     // Event Listener für Burger Button
     burgerButton.addEventListener('click', toggleMenu);
