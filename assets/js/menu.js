@@ -3,6 +3,9 @@
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', function() {
+    
+    console.log('✅ menu.js gestartet');
+    
     // ================= ELEMENTE DEFINIEREN =================
     const burger = document.getElementById('burger');
     const navigation = document.getElementById('navigation');
@@ -12,27 +15,23 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // ================= MOBILE MENÜ FUNKTIONALITÄT =================
     if (burger && navigation) {
+        console.log('✅ Navigation Elemente gefunden');
+        
         // Menü öffnen/schließen
         burger.addEventListener('click', function(e) {
-            e.stopPropagation(); // Verhindert Event-Bubbling
+            e.stopPropagation();
             
-            // Burger Animation
-            burger.classList.toggle('aktiv');
-            
-            // Navigation ein-/ausblenden
+            const isActive = burger.classList.toggle('aktiv');
             navigation.classList.toggle('aktiv');
             
-            // Overlay ein-/ausblenden
             if (menuOverlay) {
                 menuOverlay.classList.toggle('active');
             }
             
-            // Scrollen auf Body verhindern
-            if (navigation.classList.contains('aktiv')) {
-                document.body.style.overflow = 'hidden';
-            } else {
-                document.body.style.overflow = '';
-            }
+            // Scrollen verhindern/erlauben
+            document.body.style.overflow = isActive ? 'hidden' : '';
+            
+            console.log(isActive ? '✅ Menü geöffnet' : '✅ Menü geschlossen');
         });
         
         // Menü schließen bei Klick auf Overlay
@@ -42,6 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 navigation.classList.remove('aktiv');
                 this.classList.remove('active');
                 document.body.style.overflow = '';
+                console.log('✅ Menü via Overlay geschlossen');
             });
         }
         
@@ -49,7 +49,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const navLinks = navigation.querySelectorAll('a');
         navLinks.forEach(link => {
             link.addEventListener('click', function() {
-                // Kleine Verzögerung für bessere UX
                 setTimeout(() => {
                     burger.classList.remove('aktiv');
                     navigation.classList.remove('aktiv');
@@ -57,6 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         menuOverlay.classList.remove('active');
                     }
                     document.body.style.overflow = '';
+                    console.log('✅ Menü via Link geschlossen');
                 }, 300);
             });
         });
@@ -70,35 +70,47 @@ document.addEventListener('DOMContentLoaded', function() {
                     menuOverlay.classList.remove('active');
                 }
                 document.body.style.overflow = '';
+                console.log('✅ Menü via ESC geschlossen');
             }
         });
         
-        // Menü schließen bei Fenster-Resize (wenn zu Desktop gewechselt)
+        // Menü schließen bei Fenster-Resize (zu Desktop)
         window.addEventListener('resize', function() {
-            if (window.innerWidth > 768) {
+            if (window.innerWidth > 768 && navigation.classList.contains('aktiv')) {
                 burger.classList.remove('aktiv');
                 navigation.classList.remove('aktiv');
                 if (menuOverlay) {
                     menuOverlay.classList.remove('active');
                 }
                 document.body.style.overflow = '';
+                console.log('✅ Menü via Resize geschlossen');
             }
         });
+    } else {
+        console.warn('⚠️ Navigation Elemente nicht gefunden');
     }
     
     // ================= DARK MODE FUNKTIONALITÄT =================
     if (darkModeToggle) {
-        // Theme aus LocalStorage oder Systemeinstellung lesen
+        console.log('✅ Dark Mode Toggle gefunden');
+        
+        // Theme aus LocalStorage lesen
         function getCurrentTheme() {
-            const savedTheme = localStorage.getItem('ms-theme');
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            
-            return savedTheme || (prefersDark ? 'dark' : 'light');
+            try {
+                const savedTheme = localStorage.getItem('silberhain-theme');
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                
+                return savedTheme || (prefersDark ? 'dark' : 'light');
+            } catch (e) {
+                return 'light';
+            }
         }
         
         // Theme anwenden
         function applyTheme(theme) {
-            if (theme === 'dark') {
+            const isDark = theme === 'dark';
+            
+            if (isDark) {
                 body.classList.add('dark-mode');
                 document.documentElement.classList.add('dark-mode');
             } else {
@@ -108,40 +120,41 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // In LocalStorage speichern
             try {
-                localStorage.setItem('ms-theme', theme);
+                localStorage.setItem('silberhain-theme', theme);
             } catch (e) {
-                console.warn('LocalStorage nicht verfügbar:', e);
+                console.warn('LocalStorage nicht verfügbar');
             }
+            
+            console.log('✅ Theme angewendet:', theme);
+            return isDark;
         }
         
         // Initiales Theme setzen
         const currentTheme = getCurrentTheme();
-        applyTheme(currentTheme);
+        const isDarkMode = applyTheme(currentTheme);
+        console.log('✅ Initiales Theme:', currentTheme, 'Dark Mode:', isDarkMode);
         
         // Dark Mode Toggle Event
         darkModeToggle.addEventListener('click', function() {
-            const isDarkMode = body.classList.contains('dark-mode');
+            const isCurrentlyDark = body.classList.contains('dark-mode');
+            const newTheme = isCurrentlyDark ? 'light' : 'dark';
             
-            if (isDarkMode) {
-                // Zu Light Mode wechseln
-                applyTheme('light');
-            } else {
-                // Zu Dark Mode wechseln
-                applyTheme('dark');
-            }
+            applyTheme(newTheme);
+            this.blur(); // Button Focus entfernen
             
-            // Button Focus für Accessibility
-            this.blur();
+            console.log('✅ Dark Mode geändert zu:', newTheme);
         });
         
         // System Theme Änderungen überwachen
         const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
         mediaQuery.addEventListener('change', function(e) {
-            // Nur anwenden wenn kein manuelles Theme gesetzt ist
-            if (!localStorage.getItem('ms-theme')) {
+            if (!localStorage.getItem('silberhain-theme')) {
                 applyTheme(e.matches ? 'dark' : 'light');
+                console.log('✅ System Theme geändert:', e.matches ? 'dark' : 'light');
             }
         });
+    } else {
+        console.warn('⚠️ Dark Mode Toggle nicht gefunden');
     }
     
     // ================= ACTIVE LINK HIGHLIGHTING =================
@@ -154,120 +167,58 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const linkHref = link.getAttribute('href');
             if (linkHref === currentPage || 
-                (currentPage === '' && linkHref === 'index.html') ||
-                (linkHref === 'index.html' && currentPage === '')) {
+                (currentPage === '' && linkHref === 'index.html')) {
                 link.classList.add('active');
             }
         });
+        
+        console.log('✅ Aktive Links gesetzt für:', currentPage);
     }
     
     // Initial setzen
     setActiveLink();
     
-    // ================= COPYRIGHT JAHR =================
-    function setCopyrightYear() {
-        const yearElement = document.getElementById('jahr');
-        if (yearElement) {
-            yearElement.textContent = new Date().getFullYear();
-        }
-    }
-    
-    setCopyrightYear();
-    
     // ================= PRELOADER FUNKTIONALITÄT =================
     function handlePreloader() {
         const preloader = document.getElementById('preloader');
-        const typeTextElement = document.getElementById('type-text');
         
-        if (preloader && typeTextElement) {
-            const text = "MATTHIAS SILBERHAIN";
-            let index = 0;
-            
-            // Typing Animation
-            function typeWriter() {
-                if (index < text.length) {
-                    typeTextElement.textContent += text.charAt(index);
-                    index++;
-                    setTimeout(typeWriter, 80);
-                } else {
-                    // Preloader nach Typing-Animation ausblenden
-                    setTimeout(() => {
-                        preloader.classList.add('hidden');
-                        
-                        // Preloader nach Animation komplett entfernen
-                        setTimeout(() => {
-                            preloader.style.display = 'none';
-                        }, 600);
-                    }, 500);
-                }
-            }
-            
-            // Starte Typing Animation
-            setTimeout(typeWriter, 300);
-        } else if (preloader) {
-            // Fallback: Einfaches Ausblenden
+        if (preloader) {
+            // Preloader nach 1.5 Sekunden ausblenden
             setTimeout(() => {
                 preloader.classList.add('hidden');
+                
+                // Preloader nach Animation komplett entfernen
                 setTimeout(() => {
                     preloader.style.display = 'none';
+                    console.log('✅ Preloader entfernt');
                 }, 600);
             }, 1500);
         }
     }
     
-    // Preloader starten
-    handlePreloader();
+    // Preloader starten (mit Verzögerung für globale.js)
+    setTimeout(handlePreloader, 500);
     
-    // ================= SMOOTH SCROLL FÜR ANKER-LINKS =================
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            
-            // Nur wenn es ein echter Anker ist (nicht # alleine)
-            if (href !== '#' && href.length > 1) {
-                e.preventDefault();
-                
-                const targetElement = document.querySelector(href);
-                if (targetElement) {
-                    // Mobile Menü schließen falls offen
-                    if (burger && burger.classList.contains('aktiv')) {
-                        burger.classList.remove('aktiv');
-                        navigation.classList.remove('aktiv');
-                        if (menuOverlay) {
-                            menuOverlay.classList.remove('active');
-                        }
-                        document.body.style.overflow = '';
-                    }
-                    
-                    // Smooth Scroll
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            }
-        });
-    });
+    // ================= TOUCH DEVICE OPTIMIERUNGEN =================
+    // Verhindert Doppel-Tap-Zoom auf iOS
+    let lastTouchEnd = 0;
+    document.addEventListener('touchend', function(event) {
+        const now = Date.now();
+        if (now - lastTouchEnd <= 300) {
+            event.preventDefault();
+        }
+        lastTouchEnd = now;
+    }, false);
     
-    // ================= ERROR HANDLING & FALLBACKS =================
     console.log('✅ menu.js erfolgreich geladen');
     
-    // Fallback für fehlende Elemente
-    if (!burger) console.warn('⚠️ Burger button nicht gefunden');
-    if (!navigation) console.warn('⚠️ Navigation nicht gefunden');
-    if (!darkModeToggle) console.warn('⚠️ Dark Mode Toggle nicht gefunden');
-    
-    // ================= EXPORT FÜR EVENTUELLE NUTZUNG =================
+    // ================= EXPORT FÜR DEBUGGING =================
     window.MenuManager = {
         toggleMenu: function() {
-            if (burger && navigation) {
-                burger.click();
-            }
+            if (burger) burger.click();
         },
         toggleDarkMode: function() {
-            if (darkModeToggle) {
-                darkModeToggle.click();
-            }
+            if (darkModeToggle) darkModeToggle.click();
         },
         isMenuOpen: function() {
             return burger ? burger.classList.contains('aktiv') : false;
@@ -276,77 +227,4 @@ document.addEventListener('DOMContentLoaded', function() {
             return body.classList.contains('dark-mode');
         }
     };
-});
-
-// ================= SERVICE WORKER FÜR OFFLINE FÄHIGKEIT (OPTIONAL) =================
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/sw.js').then(function(registration) {
-            console.log('✅ ServiceWorker registriert mit Scope:', registration.scope);
-        }).catch(function(err) {
-            console.log('⚠️ ServiceWorker Registrierung fehlgeschlagen:', err);
-        });
-    });
-}
-
-// ================= PERFORMANCE OPTIMIERUNGEN =================
-// Lazy Loading für Bilder (falls verwendet)
-document.addEventListener('DOMContentLoaded', function() {
-    const images = document.querySelectorAll('img[data-src]');
-    
-    if ('IntersectionObserver' in window) {
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.dataset.src;
-                    img.removeAttribute('data-src');
-                    imageObserver.unobserve(img);
-                }
-            });
-        });
-        
-        images.forEach(img => imageObserver.observe(img));
-    } else {
-        // Fallback für ältere Browser
-        images.forEach(img => {
-            img.src = img.dataset.src;
-            img.removeAttribute('data-src');
-        });
-    }
-});
-
-// ================= TOUCH DEVICE OPTIMIERUNGEN =================
-// Verhindert Doppel-Tap-Zoom auf iOS
-let lastTouchEnd = 0;
-document.addEventListener('touchend', function(event) {
-    const now = (new Date()).getTime();
-    if (now - lastTouchEnd <= 300) {
-        event.preventDefault();
-    }
-    lastTouchEnd = now;
-}, false);
-
-// ================= KEYBOARD NAVIGATION =================
-// Verbesserte Tastatur-Navigation
-document.addEventListener('keydown', function(e) {
-    // Tab durch Navigation mit Pfeiltasten
-    if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
-        const focusableElements = document.querySelectorAll(
-            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-        );
-        const currentIndex = Array.from(focusableElements).indexOf(document.activeElement);
-        
-        if (currentIndex !== -1) {
-            let nextIndex;
-            if (e.key === 'ArrowRight') {
-                nextIndex = (currentIndex + 1) % focusableElements.length;
-            } else {
-                nextIndex = (currentIndex - 1 + focusableElements.length) % focusableElements.length;
-            }
-            
-            focusableElements[nextIndex].focus();
-            e.preventDefault();
-        }
-    }
 });
