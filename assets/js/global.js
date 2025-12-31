@@ -5,7 +5,7 @@
 console.log('🚀 global.js wird geladen...');
 
 // ============================================================================
-// 1. PRELOADER ANIMATION
+// 1. PRELOADER ANIMATION - KORRIGIERT FÜR "VOICE OF SILENCE"
 // ============================================================================
 
 (function() {
@@ -15,10 +15,15 @@ console.log('🚀 global.js wird geladen...');
     
     function initPreloader() {
         const preloader = document.getElementById('preloader');
-        const typeText = document.getElementById('type-text');
+        const typeText = document.querySelector('.preloader-text');
         
         if (!preloader) {
             console.warn('⚠️ Preloader Element nicht gefunden');
+            return;
+        }
+        
+        if (!typeText) {
+            console.warn('⚠️ Preloader-Text-Element nicht gefunden');
             return;
         }
         
@@ -29,13 +34,14 @@ console.log('🚀 global.js wird geladen...');
         preloader.style.opacity = '1';
         preloader.style.visibility = 'visible';
         
-        // Text für die Typing Animation
-        const fullText = "MATTHIAS SILBERHAIN";
+        // KORRIGIERT: Text für die Typing Animation
+        const fullText = "VOICE OF SILENCE";
         let charIndex = 0;
-        const typingSpeed = 100; // ms pro Buchstabe
+        const typingSpeed = 120; // ms pro Buchstabe
+        let typingComplete = false;
         
         function typeCharacter() {
-            if (typeText && charIndex < fullText.length) {
+            if (charIndex < fullText.length) {
                 const nextChar = fullText.charAt(charIndex);
                 
                 if (nextChar === ' ') {
@@ -47,7 +53,11 @@ console.log('🚀 global.js wird geladen...');
                 charIndex++;
                 setTimeout(typeCharacter, typingSpeed);
             } else {
-                // Animation beendet, warte kurz und verstecke Preloader
+                // Animation beendet
+                typingComplete = true;
+                console.log('✅ Typing Animation abgeschlossen');
+                
+                // Warte kurz und verstecke Preloader
                 setTimeout(() => {
                     preloader.classList.add('hidden');
                     
@@ -62,8 +72,8 @@ console.log('🚀 global.js wird geladen...');
         
         // Starte Typing Animation nach kurzer Verzögerung
         setTimeout(() => {
-            console.log('⌨️ Starte Typing Animation');
-            if (typeText) typeText.textContent = ''; // Leeren für sauberen Start
+            console.log('⌨️ Starte Typing Animation für: "' + fullText + '"');
+            typeText.textContent = ''; // Leeren für sauberen Start
             typeCharacter();
         }, 300);
     }
