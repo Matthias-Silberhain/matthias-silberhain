@@ -2314,3 +2314,93 @@ body.dark-mode #preloader {
         transform: translateY(0);
     }
 }
+/* ==========================================================================
+   PRELOADER FINAL FIX - ABSOLUT SICHER
+   ========================================================================== */
+
+/* 1. Preloader Text sicher sichtbar */
+#preloader .preloader-text {
+    color: #e0e0e0 !important;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.5) !important;
+    font-size: 34px !important;
+    font-family: "Cinzel", serif !important;
+    letter-spacing: 0.2em !important;
+    white-space: nowrap !important;
+    min-height: 50px !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* 2. Cursor sichtbar und blinkend */
+#preloader .cursor {
+    display: inline-block !important;
+    width: 3px !important;
+    height: 1.2em !important;
+    background-color: #e0e0e0 !important;
+    margin-left: 8px !important;
+    vertical-align: middle !important;
+    animation: blink 1s infinite !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* 3. Preloader Container */
+#preloader {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: #000000 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    z-index: 9999 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transition: opacity 0.6s ease, visibility 0.6s ease !important;
+}
+
+body.dark-mode #preloader {
+    background: #1a1a1a !important;
+}
+
+/* 4. Versteckter Preloader */
+#preloader.hidden {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+/* 5. Preloader Logo */
+.preloader-logo {
+    width: 180px !important;
+    height: auto !important;
+    margin-bottom: 30px !important;
+    display: block !important;
+    filter: brightness(1.1) !important;
+    animation: logoAppear 1s ease-out forwards !important;
+}
+
+/* 6. Blink Animation */
+@keyframes blink {
+    0%, 50% { opacity: 1 !important; }
+    51%, 100% { opacity: 0 !important; }
+}
+
+@keyframes logoAppear {
+    0% { 
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 7. FALLBACK: Falls JS nicht lädt */
+.no-js #preloader {
+    display: none !important;
+}
