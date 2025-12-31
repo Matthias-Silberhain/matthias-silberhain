@@ -1529,4 +1529,71 @@ button, a, .burger, .hauptnavigation a, .silber-button, .social-link {
     color: #333 !important;
     text-align: justify;
   }
+
+/* ==========================================================================
+   DATENSCHUTZERKLÄRUNG - LINKE & STYLES
+   ========================================================================== */
+
+/* Alle Links in Datenschutz- und Impressum-Seiten */
+.datenschutz-content a,
+.impressum-content a,
+.text-quellen a,
+.quellen-liste a {
+    color: #c0c0c0 !important; /* Silber statt Blau */
+    text-decoration: none;
+    border-bottom: 1px solid rgba(200, 200, 200, 0.3);
+    transition: all 0.3s ease;
+    padding-bottom: 1px;
+}
+
+/* Hover-Effekt für Links */
+.datenschutz-content a:hover,
+.impressum-content a:hover,
+.text-quellen a:hover,
+.quellen-liste a:hover {
+    color: #ffffff !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Besuche Links (bereits geklickte) */
+.datenschutz-content a:visited,
+.impressum-content a:visited {
+    color: #a0a0a0 !important;
+}
+
+/* E-Mail Links speziell */
+a[href^="mailto:"] {
+    color: #c0c0c0 !important;
+    font-style: italic;
+}
+
+a[href^="mailto:"]:hover {
+    color: #ffffff !important;
+    text-decoration: underline;
+}
+
+/* Telefon Links */
+a[href^="tel:"] {
+    color: #c0c0c0 !important;
+}
+
+/* Externe Links mit Icon (optional) */
+a[href^="http"]:not([href*="deinedomain.com"]):after {
+    content: " ↗";
+    font-size: 0.8em;
+    opacity: 0.7;
+}
+
+/* Für alle Links generell - als Backup */
+.inhalt a:not(.silber-button):not(.social-link):not(.hauptnavigation a):not(.footer-links a) {
+    color: #c0c0c0 !important;
+    text-decoration: none;
+    border-bottom: 1px dotted rgba(200, 200, 200, 0.4);
+}
+
+.inhalt a:not(.silber-button):not(.social-link):not(.hauptnavigation a):not(.footer-links a):hover {
+    color: #ffffff !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+}   
 }
