@@ -1,11 +1,11 @@
 // ============================================================================
-// GLOBAL.JS - KORRIGIERTER PRELOADER OHNE DOPPELBUCHSTABEN
+// GLOBAL.JS - MIT PRELOADER & DARK MODE
 // ============================================================================
 
 console.log('🚀 global.js wird geladen...');
 
 // ============================================================================
-// 1. PRELOADER ANIMATION - KORRIGIERT
+// 1. PRELOADER ANIMATION
 // ============================================================================
 
 (function() {
@@ -13,44 +13,31 @@ console.log('🚀 global.js wird geladen...');
     
     console.log('🌀 Preloader initialisiert');
     
-    // Prüfe ob Preloader auf dieser Seite existiert
-    const preloader = document.getElementById('preloader');
-    if (!preloader) {
-        console.log('⚠️ Kein Preloader auf dieser Seite');
-        return;
-    }
-    
     function initPreloader() {
+        const preloader = document.getElementById('preloader');
         const typeText = document.getElementById('type-text');
         
-        if (!typeText) {
-            console.warn('⚠️ type-text Element nicht gefunden');
-            // Preloader trotzdem nach Zeit ausblenden
-            setTimeout(() => {
-                preloader.classList.add('hidden');
-                setTimeout(() => {
-                    preloader.style.display = 'none';
-                    console.log('✅ Preloader ohne Animation ausgeblendet');
-                }, 600);
-            }, 2000);
+        if (!preloader) {
+            console.warn('⚠️ Preloader Element nicht gefunden');
             return;
         }
         
-        console.log('✅ Preloader Elemente gefunden');
+        console.log('✅ Preloader gefunden');
+        
+        // Preloader sichtbar machen
+        preloader.style.display = 'flex';
+        preloader.style.opacity = '1';
+        preloader.style.visibility = 'visible';
         
         // Text für die Typing Animation
         const fullText = "MATTHIAS SILBERHAIN";
         let charIndex = 0;
         const typingSpeed = 100; // ms pro Buchstabe
         
-        // Stelle sicher, dass typeText leer ist
-        typeText.textContent = '';
-        
         function typeCharacter() {
-            if (charIndex < fullText.length) {
+            if (typeText && charIndex < fullText.length) {
                 const nextChar = fullText.charAt(charIndex);
                 
-                // Füge das nächste Zeichen hinzu
                 if (nextChar === ' ') {
                     typeText.innerHTML += '&nbsp;';
                 } else {
@@ -76,6 +63,7 @@ console.log('🚀 global.js wird geladen...');
         // Starte Typing Animation nach kurzer Verzögerung
         setTimeout(() => {
             console.log('⌨️ Starte Typing Animation');
+            if (typeText) typeText.textContent = ''; // Leeren für sauberen Start
             typeCharacter();
         }, 300);
     }
@@ -282,6 +270,8 @@ console.log('🚀 global.js wird geladen...');
 // ============================================================================
 
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('📄 DOM geladen');
+    
     // Aktiviere interaktive Elemente nach Preloader
     setTimeout(function() {
         console.log('🖱️ Aktiviere interaktive Elemente...');
@@ -296,7 +286,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         console.log('✅ Website ist jetzt voll klickbar!');
-    }, 2500); // Nach Preloader-Animation
+    }, 3000); // Nach Preloader-Animation (ca. 3 Sekunden)
 });
 
 // ============================================================================
@@ -310,3 +300,17 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('📅 Jahreszahl aktualisiert');
     }
 });
+
+// ============================================================================
+// 5. FALLBACK: WENN PRELOADER NICHT FUNKTIONIERT
+// ============================================================================
+
+// Sicherheits-Fallback: Nach 10 Sekunden Preloader erzwingen
+setTimeout(function() {
+    const preloader = document.getElementById('preloader');
+    if (preloader && preloader.style.display !== 'none') {
+        console.log('⚠️ Preloader hängt, erzwinge Ausblendung...');
+        preloader.style.display = 'none';
+        preloader.classList.add('hidden');
+    }
+}, 10000);
