@@ -1671,3 +1671,18 @@ body.dark-mode .cursor {
     z-index: 999999 !important;
     pointer-events: auto !important;
 }
+/* ====== BURGER FIX - NUR DIESEN CODE EINFÜGEN ====== */
+@media screen and (max-width: 768px) {
+    .burger {
+        display: flex !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        background: rgba(0, 0, 0, 0.8) !important;
+        border: 2px solid #c0a878 !important;
+        box-shadow: 0 0 10px rgba(192, 168, 120, 0.5) !important;
+    }
+    
+    .burger span {
+        background: #ffffff !important;
+    }
+}
