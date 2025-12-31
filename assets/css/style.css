@@ -80,7 +80,9 @@ body {
   font-size: 34px;
   letter-spacing: 0.2em;
   color: #e0e0e0;
-  white-space: nowrap;
+  white-space: normal; /* KORRIGIERT: von nowrap zu normal */
+  word-wrap: break-word;
+  text-align: center;
   text-shadow: 0 0 10px rgba(200, 200, 200, 0.3);
 }
 
@@ -405,6 +407,7 @@ strong {
   
   .preloader-text {
     font-size: 28px;
+    white-space: normal;
   }
   
   .logo {
@@ -443,6 +446,10 @@ strong {
   
   .preloader-text {
     font-size: 24px;
+    white-space: normal;
+    line-height: 1.3;
+    max-width: 90%;
+    margin: 0 auto;
   }
   
   .logo {
@@ -553,6 +560,7 @@ strong {
   .preloader-text {
     font-size: 20px;
     letter-spacing: 0.15em;
+    white-space: normal;
   }
   
   .cursor {
@@ -1494,6 +1502,22 @@ button, a, .burger, .hauptnavigation a, .silber-button, .social-link {
 }
 
 /* ==========================================================================
+   DARK MODE FIXES FÜR PRELOADER
+   ========================================================================== */
+body.dark-mode #preloader {
+  background: #1a1a1a !important;
+}
+
+body.dark-mode .preloader-text {
+  color: #f0f0f0;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+body.dark-mode .cursor {
+  background-color: #f0f0f0;
+}
+
+/* ==========================================================================
    DRUCK-STYLES
    ========================================================================== */
 @media print {
@@ -1529,140 +1553,4 @@ button, a, .burger, .hauptnavigation a, .silber-button, .social-link {
     color: #333 !important;
     text-align: justify;
   }
-}  /* <-- HIER muss die Klammer für @media print sein */
-
-/* ==========================================================================
-   MOBILE MENÜ FIXES - KORRIGIERT & AUSSERHALB VON @MEDIA PRINT
-   ========================================================================== */
-
-@media screen and (max-width: 768px) {
-  .hauptnavigation {
-    display: none !important;
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100vh !important;
-    background-color: rgba(0, 0, 0, 0.98) !important;
-    flex-direction: column !important;
-    justify-content: flex-start !important;
-    align-items: center !important;
-    gap: 0 !important;
-    z-index: 999 !important;
-    padding-top: 120px !important;
-    padding-bottom: 40px !important;
-    overflow-y: auto !important;
-    opacity: 0 !important;
-    transform: translateX(-100%) !important;
-    transition: all 0.4s ease !important;
-  }
-  
-  .hauptnavigation.aktiv {
-    display: flex !important;
-    opacity: 1 !important;
-    transform: translateX(0) !important;
-  }
-  
-  .burger {
-    display: flex !important;
-    position: absolute !important;
-    top: 30px !important;
-    right: 20px !important;
-    z-index: 1002 !important;
-  }
-  
-  /* Overlay für Mobile Menu */
-  .menu-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: 998;
-    display: none;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  
-  .menu-overlay.active {
-    display: block;
-    opacity: 1;
-  }
-}
-
-/* ==========================================================================
-   MOBILE MENÜ FIXES
-   ========================================================================== */
-
-@media screen and (max-width: 768px) {
-    .hauptnavigation {
-        display: none !important; /* WICHTIG: Standardmäßig versteckt */
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        width: 100% !important;
-        height: 100vh !important;
-        background-color: rgba(0, 0, 0, 0.98) !important;
-        flex-direction: column !important;
-        justify-content: flex-start !important;
-        align-items: center !important;
-        gap: 0 !important;
-        z-index: 999 !important;
-        padding-top: 120px !important;
-        padding-bottom: 40px !important;
-        overflow-y: auto !important;
-        opacity: 0 !important;
-        transform: translateX(-100%) !important;
-        transition: all 0.4s ease !important;
-    }
-    
-    .hauptnavigation.aktiv {
-        display: flex !important;
-        opacity: 1 !important;
-        transform: translateX(0) !important;
-    }
-    
-    .burger {
-        display: flex !important;
-        position: absolute !important;
-        top: 30px !important;
-        right: 20px !important;
-        z-index: 1002 !important;
-    }
-    
-    /* Overlay für Mobile Menu */
-    .menu-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.7);
-        z-index: 998;
-        display: none;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
-    
-    .menu-overlay.active {
-        display: block;
-        opacity: 1;
-    }
-} 
-/* ... all deine anderen CSS-Regeln ... */
-
-/* ==========================================================================
-   DRUCK-STYLES
-   ========================================================================== */
-@media print {
-  /* Print-Styles hier */
-}  /* <-- WICHTIG: Diese Klammer schließt @media print */
-
-/* ==========================================================================
-   MOBILE MENÜ FIXES
-   ========================================================================== */
-@media screen and (max-width: 768px) {
-  /* Mobile-Styles hier */
-}  /* <-- Separate Klammer für @media screen */
 }
