@@ -1,23 +1,70 @@
-/* NOTFIX für Burger-Menü */
-.burger-icon {
-    display: block !important;
-    width: 44px !important;
-    height: 44px !important;
-    background: #000 !important;
-    position: fixed !important;
-    top: 15px !important;
-    right: 15px !important;
-    z-index: 9999 !important;
-    cursor: pointer !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-}
-
-.burger-icon span {
-    display: block !important;
-    width: 30px !important;
-    height: 3px !important;
-    background: white !important;
-    margin: 6px auto !important;
-    transition: 0.3s !important;
-}
+// menu.js - BURGER MENU FIX
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM geladen - Menu JS startet');
+    
+    const burgerButton = document.getElementById('burgerButton');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    if (!burgerButton || !mobileMenu) {
+        console.error('Burger Button oder Mobile Menu nicht gefunden!');
+        return;
+    }
+    
+    console.log('Elemente gefunden:', burgerButton, mobileMenu);
+    
+    // 1. TOGGLE MENU
+    burgerButton.addEventListener('click', function(e) {
+        e.stopPropagation();
+        console.log('Burger geklickt!');
+        mobileMenu.classList.toggle('active');
+        
+        // Animation für Burger-Icon
+        if (mobileMenu.classList.contains('active')) {
+            burgerButton.style.background = 'rgba(255, 255, 255, 0.9)';
+            burgerButton.querySelectorAll('span')[0].style.transform = 'rotate(45deg) translate(6px, 6px)';
+            burgerButton.querySelectorAll('span')[1].style.opacity = '0';
+            burgerButton.querySelectorAll('span')[2].style.transform = 'rotate(-45deg) translate(7px, -7px)';
+        } else {
+            burgerButton.style.background = 'rgba(0, 0, 0, 0.8)';
+            burgerButton.querySelectorAll('span')[0].style.transform = 'none';
+            burgerButton.querySelectorAll('span')[1].style.opacity = '1';
+            burgerButton.querySelectorAll('span')[2].style.transform = 'none';
+        }
+    });
+    
+    // 2. MENÜ SCHLIESSEN BEI LINK-KLICK
+    mobileMenu.addEventListener('click', function(e) {
+        if (e.target.tagName === 'A') {
+            console.log('Menü-Link geklickt, schließe Menü');
+            mobileMenu.classList.remove('active');
+            burgerButton.style.background = 'rgba(0, 0, 0, 0.8)';
+            burgerButton.querySelectorAll('span')[0].style.transform = 'none';
+            burgerButton.querySelectorAll('span')[1].style.opacity = '1';
+            burgerButton.querySelectorAll('span')[2].style.transform = 'none';
+        }
+    });
+    
+    // 3. MENÜ SCHLIESSEN BEI KLICK AUSSERHALB
+    document.addEventListener('click', function(e) {
+        if (!mobileMenu.contains(e.target) && !burgerButton.contains(e.target)) {
+            mobileMenu.classList.remove('active');
+            burgerButton.style.background = 'rgba(0, 0, 0, 0.8)';
+            burgerButton.querySelectorAll('span')[0].style.transform = 'none';
+            burgerButton.querySelectorAll('span')[1].style.opacity = '1';
+            burgerButton.querySelectorAll('span')[2].style.transform = 'none';
+        }
+    });
+    
+    // 4. ESCAPE-TASTE
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            mobileMenu.classList.remove('active');
+            burgerButton.style.background = 'rgba(0, 0, 0, 0.8)';
+            burgerButton.querySelectorAll('span')[0].style.transform = 'none';
+            burgerButton.querySelectorAll('span')[1].style.opacity = '1';
+            burgerButton.querySelectorAll('span')[2].style.transform = 'none';
+        }
+    });
+    
+    console.log('Menu JS erfolgreich initialisiert');
+});
