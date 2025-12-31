@@ -15,17 +15,45 @@
     <!-- Favicon -->
     <link rel="icon" href="assets/images/logo.png" type="image/png">
     
-    <!-- Dark Mode Preload -->
+    <!-- Dark Mode Preload - KORRIGIERT -->
     <script>
         (function() {
+            // SOFORTIGE DARK MODE ANWENDUNG
             try {
                 const savedTheme = localStorage.getItem('ms-theme');
                 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                
                 if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
                     document.documentElement.classList.add('dark-mode');
                     document.body.classList.add('dark-mode');
                 }
-            } catch(e) {}
+            } catch(e) {
+                // Ignoriere Fehler
+            }
+            
+            // SOFORTIGE KLICKBARKEIT SICHERSTELLEN
+            document.addEventListener('DOMContentLoaded', function() {
+                // Alle interaktiven Elemente klickbar machen
+                const interactiveElements = ['button', 'a', '.burger', '.dark-mode-toggle', '.silber-button', '.social-link'];
+                
+                setTimeout(function() {
+                    interactiveElements.forEach(selector => {
+                        document.querySelectorAll(selector).forEach(el => {
+                            el.style.pointerEvents = 'auto';
+                            el.style.cursor = 'pointer';
+                        });
+                    });
+                    
+                    // Preloader nicht blockierend
+                    const preloader = document.getElementById('preloader');
+                    if (preloader) {
+                        preloader.style.pointerEvents = 'none';
+                        preloader.style.zIndex = '9990';
+                    }
+                    
+                    console.log('✅ Website ist jetzt voll klickbar!');
+                }, 100);
+            });
         })();
     </script>
 </head>
@@ -92,25 +120,15 @@
     <section class="startseite">
         <!-- HAUPTTITEL -->
         <div class="credo-container">
-            <div class="credo-quote-wrapper">
-                <div class="credo-quote">
-                    <p class="quote-text kalligrafie-text">Wenn Wahrheit unbequem wird, braucht sie eine Stimme.</p>
-                </div>
-            </div>
-            
-            <div class="credo-signature">
-                <span class="kalligrafie-signature">Matthias Silberhain</span>
-            </div>
-            
-            <div class="credo-subtitle">
-                Autor zu Macht, Verantwortung und gesellschaftlichen Mechanismen
-            </div>
-        </div>
+  <div class="credo-quote-wrapper">
+    <div class="credo-quote">
+      <p class="quote-text kalligrafie-text">Wenn Wahrheit unbequem wird, braucht sie eine Stimme.</p>
+    </div> 
         
         <!-- EINLEITUNGSTEXT -->
         <div class="einleitung">
             <p class="lead-text">
-                <br>Diese Seite ist kein Ort für einfache Antworten oder beruhigende Geschichten.<br>            
+<br>Diese Seite ist kein Ort für einfache Antworten oder beruhigende Geschichten.<br>            
             </p>
             
             <p class="sub-lead-text">
@@ -155,91 +173,6 @@
                 <span>Über den Autor</span>
             </a>
         </div>
-        
-        <!-- ================= ANIMIERTE COUNTER ================= -->
-        <section class="stats-section">
-            <div class="stats-container">
-                <h2 class="stats-title">Die Resonanz in Zahlen</h2>
-                <p class="stats-subtitle">Ein Blick auf die Wirkung meiner Arbeit</p>
-                
-                <div class="stats-grid">
-                    <!-- Besucher Counter -->
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                <circle cx="9" cy="7" r="4"></circle>
-                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                            </svg>
-                        </div>
-                        <div class="stat-content">
-                            <div class="stat-number" id="visitorCount">0</div>
-                            <div class="stat-label">Website Besucher</div>
-                            <div class="stat-trend" id="visitorToday">+0 heute</div>
-                        </div>
-                    </div>
-                    
-                    <!-- Leseproben Counter -->
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-                                <path d="M8 7h8"></path>
-                                <path d="M8 12h8"></path>
-                                <path d="M8 17h6"></path>
-                            </svg>
-                        </div>
-                        <div class="stat-content">
-                            <div class="stat-number" id="bookSamplesCount">0</div>
-                            <div class="stat-label">Gelesene Proben</div>
-                            <div class="stat-trend">Letzte: <span id="lastSample">-</span></div>
-                        </div>
-                    </div>
-                    
-                    <!-- Bewertungen Counter -->
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-                            </svg>
-                        </div>
-                        <div class="stat-content">
-                            <div class="stat-number" id="reviewsCount">0</div>
-                            <div class="stat-label">Abgegebene Bewertungen</div>
-                            <div class="stat-trend">Ø <span id="avgRating">0.0</span> Sterne</div>
-                        </div>
-                    </div>
-                    
-                    <!-- Downloads Counter -->
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                                <polyline points="7 10 12 15 17 10"></polyline>
-                                <line x1="12" y1="15" x2="12" y2="3"></line>
-                            </svg>
-                        </div>
-                        <div class="stat-content">
-                            <div class="stat-number" id="downloadsCount">0</div>
-                            <div class="stat-label">Downloads</div>
-                            <div class="stat-trend" id="downloadsToday">+0 heute</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="stats-footer">
-                    <p class="stats-note">* Statistik wird lokal in Ihrem Browser gespeichert</p>
-                    <!-- Demo-Buttons für Entwicklung -->
-                    <div class="stats-demo-buttons">
-                        <button id="incrementSamples" class="silber-button small">Leseprobe simulieren</button>
-                        <button id="incrementReviews" class="silber-button small secondary">Bewertung simulieren</button>
-                        <button id="incrementDownloads" class="silber-button small">Download simulieren</button>
-                    </div>
-                </div>
-            </div>
-        </section>
     </section>
 </main>
 
@@ -330,10 +263,7 @@
     </div>
     <p>© <span id="jahr"></span> Matthias Silberhain</p>
 </footer>
-
 <!-- ================= JAVASCRIPT ================= -->
-<!-- WICHTIG: RICHTIGE REIHENFOLGE EINHALTEN -->
-<script src="assets/js/animated-stats.js"></script>
 <script src="assets/js/global.js"></script>
 <script src="assets/js/menu.js"></script>
 
