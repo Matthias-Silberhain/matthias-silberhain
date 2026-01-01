@@ -1295,3 +1295,143 @@ body:not(.dark-mode) .dark-mode-toggle .sun-icon {
         transition: none !important;
     }
 }
+/* ==========================================================================
+   SILBER ANIMATIONEN CSS - EXTRAVAGANT & ELEGANT
+   ========================================================================== */
+
+/* Preloader Strahlen */
+.silber-ray {
+    animation: silberPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes silberPulse {
+    0%, 100% { 
+        opacity: 0.3; 
+        height: 80px; 
+    }
+    50% { 
+        opacity: 0.8; 
+        height: 120px; 
+        filter: blur(1px) brightness(1.2); 
+    }
+}
+
+/* Buchstaben-Animation */
+.silber-char {
+    display: inline-block;
+    transform-origin: center;
+}
+
+/* Silberne Partikel */
+.silber-particle {
+    animation: silberFloat 20s ease-in-out infinite;
+}
+
+@keyframes silberFloat {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(15px, -15px) rotate(90deg); }
+    50% { transform: translate(-10px, 10px) rotate(180deg); }
+    75% { transform: translate(10px, 15px) rotate(270deg); }
+}
+
+/* Logo Hover Effekt */
+.logo {
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.logo:hover {
+    filter: brightness(1.5) drop-shadow(0 0 15px rgba(255, 255, 255, 0.5));
+    transform: scale(1.05);
+}
+
+/* Kalligrafie Text */
+.kalligrafie-text {
+    animation: silberGlow 4s ease-in-out infinite;
+}
+
+@keyframes silberGlow {
+    0%, 100% { 
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.3),
+                     0 0 20px rgba(255, 255, 255, 0.1); 
+    }
+    50% { 
+        text-shadow: 0 0 15px rgba(255, 255, 255, 0.6),
+                     0 0 30px rgba(255, 255, 255, 0.3),
+                     0 0 45px rgba(255, 255, 255, 0.1); 
+    }
+}
+
+/* Navigation Hover */
+.hauptnavigation a {
+    position: relative;
+    overflow: hidden;
+}
+
+.hauptnavigation a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.8),
+        transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.hauptnavigation a:hover::after {
+    transform: translateX(100%);
+}
+
+/* CTA Buttons Animation */
+.silber-button {
+    position: relative;
+    overflow: hidden;
+}
+
+.silber-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.1), 
+        transparent);
+    transition: left 0.6s ease;
+}
+
+.silber-button:hover::before {
+    left: 100%;
+}
+
+/* Mobile Optimierung */
+@media screen and (max-width: 768px) {
+    .silber-ray,
+    .silber-particle {
+        display: none !important;
+    }
+    
+    .silber-char {
+        animation: none !important;
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    .silber-ray,
+    .silber-particle,
+    .silber-char,
+    .logo,
+    .kalligrafie-text,
+    .hauptnavigation a::after,
+    .silber-button::before {
+        animation: none !important;
+        transition: none !important;
+    }
+}
