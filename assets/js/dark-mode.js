@@ -1,112 +1,43 @@
-/**
- * DARK MODE TOGGLE - Matthias Silberhain Website
- * Theme-Switching für alle Seiten
- * Version 2.1 - Universal
- */
+(function() {
+    'use strict';
 
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('🌙 Dark Mode JS geladen');
-    
-    const themeToggle = document.getElementById('themeToggle');
-    const body = document.body;
-    
-    // Funktion um Dark Mode zu aktivieren
-    function enableDarkMode() {
-        body.classList.add('dark-mode');
-        localStorage.setItem('silberhain-theme', 'dark');
-        updateToggleIcon(true);
-        console.log('Dark Mode aktiviert');
-    }
-    
-    // Funktion um Light Mode zu aktivieren
-    function disableDarkMode() {
-        body.classList.remove('dark-mode');
-        localStorage.setItem('silberhain-theme', 'light');
-        updateToggleIcon(false);
-        console.log('Light Mode aktiviert');
-    }
-    
-    // Icon aktualisieren
-    function updateToggleIcon(isDark) {
-        if (!themeToggle) return;
+    document.addEventListener('DOMContentLoaded', function() {
+        const themeToggle = document.getElementById('themeToggle');
         
-        const moonIcon = themeToggle.querySelector('.moon-icon');
-        const sunIcon = themeToggle.querySelector('.sun-icon');
+        // Aktuelles Theme prüfen
+        const currentTheme = document.documentElement.classList.contains('dark-theme') ? 'dark' : 'light';
         
-        if (moonIcon && sunIcon) {
-            if (isDark) {
-                moonIcon.style.display = 'none';
-                sunIcon.style.display = 'block';
-                themeToggle.setAttribute('aria-label', 'Zum Hellmodus wechseln');
-            } else {
-                moonIcon.style.display = 'block';
-                sunIcon.style.display = 'none';
-                themeToggle.setAttribute('aria-label', 'Zum Dunkelmodus wechseln');
-            }
-        }
-    }
-    
-    // Theme umschalten
-    function toggleTheme() {
-        if (body.classList.contains('dark-mode')) {
-            disableDarkMode();
-        } else {
-            enableDarkMode();
-        }
-        
-        // Visuelles Feedback
+        // Theme Toggle Event
         if (themeToggle) {
-            themeToggle.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                themeToggle.style.transform = '';
-            }, 150);
+            themeToggle.addEventListener('click', function() {
+                const isDark = document.documentElement.classList.toggle('dark-theme');
+                document.documentElement.classList.toggle('light-theme', !isDark);
+                
+                // Speichern für alle Seiten und nächsten Besuch
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+                
+                // Toggle Animation
+                this.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 200);
+            });
+            
+            // Initialen Toggle-Status setzen
+            themeToggle.setAttribute('data-theme', currentTheme);
         }
-    }
-    
-    // Event Listener für Toggle Button
-    if (themeToggle) {
-        themeToggle.addEventListener('click', toggleTheme);
         
-        // Accessibility: Toggle mit Tastatur
-        themeToggle.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                toggleTheme();
+        // System Theme Change Listener
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+            if (!localStorage.getItem('theme')) {
+                if (e.matches) {
+                    document.documentElement.classList.add('dark-theme');
+                    document.documentElement.classList.remove('light-theme');
+                } else {
+                    document.documentElement.classList.add('light-theme');
+                    document.documentElement.classList.remove('dark-theme');
+                }
             }
         });
-    }
-    
-    // Initialisiere Theme basierend auf Local Storage oder System
-    function initTheme() {
-        const savedTheme = localStorage.getItem('silberhain-theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        
-        console.log('Gespeichertes Theme:', savedTheme);
-        console.log('System-Präferenz:', prefersDark ? 'dark' : 'light');
-        
-        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-            enableDarkMode();
-        } else {
-            disableDarkMode();
-        }
-    }
-    
-    // System-Präferenzänderung überwachen
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    mediaQuery.addEventListener('change', (e) => {
-        // Nur ändern wenn keine manuelle Einstellung
-        if (!localStorage.getItem('silberhain-theme')) {
-            console.log('System-Theme geändert:', e.matches ? 'dark' : 'light');
-            if (e.matches) {
-                enableDarkMode();
-            } else {
-                disableDarkMode();
-            }
-        }
     });
-    
-    // Initialisierung
-    initTheme();
-    
-    console.log('✅ Dark Mode für alle Seiten initialisiert');
-});
+})();
