@@ -1,6 +1,5 @@
 /**
- * GLOBAL FUNKTIONEN - Vereinfachte Version
- * Preloader nur auf Startseite, Theme korrekt übernehmen
+ * GLOBAL FUNKTIONEN - Flackern-freie Version
  */
 document.addEventListener('DOMContentLoaded', function() {
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
@@ -8,12 +7,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const preloader = document.getElementById('preloader');
     const typeTextElement = document.getElementById('type-text');
     
-    // ================= PRELOADER NUR AUF STARTSEITE =================
+    // ================= PRELOADER NUR STARTSEITE =================
     if (isHomePage && preloader) {
-        console.log('Startseite: Preloader aktiv');
-        
-        // Preloader sichtbar machen
-        preloader.style.display = 'flex';
+        // Preloader-Hintergrund basierend auf aktuellem Theme setzen
+        const isDark = document.body.classList.contains('dark-mode');
+        if (!isDark) {
+            preloader.style.backgroundColor = '#f8f8f8';
+            preloader.style.backgroundImage = 'linear-gradient(135deg, #f8f8f8 0%, #ffffff 50%, #f8f8f8 100%)';
+        }
         
         // Typing Animation
         if (typeTextElement) {
@@ -27,11 +28,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     index++;
                     setTimeout(typeWriter, typingSpeed);
                 } else {
-                    // Typing fertig
                     setTimeout(() => {
                         preloader.classList.add('loaded');
                         document.body.classList.add('loaded');
-                        
                         setTimeout(() => {
                             preloader.style.display = 'none';
                         }, 800);
@@ -42,19 +41,18 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => {
                 typeTextElement.innerHTML = '';
                 typeWriter();
-            }, 500);
+            }, 300);
         } else {
-            // Fallback ohne Typing
             setTimeout(() => {
                 preloader.classList.add('loaded');
                 document.body.classList.add('loaded');
                 setTimeout(() => {
                     preloader.style.display = 'none';
                 }, 800);
-            }, 2000);
+            }, 1500);
         }
         
-        // Sicherheits-Timeout
+        // Safety Timeout
         setTimeout(() => {
             if (preloader && !preloader.classList.contains('loaded')) {
                 preloader.classList.add('loaded');
@@ -65,21 +63,21 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }, 5000);
     } else {
-        // ANDERE SEITEN: Sofort laden
+        // Andere Seiten
         setTimeout(() => {
             document.body.classList.add('loaded');
-        }, 100);
+        }, 50);
         
         if (preloader) {
             preloader.style.display = 'none';
         }
     }
     
-    // ================= AKTUELLE JAHRESZAHL =================
-    const currentYearElement = document.getElementById('currentYear');
-    if (currentYearElement) {
-        currentYearElement.textContent = new Date().getFullYear();
+    // ================= CURRENT YEAR =================
+    const yearElement = document.getElementById('currentYear');
+    if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
     }
     
-    console.log('✅ Website geladen');
+    console.log('✅ Seite geladen: ' + currentPage);
 });
