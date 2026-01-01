@@ -14,6 +14,177 @@
     
     <!-- Favicon -->
     <link rel="icon" href="assets/images/logo.png" type="image/png">
+    
+    <!-- SILBER ANIMATIONEN STYLES -->
+    <style>
+        :root {
+            --silber-hell: #f0f0f0;
+            --silber: #c0c0c0;
+            --silber-dunkel: #909090;
+            --silber-glow: rgba(192, 192, 192, 0.4);
+            --schwarz: #000000;
+            --weiss: #ffffff;
+        }
+        
+        /* Preloader Enhancement */
+        #preloader {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            z-index: 9999;
+        }
+        
+        .preloader-logo {
+            filter: drop-shadow(0 0 15px rgba(192, 192, 192, 0.5));
+        }
+        
+        /* Silberne Text-Animationen */
+        .kalligrafie-text {
+            background: linear-gradient(to right, var(--silber-hell), var(--silber), var(--silber-dunkel));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+        
+        .kalligrafie-text::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                var(--silber), 
+                var(--silber-hell), 
+                var(--silber), 
+                transparent);
+        }
+        
+        /* Silber-Button Enhancement */
+        .silber-button {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid var(--silber);
+            background: linear-gradient(45deg, transparent 30%, rgba(192, 192, 192, 0.1) 100%);
+        }
+        
+        .silber-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(192, 192, 192, 0.2), 
+                rgba(192, 192, 192, 0.4), 
+                rgba(192, 192, 192, 0.2), 
+                transparent);
+            transition: left 0.7s ease;
+        }
+        
+        .silber-button:hover::before {
+            left: 100%;
+        }
+        
+        .silber-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(192, 192, 192, 0.3),
+                        0 0 30px rgba(192, 192, 192, 0.1);
+            border-color: var(--silber-hell);
+        }
+        
+        /* Navigation Hover Effects */
+        .hauptnavigation a {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .hauptnavigation a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--silber), transparent);
+            transition: width 0.3s ease;
+        }
+        
+        .hauptnavigation a:hover::after {
+            width: 100%;
+        }
+        
+        /* Social Media Icons Enhancement */
+        .social-icon-wrapper {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(192, 192, 192, 0.3), 
+                transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .social-link:hover .social-icon-wrapper::before {
+            left: 100%;
+        }
+        
+        .social-link:hover .social-icon-wrapper {
+            transform: translateY(-5px) scale(1.1);
+            filter: drop-shadow(0 5px 15px rgba(192, 192, 192, 0.3));
+        }
+        
+        /* Zitat Animation */
+        .zitat {
+            position: relative;
+            padding: 2rem;
+            background: linear-gradient(90deg, 
+                rgba(192, 192, 192, 0.05) 0%, 
+                transparent 30%, 
+                transparent 70%, 
+                rgba(192, 192, 192, 0.05) 100%);
+            border-left: 3px solid var(--silber);
+        }
+        
+        /* Lichtkante Enhancement */
+        .lichtkante {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .lichtkante::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(192, 192, 192, 0.2), 
+                rgba(192, 192, 192, 0.4), 
+                transparent);
+            animation: silber-gleiten 3s infinite;
+        }
+        
+        @keyframes silber-gleiten {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+    </style>
 </head>
 
 <body>
@@ -21,11 +192,17 @@
 <!-- Preloader -->
 <div id="preloader">
     <div class="preloader-inner">
-        <img src="assets/images/logo.png" alt="Logo" class="preloader-logo">
+        <div class="logo-container">
+            <img src="assets/images/logo.png" alt="Logo" class="preloader-logo">
+            <div class="silber-glow"></div>
+        </div>
         <div class="text-container">
             <h1 class="preloader-text">
                 <span id="type-text"></span>
             </h1>
+            <div class="silber-loader">
+                <div class="loader-progress"></div>
+            </div>
         </div>
     </div>
 </div>
@@ -133,6 +310,7 @@
 <section class="social-section">
     <h3 class="social-title">Folgen Sie den Gedanken</h3>
     <div class="social-grid">
+        <!-- Soziale Icons (wie zuvor) -->
         <!-- Snapchat -->
         <a href="https://snapchat.com/t/8wVZ1Wpu" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Snapchat">
             <div class="social-icon-wrapper">
@@ -218,14 +396,16 @@
 </footer>
 
 <!-- ================= JAVASCRIPT ================= -->
-<!-- GSAP einbinden -->
+<!-- GSAP Library -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
 
-<!-- Eigene Scripts in dieser Reihenfolge: -->
+<!-- Eigene Scripts -->
 <script src="assets/js/animations.js"></script>
 <script src="assets/js/global.js"></script>
 <script src="assets/js/dark-mode.js"></script>
 <script src="assets/js/menu.js"></script>
+
+</body>
 </html>
