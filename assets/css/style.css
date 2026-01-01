@@ -1613,3 +1613,110 @@ body.loaded .inhalt {
         animation-duration: 30s;
     }
 }
+/* ==========================================================================
+   KORREKTUR: SCHWARZ/DUNKELGRAU DESIGN BEIBEHALTEN
+   ========================================================================== */
+
+/* WICHTIG: Preloader muss IMMER schwarz/dunkelgrau sein */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    height: 100dvh;
+    background-color: #000000 !important; /* IMMER schwarz */
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+/* Preloader im DARK MODE (Ihre Standard-Einstellung) */
+body.dark-mode #preloader {
+    background: linear-gradient(135deg, #000000 0%, #111111 50%, #000000 100%) !important;
+    background-color: #000000 !important;
+}
+
+/* Preloader Text - IMMER hell für Kontrast */
+.preloader-text {
+    font-family: "Cinzel", serif;
+    font-size: 34px;
+    letter-spacing: 0.2em;
+    color: #e0e0e0 !important; /* IMMER heller Text */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Preloader Logo */
+.preloader-logo {
+    width: 180px;
+    height: auto;
+    margin-bottom: 40px;
+    filter: brightness(1.2) drop-shadow(0 4px 20px rgba(255, 255, 255, 0.3));
+    animation: logoPulse 2s ease-in-out infinite;
+}
+
+/* WICHTIG: Website-Hintergrund IMMER schwarz/dunkelgrau */
+body {
+    background-color: #000000 !important;
+    color: #cfd2d6 !important;
+}
+
+/* Dark Mode (Ihr Standard) */
+body.dark-mode {
+    background-color: #000000 !important;
+    color: #cfd2d6 !important;
+}
+
+/* LIGHT MODE deaktivieren - Website bleibt immer dunkel */
+body:not(.dark-mode) {
+    background-color: #000000 !important; /* IMMER schwarz */
+    color: #cfd2d6 !important; /* IMMER heller Text */
+}
+
+/* Preloader Fade-out */
+#preloader.loaded {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* Animation für Logo */
+@keyframes logoPulse {
+    0%, 100% { 
+        transform: scale(1);
+        filter: brightness(1.2) drop-shadow(0 4px 20px rgba(255, 255, 255, 0.3));
+    }
+    50% { 
+        transform: scale(1.05);
+        filter: brightness(1.3) drop-shadow(0 6px 25px rgba(255, 255, 255, 0.4));
+    }
+}
+
+/* Fade-In für Inhalt nach Preloader */
+body.loaded .inhalt {
+    animation: contentFadeIn 0.8s ease-out;
+}
+
+@keyframes contentFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile Optimierung */
+@media screen and (max-width: 768px) {
+    .preloader-logo {
+        width: 140px;
+    }
+    
+    .preloader-text {
+        font-size: 24px;
+    }
+}
