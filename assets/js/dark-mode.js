@@ -4,17 +4,22 @@
     document.addEventListener('DOMContentLoaded', function() {
         const themeToggle = document.getElementById('themeToggle');
         
-        // Aktuelles Theme prüfen
-        const currentTheme = document.documentElement.classList.contains('dark-theme') ? 'dark' : 'light';
+        // Theme aus LocalStorage oder aktueller Klasse
+        const currentTheme = localStorage.getItem('theme') || 
+                            (document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+        
+        // Initial setzen
+        if (currentTheme === 'dark' && !document.body.classList.contains('dark-mode')) {
+            document.body.classList.add('dark-mode');
+        } else if (currentTheme === 'light' && document.body.classList.contains('dark-mode')) {
+            document.body.classList.remove('dark-mode');
+        }
         
         // Theme Toggle Event
         if (themeToggle) {
             themeToggle.addEventListener('click', function() {
-                const isDark = document.documentElement.classList.toggle('dark-theme');
-                document.documentElement.classList.toggle('light-theme', !isDark);
-                
-                // Speichern für alle Seiten und nächsten Besuch
-                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+                const isDarkMode = document.body.classList.toggle('dark-mode');
+                localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
                 
                 // Toggle Animation
                 this.style.transform = 'scale(0.9)';
@@ -24,18 +29,18 @@
             });
             
             // Initialen Toggle-Status setzen
-            themeToggle.setAttribute('data-theme', currentTheme);
+            themeToggle.setAttribute('data-theme', 
+                document.body.classList.contains('dark-mode') ? 'dark' : 'light');
         }
         
         // System Theme Change Listener
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        mediaQuery.addEventListener('change', function(e) {
             if (!localStorage.getItem('theme')) {
                 if (e.matches) {
-                    document.documentElement.classList.add('dark-theme');
-                    document.documentElement.classList.remove('light-theme');
+                    document.body.classList.add('dark-mode');
                 } else {
-                    document.documentElement.classList.add('light-theme');
-                    document.documentElement.classList.remove('dark-theme');
+                    document.body.classList.remove('dark-mode');
                 }
             }
         });
