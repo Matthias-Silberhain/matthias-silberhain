@@ -1,5 +1,6 @@
 /**
- * GLOBAL FUNKTIONEN - Kompatibilitätsfix
+ * GLOBAL FUNKTIONEN - Vereinfachte Version
+ * Preloader nur auf Startseite, Theme korrekt übernehmen
  */
 document.addEventListener('DOMContentLoaded', function() {
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
@@ -9,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // ================= PRELOADER NUR AUF STARTSEITE =================
     if (isHomePage && preloader) {
-        console.log('✨ Preloader aktiviert');
+        console.log('Startseite: Preloader aktiv');
         
         // Preloader sichtbar machen
         preloader.style.display = 'flex';
@@ -64,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }, 5000);
     } else {
-        // ANDERE SEITEN
+        // ANDERE SEITEN: Sofort laden
         setTimeout(() => {
             document.body.classList.add('loaded');
         }, 100);
@@ -74,45 +75,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // ================= WEITERE FUNKTIONALITÄT =================
+    // ================= AKTUELLE JAHRESZAHL =================
     const currentYearElement = document.getElementById('currentYear');
     if (currentYearElement) {
         currentYearElement.textContent = new Date().getFullYear();
     }
     
-    // Smooth Scrolling
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            
-            if (href !== '#' && href.startsWith('#')) {
-                e.preventDefault();
-                const targetId = href.substring(1);
-                const targetElement = document.getElementById(targetId);
-                
-                if (targetElement) {
-                    const burger = document.getElementById('burgerButton');
-                    const nav = document.getElementById('mainNav');
-                    const overlay = document.querySelector('.menu-overlay');
-                    
-                    if (burger && nav && burger.classList.contains('aktiv')) {
-                        burger.classList.remove('aktiv');
-                        nav.classList.remove('aktiv');
-                        if (overlay) overlay.classList.remove('active');
-                        document.body.classList.remove('menu-open');
-                    }
-                    
-                    const offset = 100;
-                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-                    
-                    window.scrollTo({
-                        top: targetPosition - offset,
-                        behavior: 'smooth'
-                    });
-                }
-            }
-        });
-    });
-    
-    console.log(`✅ Global.js initialisiert für: ${currentPage}`);
+    console.log('✅ Website geladen');
 });
