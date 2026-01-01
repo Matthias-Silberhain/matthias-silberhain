@@ -1767,3 +1767,17 @@ a[href^="mailto:"]:hover {
         animation: none !important;
     }
 }
+/* Silberne E-Mail Links für Kontaktseite */
+a[href^="mailto:"] {
+    color: #c0c0c0 !important;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(192, 192, 192, 0.3);
+    padding-bottom: 2px;
+}
+
+a[href^="mailto:"]:hover {
+    color: #f0f0f0 !important;
+    text-shadow: 0 0 8px rgba(192, 192, 192, 0.4);
+    border-bottom-color: rgba(240, 240, 240, 0.6);
+}
