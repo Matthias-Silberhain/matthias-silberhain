@@ -26,17 +26,82 @@
             --weiss: #ffffff;
         }
         
-        /* Preloader Enhancement */
+        /* ========== PRELOADER STYLES ========== */
         #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
             z-index: 9999;
+            opacity: 1;
+            transition: opacity 0.8s ease;
+        }
+        
+        .preloader-inner {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .logo-container {
+            position: relative;
+            margin-bottom: 40px;
         }
         
         .preloader-logo {
-            filter: drop-shadow(0 0 15px rgba(192, 192, 192, 0.5));
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            position: relative;
+            z-index: 2;
+            -webkit-mask-image: -webkit-radial-gradient(white, black);
+            mask-image: radial-gradient(white, black);
         }
         
-        /* Silberne Text-Animationen */
+        .text-container {
+            position: relative;
+            min-height: 60px;
+            margin-bottom: 40px;
+        }
+        
+        .preloader-text {
+            color: #c0c0c0;
+            font-size: 2rem;
+            font-weight: 300;
+            letter-spacing: 0.3rem;
+            text-transform: uppercase;
+            font-family: 'Cinzel', serif;
+            margin: 20px 0;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-shadow: 0 0 15px rgba(192, 192, 192, 0.5);
+        }
+        
+        /* Silberne Progress Bar (wird von animations.js erstellt) */
+        .silber-progress-bar {
+            width: 300px;
+            height: 2px;
+            background: rgba(192, 192, 192, 0.2);
+            margin: 20px auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 1px;
+        }
+        
+        /* Silberne Partikel */
+        .silber-particle {
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        /* ========== SILBERNE TEXT-ANIMATIONEN ========== */
         .kalligrafie-text {
             background: linear-gradient(to right, var(--silber-hell), var(--silber), var(--silber-dunkel));
             -webkit-background-clip: text;
@@ -60,7 +125,7 @@
                 transparent);
         }
         
-        /* Silber-Button Enhancement */
+        /* ========== SILBER-BUTTON ENHANCEMENT ========== */
         .silber-button {
             position: relative;
             overflow: hidden;
@@ -96,7 +161,7 @@
             border-color: var(--silber-hell);
         }
         
-        /* Navigation Hover Effects */
+        /* ========== NAVIGATION HOVER EFFECTS ========== */
         .hauptnavigation a {
             position: relative;
             transition: all 0.3s ease;
@@ -117,7 +182,7 @@
             width: 100%;
         }
         
-        /* Social Media Icons Enhancement */
+        /* ========== SOCIAL MEDIA ICONS ENHANCEMENT ========== */
         .social-icon-wrapper {
             position: relative;
             overflow: hidden;
@@ -147,7 +212,7 @@
             filter: drop-shadow(0 5px 15px rgba(192, 192, 192, 0.3));
         }
         
-        /* Zitat Animation */
+        /* ========== ZITAT ANIMATION ========== */
         .zitat {
             position: relative;
             padding: 2rem;
@@ -159,7 +224,7 @@
             border-left: 3px solid var(--silber);
         }
         
-        /* Lichtkante Enhancement */
+        /* ========== LICHTKANTE ENHANCEMENT ========== */
         .lichtkante {
             position: relative;
             overflow: hidden;
@@ -184,25 +249,111 @@
             0% { left: -100%; }
             100% { left: 100%; }
         }
+        
+        /* ========== ANIMATIONEN FÜR REDUZIERTE BEWEGUNG ========== */
+        @media (prefers-reduced-motion: reduce) {
+            .silber-particle,
+            .silber-progress-bar::before,
+            .button-shine,
+            .silber-ripple,
+            .lichtkante::after {
+                animation: none !important;
+            }
+            
+            .silber-button,
+            .hauptnavigation a,
+            .social-link {
+                transition: none !important;
+            }
+        }
+        
+        /* ========== MOBILE OPTIMIERUNG ========== */
+        @media (max-width: 768px) {
+            .preloader-logo {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .preloader-text {
+                font-size: 1.5rem;
+                letter-spacing: 0.2rem;
+            }
+            
+            .silber-progress-bar {
+                width: 200px;
+            }
+            
+            .kalligrafie-text {
+                font-size: 1.8rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .preloader-text {
+                font-size: 1.2rem;
+                letter-spacing: 0.1rem;
+            }
+            
+            .silber-progress-bar {
+                width: 180px;
+            }
+        }
     </style>
+    
+    <!-- GSAP FALLBACK CHECK -->
+    <script>
+        // GSAP Fallback Check
+        window.addEventListener('DOMContentLoaded', function() {
+            // Prüfe nach 3 Sekunden ob GSAP geladen ist
+            setTimeout(function() {
+                if (typeof gsap === 'undefined') {
+                    console.warn('GSAP konnte nicht geladen werden. Verwende Fallback-Animationen.');
+                    
+                    // Fallback: Preloader manuell ausblenden
+                    const preloader = document.getElementById('preloader');
+                    if (preloader) {
+                        preloader.style.transition = 'opacity 1s ease';
+                        preloader.style.opacity = '0';
+                        setTimeout(function() {
+                            preloader.style.display = 'none';
+                            document.body.style.overflow = 'visible';
+                        }, 1000);
+                    }
+                    
+                    // Einfache Hover-Effekte als Fallback
+                    const buttons = document.querySelectorAll('.silber-button');
+                    buttons.forEach(button => {
+                        button.addEventListener('mouseenter', function() {
+                            this.style.transform = 'translateY(-2px)';
+                            this.style.boxShadow = '0 5px 15px rgba(192, 192, 192, 0.3)';
+                        });
+                        
+                        button.addEventListener('mouseleave', function() {
+                            this.style.transform = 'translateY(0)';
+                            this.style.boxShadow = 'none';
+                        });
+                    });
+                } else {
+                    console.log('GSAP erfolgreich geladen. Silber-Animationen aktiv.');
+                }
+            }, 3000);
+        });
+    </script>
 </head>
 
 <body>
 
-<!-- Preloader -->
+<!-- ================= PRELOADER ================= -->
 <div id="preloader">
     <div class="preloader-inner">
         <div class="logo-container">
-            <img src="assets/images/logo.png" alt="Logo" class="preloader-logo">
-            <div class="silber-glow"></div>
+            <img src="assets/images/logo.png" alt="Matthias Silberhain Logo" class="preloader-logo">
         </div>
         <div class="text-container">
             <h1 class="preloader-text">
                 <span id="type-text"></span>
             </h1>
-            <div class="silber-loader">
-                <div class="loader-progress"></div>
-            </div>
+            <!-- Progress Bar wird automatisch von animations.js hinzugefügt -->
         </div>
     </div>
 </div>
@@ -310,7 +461,6 @@
 <section class="social-section">
     <h3 class="social-title">Folgen Sie den Gedanken</h3>
     <div class="social-grid">
-        <!-- Soziale Icons (wie zuvor) -->
         <!-- Snapchat -->
         <a href="https://snapchat.com/t/8wVZ1Wpu" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Snapchat">
             <div class="social-icon-wrapper">
@@ -396,7 +546,7 @@
 </footer>
 
 <!-- ================= JAVASCRIPT ================= -->
-<!-- GSAP Library -->
+<!-- GSAP Library (MUSS VOR animations.js stehen!) -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
