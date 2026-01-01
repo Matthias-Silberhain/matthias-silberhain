@@ -15,46 +15,6 @@
   <!-- Favicon -->
   <link rel="icon" href="assets/images/logo.png" type="image/png">
   
-  <!-- Dark Mode Preload -->
-  <script>
-    (function() {
-      // SOFORTIGE DARK MODE ANWENDUNG
-      try {
-        const savedTheme = localStorage.getItem('ms-theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        
-        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-          document.documentElement.classList.add('dark-mode');
-          document.body.classList.add('dark-mode');
-        }
-      } catch(e) {
-        // Ignoriere Fehler
-      }
-      
-      // SOFORTIGE KLICKBARKEIT SICHERSTELLEN
-      document.addEventListener('DOMContentLoaded', function() {
-        const interactiveElements = ['button', 'a', '.burger', '.dark-mode-toggle', '.silber-button', '.social-link'];
-        
-        setTimeout(function() {
-          interactiveElements.forEach(selector => {
-            document.querySelectorAll(selector).forEach(el => {
-              el.style.pointerEvents = 'auto';
-              el.style.cursor = 'pointer';
-            });
-          });
-          
-          // Copyright Jahr sofort setzen
-          const yearElement = document.getElementById('jahr');
-          if (yearElement && !yearElement.textContent) {
-            yearElement.textContent = new Date().getFullYear();
-          }
-          
-          console.log('✅ Website ist jetzt voll klickbar!');
-        }, 100);
-      });
-    })();
-  </script>
-  
   <style>
     /* ==========================================================================
        QUELLEN-KARUSSELL STYLES
@@ -573,14 +533,14 @@
 <body>
 
 <!-- Mobile Menu Overlay -->
-<div class="menu-overlay" id="menuOverlay"></div>
+<div class="menu-overlay"></div>
 
 <!-- ================= HEADER ================= -->
 <header class="header">
   <img src="assets/images/logo.png" alt="Matthias Silberhain Logo" class="logo">
   
   <!-- Dark Mode Toggle Button -->
-  <button id="darkModeToggle" class="dark-mode-toggle" aria-label="Dark Mode umschalten" title="Dark Mode umschalten">
+  <button id="themeToggle" class="dark-mode-toggle" aria-label="Dark Mode umschalten" title="Dark Mode umschalten">
     <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
     </svg>
@@ -597,13 +557,13 @@
     </svg>
   </button>
 
-  <div class="burger" id="burger" title="Menü öffnen/schließen">
+  <div class="burger" id="burgerButton" title="Menü öffnen/schließen">
     <span></span>
     <span></span>
     <span></span>
   </div>
 
-  <nav class="hauptnavigation" id="navigation">
+  <nav class="hauptnavigation" id="mainNav">
     <a href="index.html">Startseite</a>
     <a href="ueber-mich.html">Über mich</a>
     <a href="werke.html">Werke</a>
@@ -771,7 +731,7 @@
     <a href="https://t.me/matthiassilberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Telegram">
       <div class="social-icon-wrapper">
         <svg class="social-icon" viewBox="0 0 24 24">
-          <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.697.064-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+          <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.697.064-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247 2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
         </svg>
       </div>
       <span class="social-name">Telegram</span>
@@ -816,11 +776,12 @@
         <a href="impressum.html">Impressum</a>
         <a href="datenschutz.html">Datenschutz</a>
     </div>
-    <p>© <span id="jahr"></span> Matthias Silberhain</p>
+    <p>© <span id="currentYear"></span> Matthias Silberhain</p>
 </footer>
 
 <!-- ================= JAVASCRIPT ================= -->
 <script src="assets/js/global.js"></script>
+<script src="assets/js/dark-mode.js"></script>
 <script src="assets/js/menu.js"></script>
 
 <!-- Karussell JavaScript -->
