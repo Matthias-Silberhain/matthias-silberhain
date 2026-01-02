@@ -1,193 +1,136 @@
 /**
  * GLOBAL FUNKTIONEN - Matthias Silberhain Website
- * Zentrale Funktionen für alle Seiten
- * Version 3.0 - Komplett überarbeitet mit korrigiertem Preloader
+ * Version 3.0 - Vollständig korrigierte Preloader-Logik
  */
 
-// Mobile Device Detection
-const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-
-// Optimierung für mobile Geräte
-if (isMobile) {
-    document.documentElement.classList.add('mobile-device');
-}
-if (isIOS) {
-    document.documentElement.classList.add('ios-device');
-}
-
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🌐 Global.js geladen - Matthias Silberhain');
+    console.log('🌐 Global.js geladen - Starte Initialisierung');
     
     // ================= VARIABLEN =================
     const preloader = document.getElementById('preloader');
     const typeTextElement = document.getElementById('type-text');
     const preloaderLine = document.getElementById('preloaderLine');
     const body = document.body;
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
     
-    // ================= INITIALER ZUSTAND =================
-    // Stelle sicher dass der Inhalt initial versteckt ist
+    // ================= INITIALE VORBEREITUNG =================
+    // Verstecke Inhalt initial
     const contentElements = document.querySelectorAll('.inhalt, .social-section, .footer');
     contentElements.forEach(el => {
-        if (el) {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-        }
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
     });
     
-    // Logo auch verstecken
+    // Logo verstecken (nur für Animation)
     const logo = document.querySelector('.logo');
     if (logo) {
         logo.style.opacity = '0';
         logo.style.transform = 'translateY(20px)';
     }
     
-    // ================= PRELOADER ANIMATION =================
+    // ================= PRELOADER LOGIK =================
     if (preloader) {
-        console.log('Preloader gefunden, starte Animation...');
+        console.log('Preloader gefunden - Starte Animation');
         
-        // Preloader sichtbar machen
+        // Stelle sicher dass Preloader sichtbar ist
         preloader.style.display = 'flex';
         preloader.style.opacity = '1';
         preloader.style.visibility = 'visible';
+        preloader.classList.remove('loaded');
         
-        // 1. Typewriter starten
+        // Typewriter starten
         if (typeTextElement) {
-            console.log('Starte Typewriter...');
+            console.log('Starte Typewriter-Effekt...');
             const text = "MATTHIAS SILBERHAIN";
             let index = 0;
             const typingSpeed = 80; // ms pro Buchstabe
             
-            // Typewriter Funktion
+            // Lösche vorhandenen Text
+            typeTextElement.textContent = '';
+            
             function typeWriter() {
                 if (index < text.length) {
                     typeTextElement.textContent += text.charAt(index);
                     index++;
                     setTimeout(typeWriter, typingSpeed);
                 } else {
-                    // Typewriter fertig - silberne Line starten
-                    console.log('Typewriter fertig, starte silberne Line...');
-                    startSilverLine();
+                    console.log('Typewriter fertig - Starte silberne Line');
+                    // Verzögerung vor Line-Animation
+                    setTimeout(startSilverLine, 500);
                 }
             }
             
             // Starte Typewriter nach kurzer Verzögerung
             setTimeout(() => {
-                typeTextElement.textContent = ''; // Clear
                 typeWriter();
-            }, 500);
+            }, 300);
         } else {
-            // Kein Typewriter - direkt Line starten
-            console.log('Kein Typewriter, starte direkt silberne Line...');
+            console.log('Kein Typewriter-Element - Starte direkt Line');
             setTimeout(startSilverLine, 1000);
         }
-        
-        // SILBERNE LINE FUNKTION
-        function startSilverLine() {
-            console.log('Starte silberne Line Animation...');
-            
-            if (preloaderLine) {
-                console.log('Preloader Line gefunden, aktiviere...');
-                preloaderLine.classList.add('active');
-                
-                // Nach der Line-Animation Preloader ausblenden
-                setTimeout(() => {
-                    console.log('Blende Preloader aus...');
-                    hidePreloader();
-                }, 2500); // Dauer der Line-Animation
-            } else {
-                console.warn('Preloader Line nicht gefunden!');
-                // Fallback ohne Line
-                setTimeout(() => {
-                    hidePreloader();
-                }, 2000);
-            }
-        }
-        
-        // PRELOADER AUSBLENDEN FUNKTION
-        function hidePreloader() {
-            console.log('Verstecke Preloader...');
-            
-            // 1. Preloader ausblenden
-            preloader.classList.add('loaded');
-            body.classList.add('loaded');
-            
-            // 2. Nach Fade-Out Preloader komplett entfernen
-            setTimeout(() => {
-                preloader.style.display = 'none';
-                console.log('Preloader komplett versteckt');
-                
-                // 3. Inhalt sichtbar machen
-                makeContentVisible();
-            }, 600);
-        }
     } else {
-        console.log('Kein Preloader gefunden, mache Inhalt sofort sichtbar');
+        console.log('Kein Preloader - Mache Inhalt sofort sichtbar');
         body.classList.add('loaded');
         makeContentVisible();
     }
     
-    // INHALT SICHTBAR MACHEN FUNKTION
+    // ================= SILBERNE LINE FUNKTION =================
+    function startSilverLine() {
+        console.log('Starte silberne Line Animation...');
+        
+        if (preloaderLine) {
+            console.log('Preloader Line gefunden, aktiviere Animation');
+            preloaderLine.classList.add('active');
+            
+            // Nach der Line-Animation Preloader ausblenden
+            setTimeout(() => {
+                console.log('Line Animation fertig - Blende Preloader aus');
+                hidePreloader();
+            }, 2500); // Dauer der Line-Animation
+        } else {
+            console.warn('Preloader Line nicht gefunden - Überspringe');
+            setTimeout(hidePreloader, 2000);
+        }
+    }
+    
+    // ================= PRELOADER AUSBLENDEN =================
+    function hidePreloader() {
+        console.log('Verstecke Preloader...');
+        
+        // 1. Preloader ausblenden
+        preloader.classList.add('loaded');
+        body.classList.add('loaded');
+        
+        // 2. Nach Fade-Animation Preloader komplett verstecken
+        setTimeout(() => {
+            preloader.style.display = 'none';
+            console.log('Preloader komplett versteckt');
+            
+            // 3. Inhalt sichtbar machen
+            makeContentVisible();
+        }, 600);
+    }
+    
+    // ================= INHALT SICHTBAR MACHEN =================
     function makeContentVisible() {
         console.log('Mache Inhalt sichtbar...');
         
-        // Logo sichtbar machen
+        // Logo animieren
         const logo = document.querySelector('.logo');
         if (logo) {
-            setTimeout(() => {
-                logo.style.opacity = '1';
-                logo.style.transform = 'translateY(0)';
-                logo.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            }, 200);
+            logo.style.opacity = '1';
+            logo.style.transform = 'translateY(0)';
+            logo.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         }
         
-        // Hauptinhalt sichtbar machen
-        const mainContent = document.querySelector('.inhalt');
-        if (mainContent) {
-            setTimeout(() => {
-                mainContent.style.opacity = '1';
-                mainContent.style.transform = 'translateY(0)';
-                mainContent.style.transition = 'opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s';
-            }, 400);
-        }
-        
-        // Social Section sichtbar machen
-        const socialSection = document.querySelector('.social-section');
-        if (socialSection) {
-            setTimeout(() => {
-                socialSection.style.opacity = '1';
-                socialSection.style.transform = 'translateY(0)';
-                socialSection.style.transition = 'opacity 0.6s ease 0.4s, transform 0.6s ease 0.4s';
-            }, 600);
-        }
-        
-        // Footer sichtbar machen
-        const footer = document.querySelector('.footer');
-        if (footer) {
-            setTimeout(() => {
-                footer.style.opacity = '1';
-                footer.style.transform = 'translateY(0)';
-                footer.style.transition = 'opacity 0.6s ease 0.6s, transform 0.6s ease 0.6s';
-            }, 800);
-        }
-        
-        console.log('Inhalt sichtbar gemacht');
+        // Inhalt animieren (CSS-Transitionen werden durch loaded-Klasse aktiviert)
+        console.log('Inhalt wird über CSS-Transitionen eingeblendet');
     }
     
-    // SICHERHEITS-TIMEOUT (max. 8 Sekunden)
+    // ================= SICHERHEITS-TIMEOUT =================
     setTimeout(() => {
-        const preloader = document.getElementById('preloader');
         if (preloader && !preloader.classList.contains('loaded')) {
             console.warn('Sicherheits-Timeout: Erzwinge Preloader-Ausblendung');
-            if (preloader) {
-                preloader.classList.add('loaded');
-                body.classList.add('loaded');
-                setTimeout(() => {
-                    preloader.style.display = 'none';
-                    makeContentVisible();
-                }, 600);
-            }
+            hidePreloader();
         }
     }, 8000);
     
@@ -257,50 +200,5 @@ document.addEventListener('DOMContentLoaded', function() {
     highlightActiveNavLink();
     window.addEventListener('hashchange', highlightActiveNavLink);
     
-    // ================= LAZY LOADING =================
-    if ('IntersectionObserver' in window) {
-        const imageObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    if (img.dataset.src) {
-                        img.src = img.dataset.src;
-                        img.removeAttribute('data-src');
-                    }
-                    imageObserver.unobserve(img);
-                }
-            });
-        });
-        
-        document.querySelectorAll('img[data-src]').forEach(img => {
-            imageObserver.observe(img);
-        });
-    }
-    
-    // ================= WINDOW RESIZE HANDLER =================
-    let resizeTimeout;
-    window.addEventListener('resize', function() {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(function() {
-            if (window.innerWidth > 768) {
-                const burger = document.getElementById('burgerButton');
-                const nav = document.getElementById('mainNav');
-                const overlay = document.querySelector('.menu-overlay');
-                
-                if (burger && nav && burger.classList.contains('aktiv')) {
-                    burger.classList.remove('aktiv');
-                    nav.classList.remove('aktiv');
-                    if (overlay) overlay.classList.remove('active');
-                    document.body.classList.remove('menu-open');
-                }
-            }
-        }, 250);
-    });
-    
-    // ================= ERROR HANDLING =================
-    window.addEventListener('error', function(e) {
-        console.error('JavaScript Fehler:', e.message, 'in', e.filename, 'Zeile:', e.lineno);
-    });
-    
-    console.log(`✅ Global.js initialisiert für: ${currentPage}`);
+    console.log('✅ Global.js erfolgreich initialisiert');
 });
