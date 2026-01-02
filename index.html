@@ -6,56 +6,17 @@
     <title>Matthias Silberhain | Startseite</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
     <meta name="description" content="Matthias Silberhain - Autor zu Macht, Verantwortung und gesellschaftlichen Mechanismen">
-    <meta name="theme-color" content="#000000">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="mobile-web-app-capable" content="yes">
     
-    <!-- Preload Critical Resources -->
-    <link rel="preload" href="assets/css/style.css" as="style">
-    <link rel="preload" href="assets/js/global.js" as="script">
-    <link rel="preload" href="assets/images/logo.png" as="image" type="image/png">
-    
-    <!-- Google Fonts with Preconnect -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:wght@400;500&family=Great+Vibes&display=swap" as="style">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:wght@400;500&family=Great+Vibes&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:wght@400;500&family=Great+Vibes&display=swap" rel="stylesheet">
     
     <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/style.css" media="all">
+    <link rel="stylesheet" href="assets/css/style.css">
     
-    <!-- Favicon für alle Geräte -->
+    <!-- Favicon -->
     <link rel="icon" href="assets/images/logo.png" type="image/png">
-    <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml">
-    <link rel="shortcut icon" href="assets/images/logo.png" type="image/png">
-    <link rel="apple-touch-icon" href="assets/images/logo.png">
-   <link rel="manifest" href="/assets/manifest.json" crossorigin="use-credentials">
-    
-    <!-- Open Graph / Social Meta Tags -->
-    <meta property="og:title" content="Matthias Silberhain | Autor">
-    <meta property="og:description" content="Autor zu Macht, Verantwortung und gesellschaftlichen Mechanismen">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://matthiassilberhain.com">
-    <meta property="og:image" content="https://matthiassilberhain.com/assets/images/logo.png">
-    <meta property="og:locale" content="de_DE">
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Matthias Silberhain">
-    <meta name="twitter:description" content="Autor zu Macht, Verantwortung und gesellschaftlichen Mechanismen">
-    
-    <!-- Noscript Fallback für JS -->
-    <noscript>
-        <style>
-            #preloader { display: none !important; }
-            .inhalt, .social-section, .footer { 
-                opacity: 1 !important; 
-                transform: none !important; 
-            }
-        </style>
-    </noscript>
     
     <!-- CSS Fallback für JavaScript disabled -->
     <style>
@@ -283,50 +244,5 @@
 <script src="assets/js/dark-mode.js" defer></script>
 <script src="assets/js/menu.js" defer></script>
 
-<!-- Fallback für ältere Browser -->
-<script>
-    // Polyfill für requestAnimationFrame
-    (function() {
-        var lastTime = 0;
-        var vendors = ['webkit', 'moz'];
-        for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
-            window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
-            window.cancelAnimationFrame = 
-              window[vendors[x]+'CancelAnimationFrame'] || window[vendors[x]+'CancelRequestAnimationFrame'];
-        }
-    
-        if (!window.requestAnimationFrame) {
-            window.requestAnimationFrame = function(callback, element) {
-                var currTime = new Date().getTime();
-                var timeToCall = Math.max(0, 16 - (currTime - lastTime));
-                var id = window.setTimeout(function() { callback(currTime + timeToCall); }, 
-                  timeToCall);
-                lastTime = currTime + timeToCall;
-                return id;
-            };
-        }
-    
-        if (!window.cancelAnimationFrame) {
-            window.cancelAnimationFrame = function(id) {
-                clearTimeout(id);
-            };
-        }
-    }());
-</script>
-    <!-- Service Worker für PWA -->
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-      // Der Service Worker liegt unter /assets/js/service-worker.js
-      navigator.serviceWorker.register('/assets/js/service-worker.js')
-        .then(function(registration) {
-          console.log('✅ Service Worker registriert:', registration.scope);
-        })
-        .catch(function(error) {
-          console.error('❌ Service Worker Registrierung fehlgeschlagen:', error);
-        });
-    });
-  }
-</script>
 </body>
 </html>
