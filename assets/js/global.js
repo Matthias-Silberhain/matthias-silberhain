@@ -1,7 +1,7 @@
 /**
  * GLOBAL FUNKTIONEN - Matthias Silberhain Website
  * Zentrale Funktionen für alle Seiten
- * Version 2.2 - Mobile optimiert, robust
+ * Version 2.3 - Mit silbernem Preloader-Strich und korrigiertem Typewriter
  */
 
 // Mobile Device Detection
@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // ================= PRELOADER (optimierte Mobile-Version) =================
     const preloader = document.getElementById('preloader');
     const typeTextElement = document.getElementById('type-text');
+    const preloaderLine = document.getElementById('preloaderLine');
     
     if (preloader && pagesWithPreloader.includes(currentPage)) {
         // Preloader nur auf index.html, impressum.html und datenschutz.html
@@ -41,14 +42,19 @@ document.addEventListener('DOMContentLoaded', function() {
         preloader.style.opacity = '1';
         preloader.style.visibility = 'visible';
         
+        // Prüfen ob Preloader-Line existiert
+        if (!preloaderLine) {
+            console.warn('Preloader-Line Element nicht gefunden!');
+        }
+        
         if (typeTextElement) {
-            const text = "Matthias Silberhain";
+            const text = "MATTHIAS SILBERHAIN"; // GROSSBUCHSTABEN wie in der HTML
             let index = 0;
             const typingSpeed = isMobile ? 70 : 60; // Schneller auf Mobile
             
             function typeWriter() {
                 if (index < text.length) {
-                    typeTextElement.innerHTML += text.charAt(index);
+                    typeTextElement.textContent += text.charAt(index);
                     index++;
                     
                     // Performance-optimiert für Mobile
@@ -57,33 +63,68 @@ document.addEventListener('DOMContentLoaded', function() {
                     } else if (index < text.length) {
                         setTimeout(typeWriter, typingSpeed);
                     } else {
-                        // Typing fertig - sofort ausblenden
-                        setTimeout(() => {
-                            preloader.classList.add('loaded');
+                        // Typewriter fertig - silbernen Strich starten
+                        console.log('Typewriter fertig, starte silbernen Strich...');
+                        
+                        // Silbernen Strich aktivieren
+                        if (preloaderLine) {
+                            preloaderLine.classList.add('active');
+                            console.log('Silberner Strich aktiviert');
+                            
+                            // Nach der Strich-Animation Preloader ausblenden
                             setTimeout(() => {
-                                preloader.style.display = 'none';
-                            }, 300);
-                        }, 200); // Nur 200ms Pause
+                                preloader.classList.add('loaded');
+                                console.log('Preloader wird ausgeblendet');
+                                
+                                setTimeout(() => {
+                                    preloader.style.display = 'none';
+                                }, 300);
+                            }, 2500); // 2.5 Sekunden für Strich-Animation
+                        } else {
+                            // Fallback: Ohne Strich nach kurzer Pause ausblenden
+                            setTimeout(() => {
+                                preloader.classList.add('loaded');
+                                setTimeout(() => {
+                                    preloader.style.display = 'none';
+                                }, 300);
+                            }, 500);
+                        }
                     }
                 }
             }
             
             // Starte Typing mit kurzer Verzögerung
             setTimeout(() => {
-                typeTextElement.innerHTML = ''; // Reset
+                typeTextElement.textContent = ''; // Reset mit textContent statt innerHTML
                 typeWriter();
             }, 300);
         } else {
-            // Fallback ohne Typing: Kurzer Preloader (1,5s)
-            setTimeout(() => {
-                preloader.classList.add('loaded');
+            // Fallback ohne Typing: Silbernen Strich zeigen, dann Preloader ausblenden
+            console.log('Kein Typewriter-Element gefunden, verwende Fallback');
+            
+            if (preloaderLine) {
                 setTimeout(() => {
-                    preloader.style.display = 'none';
-                }, 300);
-            }, 1500);
+                    preloaderLine.classList.add('active');
+                    
+                    setTimeout(() => {
+                        preloader.classList.add('loaded');
+                        setTimeout(() => {
+                            preloader.style.display = 'none';
+                        }, 300);
+                    }, 2500);
+                }, 500);
+            } else {
+                // Fallback ohne Strich
+                setTimeout(() => {
+                    preloader.classList.add('loaded');
+                    setTimeout(() => {
+                        preloader.style.display = 'none';
+                    }, 300);
+                }, 1500);
+            }
         }
         
-        // Sicherheits-Timeout: Maximal 3,5 Sekunden
+        // Sicherheits-Timeout: Maximal 8 Sekunden
         setTimeout(() => {
             if (preloader && !preloader.classList.contains('loaded')) {
                 console.log('Sicherheits-Timeout: Preloader wird ausgeblendet');
@@ -92,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     preloader.style.display = 'none';
                 }, 300);
             }
-        }, 3500);
+        }, 8000);
         
     } else if (preloader) {
         // Auf anderen Seiten: Preloader sofort ausblenden
@@ -121,6 +162,20 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 100);
         }
     }
+    
+    // ================= SCROLL EVENT FÜR MENÜ-HINTERGRUND =================
+    let lastScrollTop = 0;
+    window.addEventListener('scroll', function() {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop > 50) {
+            document.body.classList.add('scrolled');
+        } else {
+            document.body.classList.remove('scrolled');
+        }
+        
+        lastScrollTop = scrollTop;
+    });
     
     // ================= CURRENT YEAR IN FOOTER (alle Seiten) =================
     const currentYearElement = document.getElementById('currentYear');
@@ -228,32 +283,4 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     console.log(`✅ Global.js initialisiert für: ${currentPage}`);
-});
-// ==========================================================================
-// PRELOADER SILBERNER STRICH ANIMATION
-// ==========================================================================
-
-document.addEventListener('DOMContentLoaded', function() {
-    const preloaderLine = document.getElementById('preloaderLine');
-    
-    // Verzögerung bevor die Linie erscheint (nach Typewriter)
-    setTimeout(function() {
-        if (preloaderLine) {
-            preloaderLine.classList.add('active');
-        }
-    }, 2500); // 2.5 Sekunden nach Start (Typewriter sollte fertig sein)
-    
-    // Scroll Event für Menü-Hintergrund
-    let lastScrollTop = 0;
-    window.addEventListener('scroll', function() {
-        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
-        if (scrollTop > 50) {
-            document.body.classList.add('scrolled');
-        } else {
-            document.body.classList.remove('scrolled');
-        }
-        
-        lastScrollTop = scrollTop;
-    });
 });
