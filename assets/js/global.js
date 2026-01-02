@@ -353,3 +353,46 @@ function debugForceShowContent() {
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = { debugForceShowContent };
 }
+// ================= PRELOADER ANPASSUNG FÜR GROSSE MONITORE =================
+function adjustPreloaderForScreen() {
+    const preloaderLine = document.getElementById('preloaderLine');
+    const typeTextElement = document.getElementById('type-text');
+    
+    if (!preloaderLine || !typeTextElement) return;
+    
+    // Bildschirmgröße erkennen
+    const screenWidth = window.innerWidth;
+    const screenHeight = window.innerHeight;
+    
+    // Für große Monitore (27" und größer)
+    if (screenWidth >= 1920 && screenHeight >= 1080) {
+        console.log('🖥️  Großer Monitor erkannt - passe Preloader an');
+        
+        // Größeren Abstand für Typewriter setzen
+        typeTextElement.parentElement.style.marginBottom = 'clamp(60px, 15vh, 150px)';
+        
+        // Linie weiter unten positionieren
+        preloaderLine.style.top = 'calc(60% + clamp(60px, 15vh, 150px))';
+        
+        // Längere Linie für große Bildschirme
+        preloaderLine.style.setProperty('--line-width', '400px');
+    } else {
+        // Standardwerte für kleinere Bildschirme
+        typeTextElement.parentElement.style.marginBottom = '';
+        preloaderLine.style.top = '';
+        preloaderLine.style.setProperty('--line-width', '300px');
+    }
+}
+
+// In der initWebsite Funktion aufrufen:
+function initWebsite() {
+    console.log('🚀 Global.js geladen - Starte konsistente Initialisierung');
+    
+    // Bildschirmanpassung sofort
+    adjustPreloaderForScreen();
+    
+    // Auch bei Resize anpassen
+    window.addEventListener('resize', adjustPreloaderForScreen);
+    
+    // ... restlicher Code bleibt gleich
+}
