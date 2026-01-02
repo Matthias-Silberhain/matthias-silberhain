@@ -1523,7 +1523,109 @@ button[type="submit"]:hover {
     background: rgba(20, 20, 20, 0.6);
     box-shadow: 0 5px 15px rgba(192, 192, 192, 0.2);
 }
-
 /* ==========================================================================
+   PRELOADER FALLBACK & FEHLERKORREKTUR
+   ========================================================================== */
+
+/* Sicherstellen, dass der Inhalt nicht sichtbar ist während Preloader aktiv */
+body:not(.loaded) .inhalt {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+body.loaded .inhalt {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Typewriter Text Container */
+.text-container {
+    min-height: 50px;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.preloader-text {
+    font-family: "Cinzel", serif;
+    font-size: 34px;
+    letter-spacing: 0.2em;
+    color: #e0e0e0;
+    text-shadow: 0 0 10px rgba(200, 200, 200, 0.3);
+    position: relative;
+}
+
+/* Typewriter Cursor Blink-Effekt */
+.preloader-text::after {
+    content: '|';
+    animation: blink 1s infinite;
+    margin-left: 5px;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Silberner Strich Animation - Korrektur für Mobile */
+@media screen and (max-width: 768px) {
+    @keyframes lineExpand {
+        0% {
+            width: 0;
+            opacity: 0;
+            transform: translateX(-50%) scaleX(0.1);
+        }
+        20% {
+            opacity: 1;
+            transform: translateX(-50%) scaleX(1);
+        }
+        80% {
+            width: 200px;
+            opacity: 1;
+            transform: translateX(-50%) scaleX(1);
+        }
+        100% {
+            width: 200px;
+            opacity: 0;
+            transform: translateX(-50%) scaleX(1);
+        }
+    }
+    
+    .preloader-line {
+        bottom: 80px;
+        height: 1.5px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    @keyframes lineExpand {
+        0% {
+            width: 0;
+            opacity: 0;
+            transform: translateX(-50%) scaleX(0.1);
+        }
+        20% {
+            opacity: 1;
+            transform: translateX(-50%) scaleX(1);
+        }
+        80% {
+            width: 150px;
+            opacity: 1;
+            transform: translateX(-50%) scaleX(1);
+        }
+        100% {
+            width: 150px;
+            opacity: 0;
+            transform: translateX(-50%) scaleX(1);
+        }
+    }
+    
+    .preloader-line {
+        bottom: 60px;
+        height: 1px;
+    }
+}/* ==========================================================================
    ENDE DER CSS-DATEI
    ========================================================================== */
