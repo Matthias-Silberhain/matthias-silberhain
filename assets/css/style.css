@@ -1237,3 +1237,150 @@ p {
     text-align: justify !important;
   }
 }
+/* ==========================================================================
+   DARK MODE GLOBAL FIXES - Für alle Seiten
+   ========================================================================== */
+
+/* Dark Mode für alle Text-Elemente */
+body.dark-mode * {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+/* Dark Mode für alle Container */
+body.dark-mode .container,
+body.dark-mode .section,
+body.dark-mode .box {
+    background-color: rgba(30, 30, 30, 0.8) !important;
+}
+
+/* Dark Mode für alle Bilder */
+body.dark-mode img:not(.preloader-logo):not(.logo) {
+    filter: brightness(0.9) !important;
+}
+
+/* Dark Mode für alle Links */
+body.dark-mode a:not(.hauptnavigation a):not(.social-link):not(.silber-button):not(.footer-links a) {
+    color: #8ab4f8 !important;
+}
+
+body.dark-mode a:not(.hauptnavigation a):not(.social-link):not(.silber-button):not(.footer-links a):hover {
+    color: #aecbfa !important;
+    text-shadow: 0 0 10px rgba(138, 180, 248, 0.3) !important;
+}
+
+/* Dark Mode für alle Buttons (außer spezielle) */
+body.dark-mode button:not(.dark-mode-toggle):not(.burger) {
+    background-color: rgba(60, 60, 60, 0.8) !important;
+    border-color: rgba(192, 192, 192, 0.3) !important;
+    color: #e0e0e0 !important;
+}
+
+body.dark-mode button:not(.dark-mode-toggle):not(.burger):hover {
+    background-color: rgba(80, 80, 80, 0.8) !important;
+    border-color: rgba(192, 192, 192, 0.6) !important;
+}
+
+/* Dark Mode für Inputs/Formulare */
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select {
+    background-color: rgba(40, 40, 40, 0.8) !important;
+    border-color: rgba(192, 192, 192, 0.3) !important;
+    color: #e0e0e0 !important;
+}
+
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder {
+    color: rgba(192, 192, 192, 0.5) !important;
+}
+
+/* Dark Mode für Tabellen */
+body.dark-mode table {
+    background-color: rgba(30, 30, 30, 0.8) !important;
+    border-color: rgba(192, 192, 192, 0.3) !important;
+}
+
+body.dark-mode th,
+body.dark-mode td {
+    border-color: rgba(192, 192, 192, 0.2) !important;
+    color: #e0e0e0 !important;
+}
+
+body.dark-mode th {
+    background-color: rgba(50, 50, 50, 0.8) !important;
+}
+
+/* Dark Mode für Blockquotes */
+body.dark-mode blockquote:not(.zitat) {
+    background-color: rgba(40, 40, 40, 0.5) !important;
+    border-left-color: rgba(192, 192, 192, 0.4) !important;
+    color: #d0d5dc !important;
+}
+
+/* Dark Mode für Code */
+body.dark-mode code,
+body.dark-mode pre {
+    background-color: rgba(40, 40, 40, 0.8) !important;
+    color: #e0e0e0 !important;
+    border-color: rgba(192, 192, 192, 0.2) !important;
+}
+
+/* Dark Mode für HR/Linien */
+body.dark-mode hr:not(.lichtkante):not(.social-lichtkante) {
+    border-color: rgba(192, 192, 192, 0.2) !important;
+    background-color: rgba(192, 192, 192, 0.2) !important;
+}
+
+/* Dark Mode für Tooltips/Infos */
+body.dark-mode [title]:hover::after,
+body.dark-mode .tooltip {
+    background-color: rgba(50, 50, 50, 0.95) !important;
+    color: #e0e0e0 !important;
+    border-color: rgba(192, 192, 192, 0.3) !important;
+}
+
+/* Dark Mode für Seitenspezifische Klassen */
+body.dark-mode .ueber-mich-content,
+body.dark-mode .werke-liste,
+body.dark-mode .termine-grid,
+body.dark-mode .kontakt-formular {
+    background-color: rgba(30, 30, 30, 0.8) !important;
+}
+
+/* Dark Mode für Overlays/Modals */
+body.dark-mode .modal,
+body.dark-mode .overlay {
+    background-color: rgba(20, 20, 20, 0.95) !important;
+}
+
+/* Dark Mode für alle Headlines */
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6 {
+    color: #f0f0f0 !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Dark Mode für alle Paragraphs */
+body.dark-mode p {
+    color: #d0d5dc !important;
+}
+
+/* Dark Mode für alle Lists */
+body.dark-mode ul,
+body.dark-mode ol {
+    color: #d0d5dc !important;
+}
+
+body.dark-mode li {
+    color: #d0d5dc !important;
+}
+
+/* Dark Mode Highlight für aktive Elemente */
+body.dark-mode *:focus {
+    outline: 2px solid rgba(192, 192, 192, 0.5) !important;
+    outline-offset: 2px !important;
+}
