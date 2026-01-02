@@ -1,10 +1,18 @@
 /**
  * GLOBAL FUNKTIONEN - Matthias Silberhain Website
- * Version 3.2 - Ultra-schneller Preloader mit parallelen Animationen
+ * Version 4.0 - Ultra-konsistent für alle Browser
  */
 
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 Global.js geladen - Starte optimierte Initialisierung');
+// Warte bis DOM komplett geladen ist
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initWebsite);
+} else {
+    // DOM ist bereits geladen
+    initWebsite();
+}
+
+function initWebsite() {
+    console.log('🚀 Global.js geladen - Starte konsistente Initialisierung');
     
     // ================= VARIABLEN =================
     const preloader = document.getElementById('preloader');
@@ -13,7 +21,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const body = document.body;
     
     // ================= INITIALE VORBEREITUNG =================
+    console.log('📱 Browser erkannt:', detectBrowser());
     console.log('📱 Gerät erkannt:', isMobile() ? 'Mobile' : 'Desktop');
+    
+    // Setze initiale Body-Klasse für CSS-Variablen Unterstützung
+    if (supportsCssVariables()) {
+        body.classList.add('css-variables');
+    }
     
     // Verstecke nur die Inhaltselemente für die Animation
     const contentElements = document.querySelectorAll('.inhalt, .social-section, .footer');
@@ -25,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // ================= PRELOADER LOGIK =================
     if (preloader) {
-        console.log('⚡ Starte ultra-schnellen Preloader');
+        console.log('⚡ Starte konsistenten Preloader');
         
         // Stelle sicher dass Preloader sichtbar ist
         preloader.style.display = 'flex';
@@ -50,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Fallback: Trotzdem Seite zeigen
                     setTimeout(hidePreloader, 1500);
                 });
-        }, 300); // Kurze Startverzögerung
+        }, 300);
     } else {
         console.log('Kein Preloader - Mache Inhalt sofort sichtbar');
         makeContentVisible();
@@ -68,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('⌨️ Starte Typewriter...');
             const text = "MATTHIAS SILBERHAIN";
             let index = 0;
-            const typingSpeed = isMobile() ? 60 : 70; // Schneller auf Mobile
+            const typingSpeed = isMobile() ? 60 : 70;
             
             // Lösche vorhandenen Text
             typeTextElement.textContent = '';
@@ -81,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Starte silberne Line, wenn Typewriter halb fertig ist
                     if (index === Math.floor(text.length / 2)) {
                         console.log('🔸 Typewriter halb fertig - starte Line');
-                        startSilverLine(); // Starte Line früher!
+                        startSilverLine();
                     }
                     
                     setTimeout(typeWriter, typingSpeed);
@@ -105,10 +119,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
             
-            // Prüfe ob Line bereits aktiv ist (falls schon durch Typewriter gestartet)
+            // Prüfe ob Line bereits aktiv ist
             if (preloaderLine.classList.contains('active')) {
                 console.log('🔸 Line bereits aktiv - warte auf Fertigstellung');
-                // Warte auf die Animation
                 setTimeout(resolve, 2000);
                 return;
             }
@@ -116,12 +129,47 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('⚡ Starte silberne Line...');
             preloaderLine.classList.add('active');
             
+            // Für Browser die CSS Animationen nicht unterstützen
+            if (!supportsCssAnimations()) {
+                console.log('⚠️ CSS Animationen nicht unterstützt - verwende JavaScript Animation');
+                animateLineWithJS();
+                setTimeout(resolve, 2000);
+                return;
+            }
+            
             // Line-Animation dauert 2 Sekunden
             setTimeout(() => {
                 console.log('✅ Line Animation fertig');
                 resolve();
             }, 2000);
         });
+    }
+    
+    // JavaScript Fallback für Line Animation
+    function animateLineWithJS() {
+        let width = 0;
+        const maxWidth = 300;
+        const duration = 2000;
+        const startTime = Date.now();
+        
+        function animate() {
+            const elapsed = Date.now() - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const easeProgress = easeInOutCubic(progress);
+            
+            width = maxWidth * easeProgress;
+            const opacity = progress < 0.2 ? progress * 5 : 
+                          progress > 0.8 ? (1 - progress) * 5 : 1;
+            
+            preloaderLine.style.width = width + 'px';
+            preloaderLine.style.opacity = opacity.toString();
+            
+            if (progress < 1) {
+                requestAnimationFrame(animate);
+            }
+        }
+        
+        requestAnimationFrame(animate);
     }
     
     // ================= PRELOADER AUSBLENDEN =================
@@ -139,14 +187,15 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Inhalt SOFORT sichtbar machen
             makeContentVisible();
-        }, 300); // Sehr kurz für flüssigen Übergang
+        }, 300);
     }
     
-    // ================= INHALT SICHTBAR MACHEN - OPTIMIERT =================
+    // ================= INHALT SICHTBAR MACHEN =================
     function makeContentVisible() {
         console.log('🌟 Mache Inhalt sichtbar...');
         
         // Alle Inhaltselemente SOFORT sichtbar machen
+        const contentElements = document.querySelectorAll('.inhalt, .social-section, .footer');
         contentElements.forEach(el => {
             el.style.opacity = '1';
             el.style.transform = 'translateY(0)';
@@ -155,16 +204,42 @@ document.addEventListener('DOMContentLoaded', function() {
         // Entferne Scroll-Sperre
         body.style.overflow = 'auto';
         body.style.position = 'static';
+        body.style.width = '100%';
+        body.style.height = 'auto';
         
         console.log('✅ Inhalt sichtbar gemacht');
     }
     
-    // ================= MOBILE DETECTION =================
+    // ================= HELFER FUNKTIONEN =================
     function isMobile() {
-        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+               (window.innerWidth <= 768);
     }
     
-    // ================= SICHERHEITS-TIMEOUT (SEHR KURZ) =================
+    function detectBrowser() {
+        const userAgent = navigator.userAgent;
+        if (userAgent.indexOf('Firefox') > -1) return 'Firefox';
+        if (userAgent.indexOf('Safari') > -1 && userAgent.indexOf('Chrome') === -1) return 'Safari';
+        if (userAgent.indexOf('Chrome') > -1) return 'Chrome';
+        if (userAgent.indexOf('Edge') > -1) return 'Edge';
+        if (userAgent.indexOf('MSIE') > -1 || userAgent.indexOf('Trident/') > -1) return 'Internet Explorer';
+        return 'Unknown';
+    }
+    
+    function supportsCssVariables() {
+        return window.CSS && CSS.supports && CSS.supports('color', 'var(--test)');
+    }
+    
+    function supportsCssAnimations() {
+        return 'animation' in document.body.style ||
+               'webkitAnimation' in document.body.style;
+    }
+    
+    function easeInOutCubic(t) {
+        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+    
+    // ================= SICHERHEITS-TIMEOUT =================
     setTimeout(() => {
         if (preloader && !preloader.classList.contains('loaded')) {
             console.warn('⏰ Sicherheits-Timeout: Erzwinge Seitenanzeige');
@@ -176,7 +251,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }, 300);
             }
         }
-    }, 4000); // Nur 4 Sekunden Timeout für schnelle Seite
+    }, 5000);
     
     // ================= AKTUELLES JAHR IM FOOTER =================
     const currentYearElement = document.getElementById('currentYear');
@@ -189,13 +264,13 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', function() {
         clearTimeout(scrollTimeout);
         scrollTimeout = setTimeout(() => {
-            if (window.pageYOffset > 50) {
+            if (window.pageYOffset > 50 || window.scrollY > 50) {
                 document.body.classList.add('scrolled');
             } else {
                 document.body.classList.remove('scrolled');
             }
         }, 10);
-    });
+    }, { passive: true });
     
     // ================= SMOOTH SCROLLING =================
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -220,10 +295,21 @@ document.addEventListener('DOMContentLoaded', function() {
                         document.body.classList.remove('menu-open');
                     }
                     
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
+                    // Berechne Scroll-Position
+                    const headerOffset = 80;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    
+                    // Smooth Scroll mit Fallback
+                    if ('scrollBehavior' in document.documentElement.style) {
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    } else {
+                        // Fallback für alte Browser
+                        window.scrollTo(0, offsetPosition);
+                    }
                 }
             }
         });
@@ -248,8 +334,8 @@ document.addEventListener('DOMContentLoaded', function() {
     highlightActiveNavLink();
     window.addEventListener('hashchange', highlightActiveNavLink);
     
-    console.log('✅ Global.js erfolgreich initialisiert');
-});
+    console.log('✅ Global.js erfolgreich initialisiert für', detectBrowser());
+}
 
 // ================= GLOBALE HELFER FUNKTIONEN =================
 function debugForceShowContent() {
@@ -261,4 +347,9 @@ function debugForceShowContent() {
     });
     const preloader = document.getElementById('preloader');
     if (preloader) preloader.style.display = 'none';
+}
+
+// Export für Module (falls benötigt)
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { debugForceShowContent };
 }
