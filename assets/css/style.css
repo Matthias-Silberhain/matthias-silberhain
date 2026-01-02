@@ -1718,3 +1718,407 @@ body.dark-mode .silber-button:hover {
 .kontakt-aktionen {
   animation-delay: 0.4s;
 }
+/* ==========================================================================
+   LICHTBALKEN ANIMATION - SANFTES SILBERNES PULSIEREN
+   ========================================================================== */
+
+/* Haupt-Animation für die Lichtbalken */
+@keyframes lichtbalkenPuls {
+  0%, 100% { 
+    opacity: 0.6;
+    box-shadow: 
+      0 0 10px rgba(192, 192, 192, 0.3),
+      0 0 5px rgba(192, 192, 192, 0.2); 
+  }
+  50% { 
+    opacity: 1;
+    box-shadow: 
+      0 0 20px rgba(192, 192, 192, 0.6),
+      0 0 15px rgba(192, 192, 192, 0.4),
+      0 0 8px rgba(192, 192, 192, 0.3); 
+  }
+}
+
+/* Noch elegantere Variante mit Gradienten-Animation */
+@keyframes lichtbalkenFlow {
+  0% { 
+    background-position: -200% 0;
+    opacity: 0.7;
+  }
+  50% { 
+    background-position: 200% 0;
+    opacity: 1;
+  }
+  100% { 
+    background-position: -200% 0;
+    opacity: 0.7;
+  }
+}
+
+/* Verbesserte Version mit Schimmer-Effekt */
+@keyframes silberSchimmer {
+  0%, 100% {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(192, 192, 192, 0.7),
+      rgba(192, 192, 192, 0.9),
+      rgba(192, 192, 192, 0.7),
+      transparent
+    );
+    box-shadow: 0 0 12px rgba(192, 192, 192, 0.3);
+  }
+  50% {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.9),
+      #ffffff,
+      rgba(255, 255, 255, 0.9),
+      transparent
+    );
+    box-shadow: 
+      0 0 25px rgba(255, 255, 255, 0.5),
+      0 0 15px rgba(255, 255, 255, 0.3);
+  }
+}
+
+/* Erweiterte Animation für sanfte Bewegung */
+@keyframes silberWelle {
+  0% {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(192, 192, 192, 0.4) 20%,
+      rgba(192, 192, 192, 0.8) 50%,
+      rgba(192, 192, 192, 0.4) 80%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    background-position: -200% 0;
+  }
+  100% {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(192, 192, 192, 0.4) 20%,
+      rgba(192, 192, 192, 0.8) 50%,
+      rgba(192, 192, 192, 0.4) 80%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    background-position: 200% 0;
+  }
+}
+
+/* ==========================================================================
+   ANIMIERTE LICHTKANTEN - HEADER, SOCIAL, FOOTER
+   ========================================================================== */
+
+/* Gemeinsame Basis für alle Lichtkanten */
+.lichtkante,
+.footer-lichtkante,
+.social-lichtkante {
+  animation: lichtbalkenPuls 3s infinite ease-in-out;
+  transition: all 0.4s ease;
+  background-size: 200% 100% !important;
+  background-position: 0% 0% !important;
+}
+
+/* Spezifische Animationen für jeden Balken */
+.lichtkante {
+  animation: silberWelle 8s infinite linear;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(192, 192, 192, 0.4) 20%,
+    rgba(192, 192, 192, 0.8) 50%,
+    rgba(192, 192, 192, 0.4) 80%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  height: 1px;
+  margin: 25px 0;
+  box-shadow: 
+    0 0 15px rgba(192, 192, 192, 0.3),
+    inset 0 0 5px rgba(255, 255, 255, 0.1);
+}
+
+.footer-lichtkante {
+  animation: silberWelle 10s infinite linear;
+  animation-delay: 1s;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(192, 192, 192, 0.5) 25%,
+    rgba(192, 192, 192, 0.9) 50%,
+    rgba(192, 192, 192, 0.5) 75%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  height: 1px;
+  margin: 25px 0;
+  box-shadow: 
+    0 0 18px rgba(192, 192, 192, 0.4),
+    inset 0 0 6px rgba(255, 255, 255, 0.15);
+}
+
+.social-lichtkante {
+  animation: silberWelle 12s infinite linear;
+  animation-delay: 2s;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(192, 192, 192, 0.6) 30%,
+    rgba(192, 192, 192, 1) 50%,
+    rgba(192, 192, 192, 0.6) 70%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  height: 1px;
+  margin: 25px 0;
+  box-shadow: 
+    0 0 20px rgba(192, 192, 192, 0.5),
+    inset 0 0 8px rgba(255, 255, 255, 0.2);
+}
+
+/* Hover-Effekt für alle Lichtkanten */
+.lichtkante:hover,
+.footer-lichtkante:hover,
+.social-lichtkante:hover {
+  animation-duration: 2s !important;
+  box-shadow: 
+    0 0 30px rgba(192, 192, 192, 0.8),
+    inset 0 0 12px rgba(255, 255, 255, 0.3);
+  height: 2px;
+  transform: scaleX(1.05);
+  filter: brightness(1.5);
+}
+
+/* ==========================================================================
+   DARK MODE ANIMATIONEN - INTENSIVERES PULSIEREN
+   ========================================================================== */
+
+body.dark-mode .lichtkante {
+  animation: silberWelle 6s infinite linear;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 20%,
+    rgba(255, 255, 255, 0.8) 50%,
+    rgba(255, 255, 255, 0.3) 80%,
+    transparent 100%
+  );
+  box-shadow: 
+    0 0 20px rgba(255, 255, 255, 0.4),
+    0 0 30px rgba(255, 255, 255, 0.2),
+    inset 0 0 8px rgba(255, 255, 255, 0.2);
+}
+
+body.dark-mode .footer-lichtkante {
+  animation: silberWelle 8s infinite linear;
+  animation-delay: 1s;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 25%,
+    rgba(255, 255, 255, 0.9) 50%,
+    rgba(255, 255, 255, 0.4) 75%,
+    transparent 100%
+  );
+  box-shadow: 
+    0 0 25px rgba(255, 255, 255, 0.5),
+    0 0 35px rgba(255, 255, 255, 0.3),
+    inset 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+body.dark-mode .social-lichtkante {
+  animation: silberWelle 10s infinite linear;
+  animation-delay: 2s;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.5) 30%,
+    #ffffff 50%,
+    rgba(255, 255, 255, 0.5) 70%,
+    transparent 100%
+  );
+  box-shadow: 
+    0 0 30px rgba(255, 255, 255, 0.6),
+    0 0 40px rgba(255, 255, 255, 0.4),
+    inset 0 0 12px rgba(255, 255, 255, 0.4);
+}
+
+/* Hover-Effekt im Dark Mode */
+body.dark-mode .lichtkante:hover,
+body.dark-mode .footer-lichtkante:hover,
+body.dark-mode .social-lichtkante:hover {
+  animation-duration: 1.5s !important;
+  box-shadow: 
+    0 0 40px rgba(255, 255, 255, 0.9),
+    0 0 50px rgba(255, 255, 255, 0.6),
+    inset 0 0 15px rgba(255, 255, 255, 0.5);
+  height: 2px;
+  transform: scaleX(1.1);
+  filter: brightness(2);
+}
+
+/* ==========================================================================
+   RESPONSIVE ANPASSUNGEN FÜR ANIMATIONEN
+   ========================================================================== */
+
+@media screen and (max-width: 768px) {
+  /* Langsamere Animationen auf Mobile für bessere Performance */
+  .lichtkante,
+  .footer-lichtkante,
+  .social-lichtkante {
+    animation-duration: 12s !important;
+  }
+  
+  body.dark-mode .lichtkante,
+  body.dark-mode .footer-lichtkante,
+  body.dark-mode .social-lichtkante {
+    animation-duration: 8s !important;
+  }
+  
+  /* Reduzierte Schatten auf Mobile */
+  .lichtkante,
+  .footer-lichtkante,
+  .social-lichtkante {
+    box-shadow: 
+      0 0 8px rgba(192, 192, 192, 0.2),
+      inset 0 0 3px rgba(255, 255, 255, 0.05);
+  }
+  
+  body.dark-mode .lichtkante,
+  body.dark-mode .footer-lichtkante,
+  body.dark-mode .social-lichtkante {
+    box-shadow: 
+      0 0 12px rgba(255, 255, 255, 0.3),
+      0 0 8px rgba(255, 255, 255, 0.2),
+      inset 0 0 4px rgba(255, 255, 255, 0.1);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .lichtkante,
+  .footer-lichtkante,
+  .social-lichtkante {
+    margin: 15px 0;
+    animation-duration: 15s !important;
+  }
+  
+  body.dark-mode .lichtkante,
+  body.dark-mode .footer-lichtkante,
+  body.dark-mode .social-lichtkante {
+    animation-duration: 10s !important;
+  }
+}
+
+/* ==========================================================================
+   PERFORMANCE OPTIMIERUNGEN FÜR ANIMATIONEN
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .lichtkante,
+  .footer-lichtkante,
+  .social-lichtkante,
+  body.dark-mode .lichtkante,
+  body.dark-mode .footer-lichtkante,
+  body.dark-mode .social-lichtkante {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ==========================================================================
+   SPEZIELLE VERBESSERUNGEN FÜR FOOTER LICHTKANTE
+   ========================================================================== */
+
+/* Verbesserte Footer-Lichtkante für mehr Kontrast */
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 300px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(192, 192, 192, 0.3),
+    rgba(192, 192, 192, 0.6),
+    rgba(192, 192, 192, 0.3),
+    transparent
+  );
+  animation: lichtbalkenPuls 4s infinite ease-in-out;
+  animation-delay: 0.5s;
+}
+
+body.dark-mode .footer::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  animation: lichtbalkenPuls 3s infinite ease-in-out;
+}
+
+/* ==========================================================================
+   FEINABSTIMMUNG DER ANIMATIONEN
+   ========================================================================== */
+
+/* Sanfter Start und Ende der Animationen */
+.lichtkante,
+.footer-lichtkante,
+.social-lichtkante {
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Verzögerte Animationen für ein organischeres Aussehen */
+.footer-lichtkante {
+  animation-delay: 0.8s;
+}
+
+.social-lichtkante {
+  animation-delay: 1.6s;
+}
+
+/* Subtile Schicht-Effekte für mehr Tiefe */
+.lichtkante::after,
+.footer-lichtkante::after,
+.social-lichtkante::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  opacity: 0;
+  animation: lichtbalkenPuls 6s infinite ease-in-out;
+  animation-delay: 1s;
+  pointer-events: none;
+}
+
+body.dark-mode .lichtkante::after,
+body.dark-mode .footer-lichtkante::after,
+body.dark-mode .social-lichtkante::after {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  animation: lichtbalkenPuls 4s infinite ease-in-out;
+}
