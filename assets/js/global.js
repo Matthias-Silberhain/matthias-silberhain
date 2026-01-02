@@ -1,18 +1,10 @@
 /**
  * GLOBAL FUNKTIONEN - Matthias Silberhain Website
- * Version 4.0 - Ultra-konsistent für alle Browser
+ * Version 4.1 - Fix für Preloader und Dark Mode
  */
 
-// Warte bis DOM komplett geladen ist
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initWebsite);
-} else {
-    // DOM ist bereits geladen
-    initWebsite();
-}
-
-function initWebsite() {
-    console.log('🚀 Global.js geladen - Starte konsistente Initialisierung');
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('🚀 Global.js geladen - Starte optimierte Initialisierung');
     
     // ================= VARIABLEN =================
     const preloader = document.getElementById('preloader');
@@ -21,12 +13,13 @@ function initWebsite() {
     const body = document.body;
     
     // ================= INITIALE VORBEREITUNG =================
-    console.log('📱 Browser erkannt:', detectBrowser());
     console.log('📱 Gerät erkannt:', isMobile() ? 'Mobile' : 'Desktop');
     
-    // Setze initiale Body-Klasse für CSS-Variablen Unterstützung
-    if (supportsCssVariables()) {
-        body.classList.add('css-variables');
+    // Setze Dark Mode Status aus localStorage
+    const darkModeEnabled = localStorage.getItem('darkMode') === 'true';
+    if (darkModeEnabled) {
+        body.classList.add('dark-mode');
+        updateDarkModeToggle(true);
     }
     
     // Verstecke nur die Inhaltselemente für die Animation
@@ -39,7 +32,7 @@ function initWebsite() {
     
     // ================= PRELOADER LOGIK =================
     if (preloader) {
-        console.log('⚡ Starte konsistenten Preloader');
+        console.log('⚡ Starte optimierten Preloader');
         
         // Stelle sicher dass Preloader sichtbar ist
         preloader.style.display = 'flex';
@@ -70,7 +63,7 @@ function initWebsite() {
         makeContentVisible();
     }
     
-    // ================= TYPEWRITER FUNKTION (mit Promise) =================
+    // ================= TYPEWRITER FUNKTION =================
     function startTypewriter() {
         return new Promise((resolve) => {
             if (!typeTextElement) {
@@ -105,12 +98,11 @@ function initWebsite() {
                 }
             }
             
-            // Sofort starten
             typeWriter();
         });
     }
     
-    // ================= SILBERNE LINE FUNKTION (mit Promise) =================
+    // ================= SILBERNE LINE FUNKTION =================
     function startSilverLine() {
         return new Promise((resolve) => {
             if (!preloaderLine) {
@@ -129,47 +121,12 @@ function initWebsite() {
             console.log('⚡ Starte silberne Line...');
             preloaderLine.classList.add('active');
             
-            // Für Browser die CSS Animationen nicht unterstützen
-            if (!supportsCssAnimations()) {
-                console.log('⚠️ CSS Animationen nicht unterstützt - verwende JavaScript Animation');
-                animateLineWithJS();
-                setTimeout(resolve, 2000);
-                return;
-            }
-            
             // Line-Animation dauert 2 Sekunden
             setTimeout(() => {
                 console.log('✅ Line Animation fertig');
                 resolve();
             }, 2000);
         });
-    }
-    
-    // JavaScript Fallback für Line Animation
-    function animateLineWithJS() {
-        let width = 0;
-        const maxWidth = 300;
-        const duration = 2000;
-        const startTime = Date.now();
-        
-        function animate() {
-            const elapsed = Date.now() - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            const easeProgress = easeInOutCubic(progress);
-            
-            width = maxWidth * easeProgress;
-            const opacity = progress < 0.2 ? progress * 5 : 
-                          progress > 0.8 ? (1 - progress) * 5 : 1;
-            
-            preloaderLine.style.width = width + 'px';
-            preloaderLine.style.opacity = opacity.toString();
-            
-            if (progress < 1) {
-                requestAnimationFrame(animate);
-            }
-        }
-        
-        requestAnimationFrame(animate);
     }
     
     // ================= PRELOADER AUSBLENDEN =================
@@ -180,22 +137,21 @@ function initWebsite() {
         preloader.classList.add('loaded');
         body.classList.add('loaded');
         
-        // Sehr kurze Verzögerung, dann komplett verstecken
+        // Verzögerung, dann komplett verstecken
         setTimeout(() => {
             preloader.style.display = 'none';
             console.log('✅ Preloader versteckt');
             
-            // Inhalt SOFORT sichtbar machen
+            // Inhalt sichtbar machen
             makeContentVisible();
-        }, 300);
+        }, 400);
     }
     
     // ================= INHALT SICHTBAR MACHEN =================
     function makeContentVisible() {
         console.log('🌟 Mache Inhalt sichtbar...');
         
-        // Alle Inhaltselemente SOFORT sichtbar machen
-        const contentElements = document.querySelectorAll('.inhalt, .social-section, .footer');
+        // Alle Inhaltselemente sichtbar machen
         contentElements.forEach(el => {
             el.style.opacity = '1';
             el.style.transform = 'translateY(0)';
@@ -204,54 +160,43 @@ function initWebsite() {
         // Entferne Scroll-Sperre
         body.style.overflow = 'auto';
         body.style.position = 'static';
-        body.style.width = '100%';
-        body.style.height = 'auto';
         
         console.log('✅ Inhalt sichtbar gemacht');
     }
     
-    // ================= HELFER FUNKTIONEN =================
+    // ================= DARK MODE TOGGLE =================
+    const themeToggle = document.getElementById('themeToggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', function() {
+            const isDarkMode = body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', isDarkMode);
+            updateDarkModeToggle(isDarkMode);
+            console.log('🌙 Dark Mode:', isDarkMode ? 'aktiviert' : 'deaktiviert');
+        });
+    }
+    
+    function updateDarkModeToggle(isDarkMode) {
+        if (themeToggle) {
+            themeToggle.setAttribute('aria-pressed', isDarkMode.toString());
+            themeToggle.setAttribute('aria-label', 
+                isDarkMode ? 'Dark Mode deaktivieren' : 'Dark Mode aktivieren'
+            );
+        }
+    }
+    
+    // ================= MOBILE DETECTION =================
     function isMobile() {
         return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
                (window.innerWidth <= 768);
-    }
-    
-    function detectBrowser() {
-        const userAgent = navigator.userAgent;
-        if (userAgent.indexOf('Firefox') > -1) return 'Firefox';
-        if (userAgent.indexOf('Safari') > -1 && userAgent.indexOf('Chrome') === -1) return 'Safari';
-        if (userAgent.indexOf('Chrome') > -1) return 'Chrome';
-        if (userAgent.indexOf('Edge') > -1) return 'Edge';
-        if (userAgent.indexOf('MSIE') > -1 || userAgent.indexOf('Trident/') > -1) return 'Internet Explorer';
-        return 'Unknown';
-    }
-    
-    function supportsCssVariables() {
-        return window.CSS && CSS.supports && CSS.supports('color', 'var(--test)');
-    }
-    
-    function supportsCssAnimations() {
-        return 'animation' in document.body.style ||
-               'webkitAnimation' in document.body.style;
-    }
-    
-    function easeInOutCubic(t) {
-        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
     }
     
     // ================= SICHERHEITS-TIMEOUT =================
     setTimeout(() => {
         if (preloader && !preloader.classList.contains('loaded')) {
             console.warn('⏰ Sicherheits-Timeout: Erzwinge Seitenanzeige');
-            if (preloader) {
-                preloader.classList.add('loaded');
-                setTimeout(() => {
-                    preloader.style.display = 'none';
-                    makeContentVisible();
-                }, 300);
-            }
+            hidePreloader();
         }
-    }, 5000);
+    }, 6000); // 6 Sekunden Timeout
     
     // ================= AKTUELLES JAHR IM FOOTER =================
     const currentYearElement = document.getElementById('currentYear');
@@ -264,13 +209,13 @@ function initWebsite() {
     window.addEventListener('scroll', function() {
         clearTimeout(scrollTimeout);
         scrollTimeout = setTimeout(() => {
-            if (window.pageYOffset > 50 || window.scrollY > 50) {
-                document.body.classList.add('scrolled');
+            if (window.pageYOffset > 50) {
+                body.classList.add('scrolled');
             } else {
-                document.body.classList.remove('scrolled');
+                body.classList.remove('scrolled');
             }
         }, 10);
-    }, { passive: true });
+    });
     
     // ================= SMOOTH SCROLLING =================
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -286,56 +231,22 @@ function initWebsite() {
                     // Schließe Mobile Menu wenn offen
                     const burger = document.getElementById('burgerButton');
                     const nav = document.getElementById('mainNav');
-                    const overlay = document.querySelector('.menu-overlay');
                     
                     if (burger && nav && burger.classList.contains('aktiv')) {
-                        burger.classList.remove('aktiv');
-                        nav.classList.remove('aktiv');
-                        if (overlay) overlay.classList.remove('active');
-                        document.body.classList.remove('menu-open');
+                        toggleMenu();
                     }
                     
-                    // Berechne Scroll-Position
-                    const headerOffset = 80;
-                    const elementPosition = targetElement.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                    
-                    // Smooth Scroll mit Fallback
-                    if ('scrollBehavior' in document.documentElement.style) {
-                        window.scrollTo({
-                            top: offsetPosition,
-                            behavior: 'smooth'
-                        });
-                    } else {
-                        // Fallback für alte Browser
-                        window.scrollTo(0, offsetPosition);
-                    }
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
                 }
             }
         });
     });
     
-    // ================= ACTIVE NAV LINK HIGHLIGHT =================
-    function highlightActiveNavLink() {
-        const navLinks = document.querySelectorAll('.hauptnavigation a');
-        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-        
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            const linkHref = link.getAttribute('href');
-            
-            if (linkHref === currentPage || 
-                (currentPage === 'index.html' && linkHref === 'index.html')) {
-                link.classList.add('active');
-            }
-        });
-    }
-    
-    highlightActiveNavLink();
-    window.addEventListener('hashchange', highlightActiveNavLink);
-    
-    console.log('✅ Global.js erfolgreich initialisiert für', detectBrowser());
-}
+    console.log('✅ Global.js erfolgreich initialisiert');
+});
 
 // ================= GLOBALE HELFER FUNKTIONEN =================
 function debugForceShowContent() {
@@ -347,52 +258,4 @@ function debugForceShowContent() {
     });
     const preloader = document.getElementById('preloader');
     if (preloader) preloader.style.display = 'none';
-}
-
-// Export für Module (falls benötigt)
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { debugForceShowContent };
-}
-// ================= PRELOADER ANPASSUNG FÜR GROSSE MONITORE =================
-function adjustPreloaderForScreen() {
-    const preloaderLine = document.getElementById('preloaderLine');
-    const typeTextElement = document.getElementById('type-text');
-    
-    if (!preloaderLine || !typeTextElement) return;
-    
-    // Bildschirmgröße erkennen
-    const screenWidth = window.innerWidth;
-    const screenHeight = window.innerHeight;
-    
-    // Für große Monitore (27" und größer)
-    if (screenWidth >= 1920 && screenHeight >= 1080) {
-        console.log('🖥️  Großer Monitor erkannt - passe Preloader an');
-        
-        // Größeren Abstand für Typewriter setzen
-        typeTextElement.parentElement.style.marginBottom = 'clamp(60px, 15vh, 150px)';
-        
-        // Linie weiter unten positionieren
-        preloaderLine.style.top = 'calc(60% + clamp(60px, 15vh, 150px))';
-        
-        // Längere Linie für große Bildschirme
-        preloaderLine.style.setProperty('--line-width', '400px');
-    } else {
-        // Standardwerte für kleinere Bildschirme
-        typeTextElement.parentElement.style.marginBottom = '';
-        preloaderLine.style.top = '';
-        preloaderLine.style.setProperty('--line-width', '300px');
-    }
-}
-
-// In der initWebsite Funktion aufrufen:
-function initWebsite() {
-    console.log('🚀 Global.js geladen - Starte konsistente Initialisierung');
-    
-    // Bildschirmanpassung sofort
-    adjustPreloaderForScreen();
-    
-    // Auch bei Resize anpassen
-    window.addEventListener('resize', adjustPreloaderForScreen);
-    
-    // ... restlicher Code bleibt gleich
 }
