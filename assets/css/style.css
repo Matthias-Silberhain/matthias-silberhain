@@ -48,7 +48,7 @@ body {
   transition: opacity 0.6s ease, visibility 0.6s ease, background-color 0.3s ease !important;
 }
 
-/* DARK MODE FÜR PRELOADER - WICHTIGE KORREKTUR */
+/* DARK MODE FÜR PRELOADER - KORRIGIERT */
 body.dark-mode #preloader {
   background: #1a1a1a !important;
 }
@@ -76,12 +76,13 @@ body.dark-mode #preloader {
   height: auto;
   margin-bottom: clamp(60px, 15vh, 150px);
   display: block;
-  filter: brightness(1.1);
-  animation: logoAppear 1s ease-out forwards;
+  filter: brightness(1.1) drop-shadow(0 0 10px rgba(192, 192, 192, 0.3));
+  animation: preloaderLogoPulse 3s infinite ease-in-out;
+  transform-origin: center;
 }
 
 body.dark-mode .preloader-logo {
-  filter: brightness(1.2) !important;
+  filter: brightness(1.2) drop-shadow(0 0 10px rgba(192, 192, 192, 0.2)) !important;
 }
 
 .preloader-text {
@@ -113,6 +114,140 @@ body.dark-mode .preloader-text::after {
 }
 
 /* ==========================================================================
+   PRELOADER SILBERNER STRICH - KORRIGIERT
+   ========================================================================== */
+.preloader-line {
+  position: absolute;
+  top: calc(70% + 40px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg,
+    transparent,
+    #c0c0c0,
+    #ffffff,
+    #c0c0c0,
+    transparent
+  );
+  opacity: 0;
+  border-radius: 2px;
+  box-shadow: 
+    0 0 10px rgba(192, 192, 192, 0.5),
+    0 0 20px rgba(192, 192, 192, 0.3),
+    inset 0 0 5px rgba(255, 255, 255, 0.1);
+  z-index: 10000;
+}
+
+body.dark-mode .preloader-line {
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(192, 192, 192, 0.8),
+    #ffffff,
+    rgba(192, 192, 192, 0.8),
+    transparent
+  );
+  box-shadow: 
+    0 0 10px rgba(192, 192, 192, 0.4),
+    0 0 20px rgba(192, 192, 192, 0.2),
+    inset 0 0 5px rgba(255, 255, 255, 0.1);
+}
+
+.preloader-line.active {
+  animation: 
+    lineExpand 2s cubic-bezier(0.4, 0, 0.2, 1) forwards,
+    lineGlow 2s ease-in-out;
+}
+
+/* ==========================================================================
+   ANIMATIONEN - KORRIGIERT
+   ========================================================================== */
+@keyframes preloaderLogoPulse {
+  0%, 100% { 
+    transform: scale(1); 
+    filter: brightness(1.1) drop-shadow(0 0 10px rgba(192, 192, 192, 0.3)); 
+  }
+  50% { 
+    transform: scale(1.05); 
+    filter: brightness(1.3) drop-shadow(0 0 20px rgba(192, 192, 192, 0.6)); 
+  }
+}
+
+@keyframes lineExpand {
+  0% { 
+    width: 0; 
+    opacity: 0; 
+  }
+  10% {
+    width: 20%;
+    opacity: 0.3;
+  }
+  50% { 
+    width: 80%; 
+    opacity: 0.8; 
+  }
+  100% { 
+    width: 100%; 
+    opacity: 0.6; 
+  }
+}
+
+@keyframes lineGlow {
+  0%, 100% { 
+    box-shadow: 
+      0 0 10px rgba(192, 192, 192, 0.5),
+      0 0 20px rgba(192, 192, 192, 0.3),
+      inset 0 0 5px rgba(255, 255, 255, 0.1); 
+  }
+  50% { 
+    box-shadow: 
+      0 0 20px rgba(192, 192, 192, 0.8),
+      0 0 40px rgba(192, 192, 192, 0.5),
+      inset 0 0 10px rgba(255, 255, 255, 0.3); 
+  }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes logoPulse {
+  0%, 100% { 
+    transform: scale(1); 
+    filter: brightness(1.1) drop-shadow(0 0 10px rgba(192, 192, 192, 0.2)); 
+  }
+  50% { 
+    transform: scale(1.02); 
+    filter: brightness(1.2) drop-shadow(0 0 15px rgba(192, 192, 192, 0.4)); 
+  }
+}
+
+@keyframes logoGlow {
+  0%, 100% { 
+    filter: brightness(1.1) drop-shadow(0 0 15px rgba(192, 192, 192, 0.3)); 
+  }
+  50% { 
+    filter: brightness(1.4) drop-shadow(0 0 25px rgba(192, 192, 192, 0.8)); 
+  }
+}
+
+@keyframes silverGlow {
+  0%, 100% { 
+    box-shadow: 
+      0 5px 20px rgba(192, 192, 192, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2),
+      0 0 10px rgba(192, 192, 192, 0.3); 
+  }
+  50% { 
+    box-shadow: 
+      0 5px 25px rgba(192, 192, 192, 0.8),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3),
+      0 0 20px rgba(192, 192, 192, 0.6); 
+  }
+}
+
+/* ==========================================================================
    HEADER
    ========================================================================== */
 .header {
@@ -135,7 +270,106 @@ body.dark-mode .header {
   height: auto;
   margin: 0 auto 25px;
   display: block;
-  filter: brightness(1.1);
+  filter: brightness(1.1) drop-shadow(0 0 10px rgba(192, 192, 192, 0.2));
+  animation: logoPulse 6s infinite ease-in-out;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logo:hover {
+  animation: logoGlow 1.5s infinite ease-in-out;
+  transform: scale(1.05);
+}
+
+body.dark-mode .logo {
+  filter: brightness(1.2) drop-shadow(0 0 10px rgba(192, 192, 192, 0.15)) !important;
+}
+
+/* ==========================================================================
+   DARK MODE STYLES - KORRIGIERT FÜR DUNKLES GRAU
+   ========================================================================== */
+body.dark-mode {
+  background-color: #121212 !important;
+  color: #e0e0e0;
+}
+
+body.dark-mode .inhalt {
+  background-color: rgba(30, 30, 30, 0.9);
+}
+
+body.dark-mode .header {
+  background-color: rgba(18, 18, 18, 0.95);
+}
+
+body.dark-mode .hauptnavigation {
+  background: rgba(25, 25, 25, 0.95);
+  border: 1px solid rgba(192, 192, 192, 0.25);
+}
+
+body.dark-mode .hauptnavigation a {
+  background: rgba(40, 40, 40, 0.8) !important;
+  color: rgba(242, 244, 247, 0.95) !important;
+}
+
+body.dark-mode .hauptnavigation a:hover {
+  background: linear-gradient(45deg, 
+    rgba(192, 192, 192, 0.2), 
+    rgba(192, 192, 192, 0.1)) !important;
+}
+
+body.dark-mode .burger span {
+  background-color: #e0e0e0;
+}
+
+body.dark-mode p {
+  color: #d0d5dc;
+}
+
+body.dark-mode h1 {
+  color: #f0f0f0;
+}
+
+body.dark-mode .footer {
+  background-color: rgba(18, 18, 18, 0.95);
+}
+
+body.dark-mode .footer p {
+  color: rgba(220, 220, 220, 0.8);
+}
+
+body.dark-mode .footer-links a {
+  color: rgba(220, 220, 220, 0.7);
+}
+
+body.dark-mode .footer-links a:hover {
+  color: #ffffff;
+}
+
+body.dark-mode .dark-mode-toggle {
+  border-color: rgba(220, 220, 220, 0.4) !important;
+  color: #e0e0e0 !important;
+}
+
+/* DARK MODE SOCIAL MEDIA */
+body.dark-mode .social-icon-wrapper {
+  background: rgba(25, 25, 25, 0.7);
+  border-color: rgba(220, 220, 220, 0.2);
+}
+
+body.dark-mode .social-icon {
+  fill: rgba(220, 220, 220, 0.7);
+}
+
+body.dark-mode .social-link {
+  color: rgba(220, 220, 220, 0.7);
+}
+
+body.dark-mode .social-link:hover .social-icon-wrapper {
+  background: rgba(192, 192, 192, 0.15);
+  border-color: rgba(220, 220, 220, 0.5);
+}
+
+body.dark-mode .social-link:hover .social-icon {
+  fill: #ffffff;
 }
 
 /* ==========================================================================
@@ -559,7 +793,7 @@ p {
   }
   
   body.dark-mode #preloader {
-    background: #1a1a1a !important;
+    background: #121212 !important;
   }
   
   .preloader-logo {
@@ -682,71 +916,6 @@ p {
     padding: 20px 12px;
     font-size: 0.85rem;
   }
-}
-
-/* ==========================================================================
-   DARK MODE STYLES - KORRIGIERT FÜR ALLE SEITEN
-   ========================================================================== */
-body.dark-mode {
-  background-color: #1a1a1a !important;
-  color: #e8e8e8;
-}
-
-body.dark-mode .inhalt {
-  background-color: rgba(30, 30, 30, 0.9);
-}
-
-body.dark-mode .header {
-  background-color: rgba(26, 26, 26, 0.9);
-}
-
-body.dark-mode .hauptnavigation {
-  background: rgba(12, 12, 12, 0.94);
-  border: 1px solid rgba(192, 192, 192, 0.3);
-}
-
-body.dark-mode .hauptnavigation a {
-  background: rgba(30, 30, 30, 0.8) !important;
-  color: rgba(242, 244, 247, 0.95) !important;
-}
-
-body.dark-mode .hauptnavigation a:hover {
-  background: linear-gradient(45deg, 
-    rgba(192, 192, 192, 0.25), 
-    rgba(192, 192, 192, 0.15)) !important;
-}
-
-body.dark-mode .burger span {
-  background-color: #e8e8e8;
-}
-
-body.dark-mode p {
-  color: #d0d5dc;
-}
-
-body.dark-mode h1 {
-  color: #f4f6fa;
-}
-
-body.dark-mode .footer {
-  background-color: rgba(26, 26, 26, 0.9);
-}
-
-body.dark-mode .footer p {
-  color: rgba(232, 232, 232, 0.8);
-}
-
-body.dark-mode .footer-links a {
-  color: rgba(232, 232, 232, 0.7);
-}
-
-body.dark-mode .footer-links a:hover {
-  color: #ffffff;
-}
-
-body.dark-mode .dark-mode-toggle {
-  border-color: rgba(220, 220, 220, 0.4) !important;
-  color: #e8e8e8 !important;
 }
 
 /* ==========================================================================
@@ -978,40 +1147,6 @@ body.dark-mode .dark-mode-toggle {
 }
 
 /* ==========================================================================
-   ANIMATIONEN
-   ========================================================================== */
-@keyframes logoAppear {
-  0% { 
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  100% { 
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
-@keyframes silverGlow {
-  0%, 100% { 
-    box-shadow: 
-      0 5px 20px rgba(192, 192, 192, 0.5),
-      inset 0 1px 0 rgba(255, 255, 255, 0.2),
-      0 0 10px rgba(192, 192, 192, 0.3); 
-  }
-  50% { 
-    box-shadow: 
-      0 5px 25px rgba(192, 192, 192, 0.8),
-      inset 0 1px 0 rgba(255, 255, 255, 0.3),
-      0 0 20px rgba(192, 192, 192, 0.6); 
-  }
-}
-
-/* ==========================================================================
    UTILITY CLASSES
    ========================================================================== */
 .sr-only {
@@ -1050,12 +1185,12 @@ body.dark-mode .dark-mode-toggle {
    ========================================================================== */
 @media (prefers-color-scheme: dark) {
   body:not(.light-mode) {
-    background-color: #1a1a1a;
-    color: #e8e8e8;
+    background-color: #121212;
+    color: #e0e0e0;
   }
   
   body:not(.light-mode) .preloader-logo {
-    filter: brightness(1.2);
+    filter: brightness(1.2) drop-shadow(0 0 10px rgba(192, 192, 192, 0.2));
   }
   
   body:not(.light-mode) .preloader-text {
