@@ -1,10 +1,10 @@
 /**
  * GLOBAL FUNKTIONEN - Matthias Silberhain Website
- * Version 4.1 - Fix für Preloader und Dark Mode
+ * Version 4.2 - Nur Preloader, kein Dark Mode
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 Global.js geladen - Starte optimierte Initialisierung');
+    console.log('🚀 Global.js geladen - Nur Preloader-Funktionen');
     
     // ================= VARIABLEN =================
     const preloader = document.getElementById('preloader');
@@ -14,13 +14,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // ================= INITIALE VORBEREITUNG =================
     console.log('📱 Gerät erkannt:', isMobile() ? 'Mobile' : 'Desktop');
-    
-    // Setze Dark Mode Status aus localStorage
-    const darkModeEnabled = localStorage.getItem('darkMode') === 'true';
-    if (darkModeEnabled) {
-        body.classList.add('dark-mode');
-        updateDarkModeToggle(true);
-    }
     
     // Verstecke nur die Inhaltselemente für die Animation
     const contentElements = document.querySelectorAll('.inhalt, .social-section, .footer');
@@ -164,26 +157,6 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('✅ Inhalt sichtbar gemacht');
     }
     
-    // ================= DARK MODE TOGGLE =================
-    const themeToggle = document.getElementById('themeToggle');
-    if (themeToggle) {
-        themeToggle.addEventListener('click', function() {
-            const isDarkMode = body.classList.toggle('dark-mode');
-            localStorage.setItem('darkMode', isDarkMode);
-            updateDarkModeToggle(isDarkMode);
-            console.log('🌙 Dark Mode:', isDarkMode ? 'aktiviert' : 'deaktiviert');
-        });
-    }
-    
-    function updateDarkModeToggle(isDarkMode) {
-        if (themeToggle) {
-            themeToggle.setAttribute('aria-pressed', isDarkMode.toString());
-            themeToggle.setAttribute('aria-label', 
-                isDarkMode ? 'Dark Mode deaktivieren' : 'Dark Mode aktivieren'
-            );
-        }
-    }
-    
     // ================= MOBILE DETECTION =================
     function isMobile() {
         return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
@@ -245,7 +218,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    console.log('✅ Global.js erfolgreich initialisiert');
+    console.log('✅ Global.js erfolgreich initialisiert (ohne Dark Mode)');
 });
 
 // ================= GLOBALE HELFER FUNKTIONEN =================
@@ -258,4 +231,22 @@ function debugForceShowContent() {
     });
     const preloader = document.getElementById('preloader');
     if (preloader) preloader.style.display = 'none';
+}
+
+// Global toggleMenu Funktion für Smooth Scrolling
+function toggleMenu() {
+    const burger = document.getElementById('burgerButton');
+    const nav = document.getElementById('mainNav');
+    const menuOverlay = document.querySelector('.menu-overlay');
+    
+    if (burger && nav) {
+        burger.classList.toggle('aktiv');
+        nav.classList.toggle('aktiv');
+        
+        if (menuOverlay) {
+            menuOverlay.classList.toggle('active');
+        }
+        
+        document.body.classList.toggle('menu-open');
+    }
 }
