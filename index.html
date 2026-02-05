@@ -8,6 +8,11 @@
     <meta name="description" content="Matthias Silberhain - Autor zu Macht, Verantwortung und gesellschaftlichen Mechanismen">
     <meta name="theme-color" content="#000000">
     
+    <!-- PWA Promotion Meta -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="manifest" href="https://m-silberhain-app.web.app/site.webmanifest">
+    
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,13 +28,260 @@
     <noscript>
         <style>
             #preloader { display: none !important; }
-            .inhalt, .social-section, .footer { 
+            .inhalt, .social-section, .footer, .pwa-promotion { 
                 opacity: 1 !important; 
                 transform: none !important; 
             }
             .burger { display: none !important; }
         </style>
     </noscript>
+    
+    <style>
+        /* PWA PROMOTION STYLES */
+        .pwa-promotion {
+            background: linear-gradient(135deg, 
+                rgba(0, 0, 0, 0.95) 0%, 
+                rgba(30, 30, 30, 0.95) 100%);
+            border: 1px solid rgba(192, 192, 192, 0.15);
+            border-radius: 12px;
+            padding: 35px 30px;
+            margin: 50px auto;
+            max-width: 900px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .pwa-promotion::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(192, 192, 192, 0.8) 50%, 
+                transparent 100%);
+        }
+        
+        .pwa-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            color: #c0c0c0;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            letter-spacing: 0.05em;
+        }
+        
+        .pwa-subtitle {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.3rem;
+            color: #a0a5ac;
+            margin-bottom: 25px;
+            line-height: 1.6;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .pwa-features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            margin: 30px 0 35px;
+        }
+        
+        .pwa-feature {
+            flex: 0 0 200px;
+            text-align: center;
+            padding: 20px 15px;
+            background: rgba(40, 40, 40, 0.7);
+            border-radius: 8px;
+            border: 1px solid rgba(192, 192, 192, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .pwa-feature:hover {
+            transform: translateY(-5px);
+            background: rgba(50, 50, 50, 0.9);
+            border-color: rgba(192, 192, 192, 0.3);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .feature-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            color: #c0c0c0;
+            margin-bottom: 8px;
+        }
+        
+        .feature-desc {
+            font-family: 'EB Garamond', serif;
+            font-size: 0.95rem;
+            color: #a0a5ac;
+            line-height: 1.4;
+        }
+        
+        .pwa-button-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .pwa-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #000000 0%, #222222 100%);
+            color: #c0c0c0;
+            border: 1px solid rgba(192, 192, 192, 0.3);
+            border-radius: 50px;
+            padding: 16px 32px;
+            font-family: 'Garamond', serif;
+            font-size: 1.2rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+            min-width: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pwa-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.1) 0%, 
+                rgba(255, 255, 255, 0.05) 50%, 
+                transparent 100%);
+            z-index: 1;
+        }
+        
+        .pwa-button:hover {
+            background: linear-gradient(135deg, #111111 0%, #333333 100%);
+            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+        }
+        
+        .pwa-button:active {
+            transform: translateY(-1px);
+        }
+        
+        .pwa-button.primary {
+            background: linear-gradient(135deg, #1a472a 0%, #2a573a 100%);
+            color: #e0e0e0;
+        }
+        
+        .pwa-button.primary:hover {
+            background: linear-gradient(135deg, #2a573a 0%, #3a674a 100%);
+        }
+        
+        .pwa-button.secondary {
+            background: linear-gradient(135deg, #3d2e1a 0%, #4d3e2a 100%);
+            color: #e0e0e0;
+        }
+        
+        .pwa-button.secondary:hover {
+            background: linear-gradient(135deg, #4d3e2a 0%, #5d4e3a 100%);
+        }
+        
+        .pwa-button-text {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .button-icon {
+            margin-right: 10px;
+            font-size: 1.3rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .pwa-notice {
+            margin-top: 25px;
+            padding: 15px;
+            background: rgba(30, 30, 30, 0.6);
+            border-radius: 8px;
+            border-left: 3px solid rgba(192, 192, 192, 0.5);
+            font-family: 'EB Garamond', serif;
+            font-size: 1rem;
+            color: #a0a5ac;
+            text-align: left;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .pwa-notice strong {
+            color: #c0c0c0;
+        }
+        
+        @media (max-width: 768px) {
+            .pwa-promotion {
+                padding: 25px 20px;
+                margin: 30px 15px;
+            }
+            
+            .pwa-title {
+                font-size: 1.8rem;
+            }
+            
+            .pwa-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .pwa-features {
+                gap: 15px;
+            }
+            
+            .pwa-feature {
+                flex: 0 0 45%;
+                padding: 15px 10px;
+            }
+            
+            .pwa-button {
+                padding: 14px 25px;
+                font-size: 1.1rem;
+                min-width: 180px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .pwa-feature {
+                flex: 0 0 100%;
+            }
+            
+            .pwa-button-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .pwa-button {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -87,6 +339,12 @@
         <a href="werke.html">Werke</a>
         <a href="termine.html">Termine</a>
         <a href="kontakt.html">Kontakt</a>
+        <!-- Neuer Link zur PWA -->
+        <a href="https://m-silberhain-app.web.app/" target="_blank" rel="noopener noreferrer" 
+           class="pwa-nav-link" style="color: #4CAF50; font-weight: bold;" 
+           title="Zur installierbaren App (neues Fenster)">
+           📱 App
+        </a>
     </nav>
 </header>
 
@@ -157,6 +415,67 @@
             </a>
         </div>
     </section>
+    
+    <!-- ================= PWA PROMOTION ================= -->
+    <section class="pwa-promotion" aria-labelledby="pwa-promo-title">
+        <h3 id="pwa-promo-title" class="pwa-title">🎯 Moderne App-Erfahrung</h3>
+        <p class="pwa-subtitle">
+            Entdecken Sie meine Werke in einer <strong>modernen, installierbaren Progressive Web App</strong>. 
+            Sie lädt blitzschnell, funktioniert offline und bietet eine native App-Erfahrung auf allen Geräten.
+        </p>
+        
+        <div class="pwa-features">
+            <div class="pwa-feature">
+                <span class="feature-icon">⚡</span>
+                <h4 class="feature-title">Blitzschnell</h4>
+                <p class="feature-desc">Optimierte Ladezeiten durch intelligentes Caching</p>
+            </div>
+            
+            <div class="pwa-feature">
+                <span class="feature-icon">📱</span>
+                <h4 class="feature-title">Installierbar</h4>
+                <p class="feature-desc">Direkt auf Home-Bildschirm wie eine native App</p>
+            </div>
+            
+            <div class="pwa-feature">
+                <span class="feature-icon">🌐</span>
+                <h4 class="feature-title">Offline-fähig</h4>
+                <p class="feature-desc">Funktioniert auch ohne Internetverbindung</p>
+            </div>
+            
+            <div class="pwa-feature">
+                <span class="feature-icon">🎨</span>
+                <h4 class="feature-title">Modernes Design</h4>
+                <p class="feature-desc">Dunkelmodus & responsive Layouts</p>
+            </div>
+        </div>
+        
+        <div class="pwa-button-container">
+            <a href="https://m-silberhain-app.web.app/" 
+               class="pwa-button primary" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               title="Zur modernen App (öffnet in neuem Tab)">
+                <span class="button-icon">🚀</span>
+                <span class="pwa-button-text">Zur modernen App wechseln</span>
+            </a>
+            
+            <a href="https://m-silberhain-app.web.app/" 
+               class="pwa-button secondary" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               title="App installieren (öffnet in neuem Tab)">
+                <span class="button-icon">📲</span>
+                <span class="pwa-button-text">App installieren</span>
+            </a>
+        </div>
+        
+        <div class="pwa-notice">
+            <strong>Hinweis:</strong> Die moderne App-Version ist über <code>https://m-silberhain-app.web.app/</code> erreichbar. 
+            Sie können die App auf Ihrem Smartphone oder Desktop installieren – sie erscheint dann wie eine native App 
+            und bietet zusätzliche Funktionen wie Offline-Nutzung und Push-Benachrichtigungen (optional).
+        </div>
+    </section>
 </main>
 
 <!-- ================= SOCIAL MEDIA ================= -->
@@ -197,7 +516,7 @@
         <a href="https://t.me/matthiassilberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Telegram (Öffnet in neuem Tab)" role="listitem">
             <div class="social-icon-wrapper">
                 <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                    <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.697.064-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                    <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 a12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.697.064-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
                 </svg>
             </div>
             <span class="social-name">Telegram</span>
@@ -243,6 +562,10 @@
     <div class="footer-links">
         <a href="impressum.html">Impressum</a>
         <a href="datenschutz.html">Datenschutz</a>
+        <a href="https://m-silberhain-app.web.app/" target="_blank" rel="noopener noreferrer" 
+           style="color: #4CAF50; font-weight: bold;">
+           📱 Moderne App-Version
+        </a>
     </div>
     <p>© <span id="currentYear"></span> Matthias Silberhain. Alle Rechte vorbehalten.</p>
 </footer>
@@ -252,6 +575,56 @@
     // Entferne no-js Klasse wenn JS aktiv ist
     document.documentElement.classList.remove('no-js');
     document.documentElement.classList.add('js');
+    
+    // Einfache PWA-Detection und Hinweis
+    document.addEventListener('DOMContentLoaded', function() {
+        // Zeige PWA Promotion nach 5 Sekunden
+        setTimeout(function() {
+            const pwaPromo = document.querySelector('.pwa-promotion');
+            if (pwaPromo) {
+                pwaPromo.style.transition = 'opacity 0.5s ease';
+                pwaPromo.style.opacity = '1';
+                
+                // Pulsierende Animation für die Buttons
+                const pwaButtons = document.querySelectorAll('.pwa-button');
+                pwaButtons.forEach(btn => {
+                    btn.style.animation = 'pulse 2s infinite';
+                });
+            }
+        }, 5000);
+        
+        // Aktuelles Jahr im Footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // PWA Install Detection
+        if ('serviceWorker' in navigator && window.matchMedia('(display-mode: standalone)').matches) {
+            console.log('✅ App ist bereits installiert');
+            // Optional: Anzeige anpassen wenn bereits installiert
+            const pwaTitle = document.getElementById('pwa-promo-title');
+            if (pwaTitle) {
+                pwaTitle.innerHTML = '✅ App bereits installiert';
+            }
+        }
+    });
+    
+    // Pulsierende Animation CSS
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+        
+        .pwa-button {
+            animation: pulse 3s infinite;
+        }
+        
+        .pwa-button:hover {
+            animation: none;
+        }
+    `;
+    document.head.appendChild(style);
 </script>
 
 <!-- WICHTIG: Korrekte Reihenfolge der Skripte -->
