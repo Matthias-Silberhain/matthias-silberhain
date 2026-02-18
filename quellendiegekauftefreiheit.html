@@ -1,1 +1,780 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Quellen: Die gekaufte Freiheit | Matthias Silberhain</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Quellenverzeichnis zum Werk 'Die gekaufte Freiheit - Wie wir Kontrolle mit Zustimmung verwechseln' von Matthias Silberhain.">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/logo.png" type="image/png">
+    
+    <style>
+        /* ==========================================================================
+           QUELLEN SEITE STYLES - Im selben Stil wie die Vorlage
+           ========================================================================== */
+        
+        .quellen-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header-Bereich mit Cover */
+        .quellen-header {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 40px;
+            align-items: start;
+            margin-bottom: 50px;
+            padding: 30px;
+            background: linear-gradient(135deg, 
+                rgba(10, 10, 10, 0.4) 0%, 
+                rgba(30, 30, 30, 0.6) 100%);
+            border-radius: 8px;
+            border: 1px solid rgba(200, 205, 215, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .quellen-header {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 20px;
+            }
+        }
+        
+        .quellen-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(200, 205, 215, 0.3) 50%, 
+                transparent 100%);
+        }
+        
+        .buch-cover-quelle {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(200, 205, 215, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .buch-cover-quelle:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+        }
+        
+        .quellen-header-text h1 {
+            font-family: "Cinzel", serif;
+            color: #e4e6ea;
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            letter-spacing: 0.05em;
+            text-shadow: 0 0 15px rgba(200, 200, 200, 0.2);
+        }
+        
+        .quellen-header-text .untertitel {
+            color: #b0b5bc;
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            font-style: italic;
+            border-bottom: 1px solid rgba(200, 205, 215, 0.2);
+            padding-bottom: 15px;
+        }
+        
+        .quellen-header-text p {
+            color: #b0b5bc;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+        
+        /* Hinweis-Kasten im Stil der anderen Seiten */
+        .hinweis-kasten {
+            background: rgba(200, 205, 215, 0.05);
+            border-left: 3px solid rgba(200, 205, 215, 0.3);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 4px 4px 0;
+            color: #9da2a8;
+            font-size: 0.95rem;
+        }
+        
+        .hinweis-kasten strong {
+            color: #d6d9de;
+        }
+        
+        /* Quellen Kategorien */
+        .quellen-abschnitt {
+            margin: 50px 0;
+        }
+        
+        .quelle-kategorie {
+            background: rgba(10, 10, 10, 0.3);
+            border: 1px solid rgba(200, 205, 215, 0.15);
+            border-radius: 6px;
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .quelle-kategorie:hover {
+            background: rgba(10, 10, 10, 0.4);
+            border-color: rgba(200, 205, 215, 0.25);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .quelle-kategorie h3 {
+            font-family: "Cinzel", serif;
+            color: #e4e6ea;
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            letter-spacing: 0.05em;
+        }
+        
+        .kategorie-untertitel {
+            color: #9da2a8;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            font-style: italic;
+            border-bottom: 1px solid rgba(200, 205, 215, 0.1);
+            padding-bottom: 10px;
+        }
+        
+        /* Quellen-Liste */
+        .quellen-liste {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .quellen-liste li {
+            margin-bottom: 25px;
+            padding-left: 0;
+            position: relative;
+            color: #b0b5bc;
+            line-height: 1.6;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(200, 205, 215, 0.1);
+        }
+        
+        .quellen-liste li:last-child {
+            border-bottom: none;
+        }
+        
+        .quellen-liste strong {
+            color: #e4e6ea;
+            font-weight: 500;
+            display: block;
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+        
+        .quellen-liste a {
+            color: #d6d9de;
+            text-decoration: none;
+            border-bottom: 1px dotted rgba(200, 200, 200, 0.3);
+            transition: all 0.3s ease;
+            word-break: break-all;
+        }
+        
+        .quellen-liste a:hover {
+            color: #ffffff;
+            border-bottom: 1px solid rgba(200, 200, 200, 0.6);
+        }
+        
+        /* Hinweis-Bereich */
+        .quellen-hinweis {
+            background: rgba(200, 205, 215, 0.05);
+            border: 1px solid rgba(200, 205, 215, 0.2);
+            border-radius: 6px;
+            padding: 30px;
+            margin: 40px 0;
+        }
+        
+        .quellen-hinweis p {
+            color: #b0b5bc;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .quellen-hinweis strong {
+            color: #d6d9de;
+        }
+        
+        /* DARK MODE STYLES */
+        body.dark-mode .quelle-kategorie {
+            background: rgba(30, 30, 30, 0.5);
+            border-color: rgba(220, 225, 235, 0.2);
+        }
+        
+        body.dark-mode .quelle-kategorie:hover {
+            background: rgba(30, 30, 30, 0.7);
+            border-color: rgba(220, 225, 235, 0.3);
+        }
+        
+        body.dark-mode .quellen-header {
+            background: linear-gradient(135deg, 
+                rgba(30, 30, 30, 0.5) 0%, 
+                rgba(50, 50, 50, 0.7) 100%);
+            border-color: rgba(220, 225, 235, 0.2);
+        }
+        
+        body.dark-mode .hinweis-kasten {
+            background: rgba(220, 225, 235, 0.05);
+            border-left-color: rgba(220, 225, 235, 0.4);
+        }
+        
+        body.dark-mode .quellen-hinweis {
+            background: rgba(220, 225, 235, 0.05);
+            border-color: rgba(220, 225, 235, 0.25);
+        }
+        
+        /* Responsive Anpassungen */
+        @media screen and (max-width: 768px) {
+            .quellen-container {
+                padding: 15px;
+            }
+            
+            .quellen-header-text h1 {
+                font-size: 1.8rem;
+            }
+            
+            .quelle-kategorie {
+                padding: 20px;
+            }
+            
+            .quelle-kategorie h3 {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            .quellen-header-text h1 {
+                font-size: 1.6rem;
+            }
+            
+            .quellen-header {
+                padding: 15px;
+            }
+            
+            .quelle-kategorie {
+                padding: 15px;
+            }
+            
+            .quellen-liste li {
+                margin-bottom: 20px;
+                padding-bottom: 10px;
+            }
+        }
+    </style>
+</head>
 
+<body>
+
+<!-- Mobile Menu Overlay -->
+<div class="menu-overlay"></div>
+
+<!-- ================= HEADER ================= -->
+<header class="header">
+    <img src="assets/images/logo.png" alt="Matthias Silberhain Logo" class="logo">
+    
+    <!-- Dark Mode Toggle Button -->
+    <button id="themeToggle" class="dark-mode-toggle" aria-label="Dark Mode umschalten" title="Dark Mode umschalten">
+        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+    </button>
+
+    <div class="burger" id="burgerButton" title="Menü öffnen/schließen">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <nav class="hauptnavigation" id="mainNav">
+        <a href="index.html">Startseite</a>
+        <a href="ueber-mich.html">Über mich</a>
+        <a href="werke.html">Werke</a>
+        <a href="quellen.html">Quellen</a>
+        <a href="termine.html">Termine</a>
+        <a href="kontakt.html">Kontakt</a>
+    </nav>
+</header>
+
+<div class="lichtkante"></div>
+
+<!-- ================= HAUPTINHALT ================= -->
+<main class="inhalt">
+    <section class="quellen-container">
+        
+        <!-- ================= BUCH: DIE GEKAUFTE FREIHEIT ================= -->
+        <div class="quellen-header">
+            <div class="buch-cover-container">
+                <img src="assets/images/diegekauftefreiheit.png" 
+                     alt="Buchcover: Die gekaufte Freiheit" 
+                     class="buch-cover-quelle">
+            </div>        
+            <div class="quellen-header-text">
+                <h1>DIE GEKAUFTE FREIHEIT</h1>
+                <p class="untertitel">Wie wir Kontrolle mit Zustimmung verwechseln</p>
+                
+                <p>Diese Seite versammelt die zentralen Quellen und wissenschaftlichen Ressourcen, die der Analyse in diesem Werk zugrunde liegen. Die Untersuchung moderner Machtmechanismen, digitaler Kontrolle und der Transformation von Freiheit im 21. Jahrhundert stützt sich auf offizielle Dokumente, internationale Forschungsliteratur, journalistische Quellen sowie eigene Beobachtungen.</p>
+                
+                <div class="hinweis-kasten">
+                    <strong>Hinweis zur Nutzung:</strong> Die hier aufgeführten Quellen umfassen offizielle Dokumente nationaler und internationaler Institutionen, wissenschaftliche Sekundärliteratur, journalistische Beiträge sowie digitale Datensätze, die die Analyse des Werkes belegen und nachprüfbar machen.
+                </div>
+            </div>
+        </div>
+
+        <!-- QUELLENINHALT -->
+        <div class="quellen-abschnitt">
+            
+            <!-- I. Primärquellen und offizielle Dokumente -->
+            <div class="quelle-kategorie">
+                <h3>I. Primärquellen und offizielle Dokumente</h3>
+                <ul class="quellen-liste">
+                    <li>
+                        <strong>Bundesministerium des Innern und für Heimat (BMI): Bericht zur digitalen Souveränität Deutschlands, Berlin 2023</strong><br>
+                        <a href="https://www.bmi.bund.de/SharedDocs/downloads/DE/publikationen/themen/it-digitalpolitik/digitale-souveraenitaet.html" target="_blank" rel="noopener noreferrer">
+                            https://www.bmi.bund.de/...
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <strong>Europäische Kommission: Digital Services Act (DSA) Regulation (EU) 2022/2065, Brüssel 2022</strong><br>
+                        <a href="https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32022R2065" target="_blank" rel="noopener noreferrer">
+                            https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32022R2065
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <strong>Europäische Kommission: Digital Markets Act (DMA) Regulation (EU) 2022/1925, Brüssel 2022</strong><br>
+                        <a href="https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32022R1925" target="_blank" rel="noopener noreferrer">
+                            https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32022R1925
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <strong>Statistisches Bundesamt (Destatis): Informationsgesellschaft in Deutschland 2024 – Daten zur Internetnutzung, Wiesbaden 2024</strong><br>
+                        <a href="https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Einkommen-Konsum-Lebensbedingungen/IT-Nutzung/_inhalt.html" target="_blank" rel="noopener noreferrer">
+                            https://www.destatis.de/...
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <strong>Bundesamt für Sicherheit in der Informationstechnik (BSI): Lagebericht zur IT-Sicherheit in Deutschland 2024, Bonn 2024</strong><br>
+                        <a href="https://www.bsi.bund.de/DE/Service-Navi/Publikationen/Lagebericht/lagebericht_node.html" target="_blank" rel="noopener noreferrer">
+                            https://www.bsi.bund.de/...
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <strong>Deutscher Bundestag: Protokolle der Enquete-Kommission Künstliche Intelligenz, Berlin 2020–2023</strong><br>
+                        <a href="https://www.bundestag.de/ausschuesse/weitere_gremien/enquete_ki" target="_blank" rel="noopener noreferrer">
+                            https://www.bundestag.de/...
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <strong>Vereinte Nationen (UN): Human Development Report 2023/24 – Freedom in the Digital Age, New York 2024</strong><br>
+                        <a href="https://hdr.undp.org/content/human-development-report-2023-24" target="_blank" rel="noopener noreferrer">
+                            https://hdr.undp.org/...
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <strong>UNESCO: Media and Information Literacy: A Human Rights-Based Approach, Paris 2023</strong><br>
+                        <a href="https://www.unesco.org/en/media-information-literacy" target="_blank" rel="noopener noreferrer">
+                            https://www.unesco.org/en/media-information-literacy
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- II. Sekundärquellen, Analysen und Publikationen -->
+            <div class="quelle-kategorie">
+                <h3>II. Sekundärquellen, Analysen und Publikationen</h3>
+                <ul class="quellen-liste">
+                    <li>
+                        <strong>Byung-Chul Han: Psychopolitik. Neoliberalismus und die neuen Machttechniken. Fischer Verlag, Frankfurt am Main 2014</strong><br>
+                        <a href="https://www.fischerverlage.de/buch/byung-chul-han-psychopolitik-9783100022035" target="_blank" rel="noopener noreferrer">
+                            https://www.fischerverlage.de/...
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <strong>Shoshana Zuboff: Das Zeitalter des Überwachungskapitalismus. Campus Verlag, Frankfurt 2018</strong><br>
+                        <a href="https://www.campus.de/buecher-campus-verlag/wissenschaft/soziologie/das_zeitalter_des_ueberwachungskapitalismus-16244.html" target="_blank" rel="noopener noreferrer">
+                            https://www.campus.de/...
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <strong>Yuval Noah Harari: Homo Deus – Eine Geschichte von Morgen. C. H. Beck, München 2017</strong><br>
+                        <a href="https://www.chbeck.de/harari-homo-deus/product/15450" target="_blank" rel="noopener noreferrer">
+                            https://www.chbeck.de/...
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <strong>Richard David Precht: Künstliche Intelligenz und der Sinn des Lebens. Goldmann Verlag, München 2021</strong><br>
+                        <a href="https://www.penguin.de/Paperback/Kuenstliche-Intelligenz-und-der-Sinn-des-Lebens/Richard-David-Precht/Goldmann/e590367.rhd" target="_blank" rel="noopener noreferrer">
+                            https://www.penguin.de/...
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <strong>Evgeny Morozov: Smarte neue Welt. Digitale Technik und die Freiheit des Menschen. Blessing Verlag, München 2013</strong><br>
+                        <a href="https://www.randomhouse.de/Buch/Smarte-neue-Welt/Evgeny-Morozov/Manjul/e384582.rhd" target="_blank" rel="noopener noreferrer">
+                            https://www.randomhouse.de/...
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <strong>Sascha Lobo: Reality Check. Wie wir uns vor der nächsten digitalen Krise schützen. Kiepenheuer & Witsch, Köln 2022</strong><br>
+                        <a href="https://www.kiwi-verlag.de/buch/sascha-lobo-reality-check-9783462001673" target="_blank" rel="noopener noreferrer">
+                            https://www.kiwi-verlag.de/...
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <strong>Jaron Lanier: Zehn Gründe, warum du deine Social-Media-Accounts sofort löschen musst. Hoffmann und Campe, Hamburg 2018</strong><br>
+                        <a href="https://www.hoffmann-und-campe.de/buch-info/zehn-gruende-warum-du-deine-social-media-accounts-sofort-loeschen-musst/" target="_blank" rel="noopener noreferrer">
+                            https://www.hoffmann-und-campe.de/...
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <strong>Christoph Kucklick: Die granulare Gesellschaft. Ullstein, Berlin 2014</strong><br>
+                        <a href="https://www.ullstein.de/werke/die-granulare-gesellschaft/hardcover/9783548375656" target="_blank" rel="noopener noreferrer">
+                            https://www.ullstein.de/...
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <strong>Frank Schirrmacher: Ego. Das Spiel des Lebens. Blessing Verlag, München 2013</strong><br>
+                        <a href="https://www.randomhouse.de/Buch/Ego/Frank-Schirrmacher/Blessing/e384570.rhd" target="_blank" rel="noopener noreferrer">
+                            https://www.randomhouse.de/...
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- III. Wissenschaftliche und journalistische Quellen -->
+            <div class="quelle-kategorie">
+                <h3>III. Wissenschaftliche und journalistische Quellen</h3>
+                <ul class="quellen-liste">
+                    <li>
+                        <strong>Der Spiegel, Dossier "Digitale Gesellschaft – Freiheit und Kontrolle", Ausgaben 45–49/2023</strong><br>
+                        <a href="https://www.spiegel.de/thema/digitale_gesellschaft/" target="_blank" rel="noopener noreferrer">
+                            https://www.spiegel.de/thema/digitale_gesellschaft/
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <strong>Süddeutsche Zeitung, Serie "Die unsichtbare Macht der Algorithmen", 2023</strong><br>
+                        <a href="https://www.sueddeutsche.de/thema/Algorithmen" target="_blank" rel="noopener noreferrer">
+                            https://www.sueddeutsche.de/thema/Algorithmen
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <strong>The Guardian: Big Tech and Democracy Series, London 2022–2024</strong><br>
+                        <a href="https://www.theguardian.com/technology/series/big-tech-and-democracy" target="_blank" rel="noopener noreferrer">
+                            https://www.theguardian.com/...
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <strong>MIT Technology Review: AI Ethics and Freedom Reports, Cambridge, MA, 2023</strong><br>
+                        <a href="https://www.technologyreview.com/topic/artificial-intelligence/" target="_blank" rel="noopener noreferrer">
+                            https://www.technologyreview.com/...
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <strong>Harvard Business Review: The Cost of Digital Dependence, 2024</strong><br>
+                        <a href="https://hbr.org/2024" target="_blank" rel="noopener noreferrer">
+                            https://hbr.org/2024
+                        </a> (Jahrgangsarchiv)
+                    </li>
+                    
+                    <li>
+                        <strong>Netzpolitik.org: Dossiers zu Datenschutz, Überwachung und Plattformregulierung, Berlin 2022–2025</strong><br>
+                        <a href="https://netzpolitik.org/" target="_blank" rel="noopener noreferrer">
+                            https://netzpolitik.org/
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <strong>Zeit Online: Serie "Der Preis der Bequemlichkeit", 2024</strong><br>
+                        <a href="https://www.zeit.de/digital" target="_blank" rel="noopener noreferrer">
+                            https://www.zeit.de/digital
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- IV. Gesellschaftliche und historische Bezugswerke -->
+            <div class="quelle-kategorie">
+                <h3>IV. Gesellschaftliche und historische Bezugswerke</h3>
+                <ul class="quellen-liste">
+                    <li>
+                        <strong>George Orwell: 1984. Rowohlt Verlag, Reinbek 1983 (Original 1949)</strong><br>
+                        <a href="https://www.rowohlt.de/buch/george-orwell-1984-9783499155257" target="_blank" rel="noopener noreferrer">
+                            https://www.rowohlt.de/...
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <strong>Aldous Huxley: Schöne neue Welt. Fischer Verlag, Frankfurt 1998 (Original 1932)</strong><br>
+                        <a href="https://www.fischerverlage.de/buch/aldous-huxley-schoene-neue-welt-9783596701157" target="_blank" rel="noopener noreferrer">
+                            https://www.fischerverlage.de/...
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <strong>Hannah Arendt: Vita activa oder Vom tätigen Leben. Piper Verlag, München 2002 (Original 1958)</strong><br>
+                        <a href="https://www.piper.de/buecher/vita-activa-oder-vom-taetigen-leben-isbn-978-3-492-23623-0" target="_blank" rel="noopener noreferrer">
+                            https://www.piper.de/...
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <strong>Michel Foucault: Überwachen und Strafen. Suhrkamp Verlag, Frankfurt 1977</strong><br>
+                        <a href="https://www.suhrkamp.de/buch/michel-foucault-ueberwachen-und-strafen-t-9783518387715" target="_blank" rel="noopener noreferrer">
+                            https://www.suhrkamp.de/...
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <strong>Karl Polanyi: The Great Transformation. Suhrkamp Verlag, Frankfurt 1995 (Original 1944)</strong><br>
+                        <a href="https://www.suhrkamp.de/buch/karl-polanyi-the-great-transformation-t-9783518260605" target="_blank" rel="noopener noreferrer">
+                            https://www.suhrkamp.de/...
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- V. Digitale Quellen und empirische Datensätze -->
+            <div class="quelle-kategorie">
+                <h3>V. Digitale Quellen und empirische Datensätze</h3>
+                <ul class="quellen-liste">
+                    <li>
+                        <strong>Eurostat Database: Information and Communication Technology Statistics 2024</strong><br>
+                        <a href="https://ec.europa.eu/eurostat/web/digital-economy-and-society" target="_blank" rel="noopener noreferrer">
+                            https://ec.europa.eu/eurostat/web/digital-economy-and-society
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <strong>Pew Research Center: Internet & Technology Global Attitudes Report 2023</strong><br>
+                        <a href="https://www.pewresearch.org/internet/" target="_blank" rel="noopener noreferrer">
+                            https://www.pewresearch.org/internet/
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <strong>Google Transparency Report: Government Requests for User Data 2024</strong><br>
+                        <a href="https://transparencyreport.google.com/" target="_blank" rel="noopener noreferrer">
+                            https://transparencyreport.google.com/
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <strong>Meta Transparency Center: Content Moderation and Data Access Reports 2023/24</strong><br>
+                        <a href="https://transparency.fb.com/" target="_blank" rel="noopener noreferrer">
+                            https://transparency.fb.com/
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <strong>Our World in Data: Digital Divide and Information Freedom Dataset 2024</strong><br>
+                        <a href="https://ourworldindata.org/technological-change" target="_blank" rel="noopener noreferrer">
+                            https://ourworldindata.org/technological-change
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <strong>OpenAI: AI Policy and Societal Impact Report 2024</strong><br>
+                        <a href="https://openai.com/global-affairs/" target="_blank" rel="noopener noreferrer">
+                            https://openai.com/global-affairs/
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <strong>Freedom House: Freedom on the Net 2024 – Global Report</strong><br>
+                        <a href="https://freedomhouse.org/report/freedom-net" target="_blank" rel="noopener noreferrer">
+                            https://freedomhouse.org/report/freedom-net
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <strong>Amnesty International: The Cost of Connection – Surveillance, Power, and Digital Rights, London 2023</strong><br>
+                        <a href="https://www.amnesty.org/en/latest/research/" target="_blank" rel="noopener noreferrer">
+                            https://www.amnesty.org/en/latest/research/
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- VI. Eigene Recherchen und Beobachtungen -->
+            <div class="quelle-kategorie">
+                <h3>VI. Eigene Recherchen und Beobachtungen</h3>
+                <ul class="quellen-liste">
+                    <li>
+                        <strong>Interviews und anonyme Zeitzeugenberichte (2024–2025)</strong>
+                    </li>
+                    
+                    <li>
+                        <strong>Eigene Auswertung öffentlicher Daten zu Mediennutzung, Plattformabhängigkeit und digitaler Identität (2024)</strong>
+                    </li>
+                    
+                    <li>
+                        <strong>Dokumentierte Social-Media-Beobachtungen aus öffentlichen Kanälen und Diskursen zwischen 2023 und 2025</strong>
+                    </li>
+                    
+                    <li>
+                        <strong>Selbst verfasste Reflexionen und Essays zur politischen, technologischen und sozialen Freiheit der Gegenwart</strong>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- ================= ALLGEMEINER HINWEIS ================= -->
+        <div class="quellen-hinweis">
+            <p><strong>Hinweis zur Nutzung:</strong> Die Inhalte dieses Buches basieren auf offiziellen Dokumenten, wissenschaftlicher Forschung, journalistischen Quellen sowie eigenen Beobachtungen und Analysen. Ein Schwerpunkt liegt auf der Untersuchung digitaler Machtmechanismen und der Transformation von Freiheit im 21. Jahrhundert. Alle genannten Quellen sind öffentlich zugänglich und dienen der Nachprüfbarkeit.</p>
+            <p><strong>Hinweis zu externen Links:</strong> Diese Website enthält Verlinkungen zu externen Webseiten Dritter. Ich habe keinen Einfluss auf deren Inhalte und übernehme keine Haftung. Sollten Ihnen problematische Inhalte auffallen, bitte ich um einen Hinweis. Die Verfügbarkeit und Inhalte können sich jederzeit ändern.</p>
+        </div>
+    </section>
+</main>
+
+<!-- ================= SOCIAL MEDIA ================= -->
+<section class="social-section">
+    <h3 class="social-title">Folgen Sie den Gedanken</h3>
+    <div class="social-grid">
+        <!-- Snapchat -->
+        <a href="https://snapchat.com/t/8wVZ1Wpu" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Snapchat">
+            <div class="social-icon-wrapper">
+                <svg class="social-icon" viewBox="0 0 24 24">
+                    <path d="M5.83 2H18.2c1.14 0 2.07.93 2.07 2.07v15.86c0 1.14-.93 2.07-2.07 2.07H5.83A2.07 2.07 0 0 1 3.76 19.9V4.07C3.76 2.93 4.69 2 5.83 2zm6.44 16.27c1.33 0 2.41-1.08 2.41-2.41 0-.44-.12-.85-.32-1.21.23-.05.47-.08.72-.08 1.33 0 2.41 1.08 2.41 2.41 0 1.33-1.08 2.41-2.41 2.41-1.33 0-2.41-1.08-2.41-2.41 0-.44.12-.85.32-1.21-.23.05-.47.08-.72.08-1.33 0-2.41-1.08-2.41-2.41 0-1.33 1.08-2.41 2.41-2.41.44 0 .85.12 1.21.32.05-.23.08-.47.08-.72 0-1.33-1.08-2.41-2.41-2.41-1.33 0-2.41 1.08-2.41 2.41 0 1.33 1.08 2.41 2.41 2.41.44 0 .85-.12 1.21-.32-.05.23-.08.47-.08.72 0 1.33 1.08 2.41 2.41 2.41z"/>
+                </svg>
+            </div>
+            <span class="social-name">Snapchat</span>
+        </a>
+        
+        <!-- Clapper -->
+        <a href="https://clapperapp.com/M.Silberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Clapper">
+            <div class="social-icon-wrapper">
+                <svg class="social-icon" viewBox="0 0 24 24">
+                    <path d="M19.5 3H4.5C3.67 3 3 3.67 3 4.5v15C3 20.33 3.67 21 4.5 21h15c.83 0 1.5-.67 1.5-1.5v-15C21 3.67 20.33 3 19.5 3zM10 17H6v-2h4v2zm0-4H6v-2h4v2zm0-4H6V7h4v2zm8 8h-6v-2h6v2zm0-4h-6v-2h6v2zm0-4h-6V7h6v2z"/>
+                </svg>
+            </div>
+            <span class="social-name">Clapper</span>
+        </a>
+        
+        <!-- TikTok -->
+        <a href="https://www.tiktok.com/@matthias.silberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="TikTok">
+            <div class="social-icon-wrapper">
+                <svg class="social-icon" viewBox="0 0 24 24">
+                    <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.10-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                </svg>
+            </div>
+            <span class="social-name">TikTok</span>
+        </a>
+        
+        <!-- Telegram -->
+        <a href="https://t.me/matthiassilberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Telegram">
+            <div class="social-icon-wrapper">
+                <svg class="social-icon" viewBox="0 0 24 24">
+                    <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.697.064-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                </svg>
+            </div>
+            <span class="social-name">Telegram</span>
+        </a>
+        
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/matthiassilberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+            <div class="social-icon-wrapper">
+                <svg class="social-icon" viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"/>
+                </svg>
+            </div>
+            <span class="social-name">Instagram</span>
+        </a>
+        
+        <!-- Facebook -->
+        <a href="https://www.facebook.com/share/17ZahbpKWN/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">
+            <div class="social-icon-wrapper">
+                <svg class="social-icon" viewBox="0 0 24 24">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+            </div>
+            <span class="social-name">Facebook</span>
+        </a>
+        
+        <!-- YouTube -->
+        <a href="https://youtube.com/@matthiassilberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube">
+            <div class="social-icon-wrapper">
+                <svg class="social-icon" viewBox="0 0 24 24">
+                    <path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.506 0-9.396.501A3.007 3.007 0 00.528 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/>
+                </svg>
+            </div>
+            <span class="social-name">YouTube</span>
+        </a>
+    </div>
+</section>
+<div class="lichtkante"></div>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+    <div class="footer-links">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+    </div>
+    <p>© <span id="currentYear"></span> Matthias Silberhain</p>
+</footer>
+
+<script>
+    // Entferne no-js Klasse wenn JS aktiv ist
+    document.documentElement.classList.remove('no-js');
+    document.documentElement.classList.add('js');
+    
+    // Aktuelles Jahr im Footer
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+</script>
+
+<!-- WICHTIG: Korrekte Reihenfolge der Skripte -->
+<script src="assets/js/dark-mode.js"></script>
+<script src="assets/js/global.js"></script>
+<script src="assets/js/menu.js"></script>
+
+</body>
+</html>
