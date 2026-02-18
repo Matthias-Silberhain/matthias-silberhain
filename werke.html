@@ -239,334 +239,9 @@
       background: rgba(200, 200, 200, 0.5);
     }
     
-    /* ================= KOSTENLOSES BUCH STYLES ================= */
-    .kostenloses-buch {
-      margin: 80px 0;
-      padding: 50px 30px;
-      background: rgba(15, 15, 15, 0.7);
-      border: 1px solid rgba(200, 205, 215, 0.15);
-      border-radius: 10px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
+    /* ================= KOSTENLOSES BUCH STYLES (ENTFERNT) ================= */
     
-    .kostenloses-buch::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, rgba(200, 205, 215, 0) 0%, rgba(200, 205, 215, 0.8) 50%, rgba(200, 205, 215, 0) 100%);
-    }
-    
-    .kostenloses-buch a:hover {
-      background: rgba(200, 205, 215, 0.2);
-      border-color: rgba(200, 205, 215, 0.6);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-    }
-    
-    .kostenloses-buch a:active {
-      transform: translateY(-1px);
-    }
-    
-    /* ================= AKTUELLES WERK - KORRIGIERT & ZENTRIERT ================= */
-    .aktuelles-werk {
-      text-align: center;
-      margin: 80px 0 60px 0;
-      padding: 40px 20px;
-      border-top: 1px solid rgba(200, 205, 215, 0.2);
-      border-bottom: 1px solid rgba(200, 205, 215, 0.2);
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .aktuelles-werk h2 {
-      font-family: "Cinzel", serif;
-      color: #e4e6ea;
-      font-size: 1.8rem;
-      margin-bottom: 10px;
-      letter-spacing: 0.05em;
-      text-align: center;
-      width: 100%;
-    }
-
-    .aktuelles-subtitle {
-      color: #9da2a8;
-      font-size: 1.1rem;
-      margin-bottom: 30px;
-      text-align: center;
-      width: 100%;
-      font-style: italic;
-    }
-
-    .hinweis-box {
-      background: rgba(200, 205, 215, 0.05);
-      border: 1px solid rgba(200, 205, 215, 0.15);
-      border-radius: 6px;
-      padding: 18px 25px;
-      color: #b0b5bc;
-      font-size: 1rem;
-      text-align: center;
-      max-width: 600px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      line-height: 1.5;
-    }
-
-    .hinweis-box svg {
-      flex-shrink: 0;
-    }
-
-    .hinweis-box span {
-      text-align: center;
-      display: inline-block;
-    }
-    
-    /* ================= AKTUELLES PROJEKT STYLES ================= */
-    .aktuelles-projekt {
-      margin: 80px 0;
-      padding: 50px 40px;
-      background: rgba(10, 10, 10, 0.7);
-      border: 1px solid rgba(200, 205, 215, 0.15);
-      border-radius: 10px;
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .aktuelles-projekt::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, 
-        rgba(200, 205, 215, 0) 0%, 
-        rgba(200, 205, 215, 0.8) 50%, 
-        rgba(200, 205, 215, 0) 100%);
-    }
-    
-    .projekt-header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-    
-    .projekt-title {
-      font-family: "Cinzel", serif;
-      color: #e4e6ea;
-      font-size: 2.2rem;
-      margin-bottom: 10px;
-      letter-spacing: 0.06em;
-      text-shadow: 0 0 15px rgba(200, 200, 200, 0.2);
-    }
-    
-    .projekt-subtitle {
-      font-family: "EB Garamond", serif;
-      color: #b0b5bc;
-      font-size: 1.4rem;
-      font-style: italic;
-      margin-bottom: 30px;
-    }
-    
-    .projekt-content {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 40px;
-      align-items: flex-start;
-      margin-bottom: 40px;
-    }
-    
-    .projekt-cover-container {
-      flex: 1;
-      min-width: 280px;
-      text-align: center;
-    }
-    
-    .projekt-cover-rahmen {
-      display: inline-block;
-      padding: 15px;
-      background: rgba(20, 20, 20, 0.9);
-      border: 1px solid rgba(200, 205, 215, 0.2);
-      border-radius: 6px;
-      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5);
-      transition: all 0.3s ease;
-      position: sticky;
-      top: 20px;
-    }
-    
-    .projekt-cover-rahmen:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 45px rgba(0, 0, 0, 0.6);
-    }
-    
-    .projekt-cover {
-      width: 280px;
-      height: auto;
-      display: block;
-      border-radius: 4px;
-      border: 1px solid rgba(200, 205, 215, 0.1);
-    }
-    
-    .projekt-info {
-      flex: 2;
-      min-width: 300px;
-    }
-    
-    .projekt-beschreibung {
-      color: #b0b5bc;
-      font-size: 1.15rem;
-      line-height: 1.8;
-    }
-    
-    .projekt-beschreibung p {
-      margin-bottom: 20px;
-      text-indent: 0;
-    }
-    
-    .projekt-beschreibung strong {
-      color: #e4e6ea;
-      font-weight: 600;
-    }
-    
-    .projekt-details {
-      background: rgba(200, 205, 215, 0.05);
-      border: 1px solid rgba(200, 205, 215, 0.1);
-      border-radius: 8px;
-      padding: 25px;
-      margin-top: 30px;
-    }
-    
-    .projekt-details-title {
-      font-family: "Cinzel", serif;
-      color: #e4e6ea;
-      font-size: 1.1rem;
-      margin-bottom: 15px;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-    
-    .projekt-details-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    
-    .projekt-details-list li {
-      margin-bottom: 12px;
-      color: #b0b5bc;
-      font-size: 1rem;
-      display: flex;
-      align-items: flex-start;
-      line-height: 1.5;
-    }
-    
-    .projekt-details-list li::before {
-      content: '→';
-      color: rgba(200, 205, 215, 0.6);
-      margin-right: 10px;
-      font-weight: bold;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-    
-    .projekt-status {
-      text-align: center;
-      padding: 25px;
-      background: rgba(200, 205, 215, 0.03);
-      border: 1px dashed rgba(200, 205, 215, 0.2);
-      border-radius: 8px;
-      margin-top: 40px;
-    }
-    
-    .status-title {
-      font-family: "Cinzel", serif;
-      color: #e4e6ea;
-      font-size: 1.1rem;
-      margin-bottom: 15px;
-      letter-spacing: 0.05em;
-    }
-    
-    .status-zeitplan {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 20px;
-      flex-wrap: wrap;
-      margin-bottom: 20px;
-    }
-    
-    .status-zeitplan-item {
-      text-align: center;
-      padding: 15px 25px;
-      background: rgba(200, 205, 215, 0.05);
-      border: 1px solid rgba(200, 205, 215, 0.15);
-      border-radius: 6px;
-      min-width: 150px;
-    }
-    
-    .status-label {
-      color: #9da2a8;
-      font-size: 0.9rem;
-      margin-bottom: 8px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    
-    .status-value {
-      font-family: "Cinzel", serif;
-      color: #ffffff;
-      font-size: 1.5rem;
-      font-weight: 600;
-    }
-    
-    .status-fortschritt {
-      margin-top: 20px;
-    }
-    
-    .fortschritt-bar {
-      height: 6px;
-      background: rgba(200, 205, 215, 0.1);
-      border-radius: 3px;
-      overflow: hidden;
-      margin-bottom: 10px;
-    }
-    
-    .fortschritt-fill {
-      height: 100%;
-      background: linear-gradient(90deg, rgba(200, 205, 215, 0.5), rgba(200, 205, 215, 0.8));
-      width: 65%;
-      border-radius: 3px;
-      position: relative;
-      animation: fortschrittPulse 2s infinite ease-in-out;
-    }
-    
-    @keyframes fortschrittPulse {
-      0% { opacity: 0.9; }
-      50% { opacity: 1; }
-      100% { opacity: 0.9; }
-    }
-    
-    .fortschritt-text {
-      color: #b0b5bc;
-      font-size: 0.95rem;
-      display: flex;
-      justify-content: space-between;
-    }
-    
-    .fortschritt-prozent {
-      color: #ffffff;
-      font-weight: 600;
-    }
+    /* ================= AKTUELLES PROJEKT (ENTFERNT) ================= */
     
     /* ================= BEWERTUNGSSYSTEM STYLES ================= */
     .bewertungssystem {
@@ -1155,7 +830,7 @@
     
     <!-- BILDKARUSSELL FÜR ALLE BÜCHER -->
     <div class="karussell-section">
-      <h2 class="karussell-title">Alle Werke stehen kurz vor Veröffentlichung</h2>
+      <h2 class="karussell-title">Alle Werke im Überblick</h2>
       <div class="karussell-container" id="buchKarussell">
         <button class="karussell-button prev" aria-label="Vorheriges Buch">‹</button>
         
@@ -1201,7 +876,7 @@
           
           <!-- Slide 4: Die gekaufte Freiheit -->
           <div class="karussell-slide">
-            <a href="#kostenloses-buch" class="karussell-link">
+            <a href="diegekauftefreiheit.html" class="karussell-link">
               <img src="assets/images/diegekauftefreiheit.png" 
                    alt="Die gekaufte Freiheit" 
                    class="karussell-image">
@@ -1211,352 +886,30 @@
               </div>
             </a>
           </div>
+          
+          <!-- Slide 5: Das Schweigen der Macht -->
+          <div class="karussell-slide">
+            <a href="dasschweigendermacht.html" class="karussell-link">
+              <img src="assets/images/dasschweigendermacht.png" 
+                   alt="Das Schweigen der Macht" 
+                   class="karussell-image">
+              <div class="karussell-overlay">
+                <h3 class="karussell-buchtitel">Das Schweigen der Macht</h3>
+                <p class="karussell-beschreibung">Die dunkle Geburt des Reiches</p>
+              </div>
+            </a>
+          </div>
         </div>
         
         <button class="karussell-button next" aria-label="Nächstes Buch">›</button>
         
-        <!-- Indikatoren -->
+        <!-- Indikatoren (jetzt 5) -->
         <div class="karussell-indicators">
           <span class="karussell-indicator active" data-slide="0"></span>
           <span class="karussell-indicator" data-slide="1"></span>
           <span class="karussell-indicator" data-slide="2"></span>
           <span class="karussell-indicator" data-slide="3"></span>
-        </div>
-      </div>
-    </div>
-    
-    <!-- ================= KOSTENLOSES BUCH ================= -->
-    <div class="kostenloses-buch" id="kostenloses-buch">
-      <h2 style="font-family: 'Cinzel', serif; color: #e4e6ea; font-size: 2.2rem; margin-bottom: 10px; letter-spacing: 0.06em; text-shadow: 0 0 15px rgba(200, 200, 200, 0.2);">
-        KOSTENLOSES BUCH
-      </h2>
-      
-      <p style="color: #9da2a8; font-size: 1.1rem; margin-bottom: 40px; font-style: italic;">
-        Eine nüchterne Analyse moderner Machtmechanismen
-      </p>
-      
-      <div style="display: flex; flex-wrap: wrap; gap: 40px; align-items: center; justify-content: center; margin-bottom: 40px;">
-        
-        <div style="flex: 0 0 280px; max-width: 280px;">
-          <div style="padding: 15px; background: rgba(20, 20, 20, 0.9); border: 1px solid rgba(200, 205, 215, 0.2); border-radius: 6px; box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5);">
-            <img src="assets/images/diegekauftefreiheit.png" 
-                 alt="Die gekaufte Freiheit - Wie wir Kontrolle mit Zustimmung verwechseln" 
-                 style="width: 100%; height: auto; display: block; border-radius: 4px; border: 1px solid rgba(200, 205, 215, 0.1);">
-          </div>
-        </div>
-        
-        <div style="flex: 1; min-width: 300px; text-align: left; max-width: 600px;">
-          <h3 style="font-family: 'Cinzel', serif; color: #e4e6ea; font-size: 1.8rem; margin-bottom: 10px; letter-spacing: 0.05em;">
-            DIE GEKAUFTE FREIHEIT
-          </h3>
-          <p style="color: #b0b5bc; font-size: 1.3rem; font-style: italic; margin-bottom: 25px;">
-            Wie wir Kontrolle mit Zustimmung verwechseln
-          </p>
-          
-          <div style="color: #b0b5bc; font-size: 1.1rem; line-height: 1.7;">
-            <p style="margin-bottom: 20px;">
-              <strong>Die gekaufte Freiheit, Wie wir Kontrolle mit Zustimmung verwechseln, ist kein Meinungsbuch und kein politisches Pamphlet, sondern eine nüchterne Analyse moderner Machtmechanismen.</strong> Das Buch zeigt, wie Freiheit im 21. Jahrhundert nicht durch offenen Zwang verloren geht, sondern durch Bequemlichkeit, Angst, psychologische Steuerung und digitale Systeme, denen wir freiwillig zustimmen.
-            </p>
-            
-            <p style="margin-bottom: 20px;">
-              Im Zentrum steht die Frage, <strong>warum Menschen sich als frei wahrnehmen, obwohl ihre Entscheidungen zunehmend vorgeformt werden</strong> durch Medien, Narrative, Algorithmen, ökonomische Abhängigkeiten und soziale Kontrolle. Der Text legt offen, wie Wahrnehmung manipuliert, Wahrheit relativiert und Emotionen gezielt eingesetzt werden, um Zustimmung zu erzeugen, ohne dass Zwang notwendig ist.
-            </p>
-            
-            <div style="background: rgba(200, 205, 215, 0.05); border: 1px solid rgba(200, 205, 215, 0.1); border-radius: 8px; padding: 25px; margin: 25px 0;">
-              <h4 style="font-family: 'Cinzel', serif; color: #e4e6ea; font-size: 1.1rem; margin-bottom: 15px; letter-spacing: 0.05em; text-transform: uppercase;">
-                Kernanalyse des Werkes
-              </h4>
-              <ul style="list-style: none; padding: 0; margin: 0;">
-                <li style="margin-bottom: 12px; color: #b0b5bc; padding-left: 25px; position: relative;">
-                  <span style="position: absolute; left: 0; color: rgba(200, 205, 215, 0.6);">→</span>
-                  <strong>Verbindung von Gesellschaftsanalyse, Psychologie und Medientheorie</strong> zu einem geschlossenen Bild moderner Kontrolle
-                </li>
-                <li style="margin-bottom: 12px; color: #b0b5bc; padding-left: 25px; position: relative;">
-                  <span style="position: absolute; left: 0; color: rgba(200, 205, 215, 0.6);">→</span>
-                  Beschreibung, <strong>warum Macht heute so stabil ist</strong>: weil sie internalisiert wurde
-                </li>
-                <li style="margin-bottom: 12px; color: #b0b5bc; padding-left: 25px; position: relative;">
-                  <span style="position: absolute; left: 0; color: rgba(200, 205, 215, 0.6);">→</span>
-                  <strong>Anpassung wird belohnt</strong>, Abweichung moralisch sanktioniert, Selbstzensur zur Normalität
-                </li>
-                <li style="margin-bottom: 12px; color: #b0b5bc; padding-left: 25px; position: relative;">
-                  <span style="position: absolute; left: 0; color: rgba(200, 205, 215, 0.6);">→</span>
-                  <strong>Keine einfachen Lösungen, keine Feindbilder, keine Ideologie</strong> – stattdessen kritische Selbstreflexion
-                </li>
-                <li style="color: #b0b5bc; padding-left: 25px; position: relative;">
-                  <span style="position: absolute; left: 0; color: rgba(200, 205, 215, 0.6);">→</span>
-                  Freiheit als <strong>aktive Haltung und innerer Widerstand</strong> gegen unsichtbare Steuerung
-                </li>
-              </ul>
-            </div>
-            
-            <p style="margin-bottom: 20px;">
-              Das Buch verbindet gesellschaftliche Analyse, Psychologie und Medientheorie zu einem geschlossenen Bild moderner Kontrolle. Es beschreibt nicht nur, wie Macht heute funktioniert, sondern warum sie so stabil ist: <strong>weil sie internalisiert wurde</strong>. Anpassung wird belohnt, Abweichung moralisch sanktioniert, Selbstzensur zur Normalität.
-            </p>
-            
-            <div style="background: rgba(200, 205, 215, 0.03); border-left: 4px solid rgba(200, 205, 215, 0.4); padding: 25px; margin: 30px 0;">
-              <p style="font-size: 1.1rem; font-style: italic; color: #d6d9de; margin: 0; line-height: 1.6;">
-                „Die gekaufte Freiheit" richtet sich an Leserinnen und Leser, die bereit sind, unbequeme Zusammenhänge auszuhalten. Es bietet keine einfachen Lösungen, keine Feindbilder und keine Ideologie. Stattdessen fordert es kritische Selbstreflexion, bewusste Wahrnehmung und geistige Eigenständigkeit. Freiheit erscheint hier nicht als Zustand, sondern als aktive Haltung, als innerer Widerstand gegen unsichtbare Steuerung.
-              </p>
-            </div>
-            
-            <p style="font-style: italic; color: #d6d9de; margin: 25px 0; padding: 20px; background: rgba(10, 10, 10, 0.6); border-radius: 6px; border: 1px solid rgba(200, 205, 215, 0.1);">
-              <strong>Dieses Buch ist ein Spiegel, kein Trost.</strong> Es will nicht beruhigen, sondern klären.
-            </p>
-            
-            <div style="background: rgba(200, 205, 215, 0.05); padding: 20px; border-radius: 8px; margin: 30px 0; border: 1px solid rgba(200, 205, 215, 0.1);">
-              <h4 style="font-family: 'Cinzel', serif; color: #e4e6ea; font-size: 1.1rem; margin-bottom: 15px; letter-spacing: 0.05em;">
-                Für wen ist dieses Buch?
-              </h4>
-              <p style="color: #b0b5bc; margin: 0; line-height: 1.6;">
-                Für Leser, die bereit sind, komplexe Zusammenhänge zu durchdenken. Für jene, die hinter die Oberfläche von Freiheitsversprechen blicken wollen. Für alle, die verstehen möchten, wie Kontrolle in modernen Gesellschaften funktioniert – nicht als Verschwörungstheorie, sondern als strukturelle Realität.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div style="text-align: center; margin-top: 30px;">
-        <a href="assets/leseproben/diegekauftefreiheit.pdf" 
-           download="diegekauftefreiheit.pdf"
-           style="display: inline-block; padding: 18px 50px; background: rgba(200, 205, 215, 0.1); border: 1px solid rgba(200, 205, 215, 0.3); color: #e4e6ea; border-radius: 4px; font-family: 'Cinzel', serif; letter-spacing: 0.08em; font-size: 1.1rem; cursor: pointer; text-decoration: none; transition: all 0.3s ease; position: relative;">
-          
-          <svg width="20" height="20" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 12px;">
-            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="currentColor"/>
-          </svg>
-          
-          KOSTENLOSES BUCH HERUNTERLADEN (PDF)
-        </a>
-        
-        <p style="color: #9da2a8; font-size: 0.9rem; margin-top: 15px;">
-          PDF-Datei · Direkter Download ohne Registrierung · Wissenschaftliche Analyse
-        </p>
-      </div>
-      
-      <div style="margin-top: 40px; padding-top: 30px; border-top: 1px solid rgba(200, 205, 215, 0.1);">
-        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px;">
-          <div style="text-align: center; padding: 15px; min-width: 150px;">
-            <div style="font-size: 2.5rem; color: rgba(200, 205, 215, 0.8); margin-bottom: 10px;">🔍</div>
-            <div style="color: #e4e6ea; font-weight: 500; margin-bottom: 5px;">Nüchterne Analyse</div>
-            <div style="color: #9da2a8; font-size: 0.9rem;">Kein Pamphlet, sondern wissenschaftliche Betrachtung</div>
-          </div>
-          
-          <div style="text-align: center; padding: 15px; min-width: 150px;">
-            <div style="font-size: 2.5rem; color: rgba(200, 205, 215, 0.8); margin-bottom: 10px;">🧠</div>
-            <div style="color: #e4e6ea; font-weight: 500; margin-bottom: 5px;">Psychologische Tiefe</div>
-            <div style="color: #9da2a8; font-size: 0.9rem;">Analyse von Selbsttäuschung und Internaliserung</div>
-          </div>
-          
-          <div style="text-align: center; padding: 15px; min-width: 150px;">
-            <div style="font-size: 2.5rem; color: rgba(200, 205, 215, 0.8); margin-bottom: 10px;">⚡</div>
-            <div style="color: #e4e6ea; font-weight: 500; margin-bottom: 5px;">Aktuelle Relevanz</div>
-            <div style="color: #9da2a8; font-size: 0.9rem;">Digitale Systeme und moderne Kontrollmechanismen</div>
-          </div>
-          
-          <div style="text-align: center; padding: 15px; min-width: 150px;">
-            <div style="font-size: 2.5rem; color: rgba(200, 205, 215, 0.8); margin-bottom: 10px;">🔓</div>
-            <div style="color: #e4e6ea; font-weight: 500; margin-bottom: 5px;">100% Kostenlos</div>
-            <div style="color: #9da2a8; font-size: 0.9rem;">Wissenschaft als Gemeingut - keine Kommerzialisierung</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- AKTUELLES WERK - KORRIGIERT & ZENTRIERT -->
-    <div class="aktuelles-werk" id="aktuelles-werk">
-      <h2>Mein aktuelles Projekt</h2>
-      <p class="aktuelles-subtitle">Ein Werk in Arbeit</p>
-      
-      <div class="hinweis-box">
-        <svg width="20" height="20" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 10px; color: #c0c0c0;">
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="currentColor"/>
-        </svg>
-        <span>Das nächste Werk befindet sich in Arbeit, mehr Informationen unten</span>
-      </div>
-    </div>
-    
-    <!-- AKTUELLES PROJEKT -->
-    <div class="aktuelles-projekt" id="aktuelles-projekt">
-      <div class="projekt-header">
-        <h2 class="projekt-title">Das Schweigen der Macht</h2>
-        <p class="projekt-subtitle">Die dunkle Geburt des Reiches</p>
-      </div>
-      
-      <div class="projekt-content">
-        <div class="projekt-cover-container">
-          <div class="projekt-cover-rahmen">
-            <img src="assets/images/dasschweigendermacht.png" 
-                 alt="Das Schweigen der Macht - Die dunkle Geburt des Reiches" 
-                 class="projekt-cover">
-          </div>
-        </div>
-        
-        <div class="projekt-info">
-          <div class="projekt-beschreibung">
-            <p><strong>Das Schweigen der Macht, Die dunkle Geburt des Reiches</strong> erzählt die Geschichte eines stillen Krieges. Nicht mit Waffen, sondern mit Druckerschwärze, Telegrammen und Akten. Zwischen 1850 und der Reichsgründung 1871 verfolgt das Buch, wie die Presse in Preußen und den deutschen Staaten zum Schlachtfeld zwischen Macht und Öffentlichkeit wurde.</p>
-            
-            <p>Es ist die Geschichte davon, wie eine scheinbar moderne Ordnung entstand, die Freiheit versprach und zugleich systematisch dafür sorgte, dass kritische Stimmen verstummten.</p>
-            
-            <div class="zitat-seriös" style="margin: 30px 0; background: rgba(200,205,215,0.03);">
-              <p style="font-size: 1.1rem; font-style: italic; color: #d6d9de;">
-                "Die Presse ist dabei nicht nur Thema, sondern Perspektive. Durch Zeitungsartikel, Leitkommentare, verbotene Texte und beschlagnahmte Drucke wird sichtbar, wie sich die Sprache der Öffentlichkeit veränderte."
-              </p>
-            </div>
-            
-            <h3 style="font-family: 'Cinzel', serif; color: #e4e6ea; font-size: 1.3rem; margin: 35px 0 20px 0; letter-spacing: 0.03em;">Der inhaltliche Kern</h3>
-            
-            <p><strong>Im Zentrum steht die Frage:</strong> Wie frei war die Presse wirklich, wenn die Verfassung sie garantierte, der Staat sie aber im Alltag kontrollierte?</p>
-            
-            <div style="background: rgba(200,205,215,0.05); padding: 25px; border-radius: 6px; border-left: 4px solid rgba(200,205,215,0.3); margin: 25px 0;">
-              <p style="margin: 0 0 15px 0; color: #d6d9de; font-weight: 500;">Das Buch zeigt unter anderem:</p>
-              <ul style="margin: 0; padding-left: 20px; color: #b0b5bc;">
-                <li style="margin-bottom: 10px;">wie Artikel 110 der preußischen Verfassung die Pressefreiheit versprach, während Zensur, Druckverbote und Verhaftungen Alltag blieben</li>
-                <li style="margin-bottom: 10px;">wie Redaktionen überwacht, Druckereien geschlossen und Zeitungen wirtschaftlich zermürbt wurden</li>
-                <li style="margin-bottom: 10px;">wie Blätter wie der Preußische Herold zu Symbolen eines gefährlichen Balanceakts zwischen Mut und Anpassung wurden</li>
-                <li style="margin-bottom: 10px;">wie oppositionelle Gruppen den Telegraphen nutzten, um der staatlichen Informationsmacht etwas entgegenzusetzen</li>
-                <li style="margin-bottom: 0;">wie sich bis 1871 eine Presselandschaft formte, die offiziell frei war, faktisch aber gelernt hatte, sich selbst zu zensieren</li>
-              </ul>
-            </div>
-            
-            <h3 style="font-family: 'Cinzel', serif; color: #e4e6ea; font-size: 1.3rem; margin: 35px 0 20px 0; letter-spacing: 0.03em;">Die Analysen</h3>
-            
-            <div style="display: grid; grid-template-columns: 1fr; gap: 20px; margin: 25px 0;">
-              <div style="background: rgba(200,205,215,0.03); padding: 20px; border-radius: 6px; border: 1px solid rgba(200,205,215,0.1);">
-                <p style="margin: 0; color: #b0b5bc;">
-                  <strong style="color: #e4e6ea;">System statt Zensur:</strong> Wie aus offener Vorzensur ein System indirekter Kontrolle wurde. Wie Gesetze, Konzessionen, Kautionen und Strafandrohungen Redaktionen lenkten, ohne ständig eingreifen zu müssen.
-                </p>
-              </div>
-              <div style="background: rgba(200,205,215,0.03); padding: 20px; border-radius: 6px; border: 1px solid rgba(200,205,215,0.1);">
-                <p style="margin: 0; color: #b0b5bc;">
-                  <strong style="color: #e4e6ea;">Wirtschaftlicher Druck:</strong> Wie wirtschaftlicher Druck oft wirksamer war als offene Verbote. Wie Journalisten lernten, zwischen den Zeilen zu schreiben und wie sich aus Angst vor Schließung eine Kultur der Selbstzensur entwickelte.
-                </p>
-              </div>
-              <div style="background: rgba(200,205,215,0.03); padding: 20px; border-radius: 6px; border: 1px solid rgba(200,205,215,0.1);">
-                <p style="margin: 0; color: #b0b5bc;">
-                  <strong style="color: #e4e6ea;">Vom Kritiker zum Teil der Ordnung:</strong> Wie die Presse so von einem Ort der Kritik zu einem Teil der Ordnung wurde. Dabei wird gezeigt, dass nicht der einzelne Zensor entscheidend war, sondern das Zusammenspiel aus Recht, Verwaltung und Routine.
-                </p>
-              </div>
-            </div>
-            
-            <h3 style="font-family: 'Cinzel', serif; color: #e4e6ea; font-size: 1.3rem; margin: 35px 0 20px 0; letter-spacing: 0.03em;">Quellen und Fakten</h3>
-            
-            <div class="projekt-details">
-              <div class="projekt-details-title">Belegbasis und Quellen</div>
-              <ul class="projekt-details-list">
-                <li>Verfassungsartikel und Pressegesetze der Zeit (1850-1871)</li>
-                <li>Polizeiverordnungen und Ministerialerlasse zur Überwachung der Druckmedien</li>
-                <li>Archivierte Telegramme und Verwaltungsabschriften</li>
-                <li>Zeitgenössische Zeitungen, sowohl regierungstreue als auch oppositionelle</li>
-                <li>Dokumentierte Schließungen von Druckereien und Verfahren gegen Redakteure</li>
-                <li>Parlamentsprotokolle und Debatten zur Pressefreiheit</li>
-                <li>Moderne historische Studien und digitalisierte Archive</li>
-              </ul>
-              <p style="color: #9da2a8; font-size: 0.95rem; margin-top: 15px; font-style: italic;">
-                <strong>Alle zentralen Zitate und Vorgänge sind belegbar.</strong> Unsicherheiten werden kenntlich gemacht. Es ist keine literarische Erfindung, sondern eine Rekonstruktion.
-              </p>
-            </div>
-            
-            <h3 style="font-family: 'Cinzel', serif; color: #e4e6ea; font-size: 1.3rem; margin: 35px 0 20px 0; letter-spacing: 0.03em;">Der Zeitraum 1850 bis 1871 als roter Faden</h3>
-            
-            <div style="background: rgba(10, 10, 10, 0.8); border: 1px solid rgba(200,205,215,0.1); border-radius: 8px; padding: 25px; margin: 20px 0;">
-              <div style="display: flex; flex-wrap: wrap; gap: 25px;">
-                <div style="flex: 1; min-width: 250px;">
-                  <div style="background: rgba(200,205,215,0.05); padding: 20px; border-radius: 6px; height: 100%;">
-                    <div style="font-family: 'Cinzel', serif; color: #e4e6ea; margin-bottom: 10px; font-size: 1.1rem;">Nach 1850</div>
-                    <div style="color: #b0b5bc; font-size: 0.95rem; line-height: 1.6;">
-                      Die Verfassung verspricht Freiheit, doch der Staat lernt, die Presse mit Verordnungen, Polizei und Akten zu lenken.
-                    </div>
-                  </div>
-                </div>
-                <div style="flex: 1; min-width: 250px;">
-                  <div style="background: rgba(200,205,215,0.05); padding: 20px; border-radius: 6px; height: 100%;">
-                    <div style="font-family: 'Cinzel', serif; color: #e4e6ea; margin-bottom: 10px; font-size: 1.1rem;">Die 1860er Jahre</div>
-                    <div style="color: #b0b5bc; font-size: 0.95rem; line-height: 1.6;">
-                      Liberalisierung nach außen, aber wachsende indirekte Kontrolle. Redaktionen passen sich an, um zu überleben.
-                    </div>
-                  </div>
-                </div>
-                <div style="flex: 1; min-width: 250px;">
-                  <div style="background: rgba(200,205,215,0.05); padding: 20px; border-radius: 6px; height: 100%;">
-                    <div style="font-family: 'Cinzel', serif; color: #e4e6ea; margin-bottom: 10px; font-size: 1.1rem;">Bis 1871</div>
-                    <div style="color: #b0b5bc; font-size: 0.95rem; line-height: 1.6;">
-                      Mit der Reichsgründung entsteht eine scheinbar freie Presse in einem geeinten Staat, die jedoch bereits tief an Loyalität und Vorsicht gewöhnt ist.
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <p style="color: #9da2a8; font-size: 0.95rem; margin-top: 20px; text-align: center; font-style: italic;">
-                So wird deutlich, dass die Reichsgründung nicht nur ein politischer, sondern auch ein medialer Wendepunkt war.
-              </p>
-            </div>
-            
-            <div class="zitat-seriös" style="margin: 40px 0; background: rgba(200,205,215,0.03); border-left: 4px solid rgba(200,205,215,0.5);">
-              <p style="font-size: 1.1rem; font-style: italic; color: #d6d9de; margin: 0;">
-                "Dieses Buch erzählt nicht nur, was geschah, sondern wie es wirkte: wie ein verbotener Artikel ganze Redaktionen einschüchtern konnte, wie ein einziger Aktenvermerk Karrieren beendete, wie Zeitungen zur Bühne eines stillen Machtkampfes wurden."
-              </p>
-            </div>
-            
-            <div style="background: rgba(200,205,215,0.05); padding: 25px; border-radius: 8px; margin: 35px 0; border: 1px solid rgba(200,205,215,0.15);">
-              <h3 style="font-family: 'Cinzel', serif; color: #e4e6ea; font-size: 1.2rem; margin: 0 0 15px 0; letter-spacing: 0.03em; text-align: center;">Warum dieses Buch fesselt</h3>
-              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-                <div style="text-align: center; padding: 15px;">
-                  <div style="font-size: 2rem; color: rgba(200,205,215,0.8); margin-bottom: 10px;">⚖️</div>
-                  <div style="color: #e4e6ea; font-weight: 500; margin-bottom: 5px;">Pressefreiheit im Alltag</div>
-                  <div style="color: #9da2a8; font-size: 0.9rem;">Zeigt, dass Pressefreiheit nicht nur im Gesetz existiert, sondern im Alltag verteidigt werden muss</div>
-                </div>
-                <div style="text-align: center; padding: 15px;">
-                  <div style="font-size: 2rem; color: rgba(200,205,215,0.8); margin-bottom: 10px;">🤫</div>
-                  <div style="color: #e4e6ea; font-weight: 500; margin-bottom: 5px;">Leise Macht</div>
-                  <div style="color: #9da2a8; font-size: 0.9rem;">Macht tritt nicht immer laut auf, sondern wird oft leise organisiert</div>
-                </div>
-                <div style="text-align: center; padding: 15px;">
-                  <div style="font-size: 2rem; color: rgba(200,205,215,0.8); margin-bottom: 10px;">📜</div>
-                  <div style="color: #e4e6ea; font-weight: 500; margin-bottom: 5px;">Schrittweise Entwicklung</div>
-                  <div style="color: #9da2a8; font-size: 0.9rem;">Schweigen entsteht nicht plötzlich, sondern wird Schritt für Schritt gelernt</div>
-                </div>
-              </div>
-            </div>
-            
-            <div style="text-align: center; margin-top: 40px; padding-top: 30px; border-top: 1px solid rgba(200,205,215,0.1);">
-              <p style="color: #e4e6ea; font-size: 1.2rem; font-family: 'Cinzel', serif; letter-spacing: 0.03em; margin-bottom: 15px;">
-                Das Schweigen der Macht
-              </p>
-              <p style="color: #b0b5bc; font-size: 1rem; max-width: 700px; margin: 0 auto; line-height: 1.6;">
-                ist die Geschichte eines unsichtbaren Krieges um die Wahrheit. Zwischen 1850 und 1871 zeigt das Buch, wie die Presse im entstehenden deutschen Reich zum Schlachtfeld wurde und wie aus versprochener Freiheit eine Kultur der Anpassung entstand. Anhand von Gesetzen, Akten, Telegrammen und Zeitungsartikeln rekonstruiert es, wie Kontrolle funktionierte, ohne offen als Zensur aufzutreten und warum dieses Erbe bis heute nachwirkt.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="projekt-status">
-        <div class="status-title">Projektstatus</div>
-        
-        <div class="status-zeitplan">
-          <div class="status-zeitplan-item">
-            <div class="status-label">Gestartet</div>
-            <div class="status-value">Oktober 2023</div>
-          </div>
-          
-          <div class="status-zeitplan-item">
-            <div class="status-label">Geplante Fertigstellung</div>
-            <div class="status-value">Februar 2026</div>
-          </div>
-          
-          <div class="status-zeitplan-item">
-            <div class="status-label">Veröffentlichung</div>
-            <div class="status-value">Herbst 2026</div>
-          </div>
-        </div>
-        
-        <div class="status-fortschritt">
-          <div class="fortschritt-bar">
-            <div class="fortschritt-fill"></div>
-          </div>
-          <div class="fortschritt-text">
-            <span>Aktueller Fortschritt</span>
-            <span class="fortschritt-prozent">65%</span>
-          </div>
+          <span class="karussell-indicator" data-slide="4"></span>
         </div>
       </div>
     </div>
@@ -1595,6 +948,11 @@
           <div class="buchauswahl-item" data-buch="diegekauftefreiheit">
             <img src="assets/images/diegekauftefreiheit.png" alt="Die gekaufte Freiheit" class="buchauswahl-cover">
             <div class="buchauswahl-name">Die gekaufte Freiheit</div>
+          </div>
+          
+          <div class="buchauswahl-item" data-buch="dasschweigendermacht">
+            <img src="assets/images/dasschweigendermacht.png" alt="Das Schweigen der Macht" class="buchauswahl-cover">
+            <div class="buchauswahl-name">Das Schweigen der Macht</div>
           </div>
         </div>
       </div>
@@ -1763,6 +1121,22 @@
             </div>
           </div>
         </div>
+        
+        <!-- Das Schweigen der Macht -->
+        <div class="gesamtbewertung-item" id="gesamtBewertung5">
+          <img src="assets/images/dasschweigendermacht.png" alt="Das Schweigen der Macht" class="gesamtbewertung-cover">
+          <div class="gesamtbewertung-name">Das Schweigen der Macht</div>
+          <div class="gesamtbewertung-stars">☆☆☆☆☆</div>
+          <div class="gesamtbewertung-rating">0.0</div>
+          <div class="gesamtbewertung-count">(0 Bewertungen)</div>
+          
+          <div class="gesamtbewertung-kommentare">
+            <div class="gesamtbewertung-kommentare-title">Häufige Kommentare:</div>
+            <div class="gesamtbewertung-kommentar">
+              "Noch keine Bewertungen"
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1869,7 +1243,7 @@
 <!-- ================= WERKE SPEZIFISCHE SCRIPTE ================= -->
 <script>
 // ========================================================================
-// BILDKARUSSELL FUNKTIONEN (UNVERÄNDERT)
+// BILDKARUSSELL FUNKTIONEN
 // ========================================================================
 
 function initKarussell() {
@@ -2031,6 +1405,11 @@ let allReviews = {
       "Ein wichtiges Buch zu einem entscheidenden Thema unserer Zeit.",
       "Besonders beeindruckend ist die Verbindung von historischer Analyse und Gegenwartsbezug."
     ]
+  },
+  dasschweigendermacht: {
+    ratings: [],
+    comments: {},
+    customComments: []
   }
 };
 
@@ -2207,11 +1586,31 @@ function updateGesamtbewertungen() {
   }
   
   // Für jedes Buch die Bewertung berechnen und anzeigen
-  const buchIds = ['derlangewegindiefinsternis', 'machtunduntergang', 'blutundkrone', 'diegekauftefreiheit'];
+  const buchIds = ['derlangewegindiefinsternis', 'machtunduntergang', 'blutundkrone', 'diegekauftefreiheit', 'dasschweigendermacht'];
   
   buchIds.forEach((buchId, index) => {
     const buchData = allReviews[buchId];
-    if (!buchData || !buchData.ratings || buchData.ratings.length === 0) return;
+    if (!buchData || !buchData.ratings || buchData.ratings.length === 0) {
+      // Für Bücher ohne Bewertungen: leere Anzeige
+      const bewertungElement = document.getElementById(`gesamtBewertung${index + 1}`);
+      if (bewertungElement) {
+        const starsElement = bewertungElement.querySelector('.gesamtbewertung-stars');
+        const ratingElement = bewertungElement.querySelector('.gesamtbewertung-rating');
+        const countElement = bewertungElement.querySelector('.gesamtbewertung-count');
+        if (starsElement) starsElement.textContent = '☆☆☆☆☆';
+        if (ratingElement) ratingElement.textContent = '0.0';
+        if (countElement) countElement.textContent = '(0 Bewertungen)';
+        
+        const commentsElement = bewertungElement.querySelector('.gesamtbewertung-kommentare');
+        if (commentsElement) {
+          const commentElements = commentsElement.querySelectorAll('.gesamtbewertung-kommentar');
+          if (commentElements[0]) commentElements[0].textContent = 'Noch keine Bewertungen';
+          if (commentElements[1]) commentElements[1].style.display = 'none';
+          if (commentElements[2]) commentElements[2].style.display = 'none';
+        }
+      }
+      return;
+    }
     
     const ratings = buchData.ratings;
     const average = ratings.reduce((a, b) => a + b, 0) / ratings.length;
@@ -2251,8 +1650,13 @@ function updateGesamtbewertungen() {
         topComments.forEach((comment, i) => {
           if (commentElements[i]) {
             commentElements[i].textContent = `"${comment[0]}" - ${comment[1]}x`;
+            commentElements[i].style.display = 'block';
           }
         });
+        // Eventuell übrige Kommentar-Elemente ausblenden, falls weniger als 3
+        for (let i = topComments.length; i < 3; i++) {
+          if (commentElements[i]) commentElements[i].style.display = 'none';
+        }
       }
     }
   });
@@ -2264,7 +1668,8 @@ function getBuchName(buchId) {
     derlangewegindiefinsternis: "Der lange Weg in die Finsternis",
     machtunduntergang: "Macht und Untergang",
     blutundkrone: "Blut und Krone",
-    diegekauftefreiheit: "Die gekaufte Freiheit"
+    diegekauftefreiheit: "Die gekaufte Freiheit",
+    dasschweigendermacht: "Das Schweigen der Macht"
   };
   return namen[buchId] || buchId;
 }
